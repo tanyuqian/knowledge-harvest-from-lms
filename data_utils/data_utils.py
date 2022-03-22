@@ -1,4 +1,25 @@
 import re
+from nltk.corpus import stopwords
+
+
+stopwords = stopwords.words('english')
+stopwords.extend([
+    'everything', 'everybody', 'everyone',
+    'anything', 'anybody', 'anyone',
+    'something', 'somebody', 'someone',
+    'nothing', 'nobody',
+    'one', 'neither', 'either'])
+
+
+def get_index_in_prompt(ent_idx, prompt):
+    return re.findall(f'<ENT[0-9]+>', prompt).index(f'<ENT{ent_idx}>')
+
+
+def get_n_ents(prompt):
+    n = 0
+    while f'<ENT{n}>' in prompt:
+        n += 1
+    return n
 
 
 def fix_ent_tuples(raw_ent_tuples):
