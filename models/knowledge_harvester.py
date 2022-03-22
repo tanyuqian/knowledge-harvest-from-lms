@@ -17,7 +17,7 @@ class KnowledgeHarvester:
 
     def harvest(self):
         collected_tuples = self._ent_tuple_searcher.search(
-            weighted_prompts=self._weighted_prompts, top_k=100)
+            weighted_prompts=self._weighted_prompts, n=100)
 
         for ent_tuple, weight in collected_tuples:
             print(ent_tuple, weight)

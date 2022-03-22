@@ -1,4 +1,5 @@
 import torch
+import heapq
 
 from data_utils.data_utils import get_n_ents, get_index_in_prompt
 
@@ -7,20 +8,21 @@ class EntityTupleSearcher:
     def __init__(self, model):
         self._model = model
 
-    def search(self, weighted_prompts, top_k):
+    def search(self, weighted_prompts, n):
         n_ents = get_n_ents(weighted_prompts[0][0])
 
-        collected_tuples = []
+        collected_tuples_heap = []
         self.dfs(
             weighted_prompts=weighted_prompts,
             n_ents=n_ents,
             cur_ent_idx=0,
             cur_ent_tuple=[],
             cur_weight=1.,
-            collected_tuples=collected_tuples,
-            top_k=top_k)
+            collected_tuples_heap=collected_tuples_heap,
+            n=n)
 
-        collected_tuples.sort(key=lambda t: t[1], reverse=True)
+        collected_tuples = sorted(
+            collected_tuples_heap, key=lambda t: t[0], reverse=True)
 
         return collected_tuples
 
@@ -30,12 +32,17 @@ class EntityTupleSearcher:
             cur_ent_idx,
             cur_ent_tuple,
             cur_weight,
-            collected_tuples,
-            top_k):
+            collected_tuples_heap,
+            n):
         if cur_ent_idx == n_ents:
             if len(set([e.strip().lower() for e in cur_ent_tuple])) == \
                     len(cur_ent_tuple):
-                collected_tuples.append([cur_ent_tuple, cur_weight])
+                if len(collected_tuples_heap) < n:
+                    heapq.heappush(
+                        collected_tuples_heap, [cur_weight, cur_ent_tuple])
+                else:
+                    heapq.heappushpop(
+                        collected_tuples_heap, [cur_weight, cur_ent_tuple])
             return
 
         mask_state = None
@@ -60,7 +67,11 @@ class EntityTupleSearcher:
         probs = torch.softmax(logits, dim=-1)[0]
         probs, pred_ids = torch.sort(probs, descending=True)
 
-        for prob, pred_id in zip(probs[:top_k], pred_ids[:top_k]):
+        for prob, pred_id in zip(probs, pred_ids):
+            if len(collected_tuples_heap) == n and \
+                    cur_weight * prob.item() < collected_tuples_heap[0]:
+                break
+
             pred_ent = self._model.tokenizer.decode(pred_id)
 
             if not any([ch.isalpha() for ch in pred_ent]):
@@ -77,5 +88,5 @@ class EntityTupleSearcher:
                 cur_ent_idx=cur_ent_idx + 1,
                 cur_ent_tuple=cur_ent_tuple + [pred_ent],
                 cur_weight=cur_weight * prob.item(),
-                collected_tuples=collected_tuples,
-                top_k=top_k)
+                collected_tuples_heap=collected_tuples_heap,
+                n=n)
