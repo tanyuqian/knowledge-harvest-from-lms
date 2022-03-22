@@ -72,6 +72,6 @@ class EntityTupleSearcher:
                     n_ents=n_ents,
                     cur_ent_idx=cur_ent_idx + 1,
                     cur_ent_tuple=cur_ent_tuple + [pred_ent],
-                    cur_weight=cur_weight * prob,
+                    cur_weight=cur_weight * prob.item(),
                     collected_tuples=collected_tuples,
                     top_k=top_k)
