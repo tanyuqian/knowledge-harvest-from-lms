@@ -12,6 +12,7 @@ class LanguageModelWrapper:
         if model_name == 'roberta-large':
             self._tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self._model = RobertaForMaskedLM.from_pretrained(model_name)
+            self._encoder = self._model.roberta
             self._lm_head = self._model.lm_head
         else:
             raise NotImplementedError
@@ -38,6 +39,10 @@ class LanguageModelWrapper:
     @property
     def model(self):
         return self._model
+
+    @property
+    def encoder(self):
+        return self._encoder
 
     @property
     def lm_head(self):

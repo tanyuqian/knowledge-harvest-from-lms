@@ -43,7 +43,7 @@ class EntityTupleSearcher:
             input_text = self._model.get_masked_input_text(prompt=prompt)
             inputs = self._model.tokenizer(input_text, return_tensors="pt")
 
-            outputs = self._model.model(**inputs)
+            outputs = self._model.encoder(**inputs)
             sequence_output = outputs.last_hidden_state[
                 inputs['input_ids'] == self._model.mask_token_id]
 
