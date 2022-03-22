@@ -68,11 +68,11 @@ class EntityTupleSearcher:
                 weighted_prompts_upd.append(
                     [prompt.replace(f'<ENT{cur_ent_idx}>', pred_ent), weight])
 
-                self.dfs(
-                    weighted_prompts=weighted_prompts_upd,
-                    n_ents=n_ents,
-                    cur_ent_idx=cur_ent_idx + 1,
-                    cur_ent_tuple=cur_ent_tuple + [pred_ent],
-                    cur_weight=cur_weight * prob.item(),
-                    collected_tuples=collected_tuples,
-                    top_k=top_k)
+            self.dfs(
+                weighted_prompts=weighted_prompts_upd,
+                n_ents=n_ents,
+                cur_ent_idx=cur_ent_idx + 1,
+                cur_ent_tuple=cur_ent_tuple + [pred_ent],
+                cur_weight=cur_weight * prob.item(),
+                collected_tuples=collected_tuples,
+                top_k=top_k)
