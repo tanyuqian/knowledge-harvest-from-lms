@@ -63,6 +63,9 @@ class EntityTupleSearcher:
         for prob, pred_id in zip(probs[:top_k], pred_ids[:top_k]):
             pred_ent = self._model.tokenizer.decode(pred_id)
 
+            if not any([ch.isalpha() for ch in pred_ent]):
+                continue
+
             weighted_prompts_upd = []
             for prompt, weight in weighted_prompts:
                 weighted_prompts_upd.append(
