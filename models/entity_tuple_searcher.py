@@ -38,7 +38,7 @@ class EntityTupleSearcher:
                 collected_tuples.append([cur_ent_tuple, cur_weight])
             return
 
-        mask_states = []
+        mask_state = None
         for prompt, weight in weighted_prompts:
             input_text = self._model.get_masked_input_text(prompt=prompt)
             inputs = self._model.tokenizer(input_text, return_tensors="pt")
@@ -49,10 +49,11 @@ class EntityTupleSearcher:
 
             index_in_prompt = get_index_in_prompt(
                 ent_idx=cur_ent_idx, prompt=prompt)
-            mask_states.append(sequence_output[index_in_prompt] * weight)
+            if mask_state is None:
+                mask_state = torch.zeros_like(sequence_output[index_in_prompt])
+            mask_state = mask_state + sequence_output[index_in_prompt] * weight
 
-        mask_state = sum(mask_states) / \
-                     sum([weight for _, weight in weighted_prompts])
+        mask_state = mask_state / sum(weight for _, weight in weighted_prompts)
 
         logits = self._model.lm_head(mask_state.reshape(1, -1))
         logits[::, self._model.banned_ids] = -float('inf')
