@@ -69,7 +69,7 @@ class EntityTupleSearcher:
 
         for prob, pred_id in zip(probs, pred_ids):
             if len(collected_tuples_heap) == n and \
-                    cur_weight * prob.item() < collected_tuples_heap[0]:
+                    cur_weight * prob.item() < collected_tuples_heap[0][0]:
                 break
 
             pred_ent = self._model.tokenizer.decode(pred_id)
