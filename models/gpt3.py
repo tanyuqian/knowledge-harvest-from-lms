@@ -73,4 +73,4 @@ class GPT3:
 
         return ent_tuples
 
-    # def get_paraphrase_prompt(self, prompt, ent_pair):
+    # def get_paraphrase_prompt(self, prompt, ent_tuple):

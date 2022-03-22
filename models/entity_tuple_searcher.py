@@ -35,14 +35,12 @@ class EntityTupleSearcher:
             collected_tuples_heap,
             n):
         if cur_ent_idx == n_ents:
-            if len(set([e.strip().lower() for e in cur_ent_tuple])) == \
-                    len(cur_ent_tuple):
-                if len(collected_tuples_heap) < n:
-                    heapq.heappush(
-                        collected_tuples_heap, [cur_weight, cur_ent_tuple])
-                else:
-                    heapq.heappushpop(
-                        collected_tuples_heap, [cur_weight, cur_ent_tuple])
+            if len(collected_tuples_heap) < n:
+                heapq.heappush(
+                    collected_tuples_heap, [cur_weight, cur_ent_tuple])
+            else:
+                heapq.heappushpop(
+                    collected_tuples_heap, [cur_weight, cur_ent_tuple])
             return
 
         mask_state = None
@@ -73,6 +71,10 @@ class EntityTupleSearcher:
                 break
 
             pred_ent = self._model.tokenizer.decode(pred_id)
+
+            pred_ent = pred_ent.strip().lower()
+            if pred_ent in cur_ent_tuple:
+                continue
 
             if not any([ch.isalpha() for ch in pred_ent]):
                 continue
