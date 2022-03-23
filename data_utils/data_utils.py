@@ -8,7 +8,8 @@ stopwords.extend([
     'anything', 'anybody', 'anyone',
     'something', 'somebody', 'someone',
     'nothing', 'nobody',
-    'one', 'neither', 'either'])
+    'one', 'neither', 'either',
+    'us'])
 
 
 def get_index_in_prompt(ent_idx, prompt):
