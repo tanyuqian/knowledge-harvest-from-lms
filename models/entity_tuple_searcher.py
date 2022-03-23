@@ -24,7 +24,7 @@ class EntityTupleSearcher:
         collected_tuples = sorted(
             collected_tuples_heap, key=lambda t: t[0], reverse=True)
 
-        return collected_tuples
+        return [t[1] for t in collected_tuples]
 
     def dfs(self,
             weighted_prompts,

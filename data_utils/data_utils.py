@@ -22,6 +22,14 @@ def get_n_ents(prompt):
     return n
 
 
+def get_sent(prompt, ent_tuple):
+    sent = prompt
+    for idx, ent in enumerate(ent_tuple):
+        sent = sent.replace(f'<ENT{idx}>', ent)
+
+    return sent
+
+
 def fix_ent_tuples(raw_ent_tuples):
     ent_tuples = []
     for ent_tuple in sorted(
@@ -40,6 +48,10 @@ def fix_ent_tuples(raw_ent_tuples):
     return ent_tuples
 
 
+def get_gpt3_prompt_paraphrase(sent):
+    return f'paraphrase:\n{sent}\n'
+
+
 def get_gpt3_prompt_mask_filling(prompt):
     prompt = re.sub(r'<ENT[0-9]+>', '[blank]', prompt)
     return f'fill in blanks:\n{prompt}\n'
@@ -52,9 +64,6 @@ def get_ent_tuple_from_sentence(sent, prompt):
     re_prompt = re.sub(r'<ENT[0-9]+>', _convert_re_prompt, prompt)
     re_prompt = re.compile(re_prompt)
     matching = re.match(re_prompt, sent)
-
-    # print('sent:', sent)
-    # print('re_prompt:', re_prompt)
 
     if matching is None:
         return None

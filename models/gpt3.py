@@ -1,9 +1,10 @@
 import os
 import openai
-from nltk import sent_tokenize
+from nltk import word_tokenize, sent_tokenize
 
 from data_utils.data_utils import get_ent_tuple_from_sentence,\
-    get_gpt3_prompt_mask_filling, fix_ent_tuples
+    get_gpt3_prompt_mask_filling, get_gpt3_prompt_paraphrase,\
+    fix_ent_tuples, get_n_ents, get_sent
 
 
 class GPT3:
@@ -73,4 +74,25 @@ class GPT3:
 
         return ent_tuples
 
-    # def get_paraphrase_prompt(self, prompt, ent_tuple):
+    def get_paraphrase_prompt(self, prompt, ent_tuple):
+        assert get_n_ents(prompt) == len(ent_tuple)
+
+        sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
+
+        for _ in range(5):
+            raw_response = self.get_raw_response(
+                prompt=get_gpt3_prompt_paraphrase(sent))
+
+            para_sent = raw_response['choices'][0]['text']
+            para_sent = sent_tokenize(para_sent)[0]
+            para_sent = para_sent.strip().strip('.').lower()
+
+            words = word_tokenize(para_sent)
+            if any([(ent not in words) for ent in ent_tuple]):
+                break
+            for idx, ent in enumerate(ent_tuple):
+                words[words.index(ent)] = f'<ENT{idx}>'
+
+            return ' '.join(words)
+
+        return None
