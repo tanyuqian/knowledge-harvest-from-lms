@@ -66,5 +66,7 @@ class KnowledgeHarvester:
             [ent_tuple, weight]
             for ent_tuple, weight in zip(ent_tuples, ent_tuple_weights)]
 
+        self._weighted_ent_tuples.sort(key=lambda t: t[1], reverse=True)
+
         for ent_tuple, weight in self._weighted_ent_tuples:
             print(ent_tuple, weight)

@@ -18,6 +18,7 @@ class LanguageModelWrapper:
             raise NotImplementedError
 
         self._model.eval()
+        self._model.to('cuda')
 
         self._banned_ids = None
         self._get_banned_ids()
