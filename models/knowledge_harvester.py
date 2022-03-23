@@ -54,8 +54,11 @@ class KnowledgeHarvester:
         collected_tuples = self._ent_tuple_searcher.search(
             weighted_prompts=self._weighted_prompts, n=100)
 
-        ent_tuples = list(set(
-            [t[0] for t in self._weighted_ent_tuples] + [collected_tuples]))
+        ent_tuples = sorted(
+            [t[0] for t in self._weighted_ent_tuples] + [collected_tuples])
+        ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
+                      if (i == 0 or ent_tuples[i] != ent_tuples[i - 1])]
+
         ent_tuple_weights = [
             self.get_ent_tuple_weight(ent_tuple) for ent_tuple in ent_tuples]
 
