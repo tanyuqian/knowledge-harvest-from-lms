@@ -50,7 +50,8 @@ class EntityTupleSearcher:
         mask_state = None
         for prompt, weight in weighted_prompts:
             input_text = self._model.get_masked_input_text(prompt=prompt)
-            inputs = self._model.tokenizer(input_text, return_tensors="pt")
+            inputs = self._model.tokenizer(
+                input_text, return_tensors="pt").to('cuda')
 
             outputs = self._model.encoder(**inputs)
             sequence_output = outputs.last_hidden_state[

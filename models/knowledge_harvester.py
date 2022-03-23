@@ -32,7 +32,8 @@ class KnowledgeHarvester:
         mask_spans = self._model.get_mask_spans(
             prompt=prompt, ent_tuple=ent_tuple)
 
-        masked_inputs = self._model.tokenizer(sent, return_tensors='pt')
+        masked_inputs = self._model.tokenizer(
+            sent, return_tensors='pt').to('cuda')
         truth_input_ids = self._model.tokenizer(sent)['input_ids']
         for mask_span in mask_spans:
             for i in range(mask_span[0], mask_span[1]):
