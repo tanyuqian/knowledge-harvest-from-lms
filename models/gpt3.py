@@ -89,7 +89,7 @@ class GPT3:
 
             words = word_tokenize(para_sent)
             if any([(ent not in words) for ent in ent_tuple]):
-                break
+                continue
             for idx, ent in enumerate(ent_tuple):
                 words[words.index(ent)] = f'<ENT{idx}>'
 
