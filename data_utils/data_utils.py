@@ -18,6 +18,8 @@ def get_mask_index_in_prompt(ent_idx, n_masks, prompt):
         t_idx = int(t[len('<ENT'):-1])
         if t_idx != ent_idx:
             mask_idx += n_masks[t_idx]
+        else:
+            break
 
     return mask_idx
 
