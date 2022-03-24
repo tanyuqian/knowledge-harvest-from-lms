@@ -5,8 +5,8 @@ from models.gpt3 import GPT3
 
 gpt3 = GPT3()
 
-prompt = '<ENT0> is the capital of <ENT1>'
-ent_tuple = ['beijing', 'china']
+prompt = '<ENT0> is part of <ENT1>'
+ent_tuple = ['facebook', 'google']
 
 print(gpt3.get_paraphrase_prompt(prompt=prompt, ent_tuple=ent_tuple))
 
