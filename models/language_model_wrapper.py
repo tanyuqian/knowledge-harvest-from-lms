@@ -89,4 +89,8 @@ class LanguageModelWrapper:
     def banned_ids(self):
         return self._banned_ids
 
+    @property
+    def all_special_ids(self):
+        return self._tokenizer.all_special_ids
+
 

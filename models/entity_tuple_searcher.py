@@ -111,9 +111,6 @@ class EntityTupleSearcher:
             if pred_ent in cur_ent_tuple or pred_ent in stopwords:
                 return
 
-            if not any([ch.isalpha() for ch in pred_ent]):
-                return
-
             if len(collected_ent_heap) < n:
                 heapq.heappush(collected_ent_heap, [cur_weight, pred_ent])
             else:
@@ -122,8 +119,8 @@ class EntityTupleSearcher:
             return
 
         mask_state = None
-        for prompt, weight in weighted_prompts:
-            prompt = prompt.replace(
+        for raw_prompt, weight in weighted_prompts:
+            prompt = raw_prompt.replace(
                 f'<ENT{ent_idx}>',
                 self._model.tokenizer.decode(cur_token_ids) +
                 '<mask>' * (n_masks[ent_idx] - len(cur_token_ids)))
@@ -140,7 +137,7 @@ class EntityTupleSearcher:
                 inputs['input_ids'] == self._model.mask_token_id]
 
             mask_idx_in_prompt = get_mask_index_in_prompt(
-                ent_idx=ent_idx, n_masks=n_masks, prompt=prompt)
+                ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)
             if mask_state is None:
                 mask_state = torch.zeros_like(
                     sequence_output[mask_idx_in_prompt])
@@ -150,7 +147,7 @@ class EntityTupleSearcher:
         mask_state = mask_state / sum(weight for _, weight in weighted_prompts)
 
         logits = self._model.lm_head(mask_state.reshape(1, -1))
-        # logits[::, self._model.banned_ids] = -float('inf')
+        logits[::, self._model.all_special_ids] = -float('inf')
         probs = torch.softmax(logits, dim=-1)[0]
         probs, pred_ids = torch.sort(probs, descending=True)
 
@@ -161,6 +158,10 @@ class EntityTupleSearcher:
 
             if cur_weight * prob.item() < weight_threashold:
                 break
+
+            if not any([ch.isalpha() for ch in
+                        self._model.tokenizer.decode(pred_id)]):
+                return
 
             self.dfs_ent(
                 cur_ent_tuple=cur_ent_tuple,
