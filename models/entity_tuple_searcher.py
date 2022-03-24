@@ -72,6 +72,9 @@ class EntityTupleSearcher:
         collected_ents.sort(reverse=True)
 
         for prob, pred_ent in collected_ents:
+            print(pred_ent, prob)
+
+        for prob, pred_ent in collected_ents:
             if len(collected_tuples_heap) == n and \
                     cur_weight * prob < collected_tuples_heap[0][0]:
                 break
@@ -86,7 +89,7 @@ class EntityTupleSearcher:
                 n_ents=n_ents,
                 n_masks=n_masks,
                 cur_ent_tuple=cur_ent_tuple + [pred_ent],
-                cur_weight=cur_weight * prob.item(),
+                cur_weight=cur_weight * prob,
                 collected_tuples_heap=collected_tuples_heap,
                 n=n)
 
