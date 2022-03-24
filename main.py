@@ -5,7 +5,7 @@ def main():
     knowledge_harvester = KnowledgeHarvester(model_name='roberta-large')
 
     knowledge_harvester.init_prompts(prompts=[
-        '<ENT0> is a subclass of <ENT1>'])
+        '<ENT0> is a subclass of <ENT1>', '<ENT0> is a type of <ENT1>'])
 
     # knowledge_harvester.init_prompts(prompts=[
     #     '<ENT1>\'s capital is <ENT0>',
