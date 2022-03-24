@@ -12,8 +12,14 @@ stopwords.extend([
     'us'])
 
 
-def get_index_in_prompt(ent_idx, prompt):
-    return re.findall(f'<ENT[0-9]+>', prompt).index(f'<ENT{ent_idx}>')
+def get_mask_index_in_prompt(ent_idx, n_masks, prompt):
+    mask_idx = 0
+    for t in re.findall(r'<ENT[0-9]+>', prompt):
+        t_idx = int(t[len('<ENT'):-1])
+        if t_idx != ent_idx:
+            mask_idx += n_masks[t_idx]
+
+    return mask_idx
 
 
 def get_n_ents(prompt):

@@ -29,9 +29,14 @@ class LanguageModelWrapper:
             if self._tokenizer.decode(idx).lower().strip() in stopwords:
                 self._banned_ids.append(idx)
 
-    def get_masked_input_text(self, prompt):
+    def get_masked_input_text(self, prompt, n_masks):
         if self._model_name == 'roberta-large':
-            return re.sub(r'<ENT[0-9]+>', '<mask>', prompt)
+            input_text = prompt
+            for ent_idx, n_mask in enumerate(n_masks):
+                input_text = input_text.replace(
+                    f'<ENT{ent_idx}>', '<mask>' * n_mask)
+
+            return input_text
 
     def get_mask_spans(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
