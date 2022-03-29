@@ -80,8 +80,8 @@ class EntityTupleSearcher:
 
         collected_ents.sort(reverse=True)
 
-        for prob, pred_ent in collected_ents:
-            print(pred_ent, prob)
+        # for prob, pred_ent in collected_ents:
+        #     print(pred_ent, prob)
 
         for prob, pred_ent in collected_ents:
             if len(collected_tuples_heap) == n and \
