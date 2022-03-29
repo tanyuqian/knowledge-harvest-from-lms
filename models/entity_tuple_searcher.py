@@ -14,20 +14,29 @@ class EntityTupleSearcher:
 
         collected_tuples_heap = []
 
-        for t in range(1 << n_ents):
-            bin_t = f'{t:b}'
-            bin_t = '0' * (n_ents - len(bin_t)) + bin_t
+        # for t in range(1 << n_ents):
+        #     bin_t = f'{t:b}'
+        #     bin_t = '0' * (n_ents - len(bin_t)) + bin_t
+        #
+        #     n_masks = [int(ch) + 1 for ch in bin_t]
+        #
+        #     self.dfs(
+        #         weighted_prompts=weighted_prompts,
+        #         n_ents=n_ents,
+        #         n_masks=n_masks,
+        #         cur_ent_tuple=[],
+        #         cur_weight=1.,
+        #         collected_tuples_heap=collected_tuples_heap,
+        #         n=n)
 
-            n_masks = [int(ch) + 1 for ch in bin_t]
-
-            self.dfs(
-                weighted_prompts=weighted_prompts,
-                n_ents=n_ents,
-                n_masks=n_masks,
-                cur_ent_tuple=[],
-                cur_weight=1.,
-                collected_tuples_heap=collected_tuples_heap,
-                n=n)
+        self.dfs(
+            weighted_prompts=weighted_prompts,
+            n_ents=n_ents,
+            n_masks=[1] * n_ents,
+            cur_ent_tuple=[],
+            cur_weight=1.,
+            collected_tuples_heap=collected_tuples_heap,
+            n=n)
 
         collected_tuples = sorted(collected_tuples_heap, reverse=True)
 
@@ -147,7 +156,7 @@ class EntityTupleSearcher:
         mask_state = mask_state / sum(weight for _, weight in weighted_prompts)
 
         logits = self._model.lm_head(mask_state.reshape(1, -1))
-        logits[::, self._model.all_special_ids] = -float('inf')
+        logits[::, self._model.banned_ids] = -float('inf')
         probs = torch.softmax(logits, dim=-1)[0]
         probs, pred_ids = torch.sort(probs, descending=True)
 
@@ -161,7 +170,7 @@ class EntityTupleSearcher:
 
             if not any([ch.isalpha() for ch in
                         self._model.tokenizer.decode(pred_id)]):
-                return
+                continue
 
             self.dfs_ent(
                 cur_ent_tuple=cur_ent_tuple,
