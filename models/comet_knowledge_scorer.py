@@ -1,0 +1,39 @@
+import os
+import torch
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+
+class Comet:
+    def __init__(self, model_path=None):
+        if model_path is None:
+            model_path = './comet-atomic_2020_BART'
+
+        if not os.path.exists(model_path):
+            os.system('bash data_utils/download_comet.sh')
+
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_path).to(self.device)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+        task = "summarization"
+        use_task_specific_params(self.model, task)
+        self.batch_size = 1
+        self.decoder_start_token_id = None
+
+    def score(self, h, r, t):
+        query = f'{h} {r} [GEN]'
+        inputs = self.tokenizer(
+            query, return_tensors='pt', padding='max length').to(self.device)
+
+        outputs = self.model(**inputs)
+
+        print(outputs)
+
+
+def use_task_specific_params(model, task):
+    """Update config with summarization specific params."""
+    task_specific_params = model.config.task_specific_params
+
+    if task_specific_params is not None:
+        pars = task_specific_params.get(task, {})
+        print(f"using task specific params for {task}: {pars}")
+        model.config.update(pars)
