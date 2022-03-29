@@ -3,7 +3,7 @@ import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 
-class Comet:
+class COMETKnowledgeScorer:
     def __init__(self, model_path=None):
         if model_path is None:
             model_path = './comet-atomic_2020_BART'
@@ -21,12 +21,13 @@ class Comet:
 
     def score(self, h, r, t):
         query = f'{h} {r} [GEN]'
-        inputs = self.tokenizer(
-            query, return_tensors='pt', padding='max length').to(self.device)
+        inputs = self.tokenizer(query, return_tensors='pt').to(self.device)
+        t_token_ids = self.tokenizer(
+            t, return_tensors='pt')['input_ids'][:, 1:-1].to(self.device)
 
-        outputs = self.model(**inputs)
+        outputs = self.model(**inputs, labels=t_token_ids)
 
-        print(outputs)
+        return -outputs.loss.item()
 
 
 def use_task_specific_params(model, task):
