@@ -1,4 +1,5 @@
 import os
+import json
 import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
@@ -7,6 +8,7 @@ class COMETKnowledgeScorer:
     def __init__(self, model_path=None):
         if model_path is None:
             model_path = './comet-atomic_2020_BART'
+        self._model_path = model_path
 
         if not os.path.exists(model_path):
             os.system('bash data_utils/download_comet.sh')
@@ -18,6 +20,12 @@ class COMETKnowledgeScorer:
         use_task_specific_params(self.model, task)
         self.batch_size = 1
         self.decoder_start_token_id = None
+
+    @property
+    def relations(self):
+        added_tokens = json.load(open(f'{self._model_path}/added_tokens.json'))
+        relations = [key for key in added_tokens.keys() if key != '[GEN]']
+        return relations
 
     def score(self, h, r, t):
         query = f'{h} {r} [GEN]'

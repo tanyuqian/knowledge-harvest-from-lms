@@ -33,6 +33,10 @@ class CKBCKnowledgeScorer:
         for del_rel in DEL_RELS:
             self._rel.pop(del_rel.lower())
 
+    @property
+    def relations(self):
+        return list(self._rel.keys())
+
     def score(self, h, r, t):
         h = h.replace(' ', '_')
         r = r.lower()

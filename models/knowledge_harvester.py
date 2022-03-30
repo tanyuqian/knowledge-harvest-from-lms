@@ -7,13 +7,18 @@ from data_utils.data_utils import get_n_ents, get_sent
 
 
 class KnowledgeHarvester:
-    def __init__(self, model_name):
+    def __init__(self, model_name, max_n_prompts=20, max_n_ent_tuples=1000):
         self._weighted_prompts = []
         self._weighted_ent_tuples = []
-        self._n_ents = None
+        self._max_n_prompts = max_n_prompts
+        self._max_n_ent_tuples = max_n_ent_tuples
 
         self._model = LanguageModelWrapper(model_name=model_name)
         self._ent_tuple_searcher = EntityTupleSearcher(model=self._model)
+
+    def clear(self):
+        self._weighted_prompts = []
+        self._weighted_ent_tuples = []
 
     def init_prompts(self, prompts):
         for prompt in prompts:
@@ -53,7 +58,7 @@ class KnowledgeHarvester:
 
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
-            weighted_prompts=self._weighted_prompts, n=100)
+            weighted_prompts=self._weighted_prompts, n=self._max_n_ent_tuples)
 
         ent_tuples = sorted(
             [t[0] for t in self._weighted_ent_tuples] + collected_tuples)
@@ -68,6 +73,16 @@ class KnowledgeHarvester:
             for ent_tuple, weight in zip(ent_tuples, ent_tuple_weights)]
 
         self._weighted_ent_tuples.sort(key=lambda t: t[1], reverse=True)
+        self._weighted_ent_tuples = \
+            self._weighted_ent_tuples[:self._max_n_ent_tuples]
 
         for ent_tuple, weight in self._weighted_ent_tuples:
             print(ent_tuple, weight)
+
+    @property
+    def weighted_ent_tuples(self):
+        return self._weighted_ent_tuples
+
+    @property
+    def weighted_prompts(self):
+        return self._weighted_prompts

@@ -1,27 +1,22 @@
+import json
+
 from models.knowledge_harvester import KnowledgeHarvester
+
+from data_utils.data_utils import conceptnet_relation_init_prompts
 
 
 def main():
     knowledge_harvester = KnowledgeHarvester(model_name='roberta-large')
 
-    knowledge_harvester.init_prompts(prompts=[
-        '<ENT0> is used for <ENT1>', 'the purpose of <ENT0> is <ENT1>'])
+    for relation, init_prompts in conceptnet_relation_init_prompts:
+        print(f'Harvesting for relation {relation}...')
 
-    # knowledge_harvester.init_prompts(prompts=[
-    #     '<ENT0> is a subclass of <ENT1>', '<ENT0> is a type of <ENT1>'])
+        knowledge_harvester.clear()
+        knowledge_harvester.init_prompts(prompts=init_prompts)
+        knowledge_harvester.update_ent_tuples()
 
-    # knowledge_harvester.init_prompts(prompts=[
-    #     '<ENT1>\'s capital is <ENT0>',
-    #     '<ENT0> is <ENT1>\'s capital',
-    #     '<ENT0> is the capital of <ENT1> and one of the most populous cities in the world',
-    #     'the capital of <ENT1> is <ENT0>',
-    #     '<ENT1>\'s capital city is <ENT0>'])
-
-    # knowledge_harvester.init_prompts(prompts=[
-    #     '<ENT0> is part of <ENT1>',
-    #     '<ENT0> belongs to <ENT1>'])
-
-    knowledge_harvester.update_ent_tuples()
+        json.dump(knowledge_harvester.weighted_ent_tuples, open(
+            f'outputs/{relation}.json', 'w'), indent=4)
 
 
 if __name__ == '__main__':

@@ -40,9 +40,9 @@ class EntityTupleSearcher:
 
         collected_tuples = sorted(collected_tuples_heap, reverse=True)
 
-        for weight, ent_tuple in collected_tuples:
-            print(ent_tuple, weight)
-        print('=' * 50)
+        # for weight, ent_tuple in collected_tuples:
+        #     print(ent_tuple, weight)
+        # print('=' * 50)
 
         return [t[1] for t in collected_tuples]
 
