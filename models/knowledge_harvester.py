@@ -44,17 +44,23 @@ class KnowledgeHarvester:
             for i in range(mask_span[0], mask_span[1]):
                 masked_inputs['input_ids'][0][i] = self._model.mask_token_id
 
-        score = 1.
+        scores = []
         for mask_span in mask_spans:
             for mask_pos in range(mask_span[0], mask_span[1]):
                 logits = self._model.model(**masked_inputs).logits
-                probs = torch.softmax(logits, dim=-1)[0]
-                score *= probs[mask_pos][truth_input_ids[mask_pos]].item()
+                logprobs = torch.log_softmax(logits, dim=-1)[0]
+
+                scores.append(
+                    logprobs[mask_pos][truth_input_ids[mask_pos]].item())
 
                 masked_inputs['input_ids'][0][mask_pos] = \
                     truth_input_ids[mask_pos]
 
-        return score
+        sum_score = sum(scores) / len(ent_tuple)
+        mean_score = sum(scores) / len(scores)
+        min_score = min(scores)
+
+        return (sum_score + mean_score + min_score) / 3.
 
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
@@ -65,6 +71,7 @@ class KnowledgeHarvester:
         ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
                       if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
 
+        print('weighting entity tuples...')
         ent_tuple_weights = [
             self.get_ent_tuple_weight(ent_tuple) for ent_tuple in ent_tuples]
 

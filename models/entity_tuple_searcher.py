@@ -34,7 +34,7 @@ class EntityTupleSearcher:
             n_ents=n_ents,
             n_masks=[1] * n_ents,
             cur_ent_tuple=[],
-            cur_weight=1.,
+            cur_logprobs=[],
             collected_tuples_heap=collected_tuples_heap,
             n=n)
 
@@ -51,13 +51,13 @@ class EntityTupleSearcher:
             n_ents,
             n_masks,
             cur_ent_tuple,
-            cur_weight,
+            cur_logprobs,
             collected_tuples_heap,
             n):
         cur_ent_idx = len(cur_ent_tuple)
 
         if cur_ent_idx == n_ents:
-            pred_ent_tuple = [cur_weight, cur_ent_tuple]
+            pred_ent_tuple = [min(cur_logprobs), cur_ent_tuple]
             if len(collected_tuples_heap) < n:
                 heapq.heappush(collected_tuples_heap, pred_ent_tuple)
             else:
@@ -66,16 +66,16 @@ class EntityTupleSearcher:
             return
 
         collected_ents = []
-        ent_weight_threshold = 0. if len(collected_tuples_heap) < n else \
-            collected_tuples_heap[0][0] / cur_weight
+        logprob_threshold = float('-inf') if len(collected_tuples_heap) < n \
+            else collected_tuples_heap[0][0]
         self.dfs_ent(
             cur_ent_tuple=cur_ent_tuple,
             n_masks=n_masks,
             weighted_prompts=weighted_prompts,
             cur_token_ids=[],
-            cur_weight=1.,
+            cur_logprobs=[],
             collected_ent_heap=collected_ents,
-            weight_threashold=ent_weight_threshold,
+            logprob_threashold=logprob_threshold,
             n=n)
 
         collected_ents.sort(reverse=True)
@@ -83,9 +83,10 @@ class EntityTupleSearcher:
         # for prob, pred_ent in collected_ents:
         #     print(pred_ent, prob)
 
-        for prob, pred_ent in collected_ents:
+        for ent_min_logprob, _, pred_ent in collected_ents:
+            min_upd = min(cur_logprobs + [ent_min_logprob])
             if len(collected_tuples_heap) == n and \
-                    cur_weight * prob < collected_tuples_heap[0][0]:
+                    min_upd < collected_tuples_heap[0][0]:
                 break
 
             weighted_prompts_upd = []
@@ -98,7 +99,7 @@ class EntityTupleSearcher:
                 n_ents=n_ents,
                 n_masks=n_masks,
                 cur_ent_tuple=cur_ent_tuple + [pred_ent],
-                cur_weight=cur_weight * prob,
+                cur_logprobs=cur_logprobs + [ent_min_logprob],
                 collected_tuples_heap=collected_tuples_heap,
                 n=n)
 
@@ -107,9 +108,9 @@ class EntityTupleSearcher:
                 n_masks,
                 weighted_prompts,
                 cur_token_ids,
-                cur_weight,
+                cur_logprobs,
                 collected_ent_heap,
-                weight_threashold,
+                logprob_threashold,
                 n):
         ent_idx = len(cur_ent_tuple)
 
@@ -121,9 +122,11 @@ class EntityTupleSearcher:
                 return
 
             if len(collected_ent_heap) < n:
-                heapq.heappush(collected_ent_heap, [cur_weight, pred_ent])
+                heapq.heappush(collected_ent_heap, [
+                    min(cur_logprobs), cur_logprobs, pred_ent])
             else:
-                heapq.heappushpop(collected_ent_heap, [cur_weight, pred_ent])
+                heapq.heappushpop(collected_ent_heap, [
+                    min(cur_logprobs), cur_logprobs, pred_ent])
 
             return
 
@@ -157,15 +160,16 @@ class EntityTupleSearcher:
 
         logits = self._model.lm_head(mask_state.reshape(1, -1))
         logits[::, self._model.banned_ids] = -float('inf')
-        probs = torch.softmax(logits, dim=-1)[0]
-        probs, pred_ids = torch.sort(probs, descending=True)
+        logprobs = torch.log_softmax(logits, dim=-1)[0]
+        logprobs, pred_ids = torch.sort(logprobs, descending=True)
 
-        for prob, pred_id in zip(probs, pred_ids):
+        for logprob, pred_id in zip(logprobs, pred_ids):
+            min_upd = min(cur_logprobs + [logprob.item()])
             if len(collected_ent_heap) == n and \
-                    cur_weight * prob.item() < collected_ent_heap[0][0]:
+                    min_upd < collected_ent_heap[0][0]:
                 break
 
-            if cur_weight * prob.item() < weight_threashold:
+            if min_upd < logprob_threashold:
                 break
 
             if not any([ch.isalpha() for ch in
@@ -177,7 +181,7 @@ class EntityTupleSearcher:
                 n_masks=n_masks,
                 weighted_prompts=weighted_prompts,
                 cur_token_ids=cur_token_ids + [pred_id],
-                cur_weight=cur_weight * prob.item(),
+                cur_logprobs=cur_logprobs + [logprob.item()],
                 collected_ent_heap=collected_ent_heap,
-                weight_threashold=weight_threashold,
+                logprob_threashold=logprob_threashold,
                 n=n)
