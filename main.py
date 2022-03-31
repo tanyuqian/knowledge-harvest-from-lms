@@ -12,13 +12,13 @@ def main():
     for relation, init_prompts in conceptnet_relation_init_prompts.items():
         print(f'Harvesting for relation {relation}...')
 
-        if os.path.exists(f'outputs/{relation}/weighted_ent_tuples.json'):
-            print('result file exists, skipped.')
+        output_path = f'outputs/{relation}/weighted_ent_tuples.json'
+        if os.path.exists(output_path):
+            print(f'file {output_path} exists, skipped.')
             continue
         else:
             os.makedirs(f'outputs/{relation}', exist_ok=True)
-            json.dump([], open(
-                f'outputs/{relation}/weighted_ent_tuples.json', 'w'), indent=4)
+            json.dump([], open(output_path, 'w'), indent=4)
 
         knowledge_harvester.clear()
         knowledge_harvester.init_prompts(prompts=init_prompts)
