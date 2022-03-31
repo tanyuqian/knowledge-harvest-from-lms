@@ -1,4 +1,7 @@
 import torch
+from tqdm import tqdm
+
+from scipy.special import softmax
 
 from models.language_model_wrapper import LanguageModelWrapper
 from models.entity_tuple_searcher import EntityTupleSearcher
@@ -7,7 +10,7 @@ from data_utils.data_utils import get_n_ents, get_sent
 
 
 class KnowledgeHarvester:
-    def __init__(self, model_name, max_n_prompts=20, max_n_ent_tuples=1000):
+    def __init__(self, model_name, max_n_prompts=20, max_n_ent_tuples=10000):
         self._weighted_prompts = []
         self._weighted_ent_tuples = []
         self._max_n_prompts = max_n_prompts
@@ -60,7 +63,7 @@ class KnowledgeHarvester:
         mean_score = sum(scores) / len(scores)
         min_score = min(scores)
 
-        return (sum_score + mean_score + min_score) / 3.
+        return 0.25 * sum_score + 0.25 * mean_score + 0.5 * min_score
 
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
@@ -71,9 +74,11 @@ class KnowledgeHarvester:
         ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
                       if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
 
-        print('weighting entity tuples...')
         ent_tuple_weights = [
-            self.get_ent_tuple_weight(ent_tuple) for ent_tuple in ent_tuples]
+            self.get_ent_tuple_weight(ent_tuple) for ent_tuple in tqdm(
+                ent_tuples, desc='weighting entity tuples')]
+
+        ent_tuple_weights = softmax(ent_tuple_weights)
 
         self._weighted_ent_tuples = [
             [ent_tuple, weight]
@@ -83,8 +88,8 @@ class KnowledgeHarvester:
         self._weighted_ent_tuples = \
             self._weighted_ent_tuples[:self._max_n_ent_tuples]
 
-        for ent_tuple, weight in self._weighted_ent_tuples:
-            print(ent_tuple, weight)
+        # for ent_tuple, weight in self._weighted_ent_tuples:
+        #     print(ent_tuple, weight)
 
     @property
     def weighted_ent_tuples(self):
