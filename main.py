@@ -14,7 +14,7 @@ def main(n_tuples=10000, n_prompts=1):
     for relation, init_prompts in conceptnet_relation_init_prompts.items():
         print(f'Harvesting for relation {relation}...')
 
-        output_path = f'outputs_{n}tuples_{n_prompts}prompts/{relation}/'
+        output_path = f'outputs_{n_tuples}tuples_{n_prompts}prompts/{relation}/'
         output_filename = 'weighted_ent_tuples.json'
         if os.path.exists(f'{output_path}/{output_filename}'):
             print(f'file {output_path}/{output_filename} exists, skipped.')
