@@ -1,5 +1,6 @@
 import torch
 import heapq
+import time
 
 from data_utils.data_utils import get_n_ents, get_mask_index_in_prompt, \
     stopwords
@@ -29,6 +30,8 @@ class EntityTupleSearcher:
         #         collected_tuples_heap=collected_tuples_heap,
         #         n=n)
 
+        start = time.time()
+        
         self.dfs(
             weighted_prompts=weighted_prompts,
             n_ents=n_ents,
@@ -37,7 +40,9 @@ class EntityTupleSearcher:
             cur_logprobs=[],
             collected_tuples_heap=collected_tuples_heap,
             n=n)
-
+        
+        print(f"searched for entity tuples in {time.time() - start} s", )
+        
         collected_tuples = sorted(collected_tuples_heap, reverse=True)
 
         # for weight, ent_tuple in collected_tuples:
@@ -60,6 +65,8 @@ class EntityTupleSearcher:
             pred_ent_tuple = [min(cur_logprobs), cur_ent_tuple]
             if len(collected_tuples_heap) < n:
                 heapq.heappush(collected_tuples_heap, pred_ent_tuple)
+                # this is the initial case?
+
             else:
                 heapq.heappushpop(
                     collected_tuples_heap, pred_ent_tuple)
@@ -68,6 +75,7 @@ class EntityTupleSearcher:
         collected_ents = []
         logprob_threshold = float('-inf') if len(collected_tuples_heap) < n \
             else collected_tuples_heap[0][0]
+
         self.dfs_ent(
             cur_ent_tuple=cur_ent_tuple,
             n_masks=n_masks,
@@ -136,18 +144,20 @@ class EntityTupleSearcher:
                 f'<ENT{ent_idx}>',
                 self._model.tokenizer.decode(cur_token_ids) +
                 '<mask>' * (n_masks[ent_idx] - len(cur_token_ids)))
+            # a small bug?: 'It is typical for <mask> to cause <ENT1>'
 
             input_text = self._model.get_masked_input_text(
                 prompt=prompt, n_masks=n_masks)
+            
             inputs = self._model.tokenizer(
-                input_text, return_tensors="pt").to('cuda')
+                input_text, return_tensors="pt").to('cuda')  # single sentence
 
             with torch.no_grad():
                 outputs = self._model.encoder(**inputs)
 
             sequence_output = outputs.last_hidden_state[
                 inputs['input_ids'] == self._model.mask_token_id]
-
+            # n_mask (2) * embedding_dim (1024)
             mask_idx_in_prompt = get_mask_index_in_prompt(
                 ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)
             if mask_state is None:
