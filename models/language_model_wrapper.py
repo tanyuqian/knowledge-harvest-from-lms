@@ -3,12 +3,15 @@ import re
 from transformers import RobertaTokenizer, RobertaForMaskedLM
 
 from data_utils.data_utils import stopwords, get_n_ents, get_sent
-
+from collections import defaultdict
+import torch
+import copy
+from tqdm import *
 
 class LanguageModelWrapper:
     def __init__(self, model_name):
         self._model_name = model_name
-
+        self._max_batch_size = 128
         if model_name == 'roberta-large':
             self._tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self._model = RobertaForMaskedLM.from_pretrained(model_name)
@@ -35,8 +38,82 @@ class LanguageModelWrapper:
             for ent_idx, n_mask in enumerate(n_masks):
                 input_text = input_text.replace(
                     f'<ENT{ent_idx}>', '<mask>' * n_mask)
+        else:
+            raise NotImplementedError
+        
+        return input_text
 
-            return input_text
+    def _tokenize_prompt_with_slots(self, prompt, n_masks, batch_size):
+        mask_token = self.tokenizer.mask_token
+        n_entities = len(n_masks)
+        order = [(ent_idx, prompt.find(f'<ENT{ent_idx}>')) for ent_idx in range(n_entities)]
+        order = sorted(order, key=lambda x: x[-1])  # rank the entity idx by the position
+        for ent_idx in range(n_entities):
+            prompt = prompt.replace(f"<ENT{ent_idx}>", " ".join([mask_token] * n_masks[ent_idx]))
+        batch_prompts = self.tokenizer([prompt] * batch_size, return_tensors="pt").to('cuda')
+        pos_mask = [ind for ind, token_id in enumerate(batch_prompts['input_ids'][0]) \
+            if self.tokenizer.mask_token_id == token_id.item()]
+        pos_entities = [0] * n_entities
+        ptr = 0
+        for rank in range(n_entities):
+            ent_idx = order[rank][0]
+            pos_entities[ent_idx] = pos_mask[ptr]
+            ptr += n_masks[ent_idx]
+
+        return batch_prompts, pos_entities
+
+    def tokenize_tuples_by_len(self, tuples, add_prefix_space):
+        if self._model_name == 'roberta-large':
+            ids = []
+            n_entities = len(tuples[0])
+            for i in range(n_entities): 
+                ids.append(
+                    self.tokenizer([tuple[i] for tuple in tuples], \
+                    add_special_tokens=False, add_prefix_space=add_prefix_space[i])['input_ids']
+                )
+        tuple_dict = defaultdict(list)
+        for tuple_ids, tuple_texts in zip(zip(*ids), tuples):
+            tuple_dict[tuple([len(entity) for entity in tuple_ids])].append((tuple_ids, tuple_texts))
+        return tuple_dict
+
+    def _get_batch_prediction(self, input_ids, token_type_ids, attention_mask, pos):
+        with torch.no_grad():
+            if self._model_name == "roberta-large":
+                outputs = self.model(input_ids=input_ids,
+                    attention_mask=attention_mask, labels=None)
+            else:
+                outputs = self.model(input_ids=input_ids, token_type_ids=token_type_ids,\
+                    attention_mask=attention_mask, labels=None)
+            prediction = torch.log_softmax(outputs.logits[:, pos, :], dim=-1)
+        return prediction
+
+    def score_tuples(self, tuples, prompt, n_masks):
+        batch_size = min(self._max_batch_size, len(tuples))
+        n_ents = len(n_masks)
+        batch_prompt, pos_entities = self._tokenize_prompt_with_slots(prompt, n_masks, batch_size)
+        return_scores = []
+        for i in trange((len(tuples) - 1)//batch_size + 1):                
+            tuples_batch = tuples[i * batch_size: (i + 1) * batch_size]
+            cur_batch_size = len(tuples_batch)
+            batch_ids = copy.deepcopy(batch_prompt["input_ids"])[:cur_batch_size]
+            batch_scores = [[] for _ in range(cur_batch_size)]
+            for ent_idx in range(n_ents):
+                for token in range(n_masks[ent_idx]):
+                    target_pos = pos_entities[ent_idx] + token
+                    target_ids = [tuples_batch[case_idx][0][ent_idx][token] for case_idx in range(cur_batch_size)]
+                    
+                    cur_scores = self._get_batch_prediction(batch_ids[:cur_batch_size], \
+                        batch_prompt.get("token_type_ids", [])[:cur_batch_size], \
+                        batch_prompt["attention_mask"][:cur_batch_size], target_pos)  
+                        # roberta doesn't have "token_type_ids"
+
+                    for case_idx in range(cur_batch_size):
+                        batch_scores[case_idx].append(cur_scores[case_idx, target_ids[case_idx]])
+                        batch_ids[case_idx][target_pos] = target_ids[case_idx]  
+                        # fill in the blank for next token prediction
+
+            return_scores += batch_scores
+        return return_scores
 
     def get_mask_spans(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
