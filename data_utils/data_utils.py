@@ -29,7 +29,9 @@ conceptnet_relation_init_prompts = {
         '<ENT0> typically causes <ENT1>'
     ],
     'CausesDesire': [
-        '<ENT0> makes someone want <ENT1>'
+        '<ENT0> makes someone want <ENT1>',
+        '<ENT1> is a desire caused by <ENT0>',
+        '<ENT0> causes <ENT1>'
     ],
     'CreatedBy': [
         '<ENT1> is a process or agent that creates <ENT0>',
