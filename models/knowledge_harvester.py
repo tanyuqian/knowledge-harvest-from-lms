@@ -45,7 +45,7 @@ class KnowledgeHarvester:
 
         weights = torch.tensor([weight for prompt, weight in self._weighted_prompts])
         scores = torch.sum(scores * weights.reshape(*weights.shape, 1).expand(*scores.shape), dim=0)
-        scores_with_tuples = [(ent_tuple, score.item()) for score, ent_tuple in zip(scores, tuples)]
+        scores_with_tuples = [(ent_tuple, score) for score, ent_tuple in zip(scores, tuples)]
         return scores_with_tuples
         
     def _score_tuples_prompts(self, ent_tuples):
@@ -61,7 +61,7 @@ class KnowledgeHarvester:
                 print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
                 scores = self._model.score_tuples(tuples, prompt, n_masks=n_masks)
                 for score, ent_tuple in zip(scores, tuples):
-                    prompt_result_list.append((sum(score)/sum(n_masks), sum(score)/len(n_masks), min(score))) # += [(ent_tuple[1], score) ]
+                    prompt_result_list.append((sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item())) # += [(ent_tuple[1], score) ]
                     tuples_list.append(ent_tuple[1])
             result_list.append(prompt_result_list)
         return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
