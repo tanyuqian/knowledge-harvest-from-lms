@@ -3,13 +3,13 @@ import json
 
 
 class CKBC:
-    def __init__(self):
+    def __init__(self, file="test.txt"):
         if not os.path.exists('data/ckbc'):
             os.system('bash data_utils/download_ckbc.sh')
 
         self._ent_tuples = {}
         self._label = {}
-        for line in open('data/ckbc/test.txt').readlines():
+        for line in open(f'data/ckbc/{file}').readlines():
             rel, ent0, ent1, label = line.split('\t')
 
             if rel not in self._ent_tuples:

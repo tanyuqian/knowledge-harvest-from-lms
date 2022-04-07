@@ -11,7 +11,7 @@ from tqdm import *
 class LanguageModelWrapper:
     def __init__(self, model_name):
         self._model_name = model_name
-        self._max_batch_size = 128
+        self._max_batch_size = 64
         if model_name == 'roberta-large':
             self._tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self._model = RobertaForMaskedLM.from_pretrained(model_name)

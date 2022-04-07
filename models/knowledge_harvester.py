@@ -35,23 +35,24 @@ class KnowledgeHarvester:
         return score
     '''
     # need to be batchified
-    def get_ent_tuples_weight(self, ent_tuples):
+    def get_ent_tuples_weight(self, ent_tuples, weights=(.25, .25, .5)):
         scores, tuples = self._score_tuples_prompts(ent_tuples)
         # now the score has the shape (n_prompts, n_tuples, 3)
-        metric_weights = torch.tensor((.25, .25, .5))
+        metric_weights = torch.tensor(weights)
         scores = torch.sum(scores * metric_weights.reshape(1, 1, *metric_weights.shape)\
             .expand(*scores.shape), dim=-1)
         # aggregate all the metrics. Now (n_prompts, n_tuples)
 
         weights = torch.tensor([weight for prompt, weight in self._weighted_prompts])
         scores = torch.sum(scores * weights.reshape(*weights.shape, 1).expand(*scores.shape), dim=0)
-        scores_with_tuples = [(ent_tuple, score.item()) for score, ent_tuple in zip(scores, tuples)]
+        scores_with_tuples = [(ent_tuple, score) for score, ent_tuple in zip(scores, tuples)]
         return scores_with_tuples
         
     def _score_tuples_prompts(self, ent_tuples):
         result_list = []
         tuples_list = []
         n_ents = get_n_ents(self._weighted_prompts[0][0])
+        tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
         for prompt, weight in self._weighted_prompts:
             prompt_result_list = []
             add_prefix_space = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
@@ -61,9 +62,10 @@ class KnowledgeHarvester:
                 print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
                 scores = self._model.score_tuples(tuples, prompt, n_masks=n_masks)
                 for score, ent_tuple in zip(scores, tuples):
-                    prompt_result_list.append((sum(score)/sum(n_masks), sum(score)/len(n_masks), min(score))) # += [(ent_tuple[1], score) ]
-                    tuples_list.append(ent_tuple[1])
-            result_list.append(prompt_result_list)
+                    # print(f"score and tuple: {score}, {ent_tuple}")
+                    prompt_result_list.append((ent_tuple[1], (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item()))) # += [(ent_tuple[1], score) ]
+            prompt_result_list = sorted(prompt_result_list, key=lambda x:x[0])
+            result_list.append([result[1] for result in prompt_result_list])
         return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
     '''
     def score(self, prompt, ent_tuple):
