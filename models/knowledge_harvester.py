@@ -10,11 +10,18 @@ from data_utils.data_utils import get_n_ents, get_sent
 
 
 class KnowledgeHarvester:
-    def __init__(self, model_name, max_n_prompts=20, max_n_ent_tuples=10000):
+    def __init__(self,
+                 model_name,
+                 max_n_prompts=20,
+                 max_n_ent_tuples=10000,
+                 max_ent_repeat=10,
+                 max_ent_subwords=1):
         self._weighted_prompts = []
         self._weighted_ent_tuples = []
         self._max_n_prompts = max_n_prompts
         self._max_n_ent_tuples = max_n_ent_tuples
+        self._max_ent_repeat = max_ent_repeat
+        self._max_ent_subwords = max_ent_subwords
 
         self._model = LanguageModelWrapper(model_name=model_name)
         self._ent_tuple_searcher = EntityTupleSearcher(model=self._model)
@@ -101,7 +108,10 @@ class KnowledgeHarvester:
     #
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
-            weighted_prompts=self._weighted_prompts, n=self._max_n_ent_tuples)
+            weighted_prompts=self._weighted_prompts,
+            n=self._max_n_ent_tuples,
+            max_ent_repeat=self._max_ent_repeat,
+            max_ent_subwords=self._max_ent_subwords)
 
         ent_tuples = sorted(
             [t[0] for t in self._weighted_ent_tuples] + collected_tuples)

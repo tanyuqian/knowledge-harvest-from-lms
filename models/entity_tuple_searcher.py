@@ -10,25 +10,41 @@ class EntityTupleSearcher:
     def __init__(self, model):
         self._model = model
 
-    def search(self, weighted_prompts, n):
+    def search(self, weighted_prompts, max_ent_repeat, max_ent_subwords, n):
         n_ents = get_n_ents(weighted_prompts[0][0])
 
         start = time.time()
 
         collected_tuples_heap = []
-        for t in range(1 << n_ents):
-            bin_t = f'{t:b}'
-            bin_t = '0' * (n_ents - len(bin_t)) + bin_t
+        repeat_cnt = {}
 
-            n_masks = [int(ch) + 1 for ch in bin_t]
+        if max_ent_subwords == 2:
+            for t in range(1 << n_ents):
+                bin_t = f'{t:b}'
+                bin_t = '0' * (n_ents - len(bin_t)) + bin_t
 
+                n_masks = [int(ch) + 1 for ch in bin_t]
+
+                self.dfs(
+                    weighted_prompts=weighted_prompts,
+                    n_ents=n_ents,
+                    n_masks=n_masks,
+                    cur_ent_tuple=[],
+                    cur_logprobs=[],
+                    collected_tuples_heap=collected_tuples_heap,
+                    repeat_cnt=repeat_cnt,
+                    max_ent_repeat=max_ent_repeat,
+                    n=n)
+        else:
             self.dfs(
                 weighted_prompts=weighted_prompts,
                 n_ents=n_ents,
-                n_masks=n_masks,
+                n_masks=[1] * n_ents,
                 cur_ent_tuple=[],
                 cur_logprobs=[],
                 collected_tuples_heap=collected_tuples_heap,
+                repeat_cnt=repeat_cnt,
+                max_ent_repeat=max_ent_repeat,
                 n=n)
 
         collected_tuples = sorted(collected_tuples_heap, reverse=True)
@@ -48,18 +64,32 @@ class EntityTupleSearcher:
             cur_ent_tuple,
             cur_logprobs,
             collected_tuples_heap,
+            repeat_cnt,
+            max_ent_repeat,
             n):
         cur_ent_idx = len(cur_ent_tuple)
 
         if cur_ent_idx == n_ents:
-            pred_ent_tuple = [min(cur_logprobs), cur_ent_tuple]
-            if len(collected_tuples_heap) < n:
-                heapq.heappush(collected_tuples_heap, pred_ent_tuple)
-                # this is the initial case?
+            pred = [min(cur_logprobs), cur_ent_tuple]
 
-            else:
-                heapq.heappushpop(
-                    collected_tuples_heap, pred_ent_tuple)
+            for ent in cur_ent_tuple:
+                if repeat_cnt.get(ent, 0) + 1 > max_ent_repeat:
+                    return
+
+            heapq.heappush(collected_tuples_heap, pred)
+            for ent in cur_ent_tuple:
+                repeat_cnt[ent] = repeat_cnt.get(ent, 0) + 1
+
+            while len(collected_tuples_heap) > n:
+                heap_top = heapq.heappop(collected_tuples_heap)
+                for ent in heap_top[1]:
+                    repeat_cnt[ent] = repeat_cnt[ent] - 1
+
+            # if len(collected_tuples_heap) < n:
+            #     heapq.heappush(collected_tuples_heap, pred_ent_tuple)
+            # else:
+            #     heapq.heappushpop(
+            #         collected_tuples_heap, pred_ent_tuple)
             return
 
         collected_ents = []
@@ -74,7 +104,7 @@ class EntityTupleSearcher:
             cur_logprobs=[],
             collected_ent_heap=collected_ents,
             logprob_threashold=logprob_threshold,
-            n=n)
+            n=n if len(cur_ent_tuple) == 0 else max_ent_repeat)
 
         collected_ents.sort(reverse=True)
 
@@ -99,6 +129,8 @@ class EntityTupleSearcher:
                 cur_ent_tuple=cur_ent_tuple + [pred_ent],
                 cur_logprobs=cur_logprobs + [ent_min_logprob],
                 collected_tuples_heap=collected_tuples_heap,
+                repeat_cnt=repeat_cnt,
+                max_ent_repeat=max_ent_repeat,
                 n=n)
 
     def dfs_ent(self,
@@ -116,8 +148,13 @@ class EntityTupleSearcher:
             pred_ent = self._model.tokenizer.decode(cur_token_ids)
 
             pred_ent = pred_ent.strip().lower()
-            if pred_ent in cur_ent_tuple or pred_ent in stopwords:
+            if pred_ent in cur_ent_tuple or pred_ent in stopwords or \
+                    len(pred_ent) <= 1:
                 return
+
+            for raw_prompt, _ in weighted_prompts:
+                if pred_ent in raw_prompt:
+                    return
 
             if len(collected_ent_heap) < n:
                 heapq.heappush(collected_ent_heap, [
