@@ -24,6 +24,7 @@ class EntityTupleSearcher:
                 bin_t = '0' * (n_ents - len(bin_t)) + bin_t
 
                 n_masks = [int(ch) + 1 for ch in bin_t]
+                print(f'searching with n_masks={n_masks}')
 
                 self.dfs(
                     weighted_prompts=weighted_prompts,
