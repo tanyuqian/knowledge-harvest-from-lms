@@ -26,14 +26,13 @@ class KnowledgeHarvester:
     def init_prompts(self, prompts):
         for prompt in prompts:
             self._weighted_prompts.append([prompt, 1.])
-    
-    ''' 
-    def get_ent_tuple_weight(self, ent_tuple):
-        score = 0.
-        for prompt, weight in self._weighted_prompts:
-            score += weight * self.score(prompt=prompt, ent_tuple=ent_tuple)
-        return score
-    '''
+
+    # def get_ent_tuple_weight(self, ent_tuple):
+    #     score = 0.
+    #     for prompt, weight in self._weighted_prompts:
+    #         score += weight * self.score(prompt=prompt, ent_tuple=ent_tuple)
+    #     return score
+
     # need to be batchified
     def get_ent_tuples_weight(self, ent_tuples, weights=(.25, .25, .5)):
         scores, tuples = self._score_tuples_prompts(ent_tuples)
@@ -45,7 +44,7 @@ class KnowledgeHarvester:
 
         weights = torch.tensor([weight for prompt, weight in self._weighted_prompts])
         scores = torch.sum(scores * weights.reshape(*weights.shape, 1).expand(*scores.shape), dim=0)
-        scores_with_tuples = [(ent_tuple, score) for score, ent_tuple in zip(scores, tuples)]
+        scores_with_tuples = [(ent_tuple, score.item()) for score, ent_tuple in zip(scores, tuples)]
         return scores_with_tuples
         
     def _score_tuples_prompts(self, ent_tuples):
@@ -67,40 +66,39 @@ class KnowledgeHarvester:
             prompt_result_list = sorted(prompt_result_list, key=lambda x:x[0])
             result_list.append([result[1] for result in prompt_result_list])
         return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
-    '''
-    def score(self, prompt, ent_tuple):
-        assert get_n_ents(prompt) == len(ent_tuple)
 
-        sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
-        mask_spans = self._model.get_mask_spans(
-            prompt=prompt, ent_tuple=ent_tuple)
-
-        masked_inputs = self._model.tokenizer(
-            sent, return_tensors='pt').to('cuda')
-        truth_input_ids = self._model.tokenizer(sent)['input_ids']
-        for mask_span in mask_spans:
-            for i in range(mask_span[0], mask_span[1]):
-                masked_inputs['input_ids'][0][i] = self._model.mask_token_id
-
-        scores = []
-        for mask_span in mask_spans:  # ok I think this can be batchify...
-            for mask_pos in range(mask_span[0], mask_span[1]):
-                logits = self._model.model(**masked_inputs).logits
-                logprobs = torch.log_softmax(logits, dim=-1)[0]
-
-                scores.append(
-                    logprobs[mask_pos][truth_input_ids[mask_pos]].item())
-
-                masked_inputs['input_ids'][0][mask_pos] = \
-                    truth_input_ids[mask_pos]
-
-        sum_score = sum(scores) / len(ent_tuple)
-        mean_score = sum(scores) / len(scores)
-        min_score = min(scores)
-
-        return 0.25 * sum_score + 0.25 * mean_score + 0.5 * min_score
-    '''
-
+    # def score(self, prompt, ent_tuple):
+    #     assert get_n_ents(prompt) == len(ent_tuple)
+    #
+    #     sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
+    #     mask_spans = self._model.get_mask_spans(
+    #         prompt=prompt, ent_tuple=ent_tuple)
+    #
+    #     masked_inputs = self._model.tokenizer(
+    #         sent, return_tensors='pt').to('cuda')
+    #     truth_input_ids = self._model.tokenizer(sent)['input_ids']
+    #     for mask_span in mask_spans:
+    #         for i in range(mask_span[0], mask_span[1]):
+    #             masked_inputs['input_ids'][0][i] = self._model.mask_token_id
+    #
+    #     scores = []
+    #     for mask_span in mask_spans:  # ok I think this can be batchify...
+    #         for mask_pos in range(mask_span[0], mask_span[1]):
+    #             logits = self._model.model(**masked_inputs).logits
+    #             logprobs = torch.log_softmax(logits, dim=-1)[0]
+    #
+    #             scores.append(
+    #                 logprobs[mask_pos][truth_input_ids[mask_pos]].item())
+    #
+    #             masked_inputs['input_ids'][0][mask_pos] = \
+    #                 truth_input_ids[mask_pos]
+    #
+    #     sum_score = sum(scores) / len(ent_tuple)
+    #     mean_score = sum(scores) / len(scores)
+    #     min_score = min(scores)
+    #
+    #     return 0.25 * sum_score + 0.25 * mean_score + 0.5 * min_score
+    #
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
             weighted_prompts=self._weighted_prompts, n=self._max_n_ent_tuples)
@@ -110,19 +108,18 @@ class KnowledgeHarvester:
 
         ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
                       if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
-        
-        '''
-        # weighting 10000 (1, 1) tuples costs 10 mins
-        ent_tuple_weights = [
-            self.get_ent_tuple_weight(ent_tuple) for ent_tuple in tqdm(
-                ent_tuples, desc='weighting entity tuples')]
 
-        ent_tuple_weights = softmax(ent_tuple_weights)
+        # # weighting 10000 (1, 1) tuples costs 10 mins
+        # ent_tuple_weights = [
+        #     self.get_ent_tuple_weight(ent_tuple) for ent_tuple in tqdm(
+        #         ent_tuples, desc='weighting entity tuples')]
+        #
+        # ent_tuple_weights = softmax(ent_tuple_weights)
+        #
+        # self._weighted_ent_tuples = [
+        #     [ent_tuple, weight]
+        #     for ent_tuple, weight in zip(ent_tuples, ent_tuple_weights)]
 
-        self._weighted_ent_tuples = [
-            [ent_tuple, weight]
-            for ent_tuple, weight in zip(ent_tuples, ent_tuple_weights)]
-        '''
         self._weighted_ent_tuples = self.get_ent_tuples_weight(ent_tuples)
         self._weighted_ent_tuples.sort(key=lambda t: t[1], reverse=True)
         self._weighted_ent_tuples = \

@@ -1,3 +1,4 @@
+import fire
 import os
 import json
 from tqdm import tqdm
@@ -8,24 +9,32 @@ from models.comet_knowledge_scorer import COMETKnowledgeScorer
 from data_utils.data_utils import conceptnet_relation_init_prompts
 
 
-def main():
+def main(output_path):
     ckbc_scorer = CKBCKnowledgeScorer()
     comet_scorer = COMETKnowledgeScorer()
 
     for relation, _ in conceptnet_relation_init_prompts.items():
-        if not os.path.exists(f'outputs/{relation}/weighted_ent_tuples.json'):
+        if not os.path.exists(
+                f'{output_path}/{relation}/weighted_ent_tuples.json'):
             continue
-
-        output_path = f'outputs/{relation}/result.json'
-        if os.path.exists(output_path):
-            print(f'file {output_path} exists, skipped.')
-            continue
-        else:
-            os.makedirs(f'outputs/{relation}', exist_ok=True)
-            json.dump([], open(output_path, 'w'), indent=4)
 
         weighted_ent_tuples = json.load(open(
-            f'outputs/{relation}/weighted_ent_tuples.json', 'r'))
+            f'{output_path}/{relation}/weighted_ent_tuples.json', 'r'))
+
+        if len(weighted_ent_tuples) == 0:
+            print(f'{output_path}/{relation}/weighted_ent_tuples.json: '
+                  f'empty tuples, skipped.')
+            continue
+
+        output_filename = 'result.json'
+        if os.path.exists(f'{output_path}/{relation}/{output_filename}'):
+            print(f'file {output_path}/{relation}/{output_filename} exists'
+                  f', skipped.')
+            continue
+        else:
+            os.makedirs(f'{output_path}/{relation}', exist_ok=True)
+            json.dump([], open(
+                f'{output_path}/{relation}/{output_filename}', 'w'))
 
         result = []
         for ent_tuple, weight in tqdm(weighted_ent_tuples,
@@ -42,8 +51,8 @@ def main():
             })
 
         json.dump(result, open(
-            f'outputs/{relation}/result.json', 'w'), indent=4)
+            f'{output_path}/{relation}/{output_filename}', 'w'), indent=4)
 
 
 if __name__ == '__main__':
-    main()
+    fire.Fire(main)

@@ -87,6 +87,8 @@ class GPT3:
             para_sent = sent_tokenize(para_sent)[0]
             para_sent = para_sent.strip().strip('.').lower()
 
+            print('para_sent:', para_sent)
+
             words = word_tokenize(para_sent)
             if any([(ent not in words) for ent in ent_tuple]):
                 continue

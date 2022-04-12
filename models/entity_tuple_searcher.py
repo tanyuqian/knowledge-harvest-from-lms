@@ -13,37 +13,27 @@ class EntityTupleSearcher:
     def search(self, weighted_prompts, n):
         n_ents = get_n_ents(weighted_prompts[0][0])
 
-        collected_tuples_heap = []
-
-        # for t in range(1 << n_ents):
-        #     bin_t = f'{t:b}'
-        #     bin_t = '0' * (n_ents - len(bin_t)) + bin_t
-        #
-        #     n_masks = [int(ch) + 1 for ch in bin_t]
-        #
-        #     self.dfs(
-        #         weighted_prompts=weighted_prompts,
-        #         n_ents=n_ents,
-        #         n_masks=n_masks,
-        #         cur_ent_tuple=[],
-        #         cur_weight=1.,
-        #         collected_tuples_heap=collected_tuples_heap,
-        #         n=n)
-
         start = time.time()
-        
-        self.dfs(
-            weighted_prompts=weighted_prompts,
-            n_ents=n_ents,
-            n_masks=[1] * n_ents,
-            cur_ent_tuple=[],
-            cur_logprobs=[],
-            collected_tuples_heap=collected_tuples_heap,
-            n=n)
-        
-        print(f"searched for entity tuples in {time.time() - start} s", )
-        
+
+        collected_tuples_heap = []
+        for t in range(1 << n_ents):
+            bin_t = f'{t:b}'
+            bin_t = '0' * (n_ents - len(bin_t)) + bin_t
+
+            n_masks = [int(ch) + 1 for ch in bin_t]
+
+            self.dfs(
+                weighted_prompts=weighted_prompts,
+                n_ents=n_ents,
+                n_masks=n_masks,
+                cur_ent_tuple=[],
+                cur_logprobs=[],
+                collected_tuples_heap=collected_tuples_heap,
+                n=n)
+
         collected_tuples = sorted(collected_tuples_heap, reverse=True)
+
+        print(f"searched for entity tuples in {time.time() - start} s", )
 
         # for weight, ent_tuple in collected_tuples:
         #     print(ent_tuple, weight)

@@ -92,7 +92,7 @@ class LanguageModelWrapper:
         n_ents = len(n_masks)
         batch_prompt, pos_entities = self._tokenize_prompt_with_slots(prompt, n_masks, batch_size)
         return_scores = []
-        for i in trange((len(tuples) - 1)//batch_size + 1):                
+        for i in range((len(tuples) - 1)//batch_size + 1):
             tuples_batch = tuples[i * batch_size: (i + 1) * batch_size]
             cur_batch_size = len(tuples_batch)
             batch_ids = copy.deepcopy(batch_prompt["input_ids"])[:cur_batch_size]
