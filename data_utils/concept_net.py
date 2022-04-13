@@ -18,7 +18,7 @@ class ConceptNet:
         knowledge = json.load(open('data/concept_net/concept_net.json'))
         self._ent_tuples = {}
         for relation in knowledge:
-            print(f'processing relation {relation}...')
+            # print(f'processing relation {relation}...')
 
             ent_tuples = []
             for key in knowledge[relation]:
@@ -30,4 +30,6 @@ class ConceptNet:
             self._ent_tuples[relation] = ent_tuples
 
     def get_ent_tuples(self, rel):
+        if rel == 'HasSubEvent':
+            rel = 'HasSubevent'
         return self._ent_tuples[rel]

@@ -1,23 +1,67 @@
-import os
 import json
 
 from models.gpt3 import GPT3
 
-gpt3 = GPT3()
+from data_utils.data_utils import conceptnet_relation_init_prompts
+from data_utils.concept_net import ConceptNet
 
-prompt = '<ENT0> is part of <ENT1>'
-ent_tuple = ['facebook', 'google']
 
-print(gpt3.get_paraphrase_prompt(prompt=prompt, ent_tuple=ent_tuple))
+def main(n_seed_tuples=5):
+    gpt3 = GPT3()
+    conceptnet = ConceptNet()
 
-# # prompt = '<ENT0> is part of <ENT1>'
-# # prompt = 'The capital of <ENT0> is <ENT1>'
-# # prompt = '<ENT0> plays <ENT1> music'
-# prompt = '<ENT0> is a member of the <ENT1> political party'
-# result = gpt3.get_ent_tuples(prompt=prompt, n=5)
+    cache = {}
+
+    relation_info = {}
+    for rel, init_prompts in conceptnet_relation_init_prompts.items():
+        init_prompts = init_prompts[:1]
+        seed_ent_tuples = conceptnet.get_ent_tuples(rel=rel)[:n_seed_tuples]
+
+        prompts = []
+        for ent_tuple in seed_ent_tuples + seed_ent_tuples:
+            new_prompts = []
+            for prompt in init_prompts + prompts:
+                print(f'prompt: {prompt}; ent_tuple: {ent_tuple}')
+                ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
+
+                request_str = f'{prompt} ||| {ent_tuple}'
+                if request_str not in cache or cache[request_str] is None:
+                    cache[request_str] = gpt3.get_paraphrase_prompt(
+                        prompt=prompt, ent_tuple=ent_tuple)
+
+                para_prompt = cache[request_str]
+
+                if para_prompt is not None:
+                    new_prompts.append(para_prompt)
+
+            prompts.extend(new_prompts)
+            prompts = list(set(prompts))
+
+            if len(prompts) >= 10:
+                break
+
+        relation_info[rel] = {
+            'init_prompts': init_prompts,
+            'seed_ent_tuples': seed_ent_tuples,
+            'prompts': prompts
+        }
+
+        print(f'Relation: {rel}')
+        print(f'Init Prompt: {init_prompts}')
+        print(f'Seed Entity Tuples: {seed_ent_tuples}')
+        for prompt in prompts:
+            print(f'- {prompt}')
+        print('=' * 50)
+
+        json.dump(relation_info, open('data/relation_info.json', 'w'), indent=4)
+
+
+if __name__ == '__main__':
+    main()
+
+# gpt3 = GPT3()
 #
-# print(f'#retrieved tuples: {len(result)}')
+# prompt = '<ENT0> makes someone want <ENT1>'
+# ent_tuple = ['warm weather', 'play baseball']
 #
-# os.makedirs('outputs/', exist_ok=True)
-# output_fn = prompt.replace(' ', '_').replace('<', '').replace('>', '')
-# json.dump(result, open(f'outputs/{output_fn}.json', 'w'), indent=4)
+# print(gpt3.get_paraphrase_prompt(prompt=prompt, ent_tuple=ent_tuple))

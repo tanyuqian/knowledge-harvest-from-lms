@@ -1,6 +1,6 @@
 import os
 import openai
-from nltk import word_tokenize, sent_tokenize
+from nltk import sent_tokenize
 
 from data_utils.data_utils import get_ent_tuple_from_sentence,\
     get_gpt3_prompt_mask_filling, get_gpt3_prompt_paraphrase,\
@@ -87,14 +87,27 @@ class GPT3:
             para_sent = sent_tokenize(para_sent)[0]
             para_sent = para_sent.strip().strip('.').lower()
 
-            print('para_sent:', para_sent)
+            # print('para_sent:', para_sent)
 
-            words = word_tokenize(para_sent)
-            if any([(ent not in words) for ent in ent_tuple]):
-                continue
+            prompt = para_sent
+            valid = True
             for idx, ent in enumerate(ent_tuple):
-                words[words.index(ent)] = f'<ENT{idx}>'
+                prompt = prompt.replace(ent, f'<ENT{idx}>')
+                prompt = prompt.replace(ent.replace('ing', ''), f'<ENT{idx}>')
 
-            return ' '.join(words)
+                if prompt.count(f'<ENT{idx}>') != 1:
+                    valid = False
+                    break
+
+            if valid:
+                return prompt
+
+            # words = word_tokenize(para_sent)
+            # if any([(ent not in words) for ent in ent_tuple]):
+            #     continue
+            # for idx, ent in enumerate(ent_tuple):
+            #     words[words.index(ent)] = f'<ENT{idx}>'
+            #
+            # return ' '.join(words)
 
         return None

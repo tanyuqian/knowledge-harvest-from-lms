@@ -4,22 +4,22 @@ import fire
 
 from models.knowledge_harvester import KnowledgeHarvester
 
-from data_utils.data_utils import conceptnet_relation_init_prompts
 
-
-def main(n_tuples=10000, n_prompts=3, max_ent_repeat=5, max_ent_subwords=2):
+def main(n_tuples=1000, max_ent_repeat=5, max_ent_subwords=2):
     knowledge_harvester = KnowledgeHarvester(
         model_name='roberta-large',
         max_n_ent_tuples=n_tuples,
         max_ent_repeat=max_ent_repeat,
         max_ent_subwords=max_ent_subwords)
 
-    for relation, init_prompts in conceptnet_relation_init_prompts.items():
-        print(f'Harvesting for relation {relation}...')
+    relation_info = json.load(open('data/relation_info.json'))
 
-        output_path = f'outputs_{n_tuples}tuples_{n_prompts}prompts' \
+    for rel in relation_info:
+        print(f'Harvesting for relation {rel}...')
+
+        output_path = f'outputs_{n_tuples}tuples' \
                       f'_maxsubwords{max_ent_subwords}' \
-                      f'_maxrepeat{max_ent_repeat}/{relation}/'
+                      f'_maxrepeat{max_ent_repeat}/{rel}/'
         output_filename = 'weighted_ent_tuples.json'
         if os.path.exists(f'{output_path}/{output_filename}'):
             print(f'file {output_path}/{output_filename} exists, skipped.')
@@ -29,7 +29,15 @@ def main(n_tuples=10000, n_prompts=3, max_ent_repeat=5, max_ent_subwords=2):
             json.dump([], open(f'{output_path}/{output_filename}', 'w'))
 
         knowledge_harvester.clear()
-        knowledge_harvester.init_prompts(prompts=init_prompts[:n_prompts])
+
+        knowledge_harvester.init_prompts(
+            prompts=relation_info[rel]['init_prompts'] +
+                    relation_info[rel]['prompts'])
+
+        knowledge_harvester.set_seed_ent_tuples(
+            seed_ent_tuples=relation_info[rel]['seed_ent_tuples'])
+
+        knowledge_harvester.update_prompts()
         knowledge_harvester.update_ent_tuples()
 
         json.dump(knowledge_harvester.weighted_ent_tuples, open(

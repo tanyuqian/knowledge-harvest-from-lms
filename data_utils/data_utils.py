@@ -14,9 +14,9 @@ stopwords.extend([
 
 conceptnet_relation_init_prompts = {
     'AtLocation': [
-        '<ENT0> is the location for <ENT1>',
-        'the <ENT0> is where the <ENT1> is kept',
-        '<ENT1> is located in <ENT0>'
+        '<ENT1> is the location for <ENT0>',
+        'the <ENT1> is where the <ENT0> is kept',
+        '<ENT0> is located in <ENT1>'
     ],
     'CapableOf': [
         'Something that <ENT0> can typically do is <ENT1>',

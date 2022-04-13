@@ -128,12 +128,18 @@ class LanguageModelWrapper:
                 prefix = prefix.replace(f'<ENT{i}>', ent_tuple[i])
 
             if self._model_name == 'roberta-large':
+                # print(f'input_ids: {input_ids}')
+                # print(f'prefix: {prefix}')
+                # print(f'ent: {ent}')
+
                 l = 1
-                while not self._tokenizer.decode(input_ids[1:l]) == prefix:
+                while not len(self._tokenizer.decode(input_ids[1:l])) >= \
+                          len(prefix):
                     l += 1
 
                 r = l + 1
-                while not self._tokenizer.decode(input_ids[1:r]).endswith(ent):
+                while not len(self._tokenizer.decode(input_ids[1:r])) >= \
+                          len(prefix + ent):
                     r += 1
             else:
                 raise NotImplementedError
