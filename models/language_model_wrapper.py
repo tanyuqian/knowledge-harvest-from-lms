@@ -68,7 +68,10 @@ class LanguageModelWrapper:
             n_entities = len(tuples[0])
             for i in range(n_entities): 
                 if not not_at_beginning[i]:
-                    tuples = [tuple_[0].upper() + tuple_[1:] for tuple_ in tuples]
+                    for tuple_idx in range(len(tuples)):
+                        ent = tuples[tuple_idx][i]
+                        tuples[tuple_idx][i] = ent[0].upper() + ent[1:]
+                        
                 ids.append(
                     self.tokenizer([tuple_[i] for tuple_ in tuples], \
                     add_special_tokens=False, add_prefix_space=not_at_beginning[i])['input_ids']
