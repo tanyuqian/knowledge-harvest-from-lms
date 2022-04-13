@@ -15,13 +15,13 @@ stopwords.extend([
 conceptnet_relation_init_prompts = {
     'AtLocation': [
         '<ENT0> is the location for <ENT1>',
-        'the <ENT0> is where the <ENT1> is kept',
+        'The <ENT0> is where the <ENT1> is kept',
         '<ENT1> is located in <ENT0>'
     ],
     'CapableOf': [
         'Something that <ENT0> can typically do is <ENT1> .',
-        'a <ENT0> can typically <ENT1> .',
-        'a <ENT0> is capable to <ENT1> .'
+        'A <ENT0> can typically <ENT1> .',
+        'A <ENT0> is capable to <ENT1> .'
     ],
     'Causes': [
         'It is typical for <ENT0> to cause <ENT1>',
@@ -60,7 +60,7 @@ conceptnet_relation_init_prompts = {
     ],
     'HasLastSubevent': [
         '<ENT0> is an event that concludes with subevent <ENT1>',
-        'after you finish <ENT0>, you have to <ENT1>',
+        'After you finish <ENT0>, you have to <ENT1>',
         '<ENT0> usually includes <ENT1> afterwards'
     ],
     'HasPrerequisite': [
