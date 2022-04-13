@@ -19,9 +19,9 @@ conceptnet_relation_init_prompts = {
         '<ENT1> is located in <ENT0>'
     ],
     'CapableOf': [
-        'Something that <ENT0> can typically do is <ENT1>',
-        'a <ENT0> can typically <ENT1> things',
-        'a <ENT0> can typically be used to <ENT1> something'
+        'Something that <ENT0> can typically do is <ENT1> .',
+        'a <ENT0> can typically <ENT1> .',
+        'a <ENT0> is capable to <ENT1> .'
     ],
     'Causes': [
         'It is typical for <ENT0> to cause <ENT1>',
