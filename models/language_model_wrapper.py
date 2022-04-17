@@ -1,12 +1,10 @@
-import re
-
 from transformers import RobertaTokenizer, RobertaForMaskedLM
 
 from data_utils.data_utils import stopwords, get_n_ents, get_sent
 from collections import defaultdict
 import torch
 import copy
-from tqdm import *
+
 
 class LanguageModelWrapper:
     def __init__(self, model_name):

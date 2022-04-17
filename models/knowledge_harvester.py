@@ -123,28 +123,13 @@ class KnowledgeHarvester:
         ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
                       if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
 
-        # # weighting 10000 (1, 1) tuples costs 10 mins
-        # ent_tuple_weights = [
-        #     self.get_ent_tuple_weight(ent_tuple) for ent_tuple in tqdm(
-        #         ent_tuples, desc='weighting entity tuples')]
-        #
-        # ent_tuple_weights = softmax(ent_tuple_weights)
-        #
-        # self._weighted_ent_tuples = [
-        #     [ent_tuple, weight]
-        #     for ent_tuple, weight in zip(ent_tuples, ent_tuple_weights)]
-
         self._weighted_ent_tuples = self.get_ent_tuples_weight(ent_tuples)
-        self._weighted_ent_tuples.sort(key=lambda t: t[1], reverse=True)
-        self._weighted_ent_tuples = \
-            self._weighted_ent_tuples[:self._max_n_ent_tuples]
-
-        # for ent_tuple, weight in self._weighted_ent_tuples:
-        #     print(ent_tuple, weight)
+        self._weighted_ent_tuples = sorted(
+            self._weighted_ent_tuples,
+            key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
 
     def update_prompts(self):
-        weights = []
-        for prompt, _ in self._weighted_prompts:
+        for i, (prompt, _) in enumerate(self._weighted_prompts):
             scores = []
             for ent_tuple in self._seed_ent_tuples:
                 ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
@@ -152,11 +137,15 @@ class KnowledgeHarvester:
                 scores.append(self.score_single(
                     prompt=prompt, ent_tuple=ent_tuple))
 
-            weights.append(sum(scores) / len(scores))
+            self._weighted_prompts[i][1] = sum(scores) / len(scores)
 
-        weights = softmax(weights)
-        for i in range(len(self._weighted_prompts)):
-            self._weighted_prompts[i][1] = weights[i]
+        self._weighted_prompts = sorted(
+            self._weighted_prompts,
+            key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
+
+        norm_weights = softmax([weight for _, weight in self._weighted_prompts])
+        for i, norm_weight in enumerate(norm_weights):
+            self._weighted_prompts[i][1] = norm_weight
 
         for prompt, weight in self._weighted_prompts:
             print(f'{weight:.4f} {prompt}')

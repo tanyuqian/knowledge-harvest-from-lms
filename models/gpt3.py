@@ -93,7 +93,10 @@ class GPT3:
             valid = True
             for idx, ent in enumerate(ent_tuple):
                 prompt = prompt.replace(ent, f'<ENT{idx}>')
-                prompt = prompt.replace(ent.replace('ing', ''), f'<ENT{idx}>')
+
+                if prompt.count(f'<ENT{idx}>') == 0:
+                    prompt = prompt.replace(
+                        ent.replace('ing', ''), f'<ENT{idx}>')
 
                 if prompt.count(f'<ENT{idx}>') != 1:
                     valid = False
