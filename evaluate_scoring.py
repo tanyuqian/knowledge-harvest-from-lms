@@ -64,7 +64,8 @@ def main():
 
             precision, recall, _ = precision_recall_curve(y_true, scores)
 
-            label = 'comet' if setting == 'comet' else f'{setting}prompts'
+            label = setting if setting in ['ckbc', 'comet'] \
+                else f'{setting} prompts'
             plt.plot(recall, precision, label=label)
 
         plt.xlabel('Recall')
