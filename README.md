@@ -2,7 +2,7 @@
 
 ## Results
 
-### precision-recall curves to evaluate scoring
+### Precision-recall curves to evaluate scoring
 
 PR curves can be found [here](results/curves_scoring_pr).
 
