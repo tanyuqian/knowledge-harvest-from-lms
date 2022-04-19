@@ -60,14 +60,20 @@ class LanguageModelWrapper:
 
         return batch_prompts, pos_entities
 
-    def tokenize_tuples_by_len(self, tuples, add_prefix_space):
+    def tokenize_tuples_by_len(self, tuples, not_at_beginning):
         if self._model_name == 'roberta-large':
             ids = []
             n_entities = len(tuples[0])
+            tuples_fit = copy.deepcopy(tuples)
             for i in range(n_entities): 
+                if not not_at_beginning[i]:
+                    for tuple_idx in range(len(tuples_fit)):
+                        ent = tuples_fit[tuple_idx][i]
+                        tuples_fit[tuple_idx][i] = ent[0].upper() + ent[1:]
+                        
                 ids.append(
-                    self.tokenizer([tuple[i] for tuple in tuples], \
-                    add_special_tokens=False, add_prefix_space=add_prefix_space[i])['input_ids']
+                    self.tokenizer([tuple_[i] for tuple_ in tuples_fit], \
+                    add_special_tokens=False, add_prefix_space=not_at_beginning[i])['input_ids']
                 )
         tuple_dict = defaultdict(list)
         for tuple_ids, tuple_texts in zip(zip(*ids), tuples):
