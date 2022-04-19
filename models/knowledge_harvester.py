@@ -65,8 +65,8 @@ class KnowledgeHarvester:
         tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
         for prompt, weight in self._weighted_prompts:
             prompt_result_list = []
-            add_prefix_space = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
-            tokenized_entity_pairs = self._model.tokenize_tuples_by_len(ent_tuples, add_prefix_space)
+            not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
+            tokenized_entity_pairs = self._model.tokenize_tuples_by_len(ent_tuples, not_at_beginning)
             # {(len_ent_1, len_ent_2, ...): [(ent_1_ids, ent_2_ids, ...), (ent_1_text, ent_2_text, ...), ...]}
             for n_masks, tuples in tokenized_entity_pairs.items():
                 print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
