@@ -1,0 +1,580 @@
+Relation: AtLocation
+Prompts:
+- 1.0000 the <ENT1> is where the <ENT0> is located
+Harvested Tuples:
++------------------------------------+----------------------------------+---------------------------------------+------------------------------------------+
+|         ConceptNet Samples         |          Ours (Top 20)           |          Ours (Random Sample)         |              Ours (Tail 20)              |
++------------------------------------+----------------------------------+---------------------------------------+------------------------------------------+
+|   ['reuters', 'united_kingdom']    |        ['car', 'garage']         |     ['second area', 'lower left']     |   ['front office', 'middle building']    |
+|   ['potato', 'pringles_factory']   |       ['camera', 'screen']       |          ['house', 'garden']          |    ['video library', 'second screen']    |
+|          ['route', 'map']          |      ['house', 'backyard']       |    ['parking area', 'bottom floor']   |        ['food cart', 'back room']        |
+|   ['penut_butter', 'container']    |        ['camera', 'top']         |          ['camera', 'right']          |      ['first tower', 'north west']       |
+|      ['lots_of_cars', 'mall']      |        ['camera', 'left']        | ['lower triangle', 'middle triangle'] |      ['central line', 'blue area']       |
+|       ['mammoth', 'jungle']        |        ['camera', 'box']         |      ['lower pixel', 'top pixel']     |        ['backlight', 'top right']        |
+|    ['rocky_cliff', 'waterfall']    |      ['house', 'basement']       |     ['video chat', 'chat screen']     |       ['food truck', 'front side']       |
+|    ['computers', 'large_city']     |       ['house', 'garden']        |   ['second stage', 'lower section']   |    ['car dealership', 'second story']    |
+| ['orchestra_seat', 'concert_hall'] |        ['house', 'left']         |   ['new location', 'following map']   |    ['central image', 'bottom image']     |
+|         ['tools', 'shop']          |  ['main library', 'west wing']   |       ['train depot', 'station']      |      ['second house', 'back alley']      |
+|      ['coin_purse', 'pocket']      |       ['camera', 'right']        |    ['food storage', 'kitchen area']   |      ['food pyramid', 'top circle']      |
+|    ['woodwind', 'leather_case']    | ['main entrance', 'north wall']  |            ['door', 'top']            |    ['car service', 'second building']    |
+|       ['dustbin', 'office']        |  ['main library', 'west side']   |    ['front seat', 'lower section']    |      ['computer chip', 'processor']      |
+|         ['knees', 'table']         |   ['main office', 'back room']   |        ['video game', 'arcade']       |    ['computer interface', 'keyboard']    |
+|   ['staple_removers', 'cabinet']   |      ['house', 'courtyard']      |   ['front entrance', 'front facade']  | ['food distribution', 'second building'] |
+|     ['trumpet', 'music_store']     | ['main lobby', 'front entrance'] |         ['front seat', 'rear']        |       ['first unit', 'front room']       |
+|         ['bath', 'house']          |     ['building', 'basement']     |     ['back office', 'lower level']    |         ['main computer', 'lab']         |
+|  ['pork_butcher', 'meat_market']   |       ['building', 'left']       |     ['back door', 'lower window']     |       ['back part', 'middle part']       |
+|  ['satchel_bag', "doctor's_car"]   |     ['bathroom', 'kitchen']      |     ['actual camera', 'top left']     |       ['car lot', 'parking deck']        |
+|          ['sand', 'tree']          |       ['car', 'driveway']        |          ['vehicle', 'roof']          |     ['water storage', 'lower half']      |
++------------------------------------+----------------------------------+---------------------------------------+------------------------------------------+
+==================================================
+Relation: CapableOf
+Prompts:
+- 1.0000 one of <ENT0>'s common duties is to <ENT1>
+Harvested Tuples:
++---------------------------------------------------------+---------------------------------+----------------------------------------------+---------------------------------------------------------+
+|                    ConceptNet Samples                   |          Ours (Top 20)          |             Ours (Random Sample)             |                      Ours (Tail 20)                     |
++---------------------------------------------------------+---------------------------------+----------------------------------------------+---------------------------------------------------------+
+|                  ['two_women', 'marry']                 |         ['man', 'love']         |      ['every journalist', 'cover war']       |                 ['first wife', 'honor']                 |
+|                ['person', 'ship_package']               |    ['government', 'provide']    |          ['every nation', 'defend']          |         ['military force', 'protect civilians']         |
+|           ['concepts', 'equal_other_concepts']          |        ['man', 'protect']       |          ['every president', 'act']          |         ['government body', 'protect citizens']         |
+|                     ['feet', 'walk']                    |        ['people', 'help']       |        ['many farmer', 'plant seeds']        |         ['government office', 'protect privacy']        |
+|         ['passenger', 'book_flight_reservation']        |    ['government', 'protect']    |           ['every child', 'play']            |            ['church pastor', 'lead worship']            |
+|                   ['dress', 'action']                   |       ['people', 'share']       |     ['every physician', 'treat people']      |           ['school board', 'oversee schools']           |
+|                 ['person', 'cook_food']                 | ['society', 'protect children'] |     ['good shepherd', 'protect humans']      |              ['church women', 'lead women']             |
+|          ['caterpillars', 'roll_along_ground']          |        ['men', 'protect']       |          ['parliament', 'provide']           | ['government representative', 'represent constituents'] |
+|                  ['people', 'hurry_up']                 |       ['women', 'provide']      |       ['humanity', 'protect animals']        |         ['community worker', 'provide services']        |
+|                 ['fox', 'kill_chickens']                |       ['women', 'protect']      | ['community organizer', 'provide resources'] |        ['community volunteer', 'help strangers']        |
+|         ['construction_worker', 'position_cone']        |      ['society', 'provide']     | ['community leadership', 'educate citizens'] |         ['military family', 'support soldiers']         |
+|       ['human_beings', 'experience_spirituality']       |       ['women', 'educate']      |     ['good doctor', 'diagnose illness']      |         ['government clerk', 'register voters']         |
+|              ['book', 'teach_earth_round']              |        ['women', 'work']        |        ['every mother', 'give love']         |               ['good writer', 'remember']               |
+|              ['at_fair', 'kiss_for_dollar']             |      ['society', 'educate']     |     ['public teacher', 'teach students']     |            ['good leader', 'inspire people']            |
+|                ['person', 'drink_latte']                |         ['man', 'serve']        |      ['law clerk', 'prepare documents']      |                 ['good writer', 'edit']                 |
+| ['physical_transfer_of_nucleus', 'damage_delicate_egg'] |         ['men', 'serve']        |            ['humankind', 'save']             |              ['first year', 'make friends']             |
+|              ['dead_people', 'meet_maker']              |    ['government', 'prevent']    |     ['every citizen', 'protect oneself']     |           ['church member', 'attend services']          |
+|                   ['wind', 'dry_hair']                  |        ['women', 'help']        |         ['first people', 'worship']          |              ['good writer', 'tell story']              |
+|            ['something_you', 'make_progress']           |         ['man', 'help']         |     ['good teacher', 'educate students']     |          ['school children', 'serve students']          |
+|               ['citizen', 'voice_opinion']              |         ['life', 'love']        |       ['social media', 'communicate']        |             ['school nurse', 'provide care']            |
++---------------------------------------------------------+---------------------------------+----------------------------------------------+---------------------------------------------------------+
+==================================================
+Relation: Causes
+Prompts:
+- 1.0000 the act of <ENT0> typically results in a feeling of <ENT1>
+Harvested Tuples:
++---------------------------------------------------------+-----------------------------------+---------------------------------------------+----------------------------------------------+
+|                    ConceptNet Samples                   |           Ours (Top 20)           |             Ours (Random Sample)            |                Ours (Tail 20)                |
++---------------------------------------------------------+-----------------------------------+---------------------------------------------+----------------------------------------------+
+|           ['having_bath', 'muscles_to_relax']           |       ['vomiting', 'nausea']      |       ['giving advice', 'obligation']       |        ['getting tired', 'tiredness']        |
+|             ['having_heart_attack', 'pain']             |        ['eating', 'hunger']       |        ['witnessing', 'helplessness']       |    ['holding children', 'maternal love']     |
+|            ['taking_phone_call', 'decisions']           |       ['suicide', 'relief']       |          ['falling back', 'defeat']         |   ['paying bills', 'financial insecurity']   |
+|          ['playing_game', 'reaching_stalemate']         |        ['suicide', 'guilt']       |    ['falling backward', 'falling behind']   |  ['making friends', 'social satisfaction']   |
+|                ['poisoning', 'sickness']                |       ['suicide', 'despair']      |              ['dying', 'peace']             |     ['paying taxes', 'economic anxiety']     |
+|           ['taking_shower', 'becoming_clean']           |       ['suicide', 'remorse']      |   ['taking acid', 'heightened awareness']   |    ['getting married', 'great happiness']    |
+|               ['playing_work', 'not_done']              |       ['suicide', 'regret']       |         ['getting high', 'highness']        | ['taking blood', 'uncomfortable discomfort'] |
+| ['chewing_food', 'better_digestion_and_more_nutrition'] |    ['masturbation', 'arousal']    |    ['taking methamphetamine', 'paranoia']   |       ['reading newspaper', 'apathy']        |
+|          ['testing_strength', 'hurt_yourself']          |    ['masturbation', 'pleasure']   |       ['killing victims', 'numbness']       |        ['using alcohol', 'low mood']         |
+|          ['stabbing_to_death', 'knife_wounds']          |   ['writing', 'accomplishment']   |  ['playing hockey', 'physical exhaustion']  |        ['getting dirty', 'dirtyness']        |
+|          ['attending_meeting', 'sharing_ideas']         |      ['swallowing', 'nausea']     |     ['breathing', 'physical discomfort']    |     ['holding oneself', 'physical pain']     |
+|           ['learning', 'new_behavior_pattern']          |    ['writing', 'satisfaction']    |     ['holding oneself', 'physical pain']    |    ['paying money', 'financial freedom']     |
+|           ['going_for_jog', 'getting_sweaty']           |     ['masturbation', 'relief']    |         ['reading books', 'boredom']        |     ['using condoms', 'sexual tension']      |
+|       ['gaining_more_land', 'others_to_lose_land']      |     ['eating', 'satisfaction']    |            ['suicide', 'regret']            |    ['paying debt', 'financial security']     |
+|         ['playing_football', 'people_to_gamble']        |       ['crying', 'sadness']       |         ['driving', 'physical pain']        | ['playing football', 'physical exhaustion']  |
+|              ['remembering', 'inspiration']             |       ['eating', 'pleasure']      |               ['love', 'joy']               |    ['receiving payment', 'gratification']    |
+|     ['visiting_art_gallery', 'will_see_sculptures']     |        ['crying', 'relief']       |       ['watching football', 'apathy']       |     ['looking back', 'nostalgic guilt']      |
+|               ['resting', 'mind_clearer']               |  ['masturbation', 'satisfaction'] |           ['kissing', 'affection']          |       ['giving milk', 'maternal love']       |
+|         ['going_to_laundromat', 'meeting_girl']         | ['giving gifts', 'giving thanks'] |     ['kissing people', 'sexual arousal']    |   ['falling backward', 'falling sideways']   |
+|        ['applying_for_job', 'increased_workload']       |       ['writing', 'relief']       | ['taking acid', 'heightened consciousness'] |       ['getting around', 'impatience']       |
++---------------------------------------------------------+-----------------------------------+---------------------------------------------+----------------------------------------------+
+==================================================
+Relation: CausesDesire
+Prompts:
+- 1.0000 a <ENT0> is usually enough to motivate someone to <ENT1>
+Harvested Tuples:
++----------------------------------------------------------+------------------------------------------+---------------------------------------+-------------------------------------------+
+|                    ConceptNet Samples                    |              Ours (Top 20)               |          Ours (Random Sample)         |               Ours (Tail 20)              |
++----------------------------------------------------------+------------------------------------------+---------------------------------------+-------------------------------------------+
+|            ['too_long_hair', 'have_haircut']             |            ['threat', 'act']             |    ['high price', 'make purchases']   |     ['simple invitation', 'come back']    |
+|        ['sight_of_pregnant_friend', 'hear_news']         |            ['reward', 'act']             |        ['dream', 'take action']       |       ['nice smile', 'give thanks']       |
+|       ['seeing_yourself_in_mirror', 'go_for_run']        |            ['reward', 'work']            |    ['small reward', 'take actions']   |     ['large donation', 'make another']    |
+|             ["belt_didn't_fit", 'stay_fit']              |       ['good meal', 'get moving']        |  ['small incentive', 'take actions']  |         ['good example', 'follow']        |
+|             ['warm_glass_of_milk', 'sleep']              |           ['threat', 'leave']            |       ['warm house', 'get warm']      |         ['small expense', 'save']         |
+|                ['boredom', 'go_to_mall']                 |            ['reward', 'move']            |      ['high income', 'live well']     |    ['single problem', 'solve another']    |
+|                   ['attack_on', 'cry']                   |            ['threat', 'move']            |      ['job market', 'stay home']      |  ['personal accomplishment', 'continue']  |
+|            ['competitiveness', 'pass_course']            |      ['little pressure', 'perform']      |    ['small shock', 'stop smoking']    |  ['personal achievement', 'keep working'] |
+|               ['inlaws', 'go_on_vacation']               | ['positive attitude', 'achieve success'] |           ['reward', 'stop']          |      ['nice gesture', 'make another']     |
+|     ['hearing_band_on_radio', 'attend_rock_concert']     |        ['good question', 'think']        |         ['kiss', 'give money']        |     ['new relationship', 'move away']     |
+|               ['feeling_ill', 'go_to_bed']               |       ['good question', 'answer']        |        ['good cause', 'donate']       |    ['job posting', 'consider applying']   |
+|         ['desire_to_have_children', 'copulate']          |       ['challenge', 'take action']       |          ['question', 'act']          |        ['high risk', 'leave home']        |
+|          ['feeling_dirty', 'become_more_clean']          |            ['threat', 'flee']            | ['positive response', 'keep working'] |         ['warm house', 'get warm']        |
+|          ['stressful_day', 'soak_in_hotspring']          |             ['meal', 'work']             |      ['big meal', 'get exercise']     |       ['big question', 'think hard']      |
+|           ['breaking_news', 'read_newspaper']            |            ['threat', 'talk']            |    ['warm welcome', 'stay longer']    | ['strong handshake', 'follow directions'] |
+|           ['anything', 'learn_about_science']            |            ['reward', 'stop']            |     ['warm smile', 'give thanks']     |      ['great book', 'start smoking']      |
+|      ['watching_horse_related_movie', 'ride_horse']      |  ['positive attitude', 'achieve goals']  |         ['handshake', 'talk']         |     ['new experience', 'keep moving']     |
+|        ['wanting_to_meet', 'talk_with_far_away']         |      ['suggestion', 'take action']       |   ['high level', 'continue playing']  |      ['great book', 'start writing']      |
+|                 ['messy_hair', 'groom']                  |  ['positive attitude', 'perform well']   |  ['single threat', 'commit suicide']  |  ['negative evaluation', 'give feedback'] |
+| ['unbelievable_bottom_line', 'add_up_column_of_numbers'] |            ['reward', 'run']             |      ['good question', 'answer']      |        ['good food', 'get moving']        |
++----------------------------------------------------------+------------------------------------------+---------------------------------------+-------------------------------------------+
+==================================================
+Relation: CreatedBy
+Prompts:
+- 1.0000 the <ENT1> is the person who writes the <ENT0>
+Harvested Tuples:
++---------------------------------------------------+-----------------------------+------------------------------------------+------------------------------------------+
+|                 ConceptNet Samples                |        Ours (Top 20)        |           Ours (Random Sample)           |              Ours (Tail 20)              |
++---------------------------------------------------+-----------------------------+------------------------------------------+------------------------------------------+
+| ["hitchhiker's_guide_to_galaxy", 'douglas_adams'] |      ['book', 'author']     |           ['law', 'president']           |     ['last letter', 'letter writer']     |
+|         ['wisdom', 'learning_experiences']        |     ['story', 'author']     |      ['material', 'main character']      |       ['next word', 'next writer']       |
+|              ['rain', 'rain_clouds']              |    ['article', 'author']    | ['original script', 'script supervisor'] |   ['original copy', 'original owner']    |
+|            ['friendship', 'two_people']           |    ['story', 'narrator']    |    ['program code', 'program author']    |         ['best thing', 'genius']         |
+|                 ['art', 'artist']                 |     ['story', 'writer']     |          ['rulebook', 'coach']           |     ['movie script', 'movie writer']     |
+|            ['program', 'programmning']            |      ['story', 'hero']      |       ['headline', 'news person']        |         ['last name', 'surname']         |
+|                ['milk', 'mammals']                |      ['news', 'editor']     |    ['email message', 'email author']     |   ['movie scripts', 'movie director']    |
+|              ['song', 'song_writer']              |     ['story', 'editor']     |      ['dialogue', 'script writer']       |     ['last letter', 'final person']      |
+|           ['smoke_alarm', 'manufacture']          |     ['law', 'president']    |          ['blog', 'blog owner']          |    ['last paragraph', 'final reader']    |
+|     ['motorcycle', 'motorcycle_manufacturer']     |      ['book', 'editor']     |      ['documents', 'legal officer']      |        ['song lyrics', 'singer']         |
+|                ['sugar', 'plants']                |  ['script', 'scriptwriter'] |    ['first chapter', 'first reader']     |    ['original essay', 'essay writer']    |
+|    ['prohibitionist_society', 'conservatives']    |       ['law', 'judge']      |            ['book', 'writer']            |       ['last post', 'post author']       |
+|          ['beer', 'fermentation_of_hops']         |      ['book', 'writer']     |          ['rules', 'president']          |    ['last paragraph', 'final editor']    |
+|               ['bridge', 'man_kind']              |    ['article', 'editor']    |            ['news', 'editor']            |      ['last entry', 'last author']       |
+|                ['paper', 'author']                | ['script', 'script writer'] |       ['report', 'report author']        |      ['next story', 'next reader']       |
+|             ['building', 'tradesmen']             |    ['news', 'journalist']   |      ['best books', 'best writer']       |     ['best articles', 'best writer']     |
+|                  ['earth', 'god']                 |     ['news', 'reporter']    |        ['best novel', 'novelist']        |     ['best novels', 'best novelist']     |
+|                 ['fruit', 'plant']                |     ['law', 'governor']     |             ['law', 'judge']             | ['original question', 'answer provider'] |
+|             ['death', 'poisonous_gas']            |     ['letter', 'sender']    |         ['notes', 'music maker']         |     ['original song', 'songwriter']      |
+|                ['penis', 'vagina']                |    ['law', 'legislature']   |      ['data entry', 'data keeper']       |      ['best lines', 'worst writer']      |
++---------------------------------------------------+-----------------------------+------------------------------------------+------------------------------------------+
+==================================================
+Relation: DefinedAs
+Prompts:
+- 1.0000 the <ENT0> is the <ENT1>
+Harvested Tuples:
++-------------------------------------------------------------------------+-----------------------------------+-------------------------------------+---------------------------------------+
+|                            ConceptNet Samples                           |           Ours (Top 20)           |         Ours (Random Sample)        |             Ours (Tail 20)            |
++-------------------------------------------------------------------------+-----------------------------------+-------------------------------------+---------------------------------------+
+|                   ['hdl', 'high_density_lipoprotein']                   |          ['sky', 'limit']         |      ['last man', 'strongest']      |   ['last thing', 'biggest problem']   |
+|                       ['cold', 'opposite_of_hot']                       |        ['end', 'beginning']       |      ['second column', 'date']      |     ['third row', 'bottom right']     |
+|         ['ethyl_alcohol', 'intoxicant_in_beer_spirits_and_wine']        |       ['future', 'present']       |     ['whole body', 'whole mind']    |    ['last thing', 'biggest thing']    |
+|                     ['eze_2k', 'professional_owner']                    |         ['future', 'past']        |   ['last thing', 'biggest thing']   | ['real question', 'political future'] |
+|                 ['homophobia', 'hatred_of_homosexuals']                 |   ['best thing', 'worst thing']   | ['second question', 'first answer'] |    ['third place', 'best position']   |
+|                   ['enabled', 'opposite_of_disabled']                   |       ['answer', 'question']      |        ['main part', 'code']        | ['main reason', 'economic situation'] |
+|             ['expression_gulf_war', 'name_of_specific_war']             |  ['best friend', 'worst friend']  |     ['first element', 'number']     |  ['real question', 'political ones']  |
+|                 ['one_percussion_instrument', 'bongos']                 |   ['best friend', 'worst enemy']  |     ['second line', 'main line']    |     ['third line', 'best defense']    |
+|                    ['new_york_state_flower', 'rose']                    |         ['rest', 'story']         |       ['main source', 'wiki']       |      ['right part', 'left part']      |
+|             ['learning', 'useful_acquisition_of_knowledge']             |    ['best thing', 'bad thing']    |  ['last paragraph', 'best example'] |       ['main source', 'website']      |
+|                     ['pleasure', 'opposite_of_pain']                    |    ['best answer', 'question']    |     ['next week', 'final game']     |        ['main issue', 'budget']       |
+|                 ['elections', 'plural_form_of_election']                | ['best friend', 'closest friend'] |      ['best part', 'last part']     |  ['second question', 'first answer']  |
+|              ['perimeter', 'length_of_boundary_of_region']              |        ['past', 'present']        |      ['last answer', 'longest']     |     ['second letter', 'alphabet']     |
+|                       ['summer', 'warmest_season']                      |  ['best answer', 'right answer']  |       ['last person', 'judge']      |       ['main issue', 'quality']       |
+|         ['arnold_schwarzenegger', 'actor_who_plays_terminator']         |      ['best option', 'worst']     |    ['second column', 'last line']   |      ['right lane', 'best lane']      |
+| ['inference', 'forming_of_conclusion_from_premises_by_logical_methods'] |     ['new thing', 'old thing']    |     ['next chapter', 'best yet']    |       ['third word', 'end word']      |
+|                   ['death', 'archetype_of_transition']                  |     ['best answer', 'obvious']    |      ['first time', 'hardest']      |    ['second letter', 'last letter']   |
+|                  ['bat', 'only_kind_of_winged_mammal']                  |       ['new man', 'old man']      |      ['next day', 'third day']      | ['real question', 'political system'] |
+|             ['liter', 'volume_measure_ine_metrical_system']             |     ['right way', 'best way']     |   ['second part', 'main section']   |         ['first star', 'moon']        |
+|             ['colorado_state_tree', 'colorado_blue_spruce']             |       ['patient', 'doctor']       |     ['last part', 'kicker part']    |      ['second element', 'symbol']     |
++-------------------------------------------------------------------------+-----------------------------------+-------------------------------------+---------------------------------------+
+==================================================
+Relation: Desires
+Prompts:
+- 1.0000 the typical <ENT0> is someone who wants to <ENT1>
+Harvested Tuples:
++----------------------------------------------------+--------------------------+-------------------------------------+------------------------------------------+
+|                 ConceptNet Samples                 |      Ours (Top 20)       |         Ours (Random Sample)        |              Ours (Tail 20)              |
++----------------------------------------------------+--------------------------+-------------------------------------+------------------------------------------+
+|            ['person', 'read_slashdot']             |  ['person', 'succeed']   |     ['volunteer', 'contribute']     |   ['technographer', 'solve problems']    |
+| ['computer', 'learn_to_understand_human_language'] |    ['person', 'work']    |    ['entrepreneur', 'make money']   |         ['male rapist', 'rape']          |
+|              ['person', 'thick_hair']              |    ['person', 'live']    |    ['internet addict', 'connect']   |       ['drug buyer', 'use drugs']        |
+|            ['person', 'money_fun_life']            |  ['student', 'succeed']  |    ['young artist', 'create art']   |    ['young graduate', 'go anywhere']     |
+|          ['person', 'convenient_parking']          |   ['student', 'learn']   |         ['new mom', 'rest']         |   ['new immigrant', 'live somewhere']    |
+|                  ['bobby', 'sex']                  |   ['candidate', 'win']   |    ['new grad', 'live somewhere']   |    ['college sophomore', 'go places']    |
+|          ['children', 'pulled_in_wagon']           |   ['person', 'please']   |         ['customer', 'save']        |         ['new owner', 'invest']          |
+|          ['many_people', 'eat_ice_cream']          |   ['person', 'learn']    |      ['dreamer', 'live dream']      |     ['white racist', 'kill blacks']      |
+|           ['person', 'credit_to_family']           |    ['user', 'learn']     |           ['user', 'work']          |    ['business person', 'sell money']     |
+|           ['people', 'listen_to_oldies']           |   ['student', 'excel']   |         ['guy', 'get ahead']        |         ['new mom', 'give back']         |
+|               ['busy_mom', 'break']                |     ['user', 'play']     |         ['consumer', 'shop']        |        ['sexologist', 'cure sex']        |
+|          ['person', 'ability_to_travel']           | ['student', 'graduate']  |  ['tech journalist', 'cover tech']  | ['technophile', 'understand computers']  |
+|        ['person', 'variety_of_activities']         | ['candidate', 'succeed'] |  ['internet hacker', 'steal money'] |     ['human male', 'impress women']      |
+| ['people', 'exert_themselves_not_couch_potatoes']  |    ['user', 'travel']    | ['businessperson', 'sell products'] | ['social observer', 'understand people'] |
+|               ['person', 'evidence']               |    ['victim', 'die']     |   ['internet troll', 'make waves']  |      ['sex student', 'experiment']       |
+|          ['person', 'interesting_books']           |    ['client', 'win']     |         ['customer', 'shop']        |    ['tech millionaire', 'work hard']     |
+|        ['person', 'divorce_abusive_spouse']        |  ['victim', 'survive']   |     ['problem', 'get involved']     |          ['problem', 'go home']          |
+|        ['people', 'have_carpets_on_floor']         |  ['student', 'achieve']  |       ['offender', 'succeed']       |      ['tech blogger', 'sell tech']       |
+|              ['person', 'admiration']              |    ['client', 'save']    |  ['tech investor', 'invest money']  |   ['black student', 'achieve success']   |
+|           ['person', 'satisfying_work']            |   ['customer', 'buy']    |   ['businessperson', 'sell money']  |       ['female candidate', 'run']        |
++----------------------------------------------------+--------------------------+-------------------------------------+------------------------------------------+
+==================================================
+Relation: HasA
+Prompts:
+- 1.0000 <ENT0> have <ENT1>
+Harvested Tuples:
++-----------------------------------------------------------+-----------------------------------+-------------------------------------------+---------------------------------------------+
+|                     ConceptNet Samples                    |           Ours (Top 20)           |            Ours (Random Sample)           |                Ours (Tail 20)               |
++-----------------------------------------------------------+-----------------------------------+-------------------------------------------+---------------------------------------------+
+|                 ['dolls', 'yarn_for_hair']                |         ['people', 'died']        | ['related people', 'contributed comment'] |      ['related cases', 'also reported']     |
+|                 ['starnes', 'sharp_teeth']                |         ['people', 'said']        |          ['languages', 'evolved']         |          ['share already', 'email']         |
+|                    ['paint', 'pigment']                   |       ['people', 'received']      |         ['many experts', 'stated']        |     ['many students', 'asked questions']    |
+|                ['all_leaders', 'followers']               |       ['people', 'reported']      |             ['never', 'asked']            |     ['follow comments', 'yet appeared']     |
+|                     ['gordon', 'kids']                    |      ['people', 'questions']      |             ['lions', 'eaten']            |         ['shareters', 'gone viral']         |
+|                   ['most_people', 'one']                  |       ['comments', 'closed']      |            ['things', 'become']           |        ['photo galleries', 'opened']        |
+| ['one_impairment_person_might', 'auricular_fibrillation'] |         ['would', 'cost']         |    ['many women', 'similar experience']   | ['many organizations', 'expressed outrage'] |
+|       ["animal's_head", 'eyes_ears_nose_and_mouth']       |         ['could', 'done']         |            ['likes', 'dropped']           |    ['many articles', 'already published']   |
+|             ['helium', 'atomic_number_of_two']            |        ['could', 'worked']        |   ['many people', 'expressed opinions']   |     ['many articles', 'already written']    |
+|              ['tortillas', 'specific_shape']              |       ['could', 'happened']       |           ['sources', 'stated']           |            ['cps', 'high levels']           |
+|                   ['door', 'two_halfs']                   |        ['could', 'helped']        |          ["let's", 'another day']         |       ['follow people', 'read reddit']      |
+|             ['microwave_ovens', 'buttons_on']             |         ['would', 'done']         |      ['many states', 'similar laws']      |        ['many things', 'gone around']       |
+|       ['rolodex', 'adresses_and_telephone_numbers']       |       ['would', 'received']       |      ['follow probably', 'read less']     |        ['editor may', 'contributed']        |
+|  ['people_use_illegal_drugs_and', 'automobile_accidents'] |         ['would', 'lost']         |    ['related videos', 'expired video']    |      ['share letters', 'read comment']      |
+|       ['director_chair', "director's_name_on_back"]       | ['please', 'contact information'] |         ['photos', 'expired view']        |         ['photo gallery', 'caption']        |
+|         ['doctor', 'had_many_years_of_education']         |       ['things', 'changed']       |    ['may also', 'contributed comments']   |        ['share already', 'contacts']        |
+|               ['buildings', 'many_windows']               |      ['comments', 'expired']      |   ['many politicians', 'become corrupt']  |          ['sharecats', 'come home']         |
+|          ['metal_mirrors', 'protective_surface']          |        ['may', 'received']        |           ['lakers', 'new star']          |     ['follow friends', 'created email']     |
+| ['irish_breakfast_tea', 'deep_colour_and_extra_strength'] |         ['others', 'said']        |         ['couple', 'two children']        |         ['people already', 'phones']        |
+|        ['apartment_building', 'many_rental_units']        |       ['comments', 'ended']       |  ['many commenters', 'expressed concern'] |       ['many blogs', 'asked whether']       |
++-----------------------------------------------------------+-----------------------------------+-------------------------------------------+---------------------------------------------+
+==================================================
+Relation: HasFirstSubevent
+Prompts:
+- 1.0000 the '<ENT1>' event is the trigger for the '<ENT0>' event
+Harvested Tuples:
++-------------------------------------------------------------+-------------------------------+----------------------------------+-------------------------+
+|                      ConceptNet Samples                     |         Ours (Top 20)         |       Ours (Random Sample)       |      Ours (Tail 20)     |
++-------------------------------------------------------------+-------------------------------+----------------------------------+-------------------------+
+|  ['watch_television_show', "make_sure_it's_worth_watching"] |        ['kill', 'fire']       |  ['black sunday', 'black moon']  |  ['racing', 'running']  |
+|               ['bring_suit', 'contact_lawyer']              |       ['break', 'push']       |         ['hush', 'talk']         |  ['fails', 'failures']  |
+|                   ['die', 'stop_thinking']                  |       ['kill', 'attack']      |        ['lobby', 'party']        |    ['fraud', 'bias']    |
+|               ['see_exhibits', 'enter_museum']              |       ['kill', 'spawn']       |          ['hdr', 'cdr']          |     ['laugh', 'cry']    |
+|            ['receive_degree', 'tell_girlfriend']            |       ['break', 'start']      |         ['fuck', 'love']         |   ['fault', 'failure']  |
+|       ['lucid_dream', 'realise_can_manipulate_events']      |        ['red', 'blue']        |         ['hurt', 'burt']         |   ['halt', 'resolve']   |
+|                ['have_conversation', 'think']               |        ['red', 'green']       |  ['black widow', 'black male']   |    ['long', 'small']    |
+|                 ['tickle', 'find_to_tickle']                |       ['kill', 'target']      |   ['red alert', 'black alert']   |  ['racing', 'driving']  |
+|                ['climb_mountain', 'practice']               |       ['red', 'yellow']       |       ['hacking', 'rape']        |  ['failures', 'events'] |
+|           ['conduct_trial', 'call_court_to_order']          |       ['next', 'first']       |      ['shaper', 'shimmer']       |  ['fatal', 'minority']  |
+|                 ['begin_work', 'prioritize']                |  ['red light', 'green light'] |        ['hint', 'caught']        |  ['discharge', 'flush'] |
+|              ['use_computer', 'apply_power_to']             |      ['next', 'previous']     |           ['fx', 'rx']           |  ['hanging', 'crying']  |
+|                ['lock_keys_in_car', 'swear']                |        ['next', 'last']       |         ['luna', 'sun']          |   ['fails', 'errors']   |
+|            ['take_finals', 'write_name_on_test']            |  ['red light', 'blue light']  |   ['redirection', 'reduction']   |    ['halt', 'rescue']   |
+|             ['play_chess', 'set_up_game_pieces']            |       ['reset', 'fail']       |         ['laugh', 'cry']         |    ['hatch', 'latch']   |
+|          ['want_to_sit_down', 'look_for_to_sit_on']         |       ['reset', 'pause']      | ['black monday', 'black sunday'] | ['possible', 'unknown'] |
+| ['design_software', 'determine_what_has_been_already_done'] |        ['push', 'pull']       |        ['red', 'yellow']         |    ['paint', 'draw']    |
+|          ['set_cup_on_table', 'keep_open_side_up']          | ['red light', 'yellow light'] |          ['lol', 'ok']           |   ['shuffle', 'clunk']  |
+|              ['bathe', 'fill_bath_with_water']              |        ['red', 'black']       |        ['pink', 'orange']        |    ['long', 'little']   |
+|             ['go_for_drive', 'let_spouse_know']             |      ['next', 'current']      |      ['shooting', 'crying']      |    ['bounce', 'bump']   |
++-------------------------------------------------------------+-------------------------------+----------------------------------+-------------------------+
+==================================================
+Relation: HasLastSubevent
+Prompts:
+- 1.0000 when you <ENT0>, you <ENT1>
+Harvested Tuples:
++---------------------------------------------+--------------------------------+-----------------------------------------+------------------------------------+
+|              ConceptNet Samples             |         Ours (Top 20)          |           Ours (Random Sample)          |           Ours (Tail 20)           |
++---------------------------------------------+--------------------------------+-----------------------------------------+------------------------------------+
+|            ['take_bath', 'groom']           |         ['die', 'go']          |      ['become happy', 'get better']     | ['meet strangers', 'get confused'] |
+|       ['run_out_of_steam', 'take_nap']      |         ['die', 'get']         |       ['get around', 'go around']       |   ['want things', 'get things']    |
+|   ['attend_meeting', 'have_refreshments']   |       ['sleep', 'dream']       |      ['look forward', 'look back']      |       ['know best', 'never']       |
+|        ['drink_alcohol', 'pass_out']        |  ['get older', 'get smarter']  |      ['got mad', 'started crying']      |   ['find people', 'find things']   |
+|            ['entertain', 'smile']           |        ['go', 'leave']         |          ['need money', 'call']         |      ['say please', 'really']      |
+|         ['tickle', 'run_away_fast']         |    ['get older', 'realize']    |       ['give freely', 'get free']       |     ['give food', 'get food']      |
+|        ['paint_house', 'clean_floor']       |        ['die', 'live']         |            ['start', 'need']            |    ['got around', 'would get']     |
+|         ['build_cathedral', 'bless']        |    ['say yes', 'mean yes']     |      ['become happy', 'become sad']     |   ['want things', 'buy things']    |
+|      ['discover_truth', 'tell_others']      |        ['run', 'walk']         |     ['know enough', 'learn enough']     |     ['see life', 'feel life']      |
+|  ['win_baseball_game', 'go_to_locker_room'] |       ['sleep', 'think']       |      ['got started', 'would know']      |    ['become ready', 'may ask']     |
+|      ['go_on_vacation', 'return_home']      |         ['go', 'get']          |      ['know enough', 'get enough']      |       ['see kids', 'wonder']       |
+|          ['help', 'accept_thanks']          |        ['move', 'get']         |       ['got hungry', 'could ask']       |    ['get drunk', 'lose sleep']     |
+|          ['mail_letter', 'leaving']         |         ['run', 'get']         |       ['get smart', 'learn fast']       |  ['meet friends', 'meet people']   |
+|    ['find_truth', 'ask_people_questions']   |        ['win', 'lose']         |      ['give praise', 'get praise']      |   ['want change', 'must change']   |
+|         ['kill', 'establish_alibi']         | ['get older', 'start working'] |        ['leave work', 'get home']       |     ['find help', 'get help']      |
+|            ['climb', 'stepping']            |        ['run', 'think']        |      ['give credit', 'get credit']      |   ['hear gunshots', 'may think']   |
+|         ['have_party', 'hug_spouse']        |        ['move', 'make']        |        ['know love', 'feel love']       |    ['give thanks', 'get back']     |
+|      ['live', 'accept_impending_death']     |        ['eat', 'feel']         | ['give attention', 'receive attention'] |   ['become famous', 'go crazy']    |
+|            ['awake', 'open_eyes']           |        ['sleep', 'get']        |        ['see love', 'see beauty']       |   ['know enough', 'get enough']    |
+| ['go_see_film', 'get_up_and_leave_theater'] |        ['eat', 'think']        |          ['want money', 'ask']          |   ['give praise', 'get praised']   |
++---------------------------------------------+--------------------------------+-----------------------------------------+------------------------------------+
+==================================================
+Relation: HasPrerequisite
+Prompts:
+- 1.0000 in order to <ENT0> well, you need to be willing to <ENT1> and overcome any challenges in your way
+Harvested Tuples:
++-----------------------------------------------------+------------------------------+----------------------------------------+----------------------------------+
+|                  ConceptNet Samples                 |        Ours (Top 20)         |          Ours (Random Sample)          |          Ours (Tail 20)          |
++-----------------------------------------------------+------------------------------+----------------------------------------+----------------------------------+
+|     ['travel', 'choose_means_of_transportation']    |    ['perform', 'accept']     |      ['decide', 'make decisions']      | ['massage', 'learn techniques']  |
+|         ['get_contract', 'sing_really_well']        |     ['perform', 'face']      |       ['improve', 'work harder']       |    ['punch', 'take punches']     |
+|        ['run_marathon', 'build_up_gradually']       |      ['perform', 'try']      |        ['succeed', 'confront']         |      ['block', 'push back']      |
+|           ['learn_language', 'take_class']          |    ['succeed', 'accept']     |      ['migrate', 'learn quickly']      |    ['doubt', 'face reality']     |
+|              ['write', 'know_thyself']              |      ['work', 'accept']      | ['take rejection', 'accept rejection'] |      ['snow', 'dig holes']       |
+|           ['ride_bicycle', 'own_bicycle']           |     ['succeed', 'face']      |       ['submit', 'give ground']        |      ['bat', 'give ground']      |
+|         ['stay_healthy', 'live_in_country']         |      ['succeed', 'try']      |    ['learn english', 'try things']     |      ['water', 'dig holes']      |
+|      ['send_e_mail', 'get_address_of_receiver']     |     ['write', 'accept']      |        ['go together', 'share']        | ['experiment', 'experimentally'] |
+|          ['watch_evening_news', 'near_tv']          |       ['work', 'face']       |      ['reinvent', 'make changes']      |    ['improv', 'improvising']     |
+| ['have_conversation', 'know_what_am_talking_about'] |       ['work', 'try']        |     ['survive life', 'face life']      |      ['farm', 'learnable']       |
+|      ['stand_on_line', 'find_line_to_stand_on']     |    ['perform', 'endure']     |       ['attack', 'fight dirty']        |    ['trust', 'trust issues']     |
+|       ['cleaning_house', 'cleaning_supplies']       |    ['compete', 'accept']     |  ['receive life', 'accept obstacles']  |    ['instruct', 'learnable']     |
+|        ['convict_suspect_for_crime', 'frame']       |   ['perform', 'confront']    |       ['act', 'make sacrifices']       |     ['mature', 'learnings']      |
+|       ['catch_mumps', 'kiss_else_with_mumps']       |       ['write', 'try']       |    ['learn curve', 'learn curves']     |    ['integrate', 'learnings']    |
+|  ['committing_to_memory', 'focused_concentration']  |      ['write', 'face']       |         ['push', 'push back']          |     ['evolve', 'learnings']      |
+|    ['fix_computer', 'have_reference_book_handy']    |   ['achieve', 'work hard']   |     ['journey', 'face adversity']      |    ['reproduce', 'learnable']    |
+|               ['learning', 'patience']              |    ['play', 'work hard']     |       ['train', 'push forward']        |     ['advise', 'learnable']      |
+|     ['meeting_friend', 'planning_place_to_meet']    |    ['train', 'work hard']    |    ['collaborate', 'make mistakes']    |      ['know', 'learnings']       |
+|        ['making_phone_call', 'phone_number']        | ['communicate', 'work hard'] |         ['quit', 'keep going']         |      ['model', 'learnings']      |
+|   ['knowing_how_stock_market_performed', 'index']   |    ['succeed', 'endure']     |    ['concentrate', 'make mistakes']    |        ['ask', 'askers']         |
++-----------------------------------------------------+------------------------------+----------------------------------------+----------------------------------+
+==================================================
+Relation: HasProperty
+Prompts:
+- 1.0000 the <ENT0> are <ENT1>
+Harvested Tuples:
++-----------------------------------------------------------------+---------------------------------------+------------------------------------------+------------------------------------------+
+|                        ConceptNet Samples                       |             Ours (Top 20)             |           Ours (Random Sample)           |              Ours (Tail 20)              |
++-----------------------------------------------------------------+---------------------------------------+------------------------------------------+------------------------------------------+
+|                        ['horses', 'fast']                       |          ['rules', 'simple']          | ['main reasons', 'economic conditions']  |      ['final two', 'still unknown']      |
+|                     ['bird', 'flying_fast']                     |         ['comments', 'closed']        |  ['next things', 'pretty interesting']   |      ['next things', 'interesting']      |
+|                      ['eight_ball', 'good']                     |         ['rules', 'different']        |    ['main players', 'still playing']     |    ['three options', 'two variables']    |
+|            ['new_south_wales', "abbreviated_to'nsw"]            |          ['votes', 'invalid']         |     ['two options', 'two variables']     |  ['remaining states', 'located around']  |
+|        ['grass_broccoli_and_many_other_plants', 'green']        |     ['following links', 'useful']     |      ['following pages', 'related']      |    ['two pictures', 'separate pages']    |
+|      ['air_conditioner', 'very_important_in_warm_climates']     |    ['following links', 'available']   |      ['first eight', 'new entries']      | ['remaining items', 'available online']  |
+|            ['should_give_credit_where_credit', 'due']           |   ['following rules', 'applicable']   | ['following images', 'copyrighted art']  |    ['next links', 'also informative']    |
+|            ['bazaar_where_things', 'bought_or_sold']            |  ['following questions', 'answered']  |      ['best friends', 'strangers']       |   ['two images', 'connected together']   |
+|               ['ears', 'sensitive_for_soundwaves']              |   ['following statements', 'false']   |    ['best books', 'never published']     |    ['final steps', 'also important']     |
+|      ['australian_sign_language', 'abbreviated_to_auslan']      |     ['following links', 'helpful']    |      ['main parts', 'still intact']      |  ['remaining players', 'also selected']  |
+|            ['catholic_church_leaders', 'insensitive']           |           ['rules', 'clear']          |      ['final two', 'still unknown']      |  ['remaining questions', 'open thread']  |
+|                        ['chuck', 'nuts']                        |          ['links', 'broken']          |    ['following lines', 'legal code']     |    ['two steps', 'exactly identical']    |
+| ['rate_constrained_bandwidth_smoothing', 'abbreviated_to_rcbs'] |   ['following links', 'also useful']  |     ['best readers', 'still young']      |  ['four chapters', 'available online']   |
+|                   ['harken', 'same_as_listen']                  |        ['authors', 'anonymous']       |       ['best ideas', 'never used']       | ['two questions', 'separate questions']  |
+|             ['fortunes_in_cookies', 'just_for_fun']             |           ['facts', 'clear']          |     ['next two', 'interesting ones']     | ['remaining items', 'stored separately'] |
+|                 ['hard_packed_snow', 'slippery']                |           ['facts', 'true']           |    ['best questions', 'never asked']     |      ['first ones', 'worth seeing']      |
+|        ['armoire_built_by_chippendale', 'very_expensive']       |     ['following items', 'listed']     | ['following comments', 'public domain']  |    ['remaining points', 'added back']    |
+|                 ['divided_by_zero', 'infinite']                 | ['following questions', 'unanswered'] |    ['best resources', 'always free']     |     ['first four', 'important ones']     |
+|              ['sergipe', 'one_of_brazilian_states']             |           ['facts', 'wrong']          |     ['best teachers', 'volunteers']      |  ['three questions', 'easy questions']   |
+|                         ['cds', 'round']                        |  ['following links', 'also helpful']  | ['following laws', 'currently enforced'] |     ['main parts', 'still relevant']     |
++-----------------------------------------------------------------+---------------------------------------+------------------------------------------+------------------------------------------+
+==================================================
+Relation: HasSubEvent
+Prompts:
+- 1.0000 <ENT1> happens as a subevent of <ENT0>
+Harvested Tuples:
++----------------------------------------------------+------------------------------------------+------------------------------------------+---------------------------------------------+
+|                 ConceptNet Samples                 |              Ours (Top 20)               |           Ours (Random Sample)           |                Ours (Tail 20)               |
++----------------------------------------------------+------------------------------------------+------------------------------------------+---------------------------------------------+
+|    ['using_television', 'eating_potato_crisps']    |          ['success', 'failure']          |  ['social events', 'social networking']  |      ['energy event', 'energy change']      |
+|      ['mail_letter', 'greeting_from_postman']      |            ['life', 'death']             |       ['time delay', 'time lapse']       |   ['physical collapse', 'energy release']   |
+|          ['meeting_person', 'shake_hand']          |            ['time', 'death']             |           ['events', 'change']           |  ['human condition', 'sexual orientation']  |
+|  ['paying_by_credit_card', 'having_card_denied']   |         ['collapse', 'failure']          |      ['time event', 'time change']       |   ['political life', 'political violence']  |
+|    ['improving_yourself', 'build_on_strengths']    | ['sexual aggression', 'sexual coercion'] |  ['sexual rape', 'sexual humiliation']   |        ['nuclear reaction', 'magnet']       |
+|        ['reading_newspaper', 'aggravation']        |         ['evolution', 'change']          |     ['migration', 'transformation']      | ['physical transformation', 'brain change'] |
+|             ['lay_on_bed', 'sleeping']             |   ['consciousness', 'transformation']    | ['social network', 'social networking']  |     ['mass collapse', 'mass extinction']    |
+|     ['dressing_nice', 'going_to_dinner_party']     |            ['stress', 'pain']            | ['energy collapse', 'energy disruption'] |    ['physical events', 'psychodynamics']    |
+|        ['using_computer', 'make_drawings']         |            ['time', 'change']            |      ['economics', 'social change']      |        ['mass event', 'mass murder']        |
+|    ['illustrate_point', 'pass_along_knowledge']    |    ['energy density', 'energy flux']     |    ['energy level', 'energy change']     |       ['climate warming', 'snowfall']       |
+|         ['spending_money', 'feel_quilty']          |   ['political violence', 'terrorism']    | ['another situation', 'every incident']  |      ['human action', 'natural change']     |
+| ['having_asthma_attack', 'breathing_becomes_hard'] |  ['energy transfer', 'energy storage']   |        ['consciousness', 'fear']         |        ['time cycle', 'transmission']       |
+|      ['bungee_jump_from_high_bridge', 'fall']      |   ['physical damage', 'brain damage']    |      ['life event', 'life change']       |       ['human sexuality', 'sex also']       |
+|          ['flying_kite', 'let_line_out']           | ['energy density', 'energy absorption']  |    ['economics', 'political change']     |               ['war', 'peace']              |
+|           ['having_bath', 'getting_wet']           |          ['evolution', 'death']          |   ['another situation', 'every event']   |          ['growth', 'development']          |
+|    ['playing_frisbee', 'frisbee_lands_in_lake']    |  ['energy transfer', 'energy exchange']  |     ['physical reaction', 'cortex']      |     ['mass failure', 'mass extinction']     |
+|          ['working', 'pleasing_customer']          |    ['time events', 'transformation']     |     ['consciousness', 'transition']      |    ['time changes', 'time displacement']    |
+|              ['urinate', 'splashing']              |           ['events', 'death']            |     ['mass events', 'mass suicide']      |   ['disaster events', 'natural disaster']   |
+|    ['jump_out_of_window', 'falling_to_ground']     |         ['terrorism', 'crisis']          |     ['physical self', 'social self']     |          ['social events', 'sport']         |
+|         ['buy_house', 'pay_down_payment']          |          ['timing', 'weather']           |  ['physical illness', 'brain swelling']  |     ['climate crisis', 'climate chaos']     |
++----------------------------------------------------+------------------------------------------+------------------------------------------+---------------------------------------------+
+==================================================
+Relation: IsA
+Prompts:
+- 1.0000 the <ENT0> is a subtype of <ENT1>
+Harvested Tuples:
++------------------------------------------------------+-----------------------+-----------------------------------------+-------------------------------------------+
+|                  ConceptNet Samples                  |     Ours (Top 20)     |           Ours (Random Sample)          |               Ours (Tail 20)              |
++------------------------------------------------------+-----------------------+-----------------------------------------+-------------------------------------------+
+|                 ['timur', 'monarch']                 | ['noun', 'adjective'] |             ['nn', 'number']            |     ['second position', 'th position']    |
+|              ['septation', 'division']               |    ['term', 'noun']   |      ['second line', 'first line']      |      ['following list', 'data table']     |
+|                  ['fir', 'conifer']                  |    ['noun', 'verb']   |     ['first grade', 'kindergarten']     |               ['bh', 'hash']              |
+|  ['ghost_of_christmas_past', 'fictional_character']  |   ['term', 'slang']   |       ['cactus', 'plant species']       |     ['following gene', 'human genome']    |
+|                 ['passion', 'agony']                 |  ['flower', 'grass']  |       ['first particle', 'light']       |        ['first initial', 'capital']       |
+|            ['syngonium', 'monocot_genus']            | ['verb', 'adjective'] |      ['first group', 'class class']     |      ['following name', 'domainname']     |
+|                 ['cobbler', 'maker']                 |  ['class', 'classes'] |  ['second person', 'singular singular'] |               ['cmp', 'kp']               |
+|             ['shining_willow', 'willow']             |  ['species', 'deer']  |      ['first column', 'data type']      |            ['verb', 'english']            |
+|                ['wimpzilla', 'wimp']                 |  ['flower', 'fruit']  |           ['first', 'gravity']          |        ['first grade', 'preschool']       |
+|      ['prison_guards', 'not_well_paid_people']       |  ['flower', 'plant']  |      ['second order', 'arithmetic']     |               ['cfc', 'cb']               |
+|          ['nicaraguan_soldier', 'soldier']           | ['flower', 'flowers'] |        ['first name', 'nickname']       |    ['following document', 'html file']    |
+|        ['microscope', 'laboratory_equipment']        | ['word', 'adjective'] |      ['second name', 'common name']     |       ['first type', 'normal type']       |
+|        ['thermal_equilibrium', 'equilibrium']        |    ['term', 'verb']   |        ['second family', 'twins']       |     ['second digit', 'decimal point']     |
+|           ['viola', 'musical_instrument']            | ['species', 'cattle'] |        ['second grade', 'school']       |      ['second level', 'higher class']     |
+| ['alternation_of_generations', 'organic_phenomenon'] |   ['flower', 'rose']  | ['second wave', 'electromagnetic wave'] |              ['cing', 'cng']              |
+|               ['springfield', 'town']                | ['following', 'data'] |      ['second name', 'given names']     |              ['nn', 'number']             |
+|                  ['hake', 'gadoid']                  |    ['word', 'verb']   |          ['product', 'alcohol']         | ['following gene', 'mitochondrial genes'] |
+| ['nature_conservancy', 'environmental_organization'] |  ['species', 'trout'] |               ['bn', 'bb']              |               ['bz', 'beta']              |
+|              ['community', 'ownership']              |   ['tree', 'grass']   |  ['following video', 'youtube videos']  | ['following function', 'lambda operator'] |
+|           ['cortisone', 'corticosteroid']            |   ['noun', 'plural']  |         ['second ring', 'rings']        | ['following function', 'lambda equation'] |
++------------------------------------------------------+-----------------------+-----------------------------------------+-------------------------------------------+
+==================================================
+Relation: MadeOf
+Prompts:
+- 1.0000 the <ENT0> is made up of <ENT1>
+Harvested Tuples:
++-----------------------------------------+---------------------------------+--------------------------------------------+-------------------------------------+
+|            ConceptNet Samples           |          Ours (Top 20)          |            Ours (Random Sample)            |            Ours (Tail 20)           |
++-----------------------------------------+---------------------------------+--------------------------------------------+-------------------------------------+
+|            ['cars', 'parts']            |       ['world', 'people']       |        ['whole system', 'software']        |     ['human organism', 'organs']    |
+|           ['war', 'violence']           |      ['universe', 'atoms']      | ['following statement', 'four paragraphs'] |       ['food cycle', 'cycles']      |
+|         ['skyscraper', 'steel']         |      ['universe', 'stars']      |      ['whole internet', 'fake news']       |   ['first letter', 'parentheses']   |
+|          ['molecule', 'atoms']          |     ['universe', 'galaxies']    |        ['human organism', 'genes']         |   ['first letter', 'three words']   |
+|           ['houses', 'bricks']          |    ['human brain', 'neurons']   |    ['whole system', 'many components']     |  ['entire body', 'different cells'] |
+|          ['snow', 'snowflakes']         |    ['universe', 'particles']    |        ['third act', 'three acts']         |   ['third letter', 'two letters']   |
+|           ['air', 'molecules']          |     ['human body', 'organs']    |      ['main library', 'three rooms']       |    ['world universe', 'planets']    |
+|           ['window', 'glass']           |        ['earth', 'rocks']       |         ['third act', 'two acts']          |    ['second image', 'two images']   |
+|           ['brain', 'neurons']          |       ['world', 'things']       |     ['next section', 'three chapters']     |  ['current list', 'five countries'] |
+|            ['riot', 'people']           |     ['universe', 'photons']     |  ['world community', 'small communities']  | ['third element', 'three elements'] |
+|            ['byte', '8_bits']           |     ['human body', 'bones']     |         ['whole world', 'animals']         |    ['entire body', 'blood cells']   |
+|      ['wallet', 'man_made_leather']     |        ['world', 'atoms']       |  ['following information', 'data points']  |   ['second group', 'four members']  |
+| ['tu_hermana_en_bolas', 'sister_naked'] |        ['earth', 'water']       |        ['food system', 'nutrients']        |   ['main library', 'four floors']   |
+|         ['toothpick', 'plastic']        |    ['human race', 'animals']    |         ['video', 'several parts']         | ['entire galaxy', 'dust particles'] |
+|        ['pepsi', 'carmel_color']        |      ['earth', 'minerals']      |           ['internet', 'bytes']            |   ['human psyche', 'many things']   |
+|        ['math_book', 'problems']        |        ['earth', 'sand']        |         ['document', 'two parts']          |      ['world web', 'billions']      |
+|         ['blood', 'haemoglobin']        |    ['human mind', 'emotions']   |         ['pyramid', 'four parts']          |    ['main puzzle', 'four pieces']   |
+|         ['table_salt', 'sodium']        | ['whole universe', 'particles'] |        ['first class', 'students']         |      ['first image', 'pixels']      |
+|       ['many_containers', 'glass']      |        ['earth', 'atoms']       |     ['first step', 'three components']     |  ['third dimension', 'two spheres'] |
+|            ['boat', 'fiber']            |       ['world', 'cities']       |        ['entire picture', 'lines']         |     ['following video', 'loops']    |
++-----------------------------------------+---------------------------------+--------------------------------------------+-------------------------------------+
+==================================================
+Relation: MotivatedByGoal
+Prompts:
+- 1.0000 someone does not <ENT0> because they want to <ENT1>
+Harvested Tuples:
++----------------------------------------------------+--------------------------------------------+--------------------------------------+-----------------------------------------------+
+|                 ConceptNet Samples                 |               Ours (Top 20)                |         Ours (Random Sample)         |                 Ours (Tail 20)                |
++----------------------------------------------------+--------------------------------------------+--------------------------------------+-----------------------------------------------+
+|     ['sell_new_book', 'wanted_to_make_money']      |              ['leave', 'go']               |  ['eat breakfast', 'avoid eating']   |         ['take risks', 'get injured']         |
+|         ['conquer_nation', 'become_ruler']         |       ['get arrested', 'get caught']       |   ['like things', 'avoid things']    |            ['run fast', 'get fast']           |
+|         ['lie', 'get_out_of_doing_wrong']          |      ['get divorced', 'stay married']      |     ['look sick', 'appear sick']     |            ['get rich', 'go rich']            |
+|         ['receive_degree', 'intelligent']          |      ['get married', 'marry another']      |  ['stop drinking', 'quit drinking']  |         ['walk simply', 'go nowhere']         |
+|      ['learn_about_world', 'need_to_survive']      |        ['come home', 'return home']        |      ['come simply', 'see art']      |         ['read emails', 'avoid spam']         |
+|               ['punch', 'attention']               |      ['stop smoking', 'quit smoking']      |     ['get fired', 'stay fired']      |         ['use cookies', 'avoid spam']         |
+|               ['sit_on_chair', 'to']               |     ['get divorced', 'stay together']      |   ['like people', 'please others']   |          ['go camping', 'get dirty']          |
+|          ['ring_friend', 'need_to_talk']           |         ['make money', 'get rich']         |   ['eat eggs', 'avoid poisoning']    |           ['go camping', 'get wet']           |
+| ['chew_food', 'continue_to_breathe_and_not_choke'] |        ['get sick', 'feel better']         |   ['want change', 'remain static']   |     ['read comments', 'avoid controversy']    |
+|             ['walk', 'want_to_relax']              |         ['take drugs', 'get high']         |     ['use drugs', 'feel great']      |          ['take steps', 'go forward']         |
+|   ['catch_mumps', 'stay_home_from_school_work']    |         ['come home', 'come back']         |     ['run simply', 'go running']     |          ['look ugly', 'appear ugly']         |
+|             ['see_band', 'like_songs']             |       ['get fired', 'stay employed']       |   ['eat broccoli', 'avoid toxins']   | ['feel uncomfortable', 'avoid uncomfortable'] |
+|      ['use_computer', 'increase_efficiency']       |         ['feel sad', 'feel happy']         |  ['go missing', 'avoid detection']   |          ['read blogs', 'get bored']          |
+|                ['awake', 'rested']                 |       ['take drugs', 'feel better']        |    ['look away', 'avoid danger']     |        ['give gifts', 'give presents']        |
+|         ['attend_school', 'obtain_degree']         | ['feel uncomfortable', 'feel comfortable'] |     ['get lost', 'go somewhere']     |          ['use email', 'send email']          |
+|        ['do_crossword_puzzle', 'kill_time']        |          ['smile', 'look happy']           |    ['use marijuana', 'smoke pot']    |       ['join twitter', 'get attention']       |
+|          ['clean_house', 'will_on_view']           |      ['make sacrifices', 'get ahead']      | ['know better', 'think differently'] |         ['come simply', 'see things']         |
+|          ['post_message', 'find_renter']           |        ['make music', 'make money']        |  ['make mistakes', 'avoid errors']   |          ['look nice', 'appear rude']         |
+|        ['wage_war', 'have_reason_to_fight']        |        ['come home', 'leave home']         |    ['stop eating', 'quit eating']    |           ['go fishing', 'eat food']          |
+|         ['change_appearance', 'diversity']         | ['feel comfortable', 'feel uncomfortable'] |   ['write novels', 'sell copies']    |     ['give permission', 'deny permission']    |
++----------------------------------------------------+--------------------------------------------+--------------------------------------+-----------------------------------------------+
+==================================================
+Relation: PartOf
+Prompts:
+- 1.0000 the <ENT0> is a physical component of the <ENT1>
+Harvested Tuples:
++------------------------------------------+-----------------------+-------------------------------------------+----------------------------------------------+
+|            ConceptNet Samples            |     Ours (Top 20)     |            Ours (Random Sample)           |                Ours (Tail 20)                |
++------------------------------------------+-----------------------+-------------------------------------------+----------------------------------------------+
+|         ['nanchang', 'jiangxi']          |    ['body', 'mind']   |          ['first letter', 'name']         |          ['air core', 'air vessel']          |
+|         ['zhuhai', 'guangdong']          |    ['body', 'soul']   |        ['second term', 'sentence']        |    ['third person', 'original narrative']    |
+|         ['kakadu', 'australia']          |    ['eye', 'brain']   |      ['bodyguard', 'security guard']      |        ['air element', 'air system']         |
+| ['wet_bulb_thermometer', 'psychrometer'] |  ['body', 'organism'] |        ['water level', 'reservoir']       |       ['second particle', 'particles']       |
+|        ['greystones', 'leinster']        |   ['heart', 'brain']  |      ['second layer', 'third layer']      |          ['air layer', 'air body']           |
+|          ['parotitis', 'mumps']          |    ['body', 'self']   |      ['water supply', 'water source']     |         ['first particle', 'second']         |
+|        ['butt_out', 'south_park']        |   ['body', 'brain']   |      ['second group', 'first group']      |      ['first thing', 'physical system']      |
+|           ['suture', 'plant']            |  ['heart', 'person']  |       ['air resistance', 'airspeed']      |   ['energy particle', 'electron particle']   |
+|           ['natal', 'brazil']            | ['heart', 'organism'] |   ['air suspension', 'steering system']   |       ['bodyguard', 'security guard']        |
+|         ['lake_powell', 'utah']          |   ['core', 'system']  |      ['first part', 'physical body']      |         ['third act', 'fourth act']          |
+|          ['fork', 'dining_set']          |   ['heart', 'soul']   |              ['body', 'mind']             |          ['first particle', 'wave']          |
+|     ['individual', 'part_of_group']      | ['brain', 'organism'] |         ['air layer', 'air body']         |         ['last link', 'web browser']         |
+|            ['spout', 'pipe']             |   ['brain', 'mind']   |   ['body temperature', 'metabolic rate']  |       ['first line', 'first sentence']       |
+|  ['floreal', 'revolutionary_calendar']   |  ['kernel', 'system'] |       ['third party', 'transaction']      |           ['air space', 'airship']           |
+|      ['countenance', 'human_head']       |    ['eye', 'mind']    |         ['body hair', 'male body']        |        ['energy emitted', 'exhaust']         |
+|           ['breast', 'turkey']           | ['core', 'structure'] |          ['user', 'environment']          |       ['bodyguard', 'security staff']        |
+|     ['buckthorn_berry', 'buckthorn']     |  ['core', 'organism'] |      ['energy content', 'substance']      |        ['air space', 'earth system']         |
+|          ['nantong', 'jiangsu']          |    ['eye', 'head']    |     ['third step', 'physical process']    |          ['third act', 'first act']          |
+|         ['cannabis', 'cannabis']         | ['engine', 'vehicle'] | ['first element', 'physical composition'] |  ['energy molecule', 'chemical structure']   |
+|      ['rabbit', 'european_rabbit']       |    ['core', 'cell']   |       ['second line', 'third line']       | ['third ingredient', 'chemical composition'] |
++------------------------------------------+-----------------------+-------------------------------------------+----------------------------------------------+
+==================================================
+Relation: ReceivesAction
+Prompts:
+- 1.0000 this can be applied to <ENT0>, where they would be <ENT1>
+Harvested Tuples:
++--------------------------------------------------------------------------------+---------------------------------+---------------------------------------------+----------------------------------------------------+
+|                               ConceptNet Samples                               |          Ours (Top 20)          |             Ours (Random Sample)            |                   Ours (Tail 20)                   |
++--------------------------------------------------------------------------------+---------------------------------+---------------------------------------------+----------------------------------------------------+
+|                         ['fuel_guage', 'found_in_car']                         |   ['buildings', 'demolished']   |         ['every product', 'shipped']        |    ['different things', 'considered different']    |
+|                   ['long_hair', 'gathered_with_rubber_band']                   |         ['cars', 'used']        | ['different fields', 'written differently'] |     ['existing contracts', 'considered valid']     |
+|                          ['bowl', 'found_in_kitchen']                          |  ['many problems', 'difficult'] |         ['similar cases', 'allowed']        |      ['many products', 'considered generic']       |
+|            ['wedding_ring', 'exchanged_when_couple_exchange_vows']             |        ['cars', 'driven']       |       ['multiple issues', 'discussed']      |   ['existing buildings', 'considered habitable']   |
+|             ["person's_hair", 'made_up_of_many_individual_hairs']              |    ['many cases', 'confused']   |        ['games', 'using javascript']        |          ['different areas', 'best fit']           |
+|                    ['liquor', 'stored_in_cocktail_cabinet']                    |        ['cars', 'parked']       |          ['buildings', 'protected']         |     ['certain cases', 'considered exceptions']     |
+| ['superscripts_and_subscripts', 'used_mainly_for_scientific_text_composition'] |      ['computers', 'used']      |           ['many cases', 'unable']          |      ['multiple locations', 'equally large']       |
+|               ['list_of_appointments', 'kept_on_paper_calendar']               |      ['buildings', 'used']      |      ['different problems', 'simpler']      | ['certain situations', 'considered inappropriate'] |
+|                          ['shovel', 'used_in_garden']                          |      ['buildings', 'built']     |      ['existing systems', 'configured']     |      ['certain items', 'considered valuable']      |
+|                              ['hose', 'deflated']                              |    ['buildings', 'destroyed']   |        ['multiple times', 'similar']        |   ['similar structures', 'considered different']   |
+|                           ['tanks', 'used_in_wars']                            |       ['cars', 'driving']       |     ['existing processes', 'automated']     |      ['certain products', 'considered safe']       |
+|                          ['stuff_clothes', 'made_of']                          |      ['libraries', 'used']      |        ['many tasks', 'interrupted']        |       ['multiple times', 'different values']       |
+|               ['world', 'divided_into_25_different_time_zones']                |    ['buildings', 'protected']   |        ['future events', 'postponed']       |      ['certain fields', 'ignored otherwise']       |
+|              ['steroids', 'used_in_hormone_replacement_therapy']               | ['many situations', 'confused'] |         ['new rules', 'implemented']        |         ['new languages', 'less complex']          |
+|                ['telephone_booth', 'found_usually_on_sidewalk']                |    ['children', 'vulnerable']   |     ['different cases', 'incompatible']     |       ['existing functions', 'defined like']       |
+|                   ['clean_clothes', 'put_in_clothes_closet']                   |      ['libraries', 'able']      |     ['similar things', 'less expensive']    |         ['several areas', 'good examples']         |
+|                   ['music_in_musicals', 'written_in_script']                   |        ['cars', 'built']        |    ['multiple groups', 'different sizes']   |            ['certain states', 'legal']             |
+|                               ['iron', 'forged']                               |  ['many situations', 'unable']  |      ['many circumstances', 'unlikely']     |         ['every project', 'using python']          |
+|                    ['nori', 'used_in_preparation_of_sushi']                    |      ['hospitals', 'used']      |  ['different things', 'considered normal']  |    ['existing devices', 'considered obsolete']     |
+|                       ['window', 'found_in_dining_room']                       |   ['libraries', 'vulnerable']   |            ['schools', 'better']            |      ['similar items', 'considered similar']       |
++--------------------------------------------------------------------------------+---------------------------------+---------------------------------------------+----------------------------------------------------+
+==================================================
+Relation: SymbolOf
+Prompts:
+- 1.0000 the <ENT0> symbolizes <ENT1> in the same way that the osi logo represents the internet
+Harvested Tuples:
++------------------------------+---------------------------------+---------------------------------------+--------------------------------------------+
+|      ConceptNet Samples      |          Ours (Top 20)          |          Ours (Random Sample)         |               Ours (Tail 20)               |
++------------------------------+---------------------------------+---------------------------------------+--------------------------------------------+
+|       ['tux', 'linux']       |     ['flag', 'nationalism']     |  ['bitcoin symbol', 'cryptocurrency'] |       ['company', 'global economy']        |
+| ['four_leaf_clover', 'luck'] |       ['flag', 'freedom']       |      ['pi character', 'physics']      |            ['apple', 'america']            |
+|    ['trophy', 'victory']     |      ['flag', 'democracy']      |     ['company', 'global economy']     | ['blue badge', 'international fraternity'] |
+|   ['giving_rose', 'love']    |     ['flag', 'independence']    |          ['u flag', 'unity']          |      ['nokia symbol', 'nokia phone']       |
+|              \               | ['nokia logo', 'mobile phones'] |      ['web icon', 'web browser']      |          ['box', 'digital world']          |
+|              \               |    ['pi logo', 'computation']   |      ['web logo', 'web browser']      |      ['white cross', 'christianity']       |
+|              \               |     ['nokia logo', 'mobile']    |   ['logo often', 'social movements']  |              ['nx', 'gaming']              |
+|              \               |       ['eagle', 'freedom']      |       ['crescent', 'space much']      |       ['sign', 'internet community']       |
+|              \               |  ['nokia logo', 'mobile phone'] |      ['web character', 'google']      |         ['euro flag', 'euro area']         |
+|              \               |   ['pi symbol', 'mathematics']  |  ['white shield', 'internationalism'] |    ['logo really', 'global community']     |
+|              \               |  ['pi logo', 'computing power'] |         ['dot', 'electricity']        |        ['web image', 'web browser']        |
+|              \               |    ['pi logo', 'mathematics']   |          ['rainbow', 'peace']         |           ['pi emblem', 'pi pi']           |
+|              \               |      ['moon', 'technology']     |       ['u brand', 'university']       |        ['europe', 'european union']        |
+|              \               |      ['eagle', 'democracy']     |   ['nokia symbol', 'nokia devices']   |            ['eagle', 'america']            |
+|              \               |       ['star', 'freedom']       |         ['web key', 'google']         |     ['internet icon', 'online world']      |
+|              \               |        ['moon', 'space']        |       ['eagle', 'independence']       |       ['e logo', 'electronic world']       |
+|              \               |    ['eagle', 'independence']    |    ['euro icon', 'monetary union']    |       ['emoji mark', 'emoji emoji']        |
+|              \               |    ['globe', 'globalization']   |        ['white heart', 'peace']       |           ['u flag', 'u nation']           |
+|              \               |      ['star', 'technology']     | ['internet emblem', 'online culture'] |       ['e symbol', 'european union']       |
+|              \               |        ['star', 'space']        |  ['bitcoin brand', 'cryptocurrency']  |        ['apple emoji', 'commerce']         |
++------------------------------+---------------------------------+---------------------------------------+--------------------------------------------+
+==================================================
+Relation: UsedFor
+Prompts:
+- 1.0000 the <ENT0> may help people <ENT1>
+Harvested Tuples:
++-----------------------------------------------------+----------------------------------+--------------------------------------------+-----------------------------------------+
+|                  ConceptNet Samples                 |          Ours (Top 20)           |            Ours (Random Sample)            |              Ours (Tail 20)             |
++-----------------------------------------------------+----------------------------------+--------------------------------------------+-----------------------------------------+
+|       ['washing_car', 'cleaning_dirt_off_car']      |     ['pill', 'sleep better']     |      ['brain', 'understand language']      |        ['mouse', 'learn better']        |
+|                ['name', 'represent']                |     ['pill', 'get pregnant']     |       ['next update', 'get online']        |       ['human gaze', 'see better']      |
+|           ['instrument_organ', 'weddings']          |       ['internet', 'die']        |           ['school', 'succeed']            |      ['disorder', 'get depressed']      |
+|         ['checkbook_holder', 'hold_checks']         |        ['program', 'get']        |           ['video', 'remember']            |         ['latter', 'feel safe']         |
+|            ['metal_rod', 'holding_flag']            |       ['program', 'move']        |            ['system', 'cheat']             |      ['new gadget', 'avoid falls']      |
+|       ['handyman', 'maintenance_and_repairs']       |    ['drugs', 'sleep better']     |      ['game', 'overcome depression']       |    ['human response', 'avoid stress']   |
+|           ['cemetery', 'bury_loved_ones']           |   ['therapy', 'sleep better']    |         ['video', 'avoid suicide']         |    ['brain therapy', 'forget things']   |
+|            ['snoring', 'annoying_people']           |  ['treatment', 'sleep better']   |         ['surgery', 'get married']         |           ['result', 'study']           |
+|    ['large_food_store', 'buying_all_foods_want']    | ['brain scan', 'avoid dementia'] |        ['effect', 'avoid smoking']         |      ['best drug', 'forget cancer']     |
+|           ['talking_to', 'explaining_to']           |    ['internet', 'understand']    |          ['ways robots', 'today']          |      ['following guide', 'prepare']     |
+|               ['bus_shelter', 'wait']               |      ['book', 'understand']      |    ['new treatment', 'overcome cancer']    |           ['new law', 'drive']          |
+|          ['telling_story', 'entertaining']          |     ['internet', 'remember']     |           ['moon', 'see stars']            | ['ways vaccination', 'prevent disease'] |
+| ['farting', 'releiving_pains_associated_with_wind'] |      ['program', 'improve']      |    ['body language', 'identify others']    |    ['latest update', 'avoid malware']   |
+|                  ['esc', 'safety']                  |     ['internet', 'survive']      |         ['eclipse', 'see better']          |        ['game', 'avoid bullying']       |
+|      ['classroom', 'creating_art_with_others']      |    ['therapy', 'feel better']    |  ['way antidepressants', 'manage stress']  |  ['brain exercises', 'remember things'] |
+|            ['brass_family', 'orchestras']           |      ['internet', 'forget']      |        ['bacteria', 'get healthy']         |      ['ways alcohol', 'get drunk']      |
+|             ['spoon', 'stirring_coffee']            |    ['device', 'sleep better']    |            ['drug', 'survive']             |       ['drug program', 'overdose']      |
+|             ['brass_instrument', 'play']            |    ['therapy', 'get better']     | ['brain structure', 'avoid schizophrenia'] |     ['ways vaccinations', 'thrive']     |
+|              ['plane_ticket', 'travel']             |   ['treatment', 'get better']    |         ['effect', 'feel better']          | ['brain imaging', 'understand disease'] |
+|              ['system', 'beat_dealer']              |       ['program', 'save']        |            ['result', 'study']             |        ['algorithm', 'find love']       |
++-----------------------------------------------------+----------------------------------+--------------------------------------------+-----------------------------------------+
+==================================================
