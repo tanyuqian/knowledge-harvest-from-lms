@@ -68,8 +68,9 @@ class KnowledgeHarvester:
             not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
             tokenized_entity_pairs = self._model.tokenize_tuples_by_len(ent_tuples, not_at_beginning)
             # {(len_ent_1, len_ent_2, ...): [(ent_1_ids, ent_2_ids, ...), (ent_1_text, ent_2_text, ...), ...]}
+            print(f"scoring with prompts: '{prompt}' ...")
             for n_masks, tuples in tokenized_entity_pairs.items():
-                print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
+                # print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
                 scores = self._model.score_tuples(tuples, prompt, n_masks=n_masks)
                 for score, ent_tuple in zip(scores, tuples):
                     # print(f"score and tuple: {score}, {ent_tuple}")
@@ -78,7 +79,7 @@ class KnowledgeHarvester:
             result_list.append([result[1] for result in prompt_result_list])
         return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
 
-    def score_single(self, prompt, ent_tuple):
+    def score_single(self, prompt, ent_tuple, weights=(0.25, 0.25, 0.5)):
         assert get_n_ents(prompt) == len(ent_tuple)
 
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
@@ -93,22 +94,19 @@ class KnowledgeHarvester:
                 masked_inputs['input_ids'][0][i] = self._model.mask_token_id
 
         scores = []
-        for mask_span in mask_spans:  # ok I think this can be batchify...
+        for mask_span in mask_spans:
             for mask_pos in range(mask_span[0], mask_span[1]):
                 logits = self._model.model(**masked_inputs).logits
                 logprobs = torch.log_softmax(logits, dim=-1)[0]
-
                 scores.append(
                     logprobs[mask_pos][truth_input_ids[mask_pos]].item())
-
                 masked_inputs['input_ids'][0][mask_pos] = \
                     truth_input_ids[mask_pos]
 
         sum_score = sum(scores) / len(ent_tuple)
         mean_score = sum(scores) / len(scores)
         min_score = min(scores)
-
-        return 0.25 * sum_score + 0.25 * mean_score + 0.5 * min_score
+        return weights[0] * sum_score + weights[1] * mean_score + weights[2] * min_score
 
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(

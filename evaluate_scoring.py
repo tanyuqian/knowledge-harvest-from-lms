@@ -15,8 +15,8 @@ def main():
     ckbc = CKBC(file='conceptnet_high_quality.txt')
     knowledge_harvester = KnowledgeHarvester(
         model_name='roberta-large', max_n_ent_tuples=None)
-    comet_scorer = COMETKnowledgeScorer()
-    ckbc_scorer = CKBCKnowledgeScorer()
+    # comet_scorer = COMETKnowledgeScorer()
+    # ckbc_scorer = CKBCKnowledgeScorer()
 
     save_dir = 'curves_high_quality/'
     os.makedirs(save_dir, exist_ok=True)
@@ -29,7 +29,8 @@ def main():
         else:
             ent_tuples = ckbc.get_ent_tuples(rel=rel)
 
-        for setting in ['ckbc', 'comet', 'init', 1, 5, 20]:
+        # for setting in ['ckbc', 'comet', 'init', 1, 5, 20]:
+        for setting in ['init', 1, 5, 20]:
             if setting == 'ckbc':
                 weighted_ent_tuples = []
                 for ent_tuple in ent_tuples:
@@ -74,7 +75,7 @@ def main():
 
         plt.savefig(f"{save_dir}/{rel}.png")
         plt.figure().clear()
-
+        break
 
 if __name__ == '__main__':
     fire.Fire(main)
