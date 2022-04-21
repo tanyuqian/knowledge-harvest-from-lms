@@ -5,6 +5,8 @@ from models.gpt3 import GPT3
 from data_utils.data_utils import conceptnet_relation_init_prompts
 from data_utils.concept_net import ConceptNet
 
+from thefuzz import fuzz
+
 
 def main(n_seed_tuples=5):
     gpt3 = GPT3()
@@ -43,11 +45,20 @@ def main(n_seed_tuples=5):
             if len(new_prompts) == 0:
                 break
             else:
-                prompts.extend(new_prompts)
+                # prompts.extend(new_prompts)
+                flag = False
+                for new_prompt in new_prompts:
+                    if len(prompts) != 0:
+                        print(f'-- {new_prompt}: {max([fuzz.ratio(new_prompt, prompt) for prompt in prompts])}')
+                    if len(prompts) == 0 or max([fuzz.ratio(
+                            new_prompt, prompt) for prompt in prompts]) < 75:
+                        prompts.append(new_prompt)
+                        flag = True
+
                 prompts = list(set(prompts))
                 prompts.sort(key=lambda s: len(s))
 
-                if len(prompts) >= 20:
+                if len(prompts) >= 20 or flag == False:
                     break
 
         relation_info[rel] = {
