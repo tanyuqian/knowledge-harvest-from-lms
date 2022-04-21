@@ -11,6 +11,7 @@ from data_utils.ckbc import CKBC
 from sklearn.metrics import precision_recall_curve
 from matplotlib import pyplot as plt
 
+
 def main():
     ckbc = CKBC(file='conceptnet_high_quality.txt')
     knowledge_harvester = KnowledgeHarvester(
