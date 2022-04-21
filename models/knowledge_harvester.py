@@ -14,13 +14,15 @@ class KnowledgeHarvester:
                  max_n_prompts=20,
                  max_n_ent_tuples=10000,
                  max_ent_repeat=10,
-                 max_ent_subwords=1):
+                 max_ent_subwords=1,
+                 prompt_temp=1.):
         self._weighted_prompts = []
         self._weighted_ent_tuples = []
         self._max_n_prompts = max_n_prompts
         self._max_n_ent_tuples = max_n_ent_tuples
         self._max_ent_repeat = max_ent_repeat
         self._max_ent_subwords = max_ent_subwords
+        self._prompt_temp = prompt_temp
 
         self._model = LanguageModelWrapper(model_name=model_name)
         self._ent_tuple_searcher = EntityTupleSearcher(model=self._model)
@@ -137,7 +139,8 @@ class KnowledgeHarvester:
                 scores.append(self.score_single(
                     prompt=prompt, ent_tuple=ent_tuple))
 
-            self._weighted_prompts[i][1] = sum(scores) / len(scores)
+            self._weighted_prompts[i][1] = \
+                sum(scores) / len(scores) / self._prompt_temp
 
         self._weighted_prompts = sorted(
             self._weighted_prompts,

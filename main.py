@@ -7,6 +7,7 @@ from models.knowledge_harvester import KnowledgeHarvester
 
 def main(n_tuples=1000,
          n_prompts=20,
+         prompt_temp=1.,
          max_ent_repeat=5,
          max_ent_subwords=2,
          n_seed_tuples=5,
@@ -16,7 +17,8 @@ def main(n_tuples=1000,
         max_n_ent_tuples=n_tuples,
         max_n_prompts=n_prompts,
         max_ent_repeat=max_ent_repeat,
-        max_ent_subwords=max_ent_subwords)
+        max_ent_subwords=max_ent_subwords,
+        prompt_temp=prompt_temp)
 
     relation_info = json.load(open(
         f'data/relation_info_{n_seed_tuples}seeds.json'))
@@ -29,7 +31,8 @@ def main(n_tuples=1000,
                      f'_{n_prompts}prompts' \
                      f'_{n_seed_tuples}seeds' \
                      f'_maxsubwords{max_ent_subwords}' \
-                     f'_maxrepeat{max_ent_repeat}'
+                     f'_maxrepeat{max_ent_repeat}' \
+                     f'_temp{prompt_temp}'
         if use_init_prompts:
             output_dir += '_initprompts'
         if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
