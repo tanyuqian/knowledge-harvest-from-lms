@@ -6,6 +6,10 @@ from data_utils.data_utils import get_ent_tuple_from_sentence,\
     get_gpt3_prompt_mask_filling, get_gpt3_prompt_paraphrase,\
     fix_ent_tuples, get_n_ents, get_sent
 
+TRANSFORMATIONS_SENT = [['', ''], ['a ', ''], ['the ', '']]
+TRANSFORMATIONS_ENT = [
+    ['', ''], ['being', 'is'], ['being', 'are'], ['ing', ''], ['ing', 'e']]
+
 
 class GPT3:
     def __init__(self):
@@ -87,16 +91,20 @@ class GPT3:
             para_sent = sent_tokenize(para_sent)[0]
             para_sent = para_sent.strip().strip('.').lower()
 
-            # print('para_sent:', para_sent)
+            print('para_sent:', para_sent)
 
             prompt = para_sent
             valid = True
             for idx, ent in enumerate(ent_tuple):
-                prompt = prompt.replace(ent, f'<ENT{idx}>')
-
-                if prompt.count(f'<ENT{idx}>') == 0:
-                    prompt = prompt.replace(
-                        ent.replace('ing', ''), f'<ENT{idx}>')
+                # prompt = prompt.replace(ent, f'<ENT{idx}>')
+                for trans_sent in TRANSFORMATIONS_SENT:
+                    for trans_ent in TRANSFORMATIONS_ENT:
+                        if prompt.count(f'<ENT{idx}>') == 0:
+                            transed_prompt = prompt.replace(*trans_sent)
+                            transed_ent = ent.replace(*trans_ent)
+                            if transed_prompt.count(transed_ent) == 1:
+                                prompt = transed_prompt.replace(
+                                    transed_ent, f'<ENT{idx}>')
 
                 if prompt.count(f'<ENT{idx}>') != 1:
                     valid = False

@@ -149,9 +149,15 @@ class EntityTupleSearcher:
             pred_ent = self._model.tokenizer.decode(cur_token_ids)
 
             pred_ent = pred_ent.strip().lower()
-            if pred_ent in cur_ent_tuple or pred_ent in stopwords or \
-                    len(pred_ent) <= 1:
+            if pred_ent in stopwords or len(pred_ent.replace(' ', '')) <= 2:
                 return
+
+            if min([len(t) for t in pred_ent.split()]) <= 1:
+                return
+
+            for ent in cur_ent_tuple:
+                if pred_ent.replace(' ', '') == ent.replace(' ', ''):
+                    return
 
             for raw_prompt, _ in weighted_prompts:
                 if pred_ent in raw_prompt:
@@ -172,7 +178,6 @@ class EntityTupleSearcher:
                 f'<ENT{ent_idx}>',
                 self._model.tokenizer.decode(cur_token_ids) +
                 '<mask>' * (n_masks[ent_idx] - len(cur_token_ids)))
-            # a small bug?: 'It is typical for <mask> to cause <ENT1>'
 
             input_text = self._model.get_masked_input_text(
                 prompt=prompt, n_masks=n_masks)

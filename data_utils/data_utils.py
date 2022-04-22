@@ -9,7 +9,8 @@ stopwords.extend([
     'something', 'somebody', 'someone',
     'nothing', 'nobody',
     'one', 'neither', 'either',
-    'us'])
+    'us', 'first', 'second', 'next',
+    'following', 'last', 'new', 'main'])
 
 
 conceptnet_relation_init_prompts = {
