@@ -109,7 +109,8 @@ class KnowledgeHarvester:
         sum_score = sum(scores) / len(ent_tuple)
         mean_score = sum(scores) / len(scores)
         min_score = min(scores)
-        return weights[0] * sum_score + weights[1] * mean_score + weights[2] * min_score
+        return weights[0] * sum_score + weights[1] * mean_score + \
+               weights[2] * min_score
 
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
@@ -140,14 +141,14 @@ class KnowledgeHarvester:
             weights.append(sum(scores) / len(scores))
         return weights
 
-    def update_prompts(self, metric_weights):
+    def update_prompts(self, metric_weights=(0.25, 0.25, 0.5)):
         for i, (prompt, _) in enumerate(self._weighted_prompts):
             scores = []
             for ent_tuple in self._seed_ent_tuples:
                 ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
 
                 scores.append(self.score_single(
-                    prompt=prompt, ent_tuple=ent_tuple), weights=metric_weights)
+                    prompt=prompt, ent_tuple=ent_tuple, weights=metric_weights))
 
             self._weighted_prompts[i][1] = \
                 sum(scores) / len(scores) / self._prompt_temp
