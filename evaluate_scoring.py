@@ -22,7 +22,7 @@ def main():
     save_dir = 'curves_high_quality/'
     os.makedirs(save_dir, exist_ok=True)
 
-    relation_info = json.load(open('data/relation_info_5seeds.json'))
+    relation_info = json.load(open('data/relation_info_conceptnet_5seeds.json'))
 
     for rel, info in relation_info.items():
         if rel not in ckbc._ent_tuples:

@@ -1,6 +1,5 @@
 import os
 import json
-import random
 import gdown
 
 
@@ -24,9 +23,10 @@ class ConceptNet:
             for key in knowledge[relation]:
                 for ent_tuple in knowledge[relation][key]:
                     if ent_tuple[0] == key:
-                        ent_tuples.append(ent_tuple[:2])
+                        if ent_tuple[0].count('_') <= 1 and \
+                                ent_tuple[1].count('_') <= 1:
+                            ent_tuples.append(ent_tuple[:2])
 
-            random.shuffle(ent_tuples)
             self._ent_tuples[relation] = ent_tuples
 
     def get_ent_tuples(self, rel):
