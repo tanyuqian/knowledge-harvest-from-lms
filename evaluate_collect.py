@@ -10,8 +10,8 @@ from models.comet_knowledge_scorer import COMETKnowledgeScorer
 from models.ckbc_knowledge_scorer import CKBCKnowledgeScorer
 
 from data_utils.ckbc import CKBC
-from data_utils import conceptnet_relation_init_prompts
-from sklearn.metrics import precision_recall_curve
+# from data_utils import conceptnet_relation_init_prompts
+# from sklearn.metrics import precision_recall_curve
 from matplotlib import pyplot as plt
 
 def main():
@@ -24,8 +24,8 @@ def main():
     save_dir = 'results/curves_ckbc_temp'
     os.makedirs(save_dir, exist_ok=True)
 
-    relation_info = json.load(open('data/relation_info_5seeds.json'))
-    relation_info = conceptnet_relation_init_prompts
+    relation_info = json.load(open('data/relation_info_conceptnet_5seeds.json'))
+    # relation_info = conceptnet_relation_init_prompts
     for rel, info in relation_info.items():
         if rel not in ckbc._ent_tuples:
             continue
