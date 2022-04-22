@@ -16,7 +16,7 @@ def get_pr_scores(harvester, testset, rel, prompts, weights):
     harvester.clear()
     harvester.init_prompts(prompts)
     weighted_ent_tuples = harvester.get_ent_tuples_weight(
-            testset.get_ent_tuples(rel=rel), weights=weights)
+            testset.get_ent_tuples(rel=rel), metric_weights=weights)
     y_true, scores, ent_tuples = [], [], []
     for ent_tuple, weight in weighted_ent_tuples:
         label = testset.get_label(rel=rel, ent_tuple=ent_tuple)

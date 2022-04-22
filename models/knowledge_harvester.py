@@ -45,10 +45,10 @@ class KnowledgeHarvester:
     #     return score
 
     # need to be batchified
-    def get_ent_tuples_weight(self, ent_tuples, weights=(.25, .25, .5)):
+    def get_ent_tuples_weight(self, ent_tuples, metric_weights=(.25, .25, .5)):
         scores, tuples = self._score_tuples_prompts(ent_tuples)
         # now the score has the shape (n_prompts, n_tuples, 3)
-        metric_weights = torch.tensor(weights)
+        metric_weights = torch.tensor(metric_weights)
         scores = torch.sum(scores * metric_weights.reshape(1, 1, *metric_weights.shape)\
             .expand(*scores.shape), dim=-1)
         # aggregate all the metrics. Now (n_prompts, n_tuples)
@@ -126,14 +126,25 @@ class KnowledgeHarvester:
             self._weighted_ent_tuples,
             key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
 
-    def update_prompts(self):
+    def validate_prompts(self, metric_weights):
+        weights = []
+        for i, (prompt, _) in enumerate(self._weighted_prompts):
+            scores = []
+            for ent_tuple in self._seed_ent_tuples:
+                ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
+                scores.append(self.score_single(
+                    prompt=prompt, ent_tuple=ent_tuple, weights=metric_weights))
+            weights.append(sum(scores) / len(scores))
+        return weights
+
+    def update_prompts(self, metric_weights):
         for i, (prompt, _) in enumerate(self._weighted_prompts):
             scores = []
             for ent_tuple in self._seed_ent_tuples:
                 ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
 
                 scores.append(self.score_single(
-                    prompt=prompt, ent_tuple=ent_tuple))
+                    prompt=prompt, ent_tuple=ent_tuple), weights=metric_weights)
 
             self._weighted_prompts[i][1] = sum(scores) / len(scores)
 

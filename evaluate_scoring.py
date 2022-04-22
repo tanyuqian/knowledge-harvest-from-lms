@@ -31,6 +31,7 @@ def main():
 
         # for setting in ['ckbc', 'comet', 'init', 1, 5, 20]:
         for setting in ['init', 1, 5, 20]:
+            '''
             if setting == 'ckbc':
                 weighted_ent_tuples = []
                 for ent_tuple in ent_tuples:
@@ -41,19 +42,21 @@ def main():
                 for ent_tuple in ent_tuples:
                     weighted_ent_tuples.append([ent_tuple, comet_scorer.score(
                         h=ent_tuple[0], r=rel, t=ent_tuple[1])])
-            else:
-                prompts = info['init_prompts'] if setting == 'init' \
-                    else info['prompts']
+            '''
+            
+            prompts = info['init_prompts'] if setting == 'init' \
+                else info['prompts']
 
-                knowledge_harvester.clear()
-                if setting != 'init':
-                    knowledge_harvester._max_n_prompts = setting
-                knowledge_harvester.init_prompts(prompts=prompts)
-                knowledge_harvester.set_seed_ent_tuples(info['seed_ent_tuples'])
-                knowledge_harvester.update_prompts()
+            knowledge_harvester.clear()
+            if setting != 'init':
+                knowledge_harvester._max_n_prompts = setting
+                
+            knowledge_harvester.init_prompts(prompts=prompts)
+            knowledge_harvester.set_seed_ent_tuples(info['seed_ent_tuples'])
+            knowledge_harvester.update_prompts()
 
-                weighted_ent_tuples = knowledge_harvester.get_ent_tuples_weight(
-                    ent_tuples=ent_tuples)
+            weighted_ent_tuples = knowledge_harvester.get_ent_tuples_weight(
+                ent_tuples=ent_tuples)
 
             y_true, scores = [], []
             for ent_tuple, weight in weighted_ent_tuples:
