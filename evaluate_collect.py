@@ -1,3 +1,6 @@
+# to generate the scores of given entity tuple
+# and save them in a temporary file
+# then run `aggregate_relation_pr_curve.ipynb` to plot the curve.
 import os
 import fire
 import json
@@ -18,7 +21,7 @@ def main():
     # comet_scorer = COMETKnowledgeScorer()
     # ckbc_scorer = CKBCKnowledgeScorer()
 
-    save_dir = 'debug_0420/'
+    save_dir = 'results/curves_ckbc_temp'
     os.makedirs(save_dir, exist_ok=True)
 
     relation_info = json.load(open('data/relation_info_5seeds.json'))
