@@ -11,6 +11,7 @@ from data_utils.ckbc import CKBC
 from sklearn.metrics import precision_recall_curve
 from matplotlib import pyplot as plt
 
+
 def main():
     ckbc = CKBC(file='conceptnet_high_quality.txt')
     knowledge_harvester = KnowledgeHarvester(
@@ -21,7 +22,7 @@ def main():
     save_dir = 'curves_high_quality/'
     os.makedirs(save_dir, exist_ok=True)
 
-    relation_info = json.load(open('data/relation_info_5seeds.json'))
+    relation_info = json.load(open('data/relation_info_conceptnet_5seeds.json'))
 
     for rel, info in relation_info.items():
         if rel not in ckbc._ent_tuples:
