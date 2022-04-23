@@ -11,7 +11,8 @@ def main(output_dir):
     ckbc_scorer = CKBCKnowledgeScorer()
     comet_scorer = COMETKnowledgeScorer()
 
-    relation_info = json.load(open(f'data/relation_info_5seeds.json'))
+    relation_info = json.load(
+        open(f'data/relation_info_conceptnet_5seeds.json'))
 
     for rel, info in relation_info.items():
         if not os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):

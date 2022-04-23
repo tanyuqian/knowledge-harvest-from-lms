@@ -12,17 +12,25 @@ from sklearn.metrics import precision_recall_curve
 from matplotlib import pyplot as plt
 
 
-def main():
-    ckbc = CKBC(file='conceptnet_high_quality.txt')
+SETTINGS = {
+    'conceptnet': ['ckbc', 'comet', 'init', 1, 5, 20],
+    'lama': ['init', 1, 5, 20]
+}
+
+
+def main(rel_set='conceptnet'):
+    ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
         model_name='roberta-large', max_n_ent_tuples=None)
-    comet_scorer = COMETKnowledgeScorer()
-    ckbc_scorer = CKBCKnowledgeScorer()
 
-    save_dir = 'curves_high_quality/'
+    if rel_set == 'conceptnet':
+        comet_scorer = COMETKnowledgeScorer()
+        ckbc_scorer = CKBCKnowledgeScorer()
+
+    save_dir = f'curves/{rel_set}'
     os.makedirs(save_dir, exist_ok=True)
 
-    relation_info = json.load(open('data/relation_info_conceptnet_5seeds.json'))
+    relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
 
     curves = {}
     for rel, info in relation_info.items():
@@ -31,7 +39,7 @@ def main():
         else:
             ent_tuples = ckbc.get_ent_tuples(rel=rel)
 
-        for setting in ['ckbc', 'comet', 'init', 1, 5, 20]:
+        for setting in SETTINGS[rel_set]:
             if setting == 'ckbc':
                 weighted_ent_tuples = []
                 for ent_tuple in ent_tuples:
@@ -69,9 +77,12 @@ def main():
                 else f'{setting} prompts'
             plt.plot(recall, precision, label=label)
 
-            curves[label] = {'precision': precision, 'recall': recall}
+            curves[label] = {
+                'precision': precision.tolist(),
+                'recall': recall.tolist()
+            }
 
-        json.dump(curves, open(f'{save_dir}/{rel}.json'))
+        json.dump(curves, open(f'{save_dir}/{rel}.json', 'w'), indent=4)
 
         plt.xlabel('Recall')
         plt.ylabel('Precision')
