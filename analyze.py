@@ -5,7 +5,8 @@ from glob import glob
 
 
 def main():
-    relation_info = json.load(open(f'data/relation_info_5seeds.json'))
+    relation_info = json.load(open(
+        f'data/relation_info_conceptnet_5seeds.json'))
 
     for output_dir in glob('results/outputs_*'):
         print(f'output_dir: {output_dir}:')
@@ -19,7 +20,8 @@ def main():
                     # print(f'{output_dir} doesn\'t have realtion {rel}.')
                     continue
 
-                result = json.load(open(f'{output_dir}/{rel}/scores.json'))[:100]
+                result = json.load(open(
+                    f'{output_dir}/{rel}/scores.json'))[:100]
                 if result == []:
                     # print(f'{output_dir} doesn\'t have realtion {rel}.')
                     continue

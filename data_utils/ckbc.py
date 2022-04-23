@@ -1,12 +1,11 @@
 import os
 
-from data_utils import get_relations
+from data_utils.data_utils import get_relations
 
 
 class CKBC:
     def __init__(self, rel_set='conceptnet'):
-        test_filename = 'test.txt' if rel_set == 'conceptnet' \
-            else 'test_lama.txt'
+        test_filename = f'test_{rel_set}.txt'
 
         if not os.path.exists(f'data/ckbc/{test_filename}'):
             os.system('bash data_utils/download_ckbc.sh')
