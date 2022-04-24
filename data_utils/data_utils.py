@@ -1,4 +1,5 @@
 import re
+import json
 from nltk.corpus import stopwords
 
 
@@ -128,6 +129,13 @@ conceptnet_relation_init_prompts = {
         '<ENT0> is for <ENT1> .'
     ]
 }
+
+
+def get_relations(rel_set):
+    assert rel_set in ['conceptnet', 'lama']
+
+    return list(json.load(open(
+        f'data/relation_info_{rel_set}_5seeds.json')).keys())
 
 
 def get_mask_index_in_prompt(ent_idx, n_masks, prompt):

@@ -4,21 +4,37 @@ import random
 from prettytable import PrettyTable
 
 from data_utils.concept_net import ConceptNet
+from data_utils.lama import LAMA
+
+
+def get_samples(rel_set, rel, conceptnet, lama, n_samples):
+    if rel_set == 'conceptnet':
+        ent_tuples = conceptnet.get_ent_tuples(rel=rel)
+    else:
+        ent_tuples = lama.info[rel]['ent_tuples']
+
+    return random.sample(ent_tuples, min(len(ent_tuples), n_samples))
 
 
 def main(output_dir, n_present=20):
-    conceptnet = ConceptNet()
+    rel_set = 'conceptnet' if 'conceptnet' in output_dir else 'lama'
 
-    relation_info = json.load(open('data/relation_info_5seeds.json'))
+    conceptnet = ConceptNet() if rel_set == 'conceptnet' else None
+    lama = LAMA() if rel_set == 'lama' else None
+
+    relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
 
     output_file = open(f'{output_dir}/summary.txt', 'w')
 
     for rel, info in relation_info.items():
         columns = {}
 
-        columns['ConceptNet Samples'] = [
-            str(ent_tuple) for ent_tuple in conceptnet.get_ent_tuples(
-                rel=rel)[:n_present]]
+        columns[f'{rel_set} Samples'] = get_samples(
+            rel_set=rel_set,
+            rel=rel,
+            conceptnet=conceptnet,
+            lama=lama,
+            n_samples=n_present)
 
         weighted_prompts = json.load(open(f'{output_dir}/{rel}/prompts.json'))
 
