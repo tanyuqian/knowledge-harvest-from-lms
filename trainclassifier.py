@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# bb: if use full-atlocation for AtLocation: get 65-70 dev acc.
-# bb: lama 2e-4 65
-# 同样的lr下，大model比小model更容易只预测一样的...
 import gc
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, RobertaModel
 from transformers import BertTokenizer, BertModel
@@ -11,6 +5,41 @@ from torch.utils.data import Dataset, DataLoader
 import torch
 import random
 from models.lama_knowledge_scorer import LAMAKnowledgeScorer
+
+class lamadataset(torch.utils.data.Dataset):
+    def __init__(self, _data):
+        self.data = [i.strip().split('\t')[:3] for i in _data]
+        self.label = [i.strip().split('\t')[3] for i in _data]
+    def __len__(self):
+        return len(self.data)
+    def __getitem__(self, idx):
+        return self.data[idx], self.label[idx]
+
+def get_collator(tokenizer):
+    def collator(batch):
+        # inputs = tokenizer([h + " [SEP] " + r + " [SEP] " + t for (r, h, t), _ in batch], return_tensors='pt', padding=True)
+        inputs = tokenizer([h + " | " + r + " | " + t for (r, h, t), _ in batch], return_tensors='pt', padding=True)
+        labels = torch.tensor([int(_) for (r, h, t), _ in batch])
+        return inputs.to("cuda"), labels.to("cuda")
+    return collator
+
+def test(model, loader):
+    pt = 0
+    model.eval()
+    print("validating...")
+    acc_samples = 0
+    acc_correct = 0
+    for idx, (inputs, labels) in enumerate(loader):
+        acc_samples += len(labels)
+        with torch.no_grad():
+            logits = model(inputs)
+        pt += torch.sum(logits > 0).item()
+        acc_correct += torch.sum((logits.reshape(-1) > 0) == labels).item()
+        if idx == 0:
+            print(logits[:10], labels[:10])
+    model.train()
+    # print("prediction positive: ", pt/acc_samples)
+    return acc_correct/acc_samples
 
 plm = "roberta-large"
 lmlr = 1e-5
@@ -36,30 +65,13 @@ random.shuffle(data)
 n_samples = len(data)
 print("n_samples: ", n_samples)
 data_stats = [int(i.strip().split('\t')[3]) for i in data]
-print("n_pos_samples: ", sum(data_stats))
+print("n_positive_samples: ", sum(data_stats))
 
 # print(len(data))
 step = 0
 best_valid_acc = 0
 best_valid_f1 = 0
 test_f1 = 0
-
-def get_collator(tokenizer):
-    def collator(batch):
-        # inputs = tokenizer([h + " [SEP] " + r + " [SEP] " + t for (r, h, t), _ in batch], return_tensors='pt', padding=True)
-        inputs = tokenizer([h + " | " + r + " | " + t for (r, h, t), _ in batch], return_tensors='pt', padding=True)
-        labels = torch.tensor([int(_) for (r, h, t), _ in batch])
-        return inputs.to("cuda"), labels.to("cuda")
-    return collator
-
-class lamadataset(torch.utils.data.Dataset):
-    def __init__(self, _data):
-        self.data = [i.strip().split('\t')[:3] for i in _data]
-        self.label = [i.strip().split('\t')[3] for i in _data]
-    def __len__(self):
-        return len(self.data)
-    def __getitem__(self, idx):
-        return self.data[idx], self.label[idx]
 
 
 model = LAMAKnowledgeScorer(plm)
@@ -75,20 +87,9 @@ testset = lamadataset(data[int(0.85*n_samples):])
 trainloader = DataLoader(trainset, batch_size=32, collate_fn=get_collator(tokenizer), shuffle=True)
 devloader = DataLoader(devset, batch_size=64, collate_fn=get_collator(tokenizer), shuffle=False)
 testloader = DataLoader(testset, batch_size=64, collate_fn=get_collator(tokenizer), shuffle=False)
+
 criterion = torch.nn.BCEWithLogitsLoss(reduction="mean") # torch.nn.CrossEntropyLoss()
-"""
-optimizer_grouped_parameters = [
-    {
-        "params": [p for n, p in model.named_parameters() if "classifier" not in n],
-        "lr": 5e-5
-    },
-    {
-        "params": [p for n, p in model.named_parameters() if "classifier" in n],
-        "lr": 1e-3
-    }
-]
-"""
-# optimizer = torch.optim.AdamW(optimizer_grouped_parameters)
+
 param_optimizer = list(model.named_parameters())
 optimizer_grouped_parameters = [
     {'params': [p for n, p in param_optimizer
@@ -97,32 +98,14 @@ optimizer_grouped_parameters = [
         if n[:7] != 'encoder'], 'lr': clslr}]
 optimizer = torch.optim.Adam(optimizer_grouped_parameters, lr=lmlr)
 optimizer.zero_grad()
-def test(model, loader):
-    pt = 0
-    model.eval()
-    print("validating...")
-    acc_samples = 0
-    acc_correct = 0
-    for idx, (inputs, labels) in enumerate(loader):
-        acc_samples += len(labels)
-        with torch.no_grad():
-            logits = model(inputs)
-        # loss = criterion(logits, labels)
-        # loss.backward()
-        # acc_correct += torch.sum(torch.argmax(logits, dim=1) == labels).item()
-        pt += torch.sum(logits > 0).item()
-        acc_correct += torch.sum((logits.reshape(-1) > 0) == labels).item()
-        if idx == 0:
-            print(logits[:10], labels[:10])
-    model.train()
-    # print("prediction positive: ", pt/acc_samples)
-    return acc_correct/acc_samples
+
 acc_loss = 0
 acc_samples = 0
 acc_correct = 0
 best_dev_acc = 0
 model.train()
-no_improvement = 5
+no_improvement = 0
+
 for r in range(10):
     for idx, (inputs, labels) in enumerate(trainloader):
         if (idx + 1) % 50 == 0:
@@ -154,11 +137,7 @@ for r in range(10):
         optimizer.step()
         optimizer.zero_grad()
         model.zero_grad()
-        # print(loss)
-        # break
-    # print("dubugging: ")
-    # print("train acc: ", test(model, trainloader))
-    # print("dev acc: ", test(model, devloader))
+        
     if no_improvement == 5:
         break
 
