@@ -41,7 +41,7 @@ def main():
             weighted_ent_tuples = knowledge_harvester.get_ent_tuples_weight(
                     ent_tuples=ent_tuples, metric_weights=(1/3, 1/3, 1/3))
             json.dump({"prompt": prompt, "weight": prompt_weight, "scores": weighted_ent_tuples}, open(
-                save_dir + '{}_{}.json'.format(rel, ind), 'w'))
+                os.path.join(save_dir, '{}_{}.json'.format(rel, ind)), 'w'))
 
 if __name__ == '__main__':
     fire.Fire(main)

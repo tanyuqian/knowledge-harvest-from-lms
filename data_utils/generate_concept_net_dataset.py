@@ -137,8 +137,8 @@ print("all: ", sorted(stats, key=lambda x: x[-1]))
 stats = [(r, len([i for i in ls if i[-1] > 1]))
          for r, ls in tuple_list.items()]
 print("confidence > 1: ", sorted(stats, key=lambda x: x[-1]))
-random.sample([1, 2], 2)
-def get_dataset(rel="Desires", quality="high", max_num_truth=1000):
+
+def get_dataset(rel="Desires", quality="high", max_num_truth=50000):
     if quality == 'high':
         bank = {k: sorted([l for l in v if l[-1] > 1], key=lambda x: -x[-1])
                 [:max_num_truth] for k, v in tuple_list.items()}
@@ -166,10 +166,11 @@ def get_dataset(rel="Desires", quality="high", max_num_truth=1000):
         while (h, t_) in facts:
             _, t_ = random.sample(facts, 1)[0]
         false_h_pairs.append("\t".join([rel, h, t_, "0"]))
+        # there can be some repetitive pairs
     return true_pairs + false_rel_pairs + false_h_pairs + false_t_pairs
 temp = get_dataset()
 dataset = []
 for rel in target_rel:
-    dataset += get_dataset(rel=rel, quality="high", max_num_truth=1000)
-with open("data/ckbc/conceptnet_high_quality.txt", 'w', encoding='utf-8') as f:
+    dataset += get_dataset(rel=rel, quality="full", max_num_truth=1000)
+with open("data/ckbc/conceptnet_full.txt", 'w', encoding='utf-8') as f:
     f.write("\n".join(dataset))
