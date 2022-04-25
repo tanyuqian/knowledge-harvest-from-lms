@@ -38,6 +38,7 @@ def main(rel_set='conceptnet'):
     plt.ylabel('Precision')
     plt.legend()
 
+    plt.savefig(f'outputs/{rel_set}.png')
     plt.show()
 
 
