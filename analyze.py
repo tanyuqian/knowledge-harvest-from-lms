@@ -3,41 +3,48 @@ import os
 import json
 from glob import glob
 
+from prettytable import PrettyTable
 
-def main():
+
+N_TOP = 100
+RESULT_DIRS = {
+    'init prompts': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0_initprompts',
+    'best 1 prompt': '1000tuples_1prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0',
+    'all prompts': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0'
+}
+
+
+def main(rel_set='conceptnet'):
     relation_info = json.load(open(
-        f'data/relation_info_conceptnet_5seeds.json'))
+        f'data/relation_info_{rel_set}_5seeds.json'))
 
-    for output_dir in glob('results/outputs_*'):
+    result = PrettyTable()
+    result.add_column('Relations', list(relation_info.keys()) + ['Total'])
+
+    for setting, result_dir in RESULT_DIRS.items():
+        output_dir = f'outputs/conceptnet/{result_dir}'
         print(f'output_dir: {output_dir}:')
 
-        for metric in ['ckbc', 'comet']:
-            scores = []
-            for rel in relation_info:
-                # print(f'relation: {rel}')
-
-                if not os.path.exists(f'{output_dir}/{rel}/scores.json'):
-                    # print(f'{output_dir} doesn\'t have realtion {rel}.')
-                    continue
-
-                result = json.load(open(
-                    f'{output_dir}/{rel}/scores.json'))[:100]
-                if result == []:
-                    # print(f'{output_dir} doesn\'t have realtion {rel}.')
-                    continue
-
-                for knowledge_term in result:
-                    scores.append(knowledge_term[f'{metric} score'])
-
-            if len(scores) == 0:
+        col = []
+        col_scores = []
+        for rel in relation_info:
+            if not os.path.exists(f'{output_dir}/{rel}/scores.json'):
+                col.append('//')
                 continue
 
-            print(f'{metric}: {sum(scores) / len(scores)}')
-            if metric == 'ckbc':
-                print(f'{metric} acc: '
-                      f'{sum([int(t > 0.5) for t in scores]) / len(scores)}')
+            scores = json.load(open(f'{output_dir}/{rel}/scores.json'))[:N_TOP]
+            if scores == []:
+                col.append('//')
+                continue
 
-        print('=' * 50)
+            scores = [t['ckbc score'] for t in scores]
+            col.append(f'{sum(scores) / len(scores):.4f}')
+            col_scores.append(sum(scores) / len(scores))
+
+        col.append(f'{sum(col_scores) / len(col_scores):.4f}')
+        result.add_column(setting, col)
+
+    print(result)
 
 
 if __name__ == '__main__':

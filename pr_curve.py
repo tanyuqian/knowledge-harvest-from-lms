@@ -8,10 +8,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def main():
+def main(rel_set='conceptnet'):
     all_prec, all_recall = {}, {}
 
-    for rel_pr in glob('curves_high_quality/*.json'):
+    for rel_pr in glob(f'curves/{rel_set}/*.json'):
         curves = json.load(open(rel_pr))
 
         for label in curves:
@@ -25,13 +25,15 @@ def main():
     for label in all_prec:
         x = np.arange(0., 1., 0.001)
 
-        poly_fn = np.poly1d(np.polyfit(all_recall[label], all_prec[label], 3))
+        poly_fn = np.poly1d(np.polyfit(all_recall[label], all_prec[label], 2))
 
         y = poly_fn(x)
 
         plt.plot(x, y, label=label)
 
-    plt.title('All Relations')
+    # plt.ylim(0, 1)
+
+    plt.title(f'{rel_set} - All Relations')
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.legend()
