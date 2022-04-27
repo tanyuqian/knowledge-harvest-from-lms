@@ -4,41 +4,46 @@ import random
 from collections import defaultdict
 from itertools import chain
 
+filename = "dev"
+target_set = "dev.jsonl" # None
 data_dir = "data/lama"
 
 relations = []
 with open(os.path.join(data_dir, "LAMA_relations.jsonl"), 'r') as f:
     for line in f.readlines():
         relations.append(json.loads(line))
-try:
+"""try:
     with open(os.path.join(data_dir, "lama_facts.json"), 'r') as f:
         results = json.load(f)
-except:
-    results = {}
-    for relation in relations:
-        dir_name = relation["relation"]
-        name = relation["label"]
-        # if dir_name != 'P1376':
-        #     continue
-        root = os.path.join(data_dir, "cmp_lms_data", dir_name)
-        data = []
-        if not os.path.exists(root):
-            continue
-        for file in os.listdir(root):
-            with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
-                data += f.readlines()
-        res = []
-        for l in data:
-            dic = json.loads(l)
-            sub, obj = dic["sub_label"], dic["obj_label"]
-            # if sub in tok.vocab and obj in tok.vocab:
-            res.append([sub, obj])
-        results[name] = res
-        print(f"{dir_name}: {len(res)} pairs.")
+except:"""
+results = {}
+for relation in relations:
+    dir_name = relation["relation"]
+    name = relation["label"]
+    # if dir_name != 'P1376':
+    #     continue
+    root = os.path.join(data_dir, "cmp_lms_data", dir_name)
+    data = []
+    if not os.path.exists(root):
+        continue
+    if target_set == None:
+        files = os.listdir(root)
+    files = [target_set]
+    for file in files:
+        with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
+            data += f.readlines()
+    res = []
+    for l in data:
+        dic = json.loads(l)
+        sub, obj = dic["sub_label"], dic["obj_label"]
+        # if sub in tok.vocab and obj in tok.vocab:
+        res.append([sub, obj])
+    results[name] = res
+    print(f"{dir_name}: {len(res)} pairs.")
+print("?")
 
-
-    with open(os.path.join(data_dir, "lama_facts.json"), 'w') as f:
-        json.dump(results, f)
+"""with open(os.path.join(data_dir, "lama_facts.json"), 'w') as f:
+    json.dump(results, f)"""
     # break
 tuple_list = {k: [(ins[0], ins[1], 2) for ins in v] for k, v in results.items()}
 def get_dataset(rel="Desires", quality="high", max_num_truth=1000):
@@ -48,7 +53,7 @@ def get_dataset(rel="Desires", quality="high", max_num_truth=1000):
     else:
         bank = tuple_list
     # print(bank)
-    if len(bank.get(rel, [])) == 0:
+    if len(bank.get(rel, [])) < 2:  # otherwise there will be a dead loop.
         return []
     true_pairs = ["\t".join([rel, h, t, "1"]) for h, t, w in bank[rel]]
     false_rel_pools = list(
@@ -78,7 +83,7 @@ dataset = []
 for rel in tuple_list.keys():
     # print(rel)
     dataset += get_dataset(rel=rel, quality="high", max_num_truth=1000)
-with open("data/lama/lama_test.txt", 'w', encoding='utf-8') as f:
+with open(f"data/lama/{filename}.txt", 'w', encoding='utf-8') as f:
     f.write("\n".join(dataset))
 
 '''

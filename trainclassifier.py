@@ -51,20 +51,27 @@ savename = f"{plm}_{testname}_{str(lmlr)}_{str(clslr)}_bestmodel.pt"
 if testname == "conceptnet":
     testfile = "data/ckbc/conceptnet_high_quality.txt"
 elif testname == "lama":
-    testfile = "data/lama/lama_test.txt"
+    datafile = {
+        "train": "data/lama/train.txt",
+        "dev": "data/lama/dev.txt",
+        "test": "data/lama/test.txt"
+    }
 
             
 # logits = model(**inputs).logits
 # criterion(logits, torch.tensor([0, 1, 1]))
 
 # testfile = "data/ckbc/conceptnet_full.txt"
-with open(testfile, 'r') as f:
-    data = f.readlines()
-random.shuffle(data)
+data = {
+    "train": open(datafile["train"], "r").readlines(),
+    "dev": open(datafile["dev"], "r").readlines(),
+    "test": open(datafile["test"], "r").readlines()
+}
+# random.shuffle(data)
 # data = [i for i in data if i.strip().split('\t')[0] == 'AtLocation']
-n_samples = len(data)
+n_samples = len(data["train"])
 print("n_samples: ", n_samples)
-data_stats = [int(i.strip().split('\t')[3]) for i in data]
+data_stats = [int(i.strip().split('\t')[3]) for i in data["train"]]
 print("n_positive_samples: ", sum(data_stats))
 
 # print(len(data))
@@ -79,11 +86,11 @@ if "roberta" in plm:
     tokenizer = RobertaTokenizer.from_pretrained("roberta-large")
 else:
     tokenizer = BertTokenizer.from_pretrained("bert-base-cased")
-trainset = lamadataset(data[:int(0.7 * n_samples)])
-devset = lamadataset(data[int(0.7*n_samples): int(0.85*n_samples)])
-testset = lamadataset(data[int(0.85*n_samples):])
-# devset = lamadataset(test_data)
-# testset = lamadataset(test_data)
+
+trainset = lamadataset(data["train"])
+devset = lamadataset(data["dev"])
+testset = lamadataset(data["test"])
+
 trainloader = DataLoader(trainset, batch_size=32, collate_fn=get_collator(tokenizer), shuffle=True)
 devloader = DataLoader(devset, batch_size=64, collate_fn=get_collator(tokenizer), shuffle=False)
 testloader = DataLoader(testset, batch_size=64, collate_fn=get_collator(tokenizer), shuffle=False)
@@ -116,6 +123,7 @@ for r in range(10):
             acc_correct = 0
         if (idx + 1) % 200 == 0:
             acc_dev = test(model, devloader)
+            acc_test = test(model, testloader)
             if best_dev_acc < acc_dev:
                 best_dev_acc = acc_dev
                 torch.save(model, savename)
@@ -124,7 +132,8 @@ for r in range(10):
                 no_improvement += 1
                 if no_improvement == 5:
                     break
-            print(f"step {idx}: ",acc_dev)
+            print(f"step {idx}: ", acc_dev)
+            # print(f"step {idx}: ", acc_test)
         acc_samples += len(labels)
         # logits = model(**inputs).logits
         logits = model(inputs).reshape(-1)
