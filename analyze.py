@@ -10,7 +10,9 @@ N_TOP = 100
 RESULT_DIRS = {
     'init prompts': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0_initprompts',
     'best 1 prompt': '1000tuples_1prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0',
-    'all prompts': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0'
+    'all prompts (temp=1.)': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0',
+    'all prompts (temp=2.)': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp2.0',
+    'all prompts (temp=4.)': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp4.0'
 }
 
 
