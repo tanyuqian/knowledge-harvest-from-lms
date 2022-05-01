@@ -22,6 +22,9 @@ class LPAQA:
             elif prompt_path.endswith('jsonl'):
                 for line in open(prompt_path).readlines():
                     prompt = json.loads(line)
+                    if prompt["weight"] < 0.01:
+                        continue
+                    # !!!
                     self._prompts[rel_idx].append({
                         'prompt': prompt['template'].replace(
                             '[X]', '<ENT0>').replace('[Y]', '<ENT1>'),

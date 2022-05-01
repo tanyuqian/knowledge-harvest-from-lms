@@ -15,17 +15,17 @@ from matplotlib import pyplot as plt
 
 
 SETTINGS = {
-    'conceptnet': ['ckbc', 'comet', 'init', 1, 5, 20],
-    # 'lama': ['cls', 'LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
-    #          'init', 1, 5, 20]
-    'lama': [5]  # for test 
+    'conceptnet': ['ckbc', 'comet', 'init', 1, 5, 10],
+    'lama': ['cls', 'LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
+             'init', 1, 5, 10]
+    # 'lama': [5]  # for test 
 }
 
 
-def main(rel_set='lama'):
+def main(rel_set='lama', model='roberta-large'):
     ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
-        model_name='bert-base-cased', max_n_ent_tuples=None)
+        model_name=model, max_n_ent_tuples=None)
 
     if rel_set == 'conceptnet':
         comet_scorer = COMETKnowledgeScorer()
@@ -37,7 +37,7 @@ def main(rel_set='lama'):
 
         lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
 
-    save_dir = f'curves_exp0501_final/{rel_set}'
+    save_dir = f'curves/{model}/{rel_set}'
     os.makedirs(save_dir, exist_ok=True)
 
     relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
