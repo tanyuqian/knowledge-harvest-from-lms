@@ -48,7 +48,7 @@ class KnowledgeHarvester:
     #     return score
 
     # need to be batchified
-    def get_ent_tuples_weight(self, ent_tuples, metric_weights=(.25, .25, .5)):
+    def get_ent_tuples_weight(self, ent_tuples, metric_weights=(1/3, 1/3, 1/3)):
         scores, tuples = self._score_tuples_prompts(ent_tuples)
         # now the score has the shape (n_prompts, n_tuples, 3)
         metric_weights = torch.tensor(metric_weights)

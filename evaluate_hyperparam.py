@@ -38,8 +38,6 @@ def get_pr_scores(harvester, testset, rel, prompts, weights):
 
 def main():
     test_file = "conceptnet_high_quality.txt"
-    # weights = (.25, .25, 1)
-    
     # test_file = 'test.txt'
     ckbc = CKBC(test_file)
     knowledge_harvester = KnowledgeHarvester(
