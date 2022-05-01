@@ -15,7 +15,7 @@ from data_utils.ckbc import CKBC
 from matplotlib import pyplot as plt
 
 def main():
-    ckbc = CKBC(file='conceptnet_high_quality.txt')
+    ckbc = CKBC()
     knowledge_harvester = KnowledgeHarvester(
         model_name='roberta-large', max_n_ent_tuples=None)
     # comet_scorer = COMETKnowledgeScorer()
@@ -25,14 +25,21 @@ def main():
     os.makedirs(save_dir, exist_ok=True)
 
     relation_info = json.load(open('data/relation_info_conceptnet_5seeds.json'))
+    auto = {}
+    with open('data/autoprompt_concept.txt') as f:
+        x = f.readlines()
+        for line in x:
+            obj = json.loads(line.strip())
+            auto.update(obj)
     # relation_info = conceptnet_relation_init_prompts
     for rel, info in relation_info.items():
         if rel not in ckbc._ent_tuples:
             continue
         ent_tuples = ckbc.get_ent_tuples(rel=rel)
         knowledge_harvester._max_n_prompts = 1
-
-        prompts = info['init_prompts'] + info['prompts']
+        print("now", rel)
+        prompts = [auto[rel]]
+        # prompts = info['init_prompts'] + info['prompts']
         for ind, prompt in enumerate(prompts):
             knowledge_harvester.clear()
             knowledge_harvester.init_prompts(prompts=[prompt])
@@ -41,7 +48,7 @@ def main():
             weighted_ent_tuples = knowledge_harvester.get_ent_tuples_weight(
                     ent_tuples=ent_tuples, metric_weights=(1/3, 1/3, 1/3))
             json.dump({"prompt": prompt, "weight": prompt_weight, "scores": weighted_ent_tuples}, open(
-                os.path.join(save_dir, '{}_{}.json'.format(rel, ind)), 'w'))
+                os.path.join(save_dir, '{}_{}_auto.json'.format(rel, ind)), 'w'))
 
 if __name__ == '__main__':
     fire.Fire(main)

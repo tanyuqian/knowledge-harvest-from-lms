@@ -13,15 +13,15 @@ from matplotlib import pyplot as plt
 
 
 def main():
-    ckbc = CKBC(file='conceptnet_high_quality.txt')
+    ckbc = CKBC()
     knowledge_harvester = KnowledgeHarvester(
         model_name='roberta-large', max_n_ent_tuples=None)
     # comet_scorer = COMETKnowledgeScorer()
     # ckbc_scorer = CKBCKnowledgeScorer()
 
-    save_dir = 'curves_high_quality/'
+    save_dir = 'curves_with_auto/'
     os.makedirs(save_dir, exist_ok=True)
-
+    target_rels = ["Causes"]
     relation_info = json.load(open('data/relation_info_conceptnet_5seeds.json'))
 
     for rel, info in relation_info.items():
@@ -29,9 +29,10 @@ def main():
             continue
         else:
             ent_tuples = ckbc.get_ent_tuples(rel=rel)
-
+        if target_rels is not None and rel not in target_rels:
+            continue
         # for setting in ['ckbc', 'comet', 'init', 1, 5, 20]:
-        for setting in ['init', 1, 5, 20]:
+        for setting in ['init_prompts', "auto", 1]:
             '''
             if setting == 'ckbc':
                 weighted_ent_tuples = []
@@ -45,16 +46,16 @@ def main():
                         h=ent_tuple[0], r=rel, t=ent_tuple[1])])
             '''
             
-            prompts = info['init_prompts'] if setting == 'init' \
+            prompts = info[setting] if setting in ['init_prompts', 'auto'] \
                 else info['prompts']
 
             knowledge_harvester.clear()
-            if setting != 'init':
+            if setting != 'init_prompts':
                 knowledge_harvester._max_n_prompts = setting
                 
-            knowledge_harvester.init_prompts(prompts=prompts)
+            knowledge_harvester.init_prompts(prompts=prompts[:1])
             knowledge_harvester.set_seed_ent_tuples(info['seed_ent_tuples'])
-            knowledge_harvester.update_prompts()
+            # knowledge_harvester.update_prompts()
 
             weighted_ent_tuples = knowledge_harvester.get_ent_tuples_weight(
                 ent_tuples=ent_tuples)
@@ -68,7 +69,7 @@ def main():
 
             precision, recall, _ = precision_recall_curve(y_true, scores)
 
-            label = setting if setting in ['ckbc', 'comet'] \
+            label = setting if setting in ['init_prompts', 'auto'] \
                 else f'{setting} prompts'
             plt.plot(recall, precision, label=label)
 
@@ -79,7 +80,6 @@ def main():
 
         plt.savefig(f"{save_dir}/{rel}.png")
         plt.figure().clear()
-        break
 
 if __name__ == '__main__':
     fire.Fire(main)
