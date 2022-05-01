@@ -33,6 +33,6 @@ class LPAQA:
         return self._prompts[rel_idx]
 
 
-lpaqa = LPAQA(setting='paraphrase')
-print(sum([value['weight'] for value in lpaqa.get_prompts('P1001_xxx')]))
+# lpaqa = LPAQA(setting='paraphrase')
+# print(sum([value['weight'] for value in lpaqa.get_prompts('P1001_xxx')]))
 

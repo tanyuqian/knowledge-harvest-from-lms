@@ -27,7 +27,8 @@ class LAMAKnowledgeScorer(torch.nn.Module):
         return logits
         # return outputs
     def score(self, h, r, t):
-        return self.score_batch([(h, r, t)])[0]
+        with torch.no_grad():
+            return self.score_batch([(h, r, t)])[0].item()
     
     def score_batch(self, triples):
         inputs = self.tokenizer([h + " | " + r + " | " + t for h, r, t in triples], return_tensors='pt', padding=True)

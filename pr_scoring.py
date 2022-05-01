@@ -1,6 +1,7 @@
 import os
 import fire
 import json
+import torch
 
 from models.knowledge_harvester import KnowledgeHarvester
 from models.comet_knowledge_scorer import COMETKnowledgeScorer
@@ -15,7 +16,7 @@ from matplotlib import pyplot as plt
 
 SETTINGS = {
     'conceptnet': ['ckbc', 'comet', 'init', 1, 5, 20],
-    'lama': ['LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
+    'lama': ['cls', 'LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
              'init', 1, 5, 20]
 }
 
@@ -33,7 +34,7 @@ def main(rel_set='conceptnet'):
         for s in ['manual_paraphrase', 'mine', 'paraphrase']:
             lpaqa[s] = LPAQA(setting=s)
 
-    # lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
+        lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
 
     save_dir = f'curves/{rel_set}'
     os.makedirs(save_dir, exist_ok=True)
@@ -64,15 +65,14 @@ def main(rel_set='conceptnet'):
                 for ent_tuple in ent_tuples:
                     weighted_ent_tuples.append([ent_tuple, comet_scorer.score(
                         h=ent_tuple[0], r=rel, t=ent_tuple[1])])
-            # elif setting == 'cls':
-            #     weighted_ent_tuples = []
-            #     for ent_tuple in ent_tuples:
-            #         weighted_ent_tuples.append([ent_tuple, lama_scorer.score(
-            #             h=ent_tuple[0].title(),
-            #             r=' '.join(rel.split('_')[1:]),
-            #             t=ent_tuple[1].title())])
+            elif setting == 'cls':
+                weighted_ent_tuples = []
+                for ent_tuple in ent_tuples:
+                    weighted_ent_tuples.append([ent_tuple, lama_scorer.score(
+                        h=ent_tuple[0].title(),
+                        r=' '.join(rel.split('_')[1:]),
+                        t=ent_tuple[1].title())])
             else:
-
                 knowledge_harvester.clear()
                 if type(setting) == int:
                     knowledge_harvester._max_n_prompts = setting
