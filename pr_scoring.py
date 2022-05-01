@@ -21,7 +21,7 @@ SETTINGS = {
 }
 
 
-def main(rel_set='conceptnet'):
+def main(rel_set='lama'):
     ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
         model_name='roberta-large', max_n_ent_tuples=None)

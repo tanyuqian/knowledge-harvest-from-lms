@@ -34,6 +34,7 @@ class GradientStorage:
         self._stored_gradient = grad_out[0]
     def get(self):
         return self._stored_gradient
+
 class PredictWrapper:
     """
     PyTorch transformers model wrapper. Handles necc. preprocessing of inputs for triggers
@@ -196,4 +197,5 @@ def main():
         with open("data/autoprompt_concept.txt", 'a') as result_file:
             result_file.write(json.dumps({rel: "<ENT0>"+harvester._model._tokenizer.decode(prompt)+" <ENT1>"}) + "\n")
 
-main()
+if __name__ == "__main__":
+    main()

@@ -15,7 +15,7 @@ class CKBCKnowledgeScorer:
     def __init__(self):
         if not os.path.exists('ckbc-demo/'):
             os.system('wget https://home.ttic.edu/~kgimpel/comsense_resources/'
-                      'ckbc-demo.tar.gz')
+                      'ckbc-demo.tar.gz --no-check-certificate')
             os.system('tar -zxvf ckbc-demo.tar.gz')
 
         model = pickle.load(open(
