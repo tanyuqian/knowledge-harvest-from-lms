@@ -1,4 +1,5 @@
-from transformers import RobertaTokenizer, RobertaForMaskedLM
+from transformers import RobertaTokenizer, RobertaForMaskedLM,\
+    BertTokenizer, BertForMaskedLM
 
 from data_utils.data_utils import stopwords, get_n_ents, get_sent
 from collections import defaultdict
@@ -10,11 +11,18 @@ class LanguageModelWrapper:
     def __init__(self, model_name):
         self._model_name = model_name
         self._max_batch_size = 16
-        if model_name == 'roberta-large':
+        if model_name in ["roberta-large", "roberta-base"]:
             self._tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self._model = RobertaForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.roberta
             self._lm_head = self._model.lm_head
+            
+        elif model_name in ["bert-base-cased"]:
+            self._tokenizer = BertTokenizer.from_pretrained(model_name)
+            self._model = BertForMaskedLM.from_pretrained(model_name)
+            self._encoder = self._model.bert
+            self._lm_head = self._model.cls
+        
         else:
             raise NotImplementedError
 
@@ -31,14 +39,18 @@ class LanguageModelWrapper:
                 self._banned_ids.append(idx)
 
     def get_masked_input_text(self, prompt, n_masks):
-        if self._model_name == 'roberta-large':
+        if self._model_name in ["roberta-large", "roberta-base"]:
             input_text = prompt
             for ent_idx, n_mask in enumerate(n_masks):
                 input_text = input_text.replace(
                     f'<ENT{ent_idx}>', '<mask>' * n_mask)
+        elif self._model_name in ["bert-base-cased"]:
+            input_text = prompt
+            for ent_idx, n_mask in enumerate(n_masks):
+                input_text = input_text.replace(
+                    f'<ENT{ent_idx}>', '[MASK]' * n_mask)
         else:
             raise NotImplementedError
-        
         return input_text
 
     def _tokenize_prompt_with_slots(self, prompt, n_masks, batch_size):
@@ -61,20 +73,29 @@ class LanguageModelWrapper:
         return batch_prompts, pos_entities
 
     def tokenize_tuples_by_len(self, tuples, not_at_beginning):
-        if self._model_name == 'roberta-large':
-            ids = []
-            n_entities = len(tuples[0])
-            tuples_fit = copy.deepcopy(tuples)
-            for i in range(n_entities): 
-                if not not_at_beginning[i]:
-                    for tuple_idx in range(len(tuples_fit)):
-                        ent = tuples_fit[tuple_idx][i]
-                        tuples_fit[tuple_idx][i] = ent[0].upper() + ent[1:]
-                        
+        ids = []
+        n_entities = len(tuples[0])
+        tuples_fit = copy.deepcopy(tuples)
+        for i in range(n_entities): 
+            '''
+            if not not_at_beginning[i]:
+                for tuple_idx in range(len(tuples_fit)):
+                    ent = tuples_fit[tuple_idx][i]
+                    tuples_fit[tuple_idx][i] = ent[0].upper() + ent[1:]
+            '''
+            if self._model_name in ['roberta-large', 'roberta-base']:
+                # need to handle prefix space for roberta
                 ids.append(
                     self.tokenizer([tuple_[i] for tuple_ in tuples_fit], \
                     add_special_tokens=False, add_prefix_space=not_at_beginning[i])['input_ids']
                 )
+            elif self._model_name in ["bert-base-cased"]:
+                ids.append(
+                    self.tokenizer([tuple_[i] for tuple_ in tuples_fit], \
+                        add_special_tokens=False)['input_ids']
+                )
+            else:
+                raise NotImplementedError
         tuple_dict = defaultdict(list)
         for tuple_ids, tuple_texts in zip(zip(*ids), tuples):
             tuple_dict[tuple([len(entity) for entity in tuple_ids])].append((tuple_ids, tuple_texts))
@@ -82,12 +103,14 @@ class LanguageModelWrapper:
 
     def _get_batch_prediction(self, input_ids, token_type_ids, attention_mask, pos):
         with torch.no_grad():
-            if self._model_name == "roberta-large":
+            if self._model_name in ["roberta-large", "roberta-base"]:
                 outputs = self.model(input_ids=input_ids,
                     attention_mask=attention_mask, labels=None)
-            else:
+            elif self._model_name in ["bert-base-cased"]:
                 outputs = self.model(input_ids=input_ids, token_type_ids=token_type_ids,\
                     attention_mask=attention_mask, labels=None)
+            else:
+                raise NotImplementedError
             prediction = torch.log_softmax(outputs.logits[:, pos, :], dim=-1)
         return prediction
 
@@ -120,6 +143,7 @@ class LanguageModelWrapper:
         return return_scores
 
     def get_mask_spans(self, prompt, ent_tuple):
+        raise "this shouldn't be used..."
         assert get_n_ents(prompt) == len(ent_tuple)
 
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)

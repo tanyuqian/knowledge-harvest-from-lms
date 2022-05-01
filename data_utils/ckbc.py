@@ -18,7 +18,7 @@ class CKBC:
             if rel_set == 'lama':
                 rel = get_lama_relation(rel=rel)
 
-            ent0, ent1 = ent0.lower(), ent1.lower()
+            # ent0, ent1 = ent0.lower(), ent1.lower()
 
             if rel not in self._ent_tuples:
                 self._ent_tuples[rel] = []

@@ -63,9 +63,9 @@ class KnowledgeHarvester:
         
     def _score_tuples_prompts(self, ent_tuples):
         result_list = []
-        tuples_list = []
+        # tuples_list = []
         n_ents = get_n_ents(self._weighted_prompts[0][0])
-        tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
+        # tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
         for prompt, weight in self._weighted_prompts:
             prompt_result_list = []
             not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
@@ -80,8 +80,30 @@ class KnowledgeHarvester:
                     prompt_result_list.append((ent_tuple[1], (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item()))) # += [(ent_tuple[1], score) ]
             prompt_result_list = sorted(prompt_result_list, key=lambda x:x[0])
             result_list.append([result[1] for result in prompt_result_list])
+        tuples_list = [result[0] for result in prompt_result_list]
         return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
+    
+    
 
+    def score_single(self, prompt, ent_tuple, weights=(0.25, 0.25, 0.5)):
+        n_ents = get_n_ents(prompt)
+        # tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
+        not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
+        tokenized_entity_pairs = self._model.tokenize_tuples_by_len([ent_tuple], not_at_beginning)
+        # print(f"scoring with prompts: '{prompt}' ...")
+        # print(prompt, ent_tuple)
+        # print(tokenized_entity_pairs)
+        n_masks = list(tokenized_entity_pairs.keys())[0]
+        tokenized_tuple = tokenized_entity_pairs[n_masks][0]
+        scores = self._model.score_tuples([tokenized_tuple], prompt, n_masks=n_masks)
+        score = scores[0]
+        result = (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item())
+        return result[0] * weights[0] + result[1] * weights[1] + result[2] * weights[2]
+
+    # updated this function to avoid the use of `get_mask_spans` 
+    # tested ok. The result is the same except for one detail in tokenization 
+    # I capitalize the first letter of the entity when it's at the front of the prompt
+    '''
     def score_single(self, prompt, ent_tuple, weights=(0.25, 0.25, 0.5)):
         assert get_n_ents(prompt) == len(ent_tuple)
 
@@ -111,6 +133,7 @@ class KnowledgeHarvester:
         min_score = min(scores)
         return weights[0] * sum_score + weights[1] * mean_score + \
                weights[2] * min_score
+    '''
 
     def update_ent_tuples(self):
         collected_tuples = self._ent_tuple_searcher.search(
