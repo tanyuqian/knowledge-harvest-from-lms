@@ -172,7 +172,7 @@ class EntityTupleSearcher:
 
             return
 
-        mask_state = None
+        mask_logits = None
         for raw_prompt, weight in weighted_prompts:
             prompt = raw_prompt.replace(
                 f'<ENT{ent_idx}>',
@@ -186,26 +186,30 @@ class EntityTupleSearcher:
                 input_text, return_tensors="pt").to('cuda')  # single sentence
 
             with torch.no_grad():
-                outputs = self._model.encoder(**inputs)
-
+                # outputs = self._model.encoder(**inputs)
+                outputs = self._model._model(**inputs) # 1, 16, 50265
             # sequence_output = outputs.last_hidden_state[
             #     inputs['input_ids'] == self._model.mask_token_id]
+            # 1, 16, 1024 / 1, 16
             
+            sequence_logits = outputs.logits[
+                inputs['input_ids'] == self._model.mask_token_id]
 
             # n_mask (2) * embedding_dim (1024)
             mask_idx_in_prompt = get_mask_index_in_prompt(
-                ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)
-            if mask_state is None:
-                mask_state = torch.zeros_like(
-                    sequence_output[mask_idx_in_prompt])
-            mask_state = \
-                mask_state + sequence_output[mask_idx_in_prompt] * weight
+                ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)  # 1
+            if mask_logits is None:
+                mask_logits = torch.zeros_like(
+                    sequence_logits[mask_idx_in_prompt])
+            mask_logits = \
+                mask_logits + sequence_logits[mask_idx_in_prompt] * weight
 
-        mask_state = mask_state / sum(weight for _, weight in weighted_prompts)
+        mask_logits = mask_logits / sum(weight for _, weight in weighted_prompts)
 
-        logits = self._model.lm_head(mask_state.reshape(1, -1))
-        logits[::, self._model.banned_ids] = -float('inf')
-        logprobs = torch.log_softmax(logits, dim=-1)[0]
+        assert len(mask_logits.shape) == 1
+        # logits = self._model.lm_head(mask_state.reshape(1, -1))
+        mask_logits[self._model.banned_ids] = -float('inf')
+        logprobs = torch.log_softmax(mask_logits, dim=-1)
         logprobs, pred_ids = torch.sort(logprobs, descending=True)
 
         for logprob, pred_id in zip(logprobs, pred_ids):
