@@ -13,12 +13,12 @@ def reorder(xs, ys):
     combined.sort(key=lambda x: x[0])
     return list(zip(*combined))
 
-def main(rel_set='lama'):
+def main(rel_set='lama', model='distilbert-base-uncased'):
     # all_prec, all_recall = {}, {}
     pr_list = []
     int_r = np.arange(0., 1., 0.001)
     int_p = defaultdict(list)
-    for rel_pr in glob(f'curves/{rel_set}/*.json'):
+    for rel_pr in glob(f'curves/{model}/{rel_set}/*.json'):
         curves = json.load(open(rel_pr))
         for label in curves:
             recall, precision = reorder(curves[label]['recall'], curves[label]['precision'])
@@ -42,7 +42,7 @@ def main(rel_set='lama'):
     plt.ylabel('Precision')
     plt.legend()
 
-    plt.savefig(f'outputs/{rel_set}.png')
+    plt.savefig(f'outputs/{model}_{rel_set}.png')
     # plt.show()
 
 

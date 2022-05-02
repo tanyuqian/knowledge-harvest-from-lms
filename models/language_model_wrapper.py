@@ -1,28 +1,48 @@
 from transformers import RobertaTokenizer, RobertaForMaskedLM,\
-    BertTokenizer, BertForMaskedLM
+    BertTokenizer, BertForMaskedLM,\
+    DistilBertTokenizer, DistilBertForMaskedLM,\
+    AlbertTokenizer, AlbertForMaskedLM
 
 from data_utils.data_utils import stopwords, get_n_ents, get_sent
 from collections import defaultdict
 import torch
 import copy
 
+MODELS = {
+    "roberta": ["roberta-large", "roberta-base"],
+    "bert": ["bert-large-cased", "bert-base-cased"],
+    "albert": ["albert-base-v2"],
+    "distilbert": ["distilbert-base-uncased", "distilbert-base-cased"],
+}
 
 class LanguageModelWrapper:
     def __init__(self, model_name):
         self._model_name = model_name
-        self._max_batch_size = 16
-        if model_name in ["roberta-large", "roberta-base"]:
+        self._max_batch_size = 64
+        if model_name in MODELS["roberta"]:
             self._tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self._model = RobertaForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.roberta
             self._lm_head = self._model.lm_head
             
-        elif model_name in ["bert-base-cased"]:
+        elif model_name in MODELS["bert"]:
             self._tokenizer = BertTokenizer.from_pretrained(model_name)
             self._model = BertForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.bert
             self._lm_head = self._model.cls
         
+        elif model_name in MODELS["distilbert"]:
+            self._tokenizer = DistilBertTokenizer.from_pretrained(model_name)
+            self._model = DistilBertForMaskedLM.from_pretrained(model_name)
+            self._encoder = self._model.distilbert
+            self._lm_head = None
+
+        elif model_name in MODELS["albert"]:
+            self._tokenizer = AlbertTokenizer.from_pretrained(model_name)
+            self._model = AlbertForMaskedLM.from_pretrained(model_name)
+            self._encoder = self._model.albert
+            self._lm_head = None
+
         else:
             raise NotImplementedError
 
@@ -39,18 +59,12 @@ class LanguageModelWrapper:
                 self._banned_ids.append(idx)
 
     def get_masked_input_text(self, prompt, n_masks):
-        if self._model_name in ["roberta-large", "roberta-base"]:
-            input_text = prompt
-            for ent_idx, n_mask in enumerate(n_masks):
-                input_text = input_text.replace(
-                    f'<ENT{ent_idx}>', '<mask>' * n_mask)
-        elif self._model_name in ["bert-base-cased"]:
-            input_text = prompt
-            for ent_idx, n_mask in enumerate(n_masks):
-                input_text = input_text.replace(
-                    f'<ENT{ent_idx}>', '[MASK]' * n_mask)
-        else:
-            raise NotImplementedError
+        input_text = prompt
+        for ent_idx, n_mask in enumerate(n_masks):
+            input_text = input_text.replace(
+                f'<ENT{ent_idx}>', self._tokenizer.mask_token * n_mask)
+
+            
         return input_text
 
     def _tokenize_prompt_with_slots(self, prompt, n_masks, batch_size):
@@ -77,19 +91,19 @@ class LanguageModelWrapper:
         n_entities = len(tuples[0])
         tuples_fit = copy.deepcopy(tuples)
         for i in range(n_entities): 
-            '''
+            
             if not not_at_beginning[i]:
                 for tuple_idx in range(len(tuples_fit)):
                     ent = tuples_fit[tuple_idx][i]
                     tuples_fit[tuple_idx][i] = ent[0].upper() + ent[1:]
-            '''
-            if self._model_name in ['roberta-large', 'roberta-base']:
+            
+            if self._model_name in MODELS["roberta"]:
                 # need to handle prefix space for roberta
                 ids.append(
                     self.tokenizer([tuple_[i] for tuple_ in tuples_fit], \
                     add_special_tokens=False, add_prefix_space=not_at_beginning[i])['input_ids']
                 )
-            elif self._model_name in ["bert-base-cased"]:
+            elif self._model_name in MODELS["bert"] + MODELS["distilbert"] + MODELS["albert"]:
                 ids.append(
                     self.tokenizer([tuple_[i] for tuple_ in tuples_fit], \
                         add_special_tokens=False)['input_ids']
@@ -103,10 +117,10 @@ class LanguageModelWrapper:
 
     def _get_batch_prediction(self, input_ids, token_type_ids, attention_mask, pos):
         with torch.no_grad():
-            if self._model_name in ["roberta-large", "roberta-base"]:
+            if self._model_name in MODELS["roberta"] + MODELS["distilbert"]:
                 outputs = self.model(input_ids=input_ids,
                     attention_mask=attention_mask, labels=None)
-            elif self._model_name in ["bert-base-cased"]:
+            elif self._model_name in MODELS["bert"] + MODELS["albert"]:
                 outputs = self.model(input_ids=input_ids, token_type_ids=token_type_ids,\
                     attention_mask=attention_mask, labels=None)
             else:

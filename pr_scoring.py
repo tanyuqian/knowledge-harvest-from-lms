@@ -9,20 +9,34 @@ from models.ckbc_knowledge_scorer import CKBCKnowledgeScorer
 
 from data_utils.ckbc import CKBC
 from data_utils.lpaqa import LPAQA
+import numpy as np
 
 from sklearn.metrics import precision_recall_curve
 from matplotlib import pyplot as plt
 
+def my_precision_recall_curve(y_true, y_score):
+    scores_labels = list(zip(y_score, y_true))
+    scores_labels.sort(key=lambda x: x[0], reverse=True)
+    precision, recall = [], []
+    tp, p, t = 0, 0, sum(y_true)
+    for score, label in scores_labels:
+        p += 1
+        tp += label
+        precision.append(tp / p)
+        recall.append(tp / t)
+    precision, recall = list(zip(*sorted(zip(precision, recall), key=lambda x: x[-1])))
+    # sorted by recall
+    return np.array(precision), np.array(recall)
 
 SETTINGS = {
     'conceptnet': ['ckbc', 'comet', 'init', 1, 5, 10],
     'lama': ['cls', 'LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
              'init', 1, 5, 10]
-    # 'lama': [5]  # for test 
+    # 'lama': ['cls']  # for test 
 }
 
 
-def main(rel_set='lama', model='roberta-large'):
+def main(rel_set='lama', model='distilbert-base-cased'):
     ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
         model_name=model, max_n_ent_tuples=None)
@@ -36,6 +50,7 @@ def main(rel_set='lama', model='roberta-large'):
             lpaqa[s] = LPAQA(setting=s)
 
         lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
+        lama_scorer.encoder.eval()
 
     save_dir = f'curves/{model}/{rel_set}'
     os.makedirs(save_dir, exist_ok=True)
@@ -48,7 +63,7 @@ def main(rel_set='lama', model='roberta-large'):
             continue
         else:
             ent_tuples = ckbc.get_ent_tuples(rel=rel)
-
+            
         if os.path.exists(f'{save_dir}/{rel}.json'):
             print(f'{save_dir}/{rel}.json exists, skipped.')
             continue
@@ -70,9 +85,9 @@ def main(rel_set='lama', model='roberta-large'):
                 weighted_ent_tuples = []
                 for ent_tuple in ent_tuples:
                     weighted_ent_tuples.append([ent_tuple, lama_scorer.score(
-                        h=ent_tuple[0].title(),
+                        h=ent_tuple[0],
                         r=' '.join(rel.split('_')[1:]),
-                        t=ent_tuple[1].title())])
+                        t=ent_tuple[1])])
             else:
                 knowledge_harvester.clear()
                 if type(setting) == int:
@@ -106,7 +121,7 @@ def main(rel_set='lama', model='roberta-large'):
                 y_true.append(label)
                 scores.append(weight)
 
-            precision, recall, _ = precision_recall_curve(y_true, scores)
+            precision, recall = my_precision_recall_curve(y_true, scores)
 
             label = setting if type(setting) == str and setting != 'init' \
                 else f'{setting} prompts'

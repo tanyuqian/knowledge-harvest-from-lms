@@ -177,7 +177,7 @@ class EntityTupleSearcher:
             prompt = raw_prompt.replace(
                 f'<ENT{ent_idx}>',
                 self._model.tokenizer.decode(cur_token_ids) +
-                '<mask>' * (n_masks[ent_idx] - len(cur_token_ids)))
+                self._model._tokenizer.mask_token * (n_masks[ent_idx] - len(cur_token_ids)))
 
             input_text = self._model.get_masked_input_text(
                 prompt=prompt, n_masks=n_masks)
@@ -188,8 +188,10 @@ class EntityTupleSearcher:
             with torch.no_grad():
                 outputs = self._model.encoder(**inputs)
 
-            sequence_output = outputs.last_hidden_state[
-                inputs['input_ids'] == self._model.mask_token_id]
+            # sequence_output = outputs.last_hidden_state[
+            #     inputs['input_ids'] == self._model.mask_token_id]
+            
+
             # n_mask (2) * embedding_dim (1024)
             mask_idx_in_prompt = get_mask_index_in_prompt(
                 ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)

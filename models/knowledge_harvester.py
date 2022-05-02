@@ -85,7 +85,7 @@ class KnowledgeHarvester:
     
     
 
-    def score_single(self, prompt, ent_tuple, weights=(0.25, 0.25, 0.5)):
+    def score_single(self, prompt, ent_tuple, weights=(1/3, 1/3, 1/3)):
         n_ents = get_n_ents(prompt)
         # tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
         not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
@@ -104,7 +104,7 @@ class KnowledgeHarvester:
     # tested ok. The result is the same except for one detail in tokenization 
     # I capitalize the first letter of the entity when it's at the front of the prompt
     '''
-    def score_single(self, prompt, ent_tuple, weights=(0.25, 0.25, 0.5)):
+    def score_single(self, prompt, ent_tuple, weights=(1/3, 1/3, 1/3)):
         assert get_n_ents(prompt) == len(ent_tuple)
 
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
@@ -164,7 +164,7 @@ class KnowledgeHarvester:
             weights.append(sum(scores) / len(scores))
         return weights
 
-    def update_prompts(self, metric_weights=(0.25, 0.25, 0.5)):
+    def update_prompts(self, metric_weights=(1/3, 1/3, 1/3)):
         for i, (prompt, _) in enumerate(self._weighted_prompts):
             scores = []
             for ent_tuple in self._seed_ent_tuples:
