@@ -23,25 +23,25 @@ class LanguageModelWrapper:
             self._tokenizer = RobertaTokenizer.from_pretrained(model_name)
             self._model = RobertaForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.roberta
-            self._lm_head = self._model.lm_head
+            # self._lm_head = self._model.lm_head
             
         elif model_name in MODELS["bert"]:
             self._tokenizer = BertTokenizer.from_pretrained(model_name)
             self._model = BertForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.bert
-            self._lm_head = self._model.cls
+            # self._lm_head = self._model.cls
         
         elif model_name in MODELS["distilbert"]:
             self._tokenizer = DistilBertTokenizer.from_pretrained(model_name)
             self._model = DistilBertForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.distilbert
-            self._lm_head = None
+            # self._lm_head = None
 
         elif model_name in MODELS["albert"]:
             self._tokenizer = AlbertTokenizer.from_pretrained(model_name)
             self._model = AlbertForMaskedLM.from_pretrained(model_name)
             self._encoder = self._model.albert
-            self._lm_head = None
+            # self._lm_head = None
 
         else:
             raise NotImplementedError
@@ -157,7 +157,7 @@ class LanguageModelWrapper:
         return return_scores
 
     def get_mask_spans(self, prompt, ent_tuple):
-        raise "this shouldn't be used..."
+        raise "deprecated"
         assert get_n_ents(prompt) == len(ent_tuple)
 
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
@@ -204,7 +204,9 @@ class LanguageModelWrapper:
 
     @property
     def lm_head(self):
+        raise "deprecated"  # because it doesn't work for distilbert
         return self._lm_head
+        
 
     @property
     def mask_token_id(self):
