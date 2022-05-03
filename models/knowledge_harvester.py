@@ -148,10 +148,38 @@ class KnowledgeHarvester:
         ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
                       if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
 
-        self._weighted_ent_tuples = self.get_ent_tuples_weight(ent_tuples)
-        self._weighted_ent_tuples = sorted(
-            self._weighted_ent_tuples,
-            key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
+        ent_tuples_exp = []
+        for ent_tuple in ent_tuples:
+            for t in range(1 << len(ent_tuple)):
+                bin_t = f'{t:b}'
+                bin_t = '0' * (len(ent_tuple) - len(bin_t)) + bin_t
+
+                ent_tuple_exp = []
+                for b, ent in zip(bin_t, ent_tuple):
+                    if b == '1':
+                        ent_tuple_exp.append(ent.title())
+                    else:
+                        ent_tuple_exp.append(ent)
+                ent_tuples_exp.append(ent_tuple_exp)
+
+        weighted_ent_tuples_exp = self.get_ent_tuples_weight(ent_tuples_exp)
+        weighted_ent_tuples_exp.sort(key=lambda t: t[1], reverse=True)
+
+        self._weighted_ent_tuples = []
+        flag_set = set()
+        for ent_tuple, weight in weighted_ent_tuples_exp:
+            ent_tuple_str = '|||'.join(ent_tuple).lower()
+            if ent_tuple_str not in flag_set:
+                flag_set.add(ent_tuple_str)
+                self._weighted_ent_tuples.append([ent_tuple, weight])
+
+            if len(self._weighted_ent_tuples) > self._max_n_ent_tuples:
+                break
+
+        # self._weighted_ent_tuples = self.get_ent_tuples_weight(ent_tuples)
+        # self._weighted_ent_tuples = sorted(
+        #     self._weighted_ent_tuples,
+        #     key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
 
     def validate_prompts(self, metric_weights):
         weights = []

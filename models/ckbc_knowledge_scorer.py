@@ -38,9 +38,9 @@ class CKBCKnowledgeScorer:
         return list(self._rel.keys())
 
     def score(self, h, r, t):
-        h = h.replace(' ', '_')
+        h = h.lower().replace(' ', '_')
         r = r.lower()
-        t = t.replace(' ', '_')
+        t = t.lower().replace(' ', '_')
 
         result = score(
             h, t, self._words, self._We, self._rel, self._Rel,
