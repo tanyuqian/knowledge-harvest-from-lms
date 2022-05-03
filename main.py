@@ -6,6 +6,7 @@ from models.knowledge_harvester import KnowledgeHarvester
 
 
 def main(rel_set='conceptnet',
+         model_name='roberta-large',
          n_tuples=1000,
          n_prompts=20,
          prompt_temp=1.,
@@ -14,7 +15,7 @@ def main(rel_set='conceptnet',
          n_seed_tuples=5,
          use_init_prompts=False):
     knowledge_harvester = KnowledgeHarvester(
-        model_name='distilbert-base-uncased',
+        model_name=model_name,
         max_n_ent_tuples=n_tuples,
         max_n_prompts=n_prompts,
         max_ent_repeat=max_ent_repeat,
@@ -27,15 +28,16 @@ def main(rel_set='conceptnet',
     for rel, info in relation_info.items():
         print(f'Harvesting for relation {rel}...')
 
-        output_dir = f'outputs/{rel_set}/' \
-                     f'{n_tuples}tuples' \
-                     f'_{n_prompts}prompts' \
-                     f'_{n_seed_tuples}seeds' \
-                     f'_maxsubwords{max_ent_subwords}' \
-                     f'_maxrepeat{max_ent_repeat}' \
-                     f'_temp{prompt_temp}'
+        setting = f'{n_tuples}tuples'\
+                  f'_{n_prompts}prompts' \
+                  f'_{n_seed_tuples}seeds' \
+                  f'_maxsubwords{max_ent_subwords}'\
+                  f'_maxrepeat{max_ent_repeat}' \
+                  f'_temp{prompt_temp}'
         if use_init_prompts:
-            output_dir += '_initprompts'
+            setting += '_initprompts'
+
+        output_dir = f'outputs/{rel_set}/{setting}/{model_name}'
         if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
             print(f'file {output_dir}/{rel}/ent_tuples.json exists, skipped.')
             continue
