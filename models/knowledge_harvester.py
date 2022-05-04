@@ -163,6 +163,8 @@ class KnowledgeHarvester:
                 ent_tuples_exp.append(ent_tuple_exp)
 
         weighted_ent_tuples_exp = self.get_ent_tuples_weight(ent_tuples_exp)
+        torch.cuda.empty_cache()
+
         weighted_ent_tuples_exp.sort(key=lambda t: t[1], reverse=True)
 
         self._weighted_ent_tuples = []
