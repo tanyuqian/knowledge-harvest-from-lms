@@ -36,7 +36,7 @@ SETTINGS = {
 }
 
 
-def main(rel_set='lama', model='distilbert-base-cased'):
+def main(rel_set='lama', model='distilbert-base-cased', settings="all"):
     ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
         model_name=model, max_n_ent_tuples=None)
@@ -70,7 +70,8 @@ def main(rel_set='lama', model='distilbert-base-cased'):
         else:
             json.dump([], open(f'{save_dir}/{rel}.json', 'w'))
 
-        for setting in SETTINGS[rel_set]:
+        used_settings = SETTINGS[rel_set] if settings == 'all' else [settings]
+        for setting in used_settings:
             if setting == 'ckbc':
                 weighted_ent_tuples = []
                 for ent_tuple in ent_tuples:

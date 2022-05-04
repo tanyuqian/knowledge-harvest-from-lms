@@ -38,6 +38,17 @@ def main(rel_set='conceptnet',
                   f'_temp{prompt_temp}'
         if use_init_prompts:
             setting += '_initprompts'
+            
+        if use_auto_prompts:
+            auto = {}
+            auto_file = "data/autoprompt_concept.txt"
+            with open(auto_file) as f:
+                x = f.readlines()
+                for line in x:
+                    obj = json.loads(line.strip())
+                    auto.update(obj)
+
+            setting += '_autoprompts'
 
         output_dir = f'outputs/{rel_set}/{setting}/{model_name}'
         if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
@@ -51,18 +62,13 @@ def main(rel_set='conceptnet',
 
         knowledge_harvester.set_seed_ent_tuples(
             seed_ent_tuples=info['seed_ent_tuples'])
+
         if use_auto_prompts:
-            auto = {}
-            auto_file = "data/autoprompt_concept.txt"
-            with open(auto_file) as f:
-                x = f.readlines()
-                for line in x:
-                    obj = json.loads(line.strip())
-                    auto.update(obj)
             if rel in auto:
                 prompts = [auto[rel]]
             else:
                 print("Autoprompt not found. Skipped.")
+                continue
         else:
             prompts = info['init_prompts'] if use_init_prompts \
                 else info['init_prompts'] + info['prompts']

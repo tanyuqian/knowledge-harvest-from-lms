@@ -6,6 +6,16 @@ import random
 import json
 from models.knowledge_harvester import KnowledgeHarvester
 
+def getfilter(tokenizer):
+    filter = torch.zeros(tokenizer.vocab_size, dtype=torch.float32).cuda()
+    for word, idx in tokenizer.get_vocab().items():
+        if len(word) == 1 or idx >= tokenizer.vocab_size:
+            continue
+        # Filter special tokens.
+        if idx in tokenizer.all_special_ids:
+            filter[idx] = -1e32
+    return filter
+
 def add_task_specific_tokens(tokenizer):
     tokenizer.add_special_tokens({
         'additional_special_tokens': ['[T]', '[P]', '[Y]']
@@ -147,8 +157,9 @@ def main():
 
     n_prompt = 5  # "<s> <ENT0> <T> <T> <T> <T> <T> <ENT1> </s>""
     patience = 20
-    num_candidates = 20
-    seed_file = "data/relation_info_conceptnet_5seeds.json"
+    num_candidates = 10
+    max_iters = 200
+    seed_file = "data/relation_info_humaneval_5seeds.json"
     rel_info = json.load(open(seed_file, 'r'))
 
     for rel, info in rel_info.items():
@@ -164,7 +175,9 @@ def main():
         harvester._model._model = harvester._model._model.to("cuda")
         prompt = harvester._model._tokenizer.encode("<mask>" * n_prompt, add_special_tokens=False, return_tensors='pt')[0].to("cuda")
         no_improvement = 0
-        for _ in range(200):
+
+        filter = getfilter(harvester._model._tokenizer)
+        for _ in range(max_iters):
             if no_improvement > patience:
                 break
             token_to_flip = random.randrange(n_prompt)
@@ -176,7 +189,7 @@ def main():
                                     embeddings.weight,
                                     increase_loss=False,
                                     num_candidates=num_candidates,
-                                    filter=None)
+                                    filter=filter)
             candidate_scores = torch.zeros(num_candidates,device='cuda')
             cand_prompt = copy.deepcopy(prompt)
             for i, c in enumerate(candidates):
@@ -194,8 +207,8 @@ def main():
                 no_improvement += 1
                 print("Not found...")
                 
-        with open("data/autoprompt_concept.txt", 'a') as result_file:
-            result_file.write(json.dumps({rel: "<ENT0>"+harvester._model._tokenizer.decode(prompt)+" <ENT1>"}) + "\n")
+        with open("data/autoprompt_human.txt", 'a') as result_file:
+            result_file.write(json.dumps({rel: "<ENT0> "+harvester._model._tokenizer.decode(prompt)+" <ENT1>", "raw": prompt.tolist()}) + "\n")
 
 if __name__ == "__main__":
     main()

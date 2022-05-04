@@ -10,7 +10,7 @@ import copy
 
 MODELS = {
     "roberta": ["roberta-large", "roberta-base"],
-    "bert": ["bert-large-cased", "bert-base-cased"],
+    "bert": ["bert-large-cased", "bert-base-cased", "bert-base-uncased", "bert-large-uncased"],
     "albert": ["albert-base-v2"],
     "distilbert": ["distilbert-base-uncased", "distilbert-base-cased"],
 }

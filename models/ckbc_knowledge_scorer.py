@@ -13,7 +13,7 @@ DEL_RELS = ['HasPainIntensity', 'HasPainCharacter', 'LocationOfAction',
 
 class CKBCKnowledgeScorer:
     def __init__(self):
-        if not os.path.exists('ckbc-demo/'):
+        if not os.path.exists('./ckbc-demo'):
             os.system('wget https://home.ttic.edu/~kgimpel/comsense_resources/'
                       'ckbc-demo.tar.gz --no-check-certificate')
             os.system('tar -zxvf ckbc-demo.tar.gz')
