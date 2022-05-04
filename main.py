@@ -41,7 +41,7 @@ def main(rel_set='conceptnet',
             
         if use_auto_prompts:
             auto = {}
-            auto_file = "data/autoprompt_concept.txt"
+            auto_file = f"data/autoprompt_{rel_set}.txt"
             with open(auto_file) as f:
                 x = f.readlines()
                 for line in x:

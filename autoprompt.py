@@ -159,7 +159,9 @@ def main():
     patience = 20
     num_candidates = 10
     max_iters = 200
-    seed_file = "data/relation_info_humaneval_5seeds.json"
+    rel_set = "humaneval"
+    output_file = f"data/autoprompt_{rel_set}.txt"
+    seed_file = f"data/relation_info_{rel_set}_5seeds.json"
     rel_info = json.load(open(seed_file, 'r'))
 
     for rel, info in rel_info.items():
@@ -207,8 +209,8 @@ def main():
                 no_improvement += 1
                 print("Not found...")
                 
-        with open("data/autoprompt_human.txt", 'a') as result_file:
-            result_file.write(json.dumps({rel: "<ENT0> "+harvester._model._tokenizer.decode(prompt)+" <ENT1>", "raw": prompt.tolist()}) + "\n")
+        with open(output_file, 'a') as result_file:
+            result_file.write(json.dumps({rel: "<ENT0>"+harvester._model._tokenizer.decode(prompt)+" <ENT1>", f"raw_{rel}": prompt.tolist()}) + "\n")
 
 if __name__ == "__main__":
     main()

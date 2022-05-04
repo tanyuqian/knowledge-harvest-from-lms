@@ -37,10 +37,10 @@ SETTINGS = {
 
 
 def main(rel_set='lama', model='distilbert-base-cased', settings="all"):
+    print("setting:", settings, type(settings))
     ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
         model_name=model, max_n_ent_tuples=None)
-
     if rel_set == 'conceptnet':
         comet_scorer = COMETKnowledgeScorer()
         ckbc_scorer = CKBCKnowledgeScorer()
