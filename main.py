@@ -12,9 +12,12 @@ def main(rel_set='conceptnet',
          max_ent_repeat=5,
          max_ent_subwords=2,
          n_seed_tuples=5,
-         use_init_prompts=False):
+         use_init_prompts=False,
+         use_auto_prompts=False,
+         model_name="roberta-large"):
+
     knowledge_harvester = KnowledgeHarvester(
-        model_name='distilbert-base-uncased',
+        model_name=model_name,
         max_n_ent_tuples=n_tuples,
         max_n_prompts=n_prompts,
         max_ent_repeat=max_ent_repeat,
@@ -36,6 +39,10 @@ def main(rel_set='conceptnet',
                      f'_temp{prompt_temp}'
         if use_init_prompts:
             output_dir += '_initprompts'
+
+        if use_auto_prompts:
+            output_dir += "_autoprompts"
+        
         if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
             print(f'file {output_dir}/{rel}/ent_tuples.json exists, skipped.')
             continue
@@ -47,8 +54,21 @@ def main(rel_set='conceptnet',
 
         knowledge_harvester.set_seed_ent_tuples(
             seed_ent_tuples=info['seed_ent_tuples'])
-        prompts = info['init_prompts'] if use_init_prompts \
-            else info['init_prompts'] + info['prompts']
+        if use_auto_prompts:
+            auto = {}
+            auto_file = "data/autoprompt_concept.txt"
+            with open(auto_file) as f:
+                x = f.readlines()
+                for line in x:
+                    obj = json.loads(line.strip())
+                    auto.update(obj)
+            if rel in auto:
+                prompts = [auto[rel]]
+            else:
+                print("Autoprompt not found. Skipped.")
+        else:
+            prompts = info['init_prompts'] if use_init_prompts \
+                else info['init_prompts'] + info['prompts']
         knowledge_harvester.init_prompts(prompts=prompts)
 
         knowledge_harvester.update_prompts()

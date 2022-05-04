@@ -28,7 +28,7 @@ class LAMA:
             for line in open(rel_ent_tuple_path).readlines():
                 term = json.loads(line)
                 info[rel]['ent_tuples'].append(
-                    [term['sub_label'].lower(), term['obj_label'].lower()])
+                    [term['sub_label'], term['obj_label']])
 
         self._info = {}
         for rel in info:

@@ -13,7 +13,7 @@ def reorder(xs, ys):
     combined.sort(key=lambda x: x[0])
     return list(zip(*combined))
 
-def main(rel_set='lama', model='distilbert-base-uncased'):
+def main(rel_set='lama', model='albert-base-v2'):
     # all_prec, all_recall = {}, {}
     pr_list = []
     int_r = np.arange(0., 1., 0.001)
