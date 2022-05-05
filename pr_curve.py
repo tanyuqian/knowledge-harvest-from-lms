@@ -13,22 +13,30 @@ def reorder(xs, ys):
     combined.sort(key=lambda x: x[0])
     return list(zip(*combined))
 
-def main(rel_set='lama', model='albert-base-v2'):
+def main(rel_set='conceptnet', model='roberta-large', setting='all'):
     # all_prec, all_recall = {}, {}
     pr_list = []
     int_r = np.arange(0., 1., 0.001)
     int_p = defaultdict(list)
-    for rel_pr in glob(f'curves/{model}/{rel_set}/*.json'):
-        curves = json.load(open(rel_pr))
-        for label in curves:
-            recall, precision = reorder(curves[label]['recall'], curves[label]['precision'])
-            cur_int_p = np.interp(int_r, recall,\
-                precision)
-            int_p[label].append(cur_int_p)
+    if model == 'all':
+        models = os.listdir('curves')
+    else:
+        models = [model]
 
-            # all_prec[label].extend(curves[label]['precision'])
-            # all_recall[label].extend(curves[label]['recall'])
-            # pr_list.append((int_p))
+    for cur_model in models:
+        for rel_pr in glob(f'curves/{cur_model}/{rel_set}/*.json'):
+            curves = json.load(open(rel_pr))
+            for label in curves:
+                if setting != 'all' and label != setting:
+                    continue
+                recall, precision = reorder(curves[label]['recall'], curves[label]['precision'])
+                cur_int_p = np.interp(int_r, recall,\
+                    precision)
+                int_p[cur_model + "_" + label].append(cur_int_p)
+
+                # all_prec[label].extend(curves[label]['precision'])
+                # all_recall[label].extend(curves[label]['recall'])
+                # pr_list.append((int_p))
             
     for label in int_p:
         aggr = np.array(int_p[label]).mean(0)
@@ -42,7 +50,7 @@ def main(rel_set='lama', model='albert-base-v2'):
     plt.ylabel('Precision')
     plt.legend()
 
-    plt.savefig(f'outputs/{model}_{rel_set}.png')
+    plt.savefig(f'outputs/{model}_{rel_set}_{setting}.png')
     # plt.show()
 
 

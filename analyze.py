@@ -7,6 +7,7 @@ from prettytable import PrettyTable
 
 
 N_TOP = 100
+
 RESULT_DIRS = {
     'init prompts': '1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0_initprompts',
     'best 1 prompt': '1000tuples_1prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0',
@@ -24,7 +25,7 @@ def main(rel_set='conceptnet'):
     result.add_column('Relations', list(relation_info.keys()) + ['Total'])
 
     for setting, result_dir in RESULT_DIRS.items():
-        output_dir = f'outputs/conceptnet/{result_dir}'
+        output_dir = f'outputs/{rel_set}/{result_dir}'
         print(f'output_dir: {output_dir}:')
 
         col = []
