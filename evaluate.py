@@ -2,17 +2,21 @@ import fire
 import os
 import json
 from tqdm import tqdm
+import torch
 
 from models.ckbc_knowledge_scorer import CKBCKnowledgeScorer
-from models.comet_knowledge_scorer import COMETKnowledgeScorer
 
 
 def main(output_dir):
-    ckbc_scorer = CKBCKnowledgeScorer()
-    comet_scorer = COMETKnowledgeScorer()
+    if 'conceptnet' in output_dir:
+        rel_set = 'conceptnet'
+        scorer = CKBCKnowledgeScorer()
+    else:
+        assert 'lama' in output_dir
+        rel_set = 'lama'
+        scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
 
-    relation_info = json.load(
-        open(f'data/relation_info_conceptnet_5seeds.json'))
+    relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
 
     for rel, info in relation_info.items():
         if not os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
@@ -35,15 +39,14 @@ def main(output_dir):
         result = []
         for ent_tuple, weight in tqdm(weighted_ent_tuples,
                                       desc=f'evaluating {rel}'):
-            ckbc_score = ckbc_scorer.score(
-                h=ent_tuple[0], r=rel, t=ent_tuple[1])
-            comet_score = comet_scorer.score(
-                h=ent_tuple[0], r=rel, t=ent_tuple[1])
+            r = rel if rel_set == 'conceptnet' \
+                else ' '.join(rel.split('_')[1:])
+
+            score = scorer.score(h=ent_tuple[0], r=r, t=ent_tuple[1])
             result.append({
                 'entity tuple': ent_tuple,
                 'weight': weight,
-                'ckbc score': ckbc_score,
-                'comet score': comet_score
+                'cls score': score
             })
 
         json.dump(result, open(
