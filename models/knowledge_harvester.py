@@ -35,7 +35,7 @@ class KnowledgeHarvester:
 
     def init_prompts(self, prompts):
         for prompt in prompts:
-            prompt = prompt.strip(' .').lower().replace('<ent', '<ENT')
+            # prompt = prompt.strip(' .').lower().replace('<ent', '<ENT')
             self._weighted_prompts.append([prompt, 1.])
 
     def set_seed_ent_tuples(self, seed_ent_tuples):
