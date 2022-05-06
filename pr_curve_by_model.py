@@ -22,31 +22,37 @@ def reorder(xs, ys):
     return list(zip(*combined))
 
 
-def main(rel_set='lama', prompt_temp=1., setting='20 prompts'):
+def main(rel_sets='all', prompt_temp=1., setting='20 prompts'):
     int_r = np.arange(0., 1., 0.001)
     int_p = defaultdict(list)
 
-    for model_name in MODEL_NAMES:
-        for rel_pr in glob(f'curves/{model_name}-temp1.0/{rel_set}/*.json'):
-            curves = json.load(open(rel_pr))
+    if rel_sets == 'all':
+        rel_sets = ['conceptnet', 'lama']
+    else:
+        rel_sets = [rel_sets]
 
-            if curves == []:
-                continue
+    for rel_set in rel_sets:
+        for model_name in MODEL_NAMES:
+            for rel_pr in glob(f'curves/{model_name}-temp1.0/{rel_set}/*.json'):
+                curves = json.load(open(rel_pr))
 
-            # print(rel_pr)
-            # print(curves[setting]['recall'])
-            # print(curves[setting]['precision'])
-            # print(reorder(curves[setting]['recall'], curves[setting]['precision']))
-            # exit()
+                if curves == []:
+                    continue
 
-            recall, precision = reorder(curves[setting]['recall'], curves[setting]['precision'])
-            cur_int_p = np.interp(int_r, recall, precision)
-            int_p[model_name].append(cur_int_p)
+                # print(rel_pr)
+                # print(curves[setting]['recall'])
+                # print(curves[setting]['precision'])
+                # print(reorder(curves[setting]['recall'], curves[setting]['precision']))
+                # exit()
 
-            # all_prec[label].extend(curves[label]['precision'])
-            # all_recall[label].extend(curves[label]['recall'])
-            # pr_list.append((int_p))
-            
+                recall, precision = reorder(curves[setting]['recall'], curves[setting]['precision'])
+                cur_int_p = np.interp(int_r, recall, precision)
+                int_p[model_name].append(cur_int_p)
+
+                # all_prec[label].extend(curves[label]['precision'])
+                # all_recall[label].extend(curves[label]['recall'])
+                # pr_list.append((int_p))
+
     for model_name in int_p:
         aggr = np.array(int_p[model_name]).mean(0)
         plt.plot(int_r, aggr, label=model_name)
@@ -54,12 +60,14 @@ def main(rel_set='lama', prompt_temp=1., setting='20 prompts'):
 
     # plt.ylim(0.5, 1)
     # plt.xlim(0, 1)
-    plt.title(f'{rel_set} - All Relations')
+    rel_sets = 'all' if len(rel_sets) == 2 else rel_sets[0]
+    plt.title(f'{rel_sets} Relations - {setting}')
+
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.legend()
 
-    plt.savefig(f'outputs/{rel_set}_{setting}_temp{prompt_temp}.png')
+    plt.savefig(f'outputs/{rel_sets}_{setting}_temp{prompt_temp}.png')
     plt.show()
 
 
