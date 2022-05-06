@@ -29,18 +29,21 @@ def my_precision_recall_curve(y_true, y_score):
     return np.array(precision), np.array(recall)
 
 SETTINGS = {
-    'conceptnet': ['ckbc', 'comet', 'init', 1, 5, 10],
-    'lama': ['cls', 'LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
-             'init', 1, 5, 10]
+    'conceptnet': ['comet', 'init', 1, 5, 20],
+    'lama': ['LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
+             'init', 1, 5, 20]
     # 'lama': ['cls']  # for test 
 }
 
 
-def main(rel_set='lama', model='distilbert-base-cased', settings="all"):
+def main(rel_set='lama',
+         model_name='distilbert-base-cased',
+         prompt_temp=1.,
+         settings="all"):
     print("setting:", settings, type(settings))
     ckbc = CKBC(rel_set=rel_set)
     knowledge_harvester = KnowledgeHarvester(
-        model_name=model, max_n_ent_tuples=None)
+        model_name=model_name, max_n_ent_tuples=None, prompt_temp=prompt_temp)
     if rel_set == 'conceptnet':
         comet_scorer = COMETKnowledgeScorer()
         ckbc_scorer = CKBCKnowledgeScorer()
@@ -49,10 +52,10 @@ def main(rel_set='lama', model='distilbert-base-cased', settings="all"):
         for s in ['manual_paraphrase', 'mine', 'paraphrase']:
             lpaqa[s] = LPAQA(setting=s)
 
-        lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
-        lama_scorer.encoder.eval()
+        # lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
+        # lama_scorer.encoder.eval()
 
-    save_dir = f'curves/{model}/{rel_set}'
+    save_dir = f'curves/{model_name}-temp{prompt_temp}/{rel_set}'
     os.makedirs(save_dir, exist_ok=True)
 
     relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
@@ -82,13 +85,13 @@ def main(rel_set='lama', model='distilbert-base-cased', settings="all"):
                 for ent_tuple in ent_tuples:
                     weighted_ent_tuples.append([ent_tuple, comet_scorer.score(
                         h=ent_tuple[0], r=rel, t=ent_tuple[1])])
-            elif setting == 'cls':
-                weighted_ent_tuples = []
-                for ent_tuple in ent_tuples:
-                    weighted_ent_tuples.append([ent_tuple, lama_scorer.score(
-                        h=ent_tuple[0],
-                        r=' '.join(rel.split('_')[1:]),
-                        t=ent_tuple[1])])
+            # elif setting == 'cls':
+            #     weighted_ent_tuples = []
+            #     for ent_tuple in ent_tuples:
+            #         weighted_ent_tuples.append([ent_tuple, lama_scorer.score(
+            #             h=ent_tuple[0],
+            #             r=' '.join(rel.split('_')[1:]),
+            #             t=ent_tuple[1])])
             else:
                 knowledge_harvester.clear()
                 if type(setting) == int:
