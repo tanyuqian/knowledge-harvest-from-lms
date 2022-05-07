@@ -60,7 +60,7 @@ def main(rel_sets='all', prompt_temp=1., setting='20 prompts'):
 
     # plt.ylim(0.5, 1)
     # plt.xlim(0, 1)
-    rel_sets = 'all' if len(rel_sets) == 2 else rel_sets[0]
+    rel_sets = 'ConceptNet+LAMA' if len(rel_sets) == 2 else rel_sets[0]
     plt.title(f'{rel_sets} Relations - {setting}')
 
     plt.xlabel('Recall')

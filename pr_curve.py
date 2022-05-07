@@ -27,7 +27,10 @@ def main(rel_sets='all', model='roberta-large', prompt_temp=1.):
         rel_sets = [rel_sets]
 
     for rel_set in rel_sets:
+        print(f'curves/{model}-temp{prompt_temp}/{rel_set}/*.json')
         for rel_pr in glob(f'curves/{model}-temp{prompt_temp}/{rel_set}/*.json'):
+            print(rel_pr)
+
             curves = json.load(open(rel_pr))
             for label in curves:
                 recall, precision = reorder(curves[label]['recall'], curves[label]['precision'])
