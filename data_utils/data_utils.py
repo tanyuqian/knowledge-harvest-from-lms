@@ -131,6 +131,14 @@ conceptnet_relation_init_prompts = {
 }
 
 
+def fix_prompt_style(prompt):
+    prompt = prompt.strip(' .')
+    if prompt[0].isalpha():
+        prompt = prompt[0].upper() + prompt[1:]
+
+    return prompt + ' .'
+
+
 def get_relations(rel_set):
     assert rel_set in ['conceptnet', 'lama']
 
