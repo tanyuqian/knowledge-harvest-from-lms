@@ -7,12 +7,13 @@
 * ckbc can be treated as the upper bound.
 * overall, init prompt < 1 prompt < (slightly) multiple prompts
 
-![](outputs/all_20_prompts_temp1.0.png)
-![](outputs/all_roberta-large_temp1.0.png)
+![](outputs/conceptnet_roberta-large_temp1.0.png)
+![](outputs/lama_roberta-large_temp1.0.png)
+![](outputs/ConceptNet+LAMA_20_prompts_temp1.0.png)
 
 ### Output entity tuples
 
-Output entity tuples can be found in ```outputs/{rel_set}/{setting}/summary.txt```, like [outputs/conceptnet/1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0/summary.txt](outputs/conceptnet/1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0/summary.txt)
+Output entity tuples can be found in ```outputs/{rel_set}/{setting}/{model}/summary.txt```, like [outputs/conceptnet/1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp1.0/summary.txt](outputs/human/1000tuples_20prompts_5seeds_maxsubwords2_maxrepeat5_temp2.0/roberta-large/summary.txt)
 
 ### CKBC scores of output entity tuples
 

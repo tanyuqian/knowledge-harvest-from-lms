@@ -1,0 +1,377 @@
+Relation: somebody_do_something_at
+Prompts:
+- 1.0000 The <ENT0> can choose to <ENT1> in the <ENT2> or online .
+Harvested Tuples:
++-------------------------------------+-----------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------+
+|             Seed samples            |                 Ours (Top 20)                 |                      Ours (Random Sample)                      |                        Ours (Tail 20)                       |
++-------------------------------------+-----------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------+
+|    ['people', 'work out', 'gym']    |       ['students', 'study', 'classroom']      |    ['students here', 'study courses', 'university library']    |             ['target user', 'be active', 'app']             |
+|        ['bird', 'fly', 'sky']       |    ['student', 'participate', 'classroom']    |  ['aspiring journalist', 'write stories', 'newspaper print']   |    ['other athletes', 'compete individually', 'Olympics']   |
+|  ['student', 'study', 'classroom']  |     ['student', 'participate', 'program']     |             ['young reader', 'read it', 'mailing']             |          ['other athletes', 'train either', 'gyms']         |
+|     ['player', 'play', 'ground']    |           ['user', 'play', 'studio']          |        ['following students', 'attend college', 'fall']        |       ['online version', 'be available', 'storefront']      |
+| ['sodier', 'fight', 'battleground'] |         ['viewer', 'watch', 'studio']         |   ['school population', 'attend classes', 'school building']   |   ['college population', 'attend classes', 'home campus']   |
+|                  \                  |            ['user', 'play', 'home']           |  ['aspiring architect', 'practice either', 'office setting']   |      ['aspiring editor', 'work both', 'newspaperroom']      |
+|                  \                  |      ['student', 'participate', 'course']     |  ['aspiring photographer', 'shoot either', 'gallery window']   |  ['nominated artists', 'sing either', 'studios themselves'] |
+|                  \                  |            ['user', 'play', 'game']           |     ['invited authors', 'publish them', 'journal itself']      |   ['selected actor', 'perform both', 'theatre production']  |
+|                  \                  |         ['user', 'play', 'background']        |           ['new members', 'join either', 'mailbox']            |         ['teen viewer', 'watch it', 'home theater']         |
+|                  \                  |        ['students', 'study', 'school']        |      ['aspiring actress', 'appear either', 'video game']       |          ['target company', 'be active', 'market']          |
+|                  \                  |          ['viewer', 'watch', 'home']          |        ['aspiring artist', 'paint', 'gallery setting']         |     ['college admission', 'either be', 'college online']    |
+|                  \                  |        ['contestant', 'vote', 'studio']       |       ['aspiring lawyer', 'practice law', 'courtrooms']        |         ['senior team', 'play games', 'home venue']         |
+|                  \                  |         ['students', 'study', 'home']         |       ['remaining cadets', 'continue training', 'field']       | ['aspiring dancer', 'dance professionally', 'home studios'] |
+|                  \                  |     ['student', 'participate', 'classes']     | ['remaining players', 'compete directly', 'tournament itself'] |         ['online customers', 'shop either', 'mall']         |
+|                  \                  | ['winning player', 'play both', 'tournament'] |                 ['public', 'read', 'library']                  |       ['target person', 'work either', 'home setting']      |
+|                  \                  |        ['students', 'study', 'library']       |          ['online reader', 'read books', 'storeroom']          |       ['online reader', 'read books', 'home library']       |
+|                  \                  |       ['children', 'learn', 'classroom']      |                  ['users', 'register', 'app']                  |  ['remaining cadets', 'continue training', 'field locally'] |
+|                  \                  |           ['user', 'play', 'store']           |     ['student staff', 'teach courses', 'school classroom']     |   ['selected actor', 'perform both', 'theater production']  |
+|                  \                  |       ['viewer', 'watch', 'background']       |             ['girls', 'compete either', 'finals']              |        ['auditionee', 'audition live', 'city center']       |
+|                  \                  |         ['viewer', 'watch', 'cinema']         |                 ['viewers', 'appear', 'show']                  |    ['nominated author', 'publish them', 'journal itself']   |
++-------------------------------------+-----------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------+
+==================================================
+Relation: prevent
+Prompts:
+- 1.0000 <ENT0> provides a safety net against <ENT1> .
+Harvested Tuples:
++---------------------------------+--------------------------------------------+----------------------------------------------+------------------------------------------------+
+|           Seed samples          |               Ours (Top 20)                |             Ours (Random Sample)             |                 Ours (Tail 20)                 |
++---------------------------------+--------------------------------------------+----------------------------------------------+------------------------------------------------+
+|        ['mask', 'virus']        |    ['the shield', 'incoming missiles']     |   ['this information', 'further attacks']    |     ['soft security', 'external threats']      |
+|     ['exercise', 'disease']     |         ['the dam', 'floodwaters']         |  ['chemical insurance', 'toxic chemicals']   |    ['medical treatment', 'severe illness']     |
+| ['study hard', 'fail the exam'] |     ['the shield', 'incoming bullets']     |      ['such insurance', 'future risks']      |      ['mass isolation', 'nuclear attack']      |
+|      ['reading', 'stupid']      |      ['the shield', 'incoming fire']       |        ['this area', 'enemy attacks']        |      ['such evidence', 'the prosecution']      |
+|   ['insurance', 'bankruptcy']   | ['chemical warfare', 'biological warfare'] |         ['the dome', 'the elements']         |          ['no crime', 'criminality']           |
+|                \                |   ['the vaccine', 'infectious diseases']   |         ['green lighting', 'fires']          |     ['this function', 'accidental impact']     |
+|                \                |      ['this also', 'future attacks']       |          ['Softening', 'the heat']           |         ['air suspension', 'impacts']          |
+|                \                |    ['the school', 'bullying incidents']    |          ['no law', 'trafficking']           |        ['soft tissue', 'severe injury']        |
+|                \                |        ['the dam', 'flood damage']         |       ['safe housing', 'crime levels']       |     ['safe technology', 'harmful effects']     |
+|                \                |         ['the dam', 'floodwater']          |  ['safe energy', 'environmental pollution']  | ['chemical treatment', 'bacterial infections'] |
+|                \                |     ['this system', 'accidental fire']     | ['chemical engineering', 'chemical hazards'] |         ['soft weight', 'heavy loads']         |
+|                \                |       ['the roof', 'falling debris']       |    ['this technology', 'nuclear weapons']    |      ['their camouflage', 'enemy attack']      |
+|                \                |   ['this system', 'accidental exposure']   |        ['this area', 'enemy attack']         |           ['no prison', 'criminals']           |
+|                \                |  ['this system', 'accidental explosions']  |      ['this measure', 'such incidents']      |            ['safe gas', 'toxicity']            |
+|                \                |   ['the vaccine', 'infectious disease']    |       ['this measure', 'such crimes']        | ['chemical pollution', 'human contamination']  |
+|                \                |     ['the vaccine', 'viral infection']     |        ['soft armor', 'penetration']         |          ['green lighting', 'fires']           |
+|                \                |     ['this also', 'future disasters']      |     ['Safeguard', 'harmful substances']      |         ['their armor', 'enemy armor']         |
+|                \                |   ['this information', 'future attacks']   |        ['the school', 'crime levels']        |   ['mass transportation', 'nuclear attacks']   |
+|                \                | ['mass surveillance', 'terrorist attacks'] |     ['Safeguard', 'harmful influences']      |           ['Massaging', 'bleeding']            |
+|                \                |    ['the vaccine', 'viral infections']     | ['mass immigration', 'illegal immigration']  |      ['safe space', 'harmful substances']      |
++---------------------------------+--------------------------------------------+----------------------------------------------+------------------------------------------------+
+==================================================
+Relation: help
+Prompts:
+- 1.0000 A <ENT0> can help a <ENT1> by providing guidance and support .
+Harvested Tuples:
++-------------------------------------+-----------------------------+---------------------------------------------------+------------------------------------------------+
+|             Seed samples            |        Ours (Top 20)        |                Ours (Random Sample)               |                 Ours (Tail 20)                 |
++-------------------------------------+-----------------------------+---------------------------------------------------+------------------------------------------------+
+|        ['doctor', 'patient']        |    ['teacher', 'student']   |              ['nurse', 'child nurse']             | ['supporting character', 'character develop']  |
+|        ['teacher', 'student']       |     ['parent', 'child']     |          ['psychiatrist', 'person cope']          |      ['client mentor', 'client graduate']      |
+|     ['housekeeper', 'housewife']    |     ['teacher', 'child']    |          ['psychiatrist', 'patient cope']         |         ['home coach', 'player coach']         |
+| ['teaching assistant', 'professor'] |   ['therapist', 'client']   |       ['parent assistant', 'parent parent']       |   ['local minister', 'church congregation']    |
+|         ['police', 'victim']        |    ['mentor', 'student']    |            ['website', 'person learn']            |        ['home coach', 'player develop']        |
+|                  \                  |   ['therapist', 'person']   | ['community organizer', 'community organization'] |         ['lay doctor', 'child doctor']         |
+|                  \                  |   ['therapist', 'patient']  |              ['librarian', 'reader']              |        ['partner coach', 'coach coach']        |
+|                  \                  |  ['psychologist', 'client'] |        ['mentor organization', 'mentoring']       |    ['professional organizer', 'group out']     |
+|                  \                  |  ['psychologist', 'person'] |               ['parent', 'patient']               | ['health administrator', 'physician practice'] |
+|                  \                  |     ['mentor', 'child']     |       ['religious agency', 'child convert']       | ['service administrator', 'service provider']  |
+|                  \                  |   ['counselor', 'client']   |                ['church', 'family']               |     ['health provider', 'client recover']      |
+|                  \                  | ['psychologist', 'patient'] |      ['client psychologist', 'client shrink']     |     ['religious agency', 'child convert']      |
+|                  \                  |     ['mentor', 'person']    |       ['volunteer director', 'producer out']      |    ['spiritual director', 'student pastor']    |
+|                  \                  |  ['psychologist', 'child']  |                 ['father', 'baby']                |      ['dedicated trainer', 'trainer out']      |
+|                  \                  |    ['therapist', 'child']   |        ['support member', 'client further']       |       ['charity office', 'charity work']       |
+|                  \                  | ['counselor', 'child cope'] |    ['professional teacher', 'child understand']   |       ['local minister', 'church group']       |
+|                  \                  | ['psychologist', 'student'] |            ['psychologist', 'student']            |      ['client office', 'client business']      |
+|                  \                  |   ['counselor', 'patient']  |             ['homemaker', 'household']            |        ['client office', 'client firm']        |
+|                  \                  |    ['parent', 'student']    |       ['learning resource', 'teacher learn']      |    ['specialist advisor', 'candidate out']     |
+|                  \                  |  ['nurse', 'patient cope']  |         ['health officer', 'child nurse']         |     ['specialist manager', 'team manager']     |
++-------------------------------------+-----------------------------+---------------------------------------------------+------------------------------------------------+
+==================================================
+Relation: place_for
+Prompts:
+- 1.0000 The <ENT0> is the best place to get some <ENT1> done .
+Harvested Tuples:
++------------------------------------+------------------------------+---------------------------------------+------------------------------------+
+|            Seed samples            |        Ours (Top 20)         |          Ours (Random Sample)         |           Ours (Tail 20)           |
++------------------------------------+------------------------------+---------------------------------------+------------------------------------+
+|        ['gym', 'exercise']         |     ['kitchen', 'work']      |     ['basement stage', 'singing']     |   ['airfield', 'flying lessons']   |
+|       ['classroom', 'study']       |    ['kitchen', 'cooking']    | ['hotel kitchen', 'food preparation'] |        ['well', 'diggings']        |
+|         ['office', 'work']         |    ['kitchen', 'things']     |        ['desk', 'writing work']       |     ['platform', 'work being']     |
+| ['hosipital', 'medical treatment'] |      ['garage', 'work']      |     ['local garden', 'plantings']     |     ['country', 'things well']     |
+|        ['mart', 'shopping']        |     ['bathroom', 'work']     |       ['laboratory', 'testing']       |       ['stream', 'washing']        |
+|                 \                  |      ['beach', 'work']       |           ['lab', 'testing']          |        ['track', 'riding']         |
+|                 \                  |       ['gym', 'work']        |       ['house', 'work getting']       |       ['stable', 'training']       |
+|                 \                  |    ['library', 'reading']    |    ['local airport', 'flying work']   |      ['hotel spa', 'bathing']      |
+|                 \                  | ['library', 'reading work']  |        ['van', 'work properly']       |     ['pulpit', 'talking out']      |
+|                 \                  | ['basement', 'work getting'] |       ['stage', 'singing stuff']      |      ['convent', 'workwork']       |
+|                 \                  |  ['office', 'work getting']  |         ['garage', 'repairs']         |     ['Point', 'work actually']     |
+|                 \                  |   ['library', 'studying']    |   ['precinct', 'paperwork getting']   |      ['home team', 'playing']      |
+|                 \                  | ['backyard', 'work getting'] |    ['refrigerator', 'cooking work']   |        ['barber', 'nails']         |
+|                 \                  |     ['beach', 'things']      |          ['dock', 'fishing']          |        ['yardwork', 'shit']        |
+|                 \                  |    ['bathroom', 'things']    |        ['lab', 'research work']       |       ['stables', 'riding']        |
+|                 \                  |     ['gym', 'studying']      |  ['basement toilet', 'cleaning work'] |        ['hangar', 'flying']        |
+|                 \                  |   ['park', 'work getting']   |  ['public pool', 'swimming lessons']  |      ['pen', 'drawing work']       |
+|                 \                  |     ['kitchen', 'stuff']     |    ['public toilet', 'cleaning up']   |    ['marketplace', 'business']     |
+|                 \                  |     ['garage', 'things']     | ['training center', 'training stuff'] | ['big screen', 'filming actually'] |
+|                 \                  |     ['gym', 'training']      |  ['outdoor garden', 'gardening work'] |      ['desk', 'reading time']      |
++------------------------------------+------------------------------+---------------------------------------+------------------------------------+
+==================================================
+Relation: synonym
+Prompts:
+- 1.0000 <ENT0> and <ENT1> are opposite concepts .
+Harvested Tuples:
++--------------------+---------------------------------------+----------------------------------+-------------------------------------------+
+|    Seed samples    |             Ours (Top 20)             |       Ours (Random Sample)       |               Ours (Tail 20)              |
++--------------------+---------------------------------------+----------------------------------+-------------------------------------------+
+|  ['fat', 'thin']   |          ['but love', 'hate']         |   ['white rice', 'black rice']   |         ['being bad', 'bad luck']         |
+|  ['happy', 'sad']  |           ['Life', 'death']           |    ['big bang', 'giant bang']    |         ['good sex', 'good food']         |
+| ['north', 'south'] |            ['Love', 'hate']           |    ['cold iron', 'hot iron']     |        ['cold iron', 'cold copper']       |
+|  ['woman', 'man']  |           ['Time', 'space']           |    ['hot milk', 'cold milk']     |          ['but evil', 'evilness']         |
+|  ['pass', 'fail']  |      ['high power', 'low power']      |   ['because sex', 'sexuality']   |  ['good government', 'good citizenship']  |
+|         \          |          ['but love', 'lust']         |   ['cold metal', 'hot metal']    |         ['thus time', 'distance']         |
+|         \          |        ['the body', 'the mind']       |    ['hot sauce', 'hot soup']     |     ['cold weather', 'winter weather']    |
+|         \          |       ['good luck', 'bad luck']       |     ['hot sex', 'hot beer']      |         ['but death', 'suffering']        |
+|         \          |       ['Likeness', 'similarity']      |      ['and love', 'hatred']      |        ['being alive', 'immortal']        |
+|         \          |     ['good fortune', 'good luck']     |   ['hard labor', 'easy labor']   |          ['hot tub', 'hot house']         |
+|         \          |     ['high status', 'low status']     |   ['cold food', 'frozen food']   |        ['but evil', 'good itself']        |
+|         \          |    ['good fortune', 'bad fortune']    |  ['good things', 'evil things']  |            ['the man', 'beast']           |
+|         \          |       ['high tech', 'low tech']       |     ['Knowledge', 'belief']      | ['double consciousness', 'double action'] |
+|         \          |        ['Goodwill', 'badwill']        |  ['Hardcore', 'hardcore punk']   |           ['that man', 'beast']           |
+|         \          |         ['but love', 'hatred']        |   ['hot sauce', 'sour sauce']    |        ['being real', 'real life']        |
+|         \          | ['good intentions', 'bad intentions'] |   ['both truth', 'ignorance']    |        ['big money', 'big people']        |
+|         \          |    ['high culture', 'low culture']    |   ['hard labor', 'hard work']    |          ['Doublets', 'triplets']         |
+|         \          |       ['good will', 'bad will']       |   ['hot sex', 'hot drinking']    |         ['but time', 'the future']        |
+|         \          |      ['hot water', 'cold water']      | ['big picture', 'small picture'] |   ['but happiness', 'happiness itself']   |
+|         \          |        ['the body', 'the soul']       |  ['cold energy', 'hot energy']   |         ['hard sex', 'hard love']         |
++--------------------+---------------------------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: separated_by_the_ocean
+Prompts:
+- 1.0000 <ENT1> and <ENT0> are two different countries located on different continents .
+Harvested Tuples:
++-------------------------------------+------------------------------------+---------------------------------------------+----------------------------------------------+
+|             Seed samples            |           Ours (Top 20)            |             Ours (Random Sample)            |                Ours (Tail 20)                |
++-------------------------------------+------------------------------------+---------------------------------------------+----------------------------------------------+
+|          ['China', 'Japan']         |   ['South Korea', 'North Korea']   |      ['British India', 'Bengali India']     |        ['Brazil Together', 'Amazon']         |
+|     ['Australia', 'New Zealand']    | ['South Africa', 'South America']  |              ['Peru', 'China']              |       ['Panama Peru', 'Fiji Islands']        |
+| ['United Kingdom', 'the Continent'] | ['South Africa', 'North America']  |    ['Switzerland Switzerland', 'Namibia']   |        ['New Caledonia', 'Old World']        |
+|       ['United State', 'Cuba']      |  ['South Africa', 'North Africa']  |        ['Sweden Together', 'Finnish']       |   ['Northern Territory', 'Northern Land']    |
+|         ['Spain', 'Morocco']        | ['South America', 'North America'] |     ['Northern Europe', 'Europe Europe']    |           ['China India', 'Assam']           |
+|                  \                  |        ['Spain', 'France']         |     ['China Republic', 'India Republic']    |    ['Spanish America', 'Canada English']     |
+|                  \                  |       ['India', 'Pakistan']        |    ['Northern Sweden', 'Southern Sweden']   |       ['The Netherlands', 'Earthside']       |
+|                  \                  |       ['Sweden', 'Finland']        |             ['Israel', 'Persia']            |             ['Brazil', 'Andes']              |
+|                  \                  |       ['Germany', 'France']        |      ['South America', 'North America']     |          ['China India', 'Bengal']           |
+|                  \                  |        ['Sweden', 'Norway']        |             ['Mexico', 'México']            | ['Spanish Nationality', 'china nationality'] |
+|                  \                  |       ['Mexico', 'Colombia']       |       ['New Zealand', 'New Jerusalem']      |        ['Germany Canada', 'Italian']         |
+|                  \                  |      ['India', 'Bangladesh']       | ['Japan Islands', 'Indonesian Archipelago'] |      ['French Columbia', 'France Noir']      |
+|                  \                  |       ['Argentina', 'Chile']       |   ['Japan Islands', 'Philippine Islands']   |          ['Icelander', 'Antarctic']          |
+|                  \                  |       ['Russia', 'Ukraine']        |     ['Mexico City', 'Guadalajara City']     |         ['The Philippines', 'Romes']         |
+|                  \                  |        ['Mexico', 'Chile']         |            ['Chile', 'Paraguay']            |        ['Sweden Canada', 'Estonian']         |
+|                  \                  |        ['Chile', 'Bolivia']        |      ['South Africa', 'North America']      |           ['China The', 'Brazils']           |
+|                  \                  |       ['Russia', 'Belarus']        |          ['Icelanders', 'Penguins']         |      ['British India', 'Bengali India']      |
+|                  \                  |      ['Australia', 'Europe']       |            ['Norways', 'Islands']           |       ['Iceland Canada', 'Antarctic']        |
+|                  \                  |    ['Pakistan', 'Afghanistan']     |         ['india together', 'Bihar']         |        ['The Ukraine', 'Greenlandic']        |
+|                  \                  |      ['Argentina', 'Uruguay']      |        ['Northern Sweden', 'Baltics']       |            ['Egypt', 'Atlantis']             |
++-------------------------------------+------------------------------------+---------------------------------------------+----------------------------------------------+
+==================================================
+Relation: representative_figure
+Prompts:
+- 1.0000 <ENT0> was the most iconic <ENT1>ian of his time .
+Harvested Tuples:
++------------------------------------+----------------------------------+--------------------------------+-------------------------------+
+|            Seed samples            |          Ours (Top 20)           |      Ours (Random Sample)      |         Ours (Tail 20)        |
++------------------------------------+----------------------------------+--------------------------------+-------------------------------+
+|   ['Lionel Messi', 'Barcelona']    |   ['the painting', 'portrait']   | ['the former', 'and popular']  |        ['Mazo', 'drum']       |
+|      ['Steven Jobs', 'Apple']      | ['his portrait', 'portrait of']  |     ['his name', 'of the']     |   ['De Ville', 'streetcar']   |
+| ['Nelson Mandela', 'South Africa'] |   ['his portrait', 'painting']   | ['his photograph', 'image of'] |   ['Indu', 'music composer']  |
+| ['Taylor Swift', 'country music']  |   ['the painting', 'picture']    | ['the picture', 'picture in']  |      ['Makan', 'singer']      |
+|       ['2Pac', 'pop music']        |    ['his portrait', 'photo']     |    ['El Negro', 'Hispanic']    |       ['Mau', 'Chinese']      |
+|                 \                  |    ['his painting', 'of the']    |    ['the book', 'literary']    |    ['Inan', 'character in']   |
+|                 \                  |    ['the painting', 'color']     | ['this sculpture', 'artisan']  |      ['De Leon', 'arte']      |
+|                 \                  |     ['his statue', 'of the']     |     ['John Bull', 'bulla']     |    ['El Negro', 'Hispanic']   |
+|                 \                  |   ['his portrait', 'picture']    |   ['his painting', 'of an']    |   ['he often', 'Frenchman']   |
+|                 \                  | ['this painting', 'painting of'] |     ['Dekker', 'Flemish']      |  ['Mazar', 'music director']  |
+|                 \                  |     ['his work', 'painting']     |      ['De Ville', 'city']      |   ['he always', 'Frenchman']  |
+|                 \                  |     ['this song', 'song in']     |      ['Mawson', 'rocker']      |    ['El Negro', 'black or']   |
+|                 \                  |     ['this song', 'song by']     | ['Sousa', 'Portuguese Music']  |    ['Lefort', 'Catalanist']   |
+|                 \                  |    ['the painting', 'image']     |     ['the book', 'poetry']     | ['Sousa', 'Portuguese Music'] |
+|                 \                  |   ['the statue', 'sculpture']    |  ['the piece', 'and famous']   |    ['Inan', 'character or']   |
+|                 \                  | ['this painting', 'painting by'] |       ['Maui', 'Hawaii']       |      ['Mawson', 'rocker']     |
+|                 \                  |       ['De Jong', 'Dutch']       |  ['this sculpture', 'of the']  |       ['Maui', 'canoe']       |
+|                 \                  |       ['Dekker', 'Dutch']        |    ['Leila', 'female art']     |       ['Makan', 'star']       |
+|                 \                  |     ['the statue', 'bronze']     |   ['his mural', 'muralist']    |  ['Leila', 'male character']  |
+|                 \                  |      ['Dekker', 'Flemish']       |     ['his work', 'visual']     |     ['John Bull', 'bulla']    |
++------------------------------------+----------------------------------+--------------------------------+-------------------------------+
+==================================================
+Relation: ingredient_for
+Prompts:
+- 1.0000 One of the ingredients for making a <ENT1> is <ENT0> .
+Harvested Tuples:
++-------------------------------+-----------------------------+----------------------------------------+------------------------------------+
+|          Seed samples         |        Ours (Top 20)        |          Ours (Random Sample)          |           Ours (Tail 20)           |
++-------------------------------+-----------------------------+----------------------------------------+------------------------------------+
+|       ['flour', 'cake']       |       ['rice', 'dish']      |       ['milk honey', 'jam cake']       |    ['limes', 'salad dressing']     |
+|     ['beef', 'hamburger']     |       ['salt', 'dish']      |       ['alcohol', 'beer drink']        |   ['pepper wine', 'wine glass']    |
+|       ['potato', 'chip']      |      ['flour', 'cake']      |       ['cotton wool', 'blanket']       |     ['oil soap', 'tea towel']      |
+|     ['fried rice', 'rice']    |      ['sugar', 'cake']      |   ['milk chocolate', 'drink sweet']    | ['flour stock', 'batter mixture']  |
+| ['stargazer pie', 'pilchard'] |      ['garlic', 'dish']     |     ['water vapor', 'soap bubble']     |  ['flour stock', 'batter batter']  |
+|               \               |       ['rice', 'cake']      |     ['tomato sauce', 'sauce dish']     |    ['cannabis roots', 'potion']    |
+|               \               |       ['rice', 'soup']      |            ['honey', 'tea']            |     ['oil wine', 'wine sauce']     |
+|               \               |       ['rice', 'stew']      |   ['cannabis paste', 'drink itself']   | ['coffee bean', 'coffee beverage'] |
+|               \               |       ['sugar', 'tea']      |            ['oil', 'paste']            |    ['honey wine', 'wine wine']     |
+|               \               |   ['rice flour', 'batter']  |     ['peppercorn', 'salad green']      |    ['hay straw', 'dish straw']     |
+|               \               |      ['flour', 'dough']     |     ['egg sugar', 'cookie dough']      |    ['rice cakes', 'soup soup']     |
+|               \               |     ['garlic', 'salad']     |           ['fish', 'salad']            |   ['pepper wine', 'wine sauce']    |
+|               \               | ['wheat flour', 'doughnut'] |       ['peppers', 'salad dish']        |   ['cotton fiber', 'ball ball']    |
+|               \               |      ['flour', 'paste']     |      ['egg flour', 'batter cake']      |    ['water cake', 'cake drink']    |
+|               \               |      ['sugar', 'drink']     |  ['tobacco juice', 'cigarette smoke']  | ['cannabis paste', 'drink itself'] |
+|               \               |      ['sugar', 'syrup']     |    ['corn syrup', 'syrup cocktail']    |    ['lime leaves', 'lime pie']     |
+|               \               |      ['water', 'drink']     | ['cannabis powder', 'cigarette blend'] | ['potato extract', 'cheese cream'] |
+|               \               |    ['sugar', 'cocktail']    |          ['egg', 'pie crust']          |       ['asha', 'sweet dish']       |
+|               \               |     ['garlic', 'sauce']     |            ['meat', 'soup']            |    ['water soap', 'tea towel']     |
+|               \               |     ['flour', 'batter']     |     ['wood charcoal', 'firehouse']     |   ['potato sauce', 'sauce dish']   |
++-------------------------------+-----------------------------+----------------------------------------+------------------------------------+
+==================================================
+Relation: release_time
+Prompts:
+- 1.0000 <ENT0> is a tool that was released in <ENT1> that creates word embeddings .
+Harvested Tuples:
++-----------------------------+------------------------+------------------------------------+------------------------------------+
+|         Seed samples        |     Ours (Top 20)      |        Ours (Random Sample)        |           Ours (Tail 20)           |
++-----------------------------+------------------------+------------------------------------+------------------------------------+
+|      ['iPhone', '2007']     |   ['Text', 'Japan']    |         ['Java', 'Europe']         |    ['Talkcast', 'Germany But']     |
+|    ['Windows 7', '2009']    | ['Language', 'Japan']  |     ['Netflix', 'germany for']     |   ['Encyclopedia', 'Japan That']   |
+| ['Volkswagen Golf', '1974'] |   ['Words', 'Japan']   |      ['Cassandra', 'October']      |   ['Frankenstein', 'Germany In']   |
+|     ['word2vec', '2013']    |   ['Code', 'Japan']    |          ['Text', 'May']           |   ['Webscript', 'Germany That']    |
+|      ['Avatar', '2009']     |    ['Tag', 'Japan']    |    ['Einstein', 'Germany And']     |      ['Dakota', 'Japan That']      |
+|              \              |    ['Tag', 'July']     |    ['Einstein', 'Germany But']     |    ['Thinknet', 'Germany But']     |
+|              \              |    ['Text', 'July']    |  ['Frankenstein', 'germany for']   |    ['Einstein', 'Germany That']    |
+|              \              |    ['Text', 'May']     |       ['Code', 'September']        |     ['Wordsite', 'germany by']     |
+|              \              |     ['Tag', 'May']     |       ['Kota', 'Japan But']        |     ['Netflix', 'germany for']     |
+|              \              |   ['Words', 'July']    |    ['Einstein', 'Germany Only']    |    ['Netflix', 'Germany That']     |
+|              \              |  ['Language', 'July']  |   ['Speak', 'japan exclusively']   |     ['Freenet', 'Germany For']     |
+|              \              |  ['Tag', 'September']  |         ['Echo', 'April']          |  ['Frankenstein', 'Germany That']  |
+|              \              | ['Text', 'September']  |      ['the player', 'August']      |  ['Frankenstein', 'germany for']   |
+|              \              |    ['Code', 'July']    |   ['Touch', 'japan exclusively']   |   ['Touch', 'japan exclusively']   |
+|              \              | ['Talk', 'Japan Only'] |        ['Miranda', 'India']        |   ['Google Tag', 'germany for']    |
+|              \              |    ['Tag', 'April']    |      ['Ruby', 'Japan Market']      |  ['Google Tag', 'germany which']   |
+|              \              |   ['Text', 'April']    |  ['Frankenstein', 'Germany Only']  |   ['Speak', 'japan exclusively']   |
+|              \              |    ['Words', 'May']    | ['Language Architect', 'addition'] | ['Evolution', 'japan exclusively'] |
+|              \              |  ['Language', 'May']   |         ['Flash', 'June']          |   ['Unity', 'japan exclusively']   |
+|              \              | ['Link', 'Japan Only'] |     ['The Factory', 'August']      |  ['Eclipse', 'japan exclusively']  |
++-----------------------------+------------------------+------------------------------------+------------------------------------+
+==================================================
+Relation: processed_from
+Prompts:
+- 1.0000 <ENT0> is the primary ingredient in the production of <ENT1> .
+Harvested Tuples:
++-----------------------------+-------------------------------------------+---------------------------------------+---------------------------------------+
+|         Seed samples        |               Ours (Top 20)               |          Ours (Random Sample)         |             Ours (Tail 20)            |
++-----------------------------+-------------------------------------------+---------------------------------------+---------------------------------------+
+| ['wool', 'woollen sweater'] |             ['Water', 'wine']             |         ['leaf juice', 'teas']        |      ['green corn', 'corn meal']      |
+|      ['milk', 'yogurt']     |             ['Water', 'beer']             |       ['Fats', 'food products']       |      ['this salt', 'salt water']      |
+|     ['sand', 'silicon']     |             ['Water', 'soap']             |    ['this enzyme', 'glucose syrup']   |      ['raw grain', 'rice flour']      |
+|    ['iron mine', 'iron']    |            ['Sugar', 'coffee']            |          ['Gold', 'diamonds']         |     ['wet clay', 'ceramics today']    |
+|    ['crude oil', 'fuel']    |      ['tobacco smoke', 'cigarettes']      |     ['palm sugar', 'coffee beans']    |     ['this fungus', 'honey bees']     |
+|              \              | ['tobacco smoke', 'cigarettes worldwide'] |   ['raw cotton', 'cotton textiles']   |      ['white powder', 'perfumes']     |
+|              \              |            ['Water', 'coffee']            |     ['soft fiber', 'silk thread']     |        ['wet wool', 'clothing']       |
+|              \              |   ['tobacco smoke', 'tobacco products']   |    ['soft alcohol', 'wine glasses']   |   ['organic material', 'paperboard']  |
+|              \              |              ['Salt', 'soap']             |    ['Mercury', 'mercury compounds']   | ['black wine', 'Champagne Champagne'] |
+|              \              |              ['Water', 'tea']             | ['natural petroleum', 'ethanol fuel'] |        ['soft ice', 'beer ice']       |
+|              \              |             ['Iron', 'steel']             |   ['natural petroleum', 'oil shale']  |     ['raw salt', 'salt products']     |
+|              \              |      ['animal fat', 'milk products']      |       ['dry wood', 'furniture']       |    ['white pine', 'charcoal wood']    |
+|              \              |            ['Oil', 'petroleum']           |    ['natural fibre', 'paperboard']    |     ['soft fiber', 'silk thread']     |
+|              \              |         ['animal fat', 'butters']         |     ['raw salt', 'salt products']     |    ['this fungus', 'soap bubbles']    |
+|              \              |          ['dry ice', 'ice cream']         |       ['soft meat', 'meatballs']      |   ['palm sugar', 'coffee beverages']  |
+|              \              |              ['Salt', 'wine']             |  ['natural gas', 'electricity today'] |      ['meat juice', 'wine juice']     |
+|              \              |       ['dry milk', 'milk products']       |           ['Water', 'beer']           |    ['iron metal', 'steel products']   |
+|              \              |            ['dry ice', 'vodka']           |   ['tobacco leaf', 'tobacco juice']   |   ['brown alcohol', 'ethanol fuel']   |
+|              \              |              ['Sugar', 'tea']             |      ['green corn', 'corn syrup']     |        ['wet wool', 'woolens']        |
+|              \              |          ['dry ice', 'beer ice']          |    ['green sugar', 'coffee syrup']    |       ['natural wood', 'lumber']      |
++-----------------------------+-------------------------------------------+---------------------------------------+---------------------------------------+
+==================================================
+Relation: graduate_from
+Prompts:
+- 1.0000 <ENT0> was a world-renowned physicist and cosmologist who graduated from the <ENT1> .
+Harvested Tuples:
++-------------------------------------------------------------+--------------------------------------+---------------------------------------------+------------------------------+
+|                         Seed samples                        |            Ours (Top 20)             |             Ours (Random Sample)            |        Ours (Tail 20)        |
++-------------------------------------------------------------+--------------------------------------+---------------------------------------------+------------------------------+
+|         ['Albert Einstein', 'University of Zurich']         |        ['Einstein', 'school']        | ['Frederick Born', 'University Copenhagen'] | ['Ahmad', 'Mit University']  |
+|           ['Alan Turing', 'Princeton University']           |       ['Einstein', 'college']        |       ['Fischer', 'University Munich']      |  ['Emil', 'mit university']  |
+| ['Claude Shannon', 'Massachusetts Institute of Technology'] |      ['Einstein', 'university']      |         ['Jonathan', 'college here']        | ['Alexander', 'mit faculty'] |
+|            ['Barack Obama', 'Harvard University']           |       ['Einstein', 'Academy']        |              ['Cannon', 'Mit']              |  ['Fischer', 'mit faculty']  |
+|        ['Stephen Hawking', 'University of Cambridge']       |         ['Newton', 'school']         |           ['James', 'mit campus']           |   ['Taylor', 'mit school']   |
+|                              \                              |      ['Galileo', 'university']       |         ['Anand', 'university here']        |   ['Stein', 'mit campus']    |
+|                              \                              |        ['Newton', 'college']         |       ['Muir', 'University Edinburgh']      |   ['Brown', 'mit school']    |
+|                              \                              |   ['Galileo', 'university there']    |          ['Shaw', 'school himself']         |  ['Jean', 'mit university']  |
+|                              \                              |       ['Newton', 'university']       |       ['Allen', 'University Helsinki']      |   ['Levi', 'mit program']    |
+|                              \                              |        ['Galileo', 'school']         |            ['Levi', 'Institute']            | ['Bernstein', 'mit program'] |
+|                              \                              |        ['Galileo', 'college']        |       ['Neumann', 'University Munich']      |  ['Goethe', 'mit program']   |
+|                              \                              |    ['Robert Kerr', 'school here']    |   ['Roosevelt', 'Netherlands University']   |    ['Bose', 'mit campus']    |
+|                              \                              |        ['Galileo', 'Academy']        |       ['Edward Yang', 'school early']       |  ['Mozart', 'mit program']   |
+|                              \                              |    ['Robert Koch', 'school here']    |                ['Lee', 'Mtn']               |  ['Taylor', 'mit faculty']   |
+|                              \                              |        ['Maxwell', 'school']         |      ['Müller', 'University Freiburg']      |  ['Thomson', 'mit campus']   |
+|                              \                              | ['Alexander Fleming', 'school here'] |          ['Lenin', 'academy there']         |   ['Brown', 'mit faculty']   |
+|                              \                              |   ['Harold Klein', 'school here']    |       ['Morgan', 'University Dublin']       |   ['James', 'mit campus']    |
+|                              \                              |        ['Maxwell', 'college']        |         ['Krishna', 'college here']         |   ['Owens', 'mit campus']    |
+|                              \                              |   ['Schmidt', 'university there']    |         ['Anderson', 'school there']        |  ['Goddard', 'mit program']  |
+|                              \                              |   ['Edward Yang', 'school early']    |           ['Kumar', 'institution']          | ['Locke', 'mit university']  |
++-------------------------------------------------------------+--------------------------------------+---------------------------------------------+------------------------------+
+==================================================
+Relation: popular_sport_in
+Prompts:
+- 1.0000 <ENT0> is a popular sport in many countries, including <ENT1> .
+Harvested Tuples:
++---------------------------------+-----------------------------+--------------------------------------+-------------------------------------------------+
+|           Seed samples          |        Ours (Top 20)        |         Ours (Random Sample)         |                  Ours (Tail 20)                 |
++---------------------------------+-----------------------------+--------------------------------------+-------------------------------------------------+
+|      ['football', 'Brazil']     |   ['Basketball', 'Japan']   |     ['Hunting', 'Canada Today']      |        ['sports skiing', 'Norway Itself']       |
+| ['basketball', 'United States'] |    ['Football', 'India']    |     ['Basketball', 'Australia']      |         ['Jordan', 'afghanistan itself']        |
+|      ['baseball', 'Japan']      |    ['Football', 'Japan']    |       ['Boxing', 'India Too']        |            ['Music', 'europe itself']           |
+|       ['hockey', 'Canada']      |    ['Rugby', 'Australia']   |        ['French', 'Belgium']         | ['basque nationalism', 'Haiti Internationally'] |
+|    ['table tennis', 'China']    |    ['Football', 'Brazil']   |      ['Bali', 'Bangladesh Too']      |           ['the polo', 'spain itself']          |
+|                \                |  ['Football', 'Australia']  |           ['Zen', 'Asia']            |           ['County', 'ireland itself']          |
+|                \                |     ['Cricket', 'India']    |       ['Zimbabwe', 'Nigeria']        |            ['Jazz', 'France Itself']            |
+|                \                |   ['Basketball', 'India']   | ['Handball Handball', 'France Too']  |           ['Singing', 'France Itself']          |
+|                \                |   ['Basketball', 'Brazil']  |        ['Cricket', 'Canada']         |      ['handball football', 'france abroad']     |
+|                \                | ['Basketball', 'Australia'] |          ['Wine', 'Italy']           |      ['Regiment', 'japan internationally']      |
+|                \                |   ['Volleyball', 'Japan']   | ['chinese nationalism', 'Singapore'] |               ['##Ogo', 'Finland']              |
+|                \                |     ['Rugby', 'Canada']     |    ['Scouting', 'Canada Itself']     |           ['Hunting', 'Canada Itself']          |
+|                \                |    ['Football', 'France']   | ['French', 'France Internationally'] |           ['County', 'england itself']          |
+|                \                |     ['Rugby', 'Ireland']    |        ['Shanghai', 'Taiwan']        |               ['##Ogo', 'Iceland']              |
+|                \                |    ['Handball', 'Brazil']   |       ['Hurling', 'Scotland']        |            ['Music', 'France Itself']           |
+|                \                |     ['Rugby', 'France']     |        ['Python', 'Thailand']        |     ['Attendance', 'Japan Internationally']     |
+|                \                |   ['Basketball', 'China']   |       ['Nfl', 'Germany Today']       |              ['Nfl', 'Sweden Too']              |
+|                \                |   ['Volleyball', 'India']   |   ['basque soccer', 'Senegalese']    |          ['Uruguay', 'colombia itself']         |
+|                \                |   ['Handball', 'Germany']   |     ['Hunting', 'Canada Itself']     |              ['Wwe', 'China Today']             |
+|                \                |     ['Soccer', 'India']     |  ['chinese handball', 'Taiwan Too']  |           ['Racing', 'Europe Itself']           |
++---------------------------------+-----------------------------+--------------------------------------+-------------------------------------------------+
+==================================================
+Relation: business
+Prompts:
+- 1.0000 <ENT0> is ajapanese<ENT1> manufacturing company that is headquartered in yokohama, japan .
+Harvested Tuples:
++-----------------------------+---------------------------------------------------+-------------------------------------------+-----------------------------------------+
+|         Seed samples        |                   Ours (Top 20)                   |            Ours (Random Sample)           |              Ours (Tail 20)             |
++-----------------------------+---------------------------------------------------+-------------------------------------------+-----------------------------------------+
+|      ['Nissan', 'car']      |              ['Toyota', 'automobile']             |           ['Starlite', 'glass']           |       ['Sterling', 'jewelry and']       |
+|     ['Apple', 'laptop']     |           ['Mitsubishi', 'electronics']           |         ['Superfood', 'food and']         |      ['Hercules', 'pharmaceutical']     |
+|       ['Shell', 'oil']      |        ['Yamaha', 'electronics equipment']        |           ['Starwood', 'timber']          |           ['Jeep', 'vehicle']           |
+|      ['Nvidia', 'GPU']      |          ['Suntec', 'computer hardware']          |           ['Sunware', 'pottery']          |     ['Airlite', 'aircraft aircraft']    |
+| ["McDonald's", 'hamburger'] |        ['Genesis', 'electronics equipment']       |           ['Cobra', 'chocolate']          |    ['Airland', 'automobile vehicle']    |
+|              \              |         ['Saga', 'electronics equipment']         |          ['Sigma', 'motorcycle']          |         ['Riverside', 'bicycle']        |
+|              \              |          ['Starcraft', 'aircraft engine']         |             ['Cider', 'wine']             |      ['Abc', 'electronics device']      |
+|              \              |          ['Suntech', 'computer hardware']         |    ['Saga', 'electronics electronics']    |       ['Gem', 'jewelry furniture']      |
+|              \              |           ['Airlink', 'aircraft engine']          |     ['Airbase', 'aircraft equipment']     |          ['Fuji Steel', 'iron']         |
+|              \              |     ['Airtel', 'telecommunications equipment']    |         ['Alpha Motor', 'engine']         | ['Super Power', 'electronics computer'] |
+|              \              |          ['Star Air', 'aircraft engine']          |      ['Omega', 'electronics device']      |           ['Wilson', 'watch']           |
+|              \              |         ['Alfa', 'electronics equipment']         |    ['Fuji Plastic', 'plastic plastic']    |     ['Airwing', 'airplane aircraft']    |
+|              \              |            ['Mitsubishi', 'motorcycle']           |   ['Fuji Chemical', 'chemical chemical']  |         ['Suncraft', 'bicycles']        |
+|              \              |        ['Star Sports', 'sports equipment']        |      ['Indonesia', 'pharmaceutical']      |          ['Coke', 'cigarette']          |
+|              \              |             ['Sunrise', 'electronics']            |     ['Saga', 'electronics equipment']     |       ['Bison', 'livestock feed']       |
+|              \              |             ['Toyota', 'electronics']             |           ['Cinnamon', 'candy']           |        ['Telecom', 'technology']        |
+|              \              |             ['Mitsubishi', 'textile']             |         ['Neolite', 'cement and']         |            ['Chico', 'cigar']           |
+|              \              |            ['Fuji Plastic', 'plastics']           |          ['Sunware', 'ceramics']          |      ['Super Foods', 'foods food']      |
+|              \              |             ['Yamaha', 'electronics']             |     ['Superlight', 'motorcycle parts']    |        ['Alpha Glass', 'glasses']       |
+|              \              | ['Star Entertainment', 'entertainment equipment'] | ['Corporation', 'electronics technology'] |      ['Ajax', 'computer hardware']      |
++-----------------------------+---------------------------------------------------+-------------------------------------------+-----------------------------------------+
+==================================================

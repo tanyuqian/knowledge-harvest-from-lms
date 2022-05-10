@@ -81,6 +81,7 @@ class GPT3:
     def get_paraphrase_prompt(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
 
+        ent_tuple = [ent.lower() for ent in ent_tuple]
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
 
         for _ in range(5):

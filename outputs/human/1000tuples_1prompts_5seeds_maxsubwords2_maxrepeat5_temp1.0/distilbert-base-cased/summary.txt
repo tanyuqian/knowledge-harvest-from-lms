@@ -1,0 +1,377 @@
+Relation: somebody_do_something_at
+Prompts:
+- 1.0000 The <ENT0> can choose to <ENT1> in the <ENT2> or online .
+Harvested Tuples:
++-------------------------------------+-----------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------------------+
+|             Seed samples            |                 Ours (Top 20)                 |                       Ours (Random Sample)                       |                          Ours (Tail 20)                         |
++-------------------------------------+-----------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------------------+
+|    ['people', 'work out', 'gym']    | ['contestants', 'participate', 'competition'] |   ['professional singers', 'perform concerts', 'concert hall']   |    ['individual members', 'join either', 'community itself']    |
+|        ['bird', 'fly', 'sky']       |  ['contestants', 'participate', 'auditions']  |          ['customer', 'purchase items', 'marketplace']           |               ['guest actors', 'star', 'episode']               |
+|  ['student', 'study', 'classroom']  |   ['contestants', 'participate', 'pageant']   |    ['visiting celebrities', 'attend concerts', 'same venue']     |     ['aspiring performers', 'perform live', 'concert venue']    |
+|     ['player', 'play', 'ground']    |     ['contestants', 'participate', 'show']    |            ['student students', 'apply', 'workforce']            |   ['visiting scholars', 'attend lectures', 'academic library']  |
+| ['sodier', 'fight', 'battleground'] |       ['students', 'study', 'classroom']      |       ['online retailer', 'purchase', 'print marketplace']       |          ['guest artists', 'submit artwork', 'website']         |
+|                  \                  |     ['contestants', 'participate', 'game']    | ['professional athletes', 'compete either', 'continental level'] |  ['online artists', 'perform professionally', 'studio online']  |
+|                  \                  |          ['users', 'play', 'studio']          |      ['participating colleges', 'offer courses', 'subject']      |    ['individual students', 'attend courses', 'same language']   |
+|                  \                  |        ['students', 'study', 'library']       |          ['individual donors', 'donate money', 'bank']           | ['participating chapters', 'publish chapters', 'print edition'] |
+|                  \                  |      ['students', 'study', 'university']      |    ['user interface', 'be installed', 'desktop application']     |         ['youngsters', 'attend school', 'local school']         |
+|                  \                  |          ['users', 'play', 'browser']         |         ['username', 'be stored', 'desktop application']         |          ['userbase', 'install apps', 'mobile device']          |
+|                  \                  |           ['user', 'work', 'studio']          |     ['visiting professor', 'lecture either', 'lecture room']     |   ['young entrepreneurs', 'invest freely', 'business sector']   |
+|                  \                  |         ['students', 'study', 'field']        |              ['attendees', 'attend events', 'fall']              |       ['student applicants', 'attend colleges', 'states']       |
+|                  \                  |         ['user', 'work', 'workplace']         |    ['visiting guests', 'attend conferences', 'united states']    |     ['young people', 'study medicine', 'medical profession']    |
+|                  \                  |         ['user', 'work', 'classroom']         |       ['visiting players', 'play anywhere', 'game online']       |              ['guest producers', 'star', 'series']              |
+|                  \                  |         ['player', 'compete', 'game']         |    ['prospective applicants', 'attend courses', 'university']    |             ['user profiles', 'be uploaded', 'app']             |
+|                  \                  |           ['users', 'play', 'game']           | ['participating clubs', 'play matches', 'domestic competition']  |       ['student library', 'open books', 'library catalog']      |
+|                  \                  |        ['students', 'study', 'college']       |                ['candidates', 'vote', 'election']                |      ['professional lawyers', 'practice either', 'office']      |
+|                  \                  |         ['users', 'play', 'classroom']        |                ['student', 'teach', 'classrooms']                |        ['user users', 'download content', 'mobile phone']       |
+|                  \                  |          ['user', 'work', 'library']          |               ['owners', 'sell tickets', 'stores']               |    ['visiting celebrities', 'attend concerts', 'same venue']    |
+|                  \                  |      ['player', 'compete', 'tournament']      |  ['prospective applicant', 'apply either', 'application form']   |        ['young readers', 'write novels', 'same language']       |
++-------------------------------------+-----------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------------------+
+==================================================
+Relation: prevent
+Prompts:
+- 1.0000 It could be said that <ENT0> prevents <ENT1>, as it provides a safety net for people in the event of an unexpected setback .
+Harvested Tuples:
++---------------------------------+-----------------------------+-------------------------------------------------+-----------------------------------------------------------------+
+|           Seed samples          |        Ours (Top 20)        |               Ours (Random Sample)              |                          Ours (Tail 20)                         |
++---------------------------------+-----------------------------+-------------------------------------------------+-----------------------------------------------------------------+
+|        ['mask', 'virus']        |   ['caution', 'accidents']  | ['reducing waste', 'environmental degradation'] |            ['passive heating', 'catastrophic fires']            |
+|     ['exercise', 'disease']     |   ['smoking', 'accidents']  |    ['carbon neutrality', 'carbon emissions']    |           ['radiation trapping', 'radioactive decay']           |
+| ['study hard', 'fail the exam'] |    ['smoking', 'injury']    |             ['protection', 'injury']            |            ['the plant', 'accidental contamination']            |
+|      ['reading', 'stupid']      | ['prevention', 'accidents'] |   ['reducing fatigue', 'catastrophic fatigue']  |                ['safe flight', 'flight sickness']               |
+|   ['insurance', 'bankruptcy']   |   ['prevention', 'injury']  |      ['emergency surgery', 'complications']     |             ['reducing noise', 'unnecessary noise']             |
+|                \                |    ['caution', 'injury']    |        ['water protection', 'flood risk']       |              ['safe trading', 'premature trading']              |
+|                \                |    ['smoking', 'suicide']   |   ['water injection', 'accidental discharge']   |           ['thermal conditioning', 'thermal fatigue']           |
+|                \                |  ['security', 'accidents']  |               ['smoking', 'death']              |               ['naturalization', 'naturalisation']              |
+|                \                |   ['caution', 'detection']  |              ['flooding', 'damage']             |         ['passive communication', 'accidental contact']         |
+|                \                |     ['smoking', 'death']    |        ['snow prevention', 'snow damage']       |          ['radiation harvesting', 'radioactive decay']          |
+|                \                |   ['prevention', 'panic']   | ['electronic packaging', 'premature packaging'] |          ['mechanical testing', 'mechanical failures']          |
+|                \                |   ['smoking', 'injuries']   |   ['nuclear terrorism', 'terrorist activity']   |        ['mechanical coupling', 'premature acceleration']        |
+|                \                |   ['protection', 'injury']  |           ['ventilation', 'collapse']           |              ['safety also', 'accidental ignition']             |
+|                \                |   ['caution', 'speeding']   |   ['emergency response', 'disaster recovery']   |             ['reducing pollution', 'serious injury']            |
+|                \                | ['prevention', 'disasters'] |     ['reducing pollution', 'serious injury']    |          ['excessive heating', 'premature combustion']          |
+|                \                |   ['radiation', 'injury']   |      ['climate change', 'human migration']      |       ['climate regulation', 'environmental degradation']       |
+|                \                |    ['flooding', 'floods']   |           ['the dam', 'flood control']          |               ['mechanical coupling', 'failures']               |
+|                \                |  ['security', 'disasters']  |       ['lightning', 'catastrophic damage']      | ['electromagnetic stimulation', 'electromagnetic interference'] |
+|                \                |     ['caution', 'panic']    |             ['protection', 'theft']             |           ['reducing fatigue', 'catastrophic fatigue']          |
+|                \                |  ['prevention', 'suicide']  |    ['emergency lighting', 'accidental fires']   |               ['preventing pregnancy', 'survival']              |
++---------------------------------+-----------------------------+-------------------------------------------------+-----------------------------------------------------------------+
+==================================================
+Relation: help
+Prompts:
+- 1.0000 A <ENT0> can assist a <ENT1> with her duties .
+Harvested Tuples:
++-------------------------------------+----------------------------------------------+------------------------------------------------------+---------------------------------------------------------+
+|             Seed samples            |                Ours (Top 20)                 |                 Ours (Random Sample)                 |                      Ours (Tail 20)                     |
++-------------------------------------+----------------------------------------------+------------------------------------------------------+---------------------------------------------------------+
+|        ['doctor', 'patient']        |             ['nurse', 'patient']             |         ['trained officer', 'trained nurse']         |      ['special investigator', 'special prosecutor']     |
+|        ['teacher', 'student']       |             ['nurse', 'person']              |        ['qualified clerk', 'certified clerk']        | ['special representative', 'designated representative'] |
+|     ['housekeeper', 'housewife']    |            ['teacher', 'student']            |       ['nursing expert', 'nurse practitioner']       |        ['professional dancer', 'trained dancer']        |
+| ['teaching assistant', 'professor'] |             ['nurse', 'doctor']              |       ['competent officer', 'competent woman']       |        ['competent surgeon', 'qualified surgeon']       |
+|         ['police', 'victim']        |              ['nurse', 'child']              |       ['special detective', 'police officer']        |            ['female person', 'male employee']           |
+|                  \                  |             ['nurse', 'client']              |               ['player', 'character']                |           ['trained maid', 'trained servant']           |
+|                  \                  |            ['doctor', 'patient']             |         ['skilled surgeon', 'skilled nurse']         |        ['trained pilot', 'qualified instructor']        |
+|                  \                  |             ['teacher', 'pupil']             |            ['psychologist', 'therapist']             |       ['qualified operator', 'licensed operator']       |
+|                  \                  |  ['nurse practitioner', 'registered nurse']  |      ['qualified driver', 'registered driver']       |      ['skilled interpreter', 'skilled translator']      |
+|                  \                  |             ['person', 'woman']              |                 ['healer', 'witch']                  |          ['special advisor', 'senior adviser']          |
+|                  \                  |             ['maid', 'servant']              |                  ['witch', 'mage']                   |       ['competent physician', 'competent patient']      |
+|                  \                  |           ['counselor', 'client']            |        ['female teacher', 'male instructor']         |          ['special surgeon', 'medical officer']         |
+|                  \                  |           ['therapist', 'client']            | ['skilled administrator', 'qualified administrator'] |   ['medical professional', 'healthcare professional']   |
+|                  \                  |           ['therapist', 'patient']           |     ['trained volunteer', 'qualified volunteer']     |   ['professional interpreter', 'licensed interpreter']  |
+|                  \                  | ['nurse practitioner', 'nursing instructor'] |      ['nurse practitioner', 'registered nurse']      |        ['medical attendant', 'nursing attendant']       |
+|                  \                  |             ['person', 'client']             |     ['competent supervisor', 'competent worker']     |          ['special trainer', 'trained trainer']         |
+|                  \                  |              ['woman', 'child']              |          ['trained diver', 'diving diver']           |             ['female guard', 'male soldier']            |
+|                  \                  |          ['counselor', 'therapist']          |      ['skilled surveyor', 'qualified surveyor']      |          ['medical orderly', 'nursing orderly']         |
+|                  \                  |             ['woman', 'servant']             | ['trained administrator', 'competent administrator'] |             ['female judge', 'court clerk']             |
+|                  \                  |             ['teacher', 'child']             |   ['trained interpreter', 'competent interpreter']   |         ['medical worker', 'healthcare worker']         |
++-------------------------------------+----------------------------------------------+------------------------------------------------------+---------------------------------------------------------+
+==================================================
+Relation: place_for
+Prompts:
+- 1.0000 There's no place like the <ENT0> for <ENT1> because you have access to all the equipment you need to get a good workout .
+Harvested Tuples:
++------------------------------------+---------------------------+-------------------------------------+----------------------------------------+
+|            Seed samples            |       Ours (Top 20)       |         Ours (Random Sample)        |             Ours (Tail 20)             |
++------------------------------------+---------------------------+-------------------------------------+----------------------------------------+
+|        ['gym', 'exercise']         |    ['gym', 'exercise']    |   ['dorm used', 'dorm functions']   |       ['old school', 'gym boys']       |
+|       ['classroom', 'study']       |      ['gym', 'kids']      |       ['castle', 'any reason']      |      ['big stadium', 'baseball']       |
+|         ['office', 'work']         |      ['gym', 'girls']     |         ['resort', 'skiing']        |      ['big stadium', 'football']       |
+| ['hosipital', 'medical treatment'] |   ['kitchen', 'cooking']  |      ['stables', 'your horses']     |   ['usual playground', 'kids here']    |
+|        ['mart', 'shopping']        |      ['gym', 'yoga']      |       ['airport', 'tourists']       |     ['main garage', 'your bikes']      |
+|                 \                  |    ['gym', 'training']    |    ['dorm used', 'dorm classes']    |        ['lab looking', 'food']         |
+|                 \                  |  ['kitchen', 'breakfast'] |        ['park', 'your bike']        |       ['usual hotel', 'guests']        |
+|                 \                  |    ['kitchen', 'kids']    |     ['main arena', 'volleyball']    |        ['main mall', 'gym gym']        |
+|                 \                  |     ['garage', 'hire']    |     ['warehouse', 'maintenance']    |        ['dormite', 'dormites']         |
+|                 \                  |    ['basement', 'kids']   |      ['shop', 'your equipment']     |       ['caves', 'any visitors']        |
+|                 \                  |     ['garage', 'kids']    |    ['apartment', 'your roommate']   |     ['kitchen sink', 'your meals']     |
+|                 \                  |  ['basement', 'storage']  |       ['cave', 'any purpose']       |     ['big store', 'gym supplies']      |
+|                 \                  |    ['kitchen', 'meals']   |      ['halls', 'your classes']      | ['basement used', 'sleeping purposes'] |
+|                 \                  |    ['basement', 'rent']   |      ['big cities', 'workouts']     |        ['old one', 'your use']         |
+|                 \                  |  ['kitchen', 'cleaning']  |   ['basement except', 'upstairs']   |     ['kitchen gym', 'gym classes']     |
+|                 \                  |     ['garage', 'rent']    |        ['main hub', 'robots']       |      ['parking spot', 'your car']      |
+|                 \                  |  ['basement', 'exercise'] | ['basement used', 'sleeping rooms'] |   ['old shed', 'cleaning equipment']   |
+|                 \                  |  ['basement', 'training'] |     ['kitchen used', 'laundry']     |      ['shop shop', 'electronics']      |
+|                 \                  |      ['barn', 'kids']     |       ['cave', 'any visitors']      |     ['basement mall', 'shopping']      |
+|                 \                  | ['garage', 'maintenance'] |    ['parking lots', 'your truck']   |     ['basement here', 'your use']      |
++------------------------------------+---------------------------+-------------------------------------+----------------------------------------+
+==================================================
+Relation: synonym
+Prompts:
+- 1.0000 The two words "<ENT0>" and "<ENT1>" are antonyms .
+Harvested Tuples:
++--------------------+-----------------------------+-----------------------------+----------------------------+
+|    Seed samples    |        Ours (Top 20)        |     Ours (Random Sample)    |       Ours (Tail 20)       |
++--------------------+-----------------------------+-----------------------------+----------------------------+
+|  ['fat', 'thin']   |  ['masculine', 'feminine']  |      ['dunay', 'dunai']     |     ['sutta', 'yoga']      |
+|  ['happy', 'sad']  |    ['singular', 'plural']   |       ['suka', 'suku']      |     ['fife', 'french']     |
+| ['north', 'south'] |     ['lion', 'leopard']     |       ['fir', 'pine']       |      ['fiji', 'adji']      |
+|  ['woman', 'man']  |   ['masculine', 'female']   |     ['surma', 'surmata']    |    ['vicus', 'consul']     |
+|  ['pass', 'fail']  |       ['lion', 'wolf']      |    ['duplicate', 'copy']    |    ['monogram', 'logo']    |
+|         \          |     ['supra', 'sutura']     | ['suriname', 'archipelago'] |     ['vile', 'cruel']      |
+|         \          |      ['lion', 'eagle']      |   ['holiness', 'worship']   |    ['ficus', 'flavia']     |
+|         \          |      ['lion', 'tiger']      |     ['monogram', 'logo']    |     ['horton', 'dean']     |
+|         \          |    ['hamlet', 'village']    |    ['fiesta', 'passion']    |       ['sui', 'sii']       |
+|         \          |       ['lion', 'goat']      |       ['suzy', 'sazy']      |   ['monogram', 'symbol']   |
+|         \          |      ['dutch', 'dunk']      |       ['dun', 'dunn']       |    ['surmis', 'dumis']     |
+|         \          | ['suriname', 'archipelago'] | ['monograph', 'dictionary'] |    ['sutras', 'verses']    |
+|         \          |      ['dutch', 'duff']      |      ['suomi', 'suomo']     | ['monograph', 'catalogue'] |
+|         \          |     ['sushi', 'suzuki']     |      ['fifi', 'fifer']      |    ['fir', 'chestnut']     |
+|         \          |   ['masculine', 'plural']   |     ['fischer', 'fritz']    | ['sutras', 'commentaries'] |
+|         \          |      ['sudan', 'sudai']     |   ['fission', 'marriage']   |   ['savior', 'blessed']    |
+|         \          |     ['surya', 'suriya']     |     ['sausage', 'meat']     | ['monograph', 'magazine']  |
+|         \          |   ['singular', 'feminine']  |      ['surai', 'surak']     |      ['fide', 'vice']      |
+|         \          |      ['hamlet', 'town']     |  ['duplicate', 'composite'] |   ['duplicate', 'clone']   |
+|         \          |       ['sufi', 'safi']      |      ['sura', 'suraya']     |     ['ficus', 'gamma']     |
++--------------------+-----------------------------+-----------------------------+----------------------------+
+==================================================
+Relation: separated_by_the_ocean
+Prompts:
+- 1.0000 The pacific ocean lies between <ENT0> and <ENT1> .
+Harvested Tuples:
++-------------------------------------+-----------------------------------------+-----------------------------------------------+---------------------------------------------+
+|             Seed samples            |              Ours (Top 20)              |              Ours (Random Sample)             |                Ours (Tail 20)               |
++-------------------------------------+-----------------------------------------+-----------------------------------------------+---------------------------------------------+
+|          ['China', 'Japan']         |        ['latitude', 'longitude']        |     ['continental margin', 'ocean shelf']     |         ['pearl lake', 'pearl bay']         |
+|     ['Australia', 'New Zealand']    |            ['north', 'south']           |  ['the northeastern', 'southeastern coasts']  |       ['pearl lake', 'pearl harbour']       |
+| ['United Kingdom', 'the Continent'] |        ['southwest', 'northeast']       | ['ocean temperature', 'atmospheric pressure'] |         ['the 8th', '9th parallel']         |
+|       ['United State', 'Cuba']      |    ['tropical oceans', 'continents']    |                ['sea', 'shore']               |  ['ocean circulation', 'continental drift'] |
+|         ['Spain', 'Morocco']        |         ['australia', 'reunion']        |       ['the northern', 'western coasts']      |          ['pearly', 'ivory coasts']         |
+|                  \                  |             ['east', 'west']            |          ['ocean depth', 'elevation']         |              ['sea', 'oceans']              |
+|                  \                  |        ['southeast', 'northwest']       |       ['carboniferous', 'fossil fuels']       |      ['marine habitats', 'ecosystems']      |
+|                  \                  |        ['southwest', 'southeast']       |           ['carbonate', 'iron seas']          |      ['temperate latitude', 'altitude']     |
+|                  \                  |  ['tropical oceans', 'temperate seas']  |   ['marine sediments', 'coastal sediments']   | ['its southeastern', 'northwestern shores'] |
+|                  \                  |       ['carbon dioxide', 'oxygen']      |         ['the 8th', '10th centuries']         |        ['the 26th', '27th parallel']        |
+|                  \                  | ['tropical oceans', 'temperate oceans'] |      ['continental margin', 'coastline']      | ['its southwestern', 'northwestern coasts'] |
+|                  \                  |         ['australia', 'turkey']         |       ['carboniferous', 'fossiliferous']      |     ['middle eastern', 'eastern oceans']    |
+|                  \                  |        ['southeast', 'northeast']       |     ['the southwest', 'northwest coasts']     |         ['the 9th', '10th parallel']        |
+|                  \                  |       ['the north', 'south poles']      |               ['brazil', 'acre']              |     ['its largest', 'smallest islands']     |
+|                  \                  |        ['southwest', 'northwest']       |           ['antarctica', 'reunion']           | ['the southeastern', 'northeastern shores'] |
+|                  \                  |      ['the north', 'south coasts']      | ['its continental', 'continental boundaries'] |     ['its latitude', 'longitude ranges']    |
+|                  \                  |      ['carbon dioxide', 'nitrogen']     |       ['continental shelf', 'shoreline']      |          ['antarctica', 'reunion']          |
+|                  \                  |    ['oceanic', 'continental shelves']   |         ['the pacific', 'pantropical']        |           ['ocean depth', 'width']          |
+|                  \                  |       ['tropical', 'subtropical']       |          ['its north', 'south poles']         |         ['cape mare', 'mare island']        |
+|                  \                  |       ['the east', 'west coasts']       |      ['ocean currents', 'tidal currents']     |    ['tropical monsoon', 'monsoon winds']    |
++-------------------------------------+-----------------------------------------+-----------------------------------------------+---------------------------------------------+
+==================================================
+Relation: representative_figure
+Prompts:
+- 1.0000 <ENT0> is one of the most popular <ENT1> artists today .
+Harvested Tuples:
++------------------------------------+----------------------------------------+--------------------------------------+---------------------------------------+
+|            Seed samples            |             Ours (Top 20)              |         Ours (Random Sample)         |             Ours (Tail 20)            |
++------------------------------------+----------------------------------------+--------------------------------------+---------------------------------------+
+|   ['Lionel Messi', 'Barcelona']    |     ['the film', 'motion picture']     |       ['Beach', 'beach rock']        |       ['Rayan', 'female music']       |
+|      ['Steven Jobs', 'Apple']      |    ['the character', 'comic book']     |       ['Wong', 'martial arts']       |      ['Island', 'reggae reggae']      |
+| ['Nelson Mandela', 'South Africa'] |        ['the choir', 'choral']         |          ['Winter', 'folk']          |   ['Blackmail', 'underground punk']   |
+| ['Taylor Swift', 'country music']  |      ['the painter', 'hungarian']      |        ['Edge', 'indie pop']         |     ['Craft', 'contemporary folk']    |
+|       ['2Pac', 'pop music']        |       ['the rapper', 'rapping']        |    ['the chorus', 'gospel music']    |     ['jack white', 'black makeup']    |
+|                 \                  | ['the label', 'independent recording'] |       ['Jones', 'indie music']       |    ['Hamlet', 'contemporary folk']    |
+|                 \                  |       ['the character', 'comic']       |  ['Wood', 'contemporary graffiti']   | ['Blackmail', 'underground graffiti'] |
+|                 \                  |    ['the quartet', 'jazz quartet']     |  ['Stone', 'contemporary graffiti']  | ['black magic', 'electronic musical'] |
+|                 \                  |      ['the character', 'cartoon']      |      ['James', 'reggae reggae']      |        ['Miracle', 'crossover']       |
+|                 \                  |    ['the movie', 'motion picture']     |      ['Hijo', 'japanese manga']      |        ['Elk', 'folk musical']        |
+|                 \                  |     ['the painter', 'portraiture']     |      ['Karma', 'female music']       |    ['Glass', 'contemporary visual']   |
+|                 \                  |      ['the author', 'comic book']      |    ['the book', 'graphic design']    |       ['Pastor', 'gospel music']      |
+|                 \                  |    ['the orchestra', 'orchestral']     |       ['Magic', 'performing']        |     ['Jackhammer', 'rock guitar']     |
+|                 \                  |    ['the guitarist', 'blues rock']     |       ['Kanji', 'manga comic']       |       ['Akira', 'female manga']       |
+|                 \                  |     ['the choir', 'gospel music']      | ['black pepper', 'psychedelic rock'] |            ['Ink', 'manga']           |
+|                 \                  |    ['the choir', 'gospel singing']     |     ['the book', 'comic relief']     |     ['jack stone', 'rock musical']    |
+|                 \                  |      ['the painter', 'portrait']       |    ['Magic', 'electronic dance']     |     ['Noble', 'female performing']    |
+|                 \                  |   ['the pianist', 'classical piano']   |     ['Bass', 'electronic dance']     |      ['Slick', 'indie recording']     |
+|                 \                  |        ['the chorus', 'choral']        |         ['Rice', 'martial']          |        ['Beach', 'beach rock']        |
+|                 \                  |     ['the show', 'sketch comedy']      |          ['Burns', 'rock']           |        ['Edge', 'indie music']        |
++------------------------------------+----------------------------------------+--------------------------------------+---------------------------------------+
+==================================================
+Relation: ingredient_for
+Prompts:
+- 1.0000 One of the ingredients for making a <ENT1> is <ENT0> .
+Harvested Tuples:
++-------------------------------+------------------------------+--------------------------------------------+---------------------------------------------+
+|          Seed samples         |        Ours (Top 20)         |            Ours (Random Sample)            |                Ours (Tail 20)               |
++-------------------------------+------------------------------+--------------------------------------------+---------------------------------------------+
+|       ['flour', 'cake']       |    ['chocolate', 'cake']     |       ['potato pulp', 'potato chip']       |       ['aluminium', 'synthetic fibre']      |
+|     ['beef', 'hamburger']     |     ['edible', 'paste']      |            ['garlic', 'salad']             |          ['synthetic wax', 'mask']          |
+|       ['potato', 'chip']      |      ['edible', 'cake']      |       ['honey powder', 'honeycomb']        | ['aluminium phosphate', 'phosphate powder'] |
+|     ['fried rice', 'rice']    |     ['edible', 'cheese']     |       ['artificial wax', 'wax wax']        |         ['potatoes', 'cheesecloth']         |
+| ['stargazer pie', 'pilchard'] |      ['edible', 'dish']      |        ['yeast', 'cheese sandwich']        |    ['coconut fiber', 'coconut sandwich']    |
+|               \               |    ['edible', 'sandwich']    |     ['dairy powder', 'dairy product']      |     ['chocolate mint', 'chocolate pie']     |
+|               \               |  ['chocolate', 'cocktail']   |         ['coffee', 'coffee bean']          |       ['edible sugar', 'sugar stick']       |
+|               \               |   ['chocolate', 'dessert']   |        ['honey syrup', 'honeycomb']        |           ['nut nuts', 'nutcake']           |
+|               \               |   ['unknown', 'cocktail']    |        ['nut juice', 'fruit juice']        |     ['sugar cream', 'chocolate dessert']    |
+|               \               |  ['chocolate', 'sandwich']   |      ['synthetic gum', 'chewing gum']      |        ['dairy meat', 'dairy cheese']       |
+|               \               |   ['chocolate', 'cookie']    |     ['sodium chloride', 'soda glass']      |     ['vegetable oils', 'vegetable dish']    |
+|               \               | ['sugarcane', 'sugar syrup'] |              ['oil', 'sauce']              |   ['synthetic butter', 'butter sandwich']   |
+|               \               |   ['unknown', 'sandwich']    |      ['available', 'chocolate cake']       |           ['zinc zinc', 'coating']          |
+|               \               |       ['tea', 'cake']        |     ['tobacco', 'cigarette cigarette']     |       ['synthetic', 'synthetic fiber']      |
+|               \               |     ['tea', 'cocktail']      |         ['copper', 'copper plate']         |     ['chocolate candy', 'candy cookie']     |
+|               \               |     ['unknown', 'paste']     |     ['dairy cheese', 'dairy product']      |        ['artificial wax', 'wax wax']        |
+|               \               |     ['garlic', 'paste']      | ['vitamin chloride', 'vitamin supplement'] |           ['water', 'cheesecloth']          |
+|               \               |      ['sugar', 'cake']       |          ['milk', 'cheese cake']           |        ['wheat paste', 'wheat cake']        |
+|               \               |   ['tobacco', 'cigarette']   |   ['protein phosphate', 'protein cake']    |      ['aluminium', 'synthetic polymer']     |
+|               \               |     ['tobacco', 'cigar']     |            ['butter', 'cookie']            |   ['copper phosphate', 'copper sandwich']   |
++-------------------------------+------------------------------+--------------------------------------------+---------------------------------------------+
+==================================================
+Relation: release_time
+Prompts:
+- 1.0000 In <ENT1>, <ENT0> was released .
+Harvested Tuples:
++-----------------------------+----------------------------------------------+--------------------------------------------+-----------------------------------------+
+|         Seed samples        |                Ours (Top 20)                 |            Ours (Random Sample)            |              Ours (Tail 20)             |
++-----------------------------+----------------------------------------------+--------------------------------------------+-----------------------------------------+
+|      ['iPhone', '2007']     |      ['no sequel', 'its cancellation']       |   ['digital copies', 'limited edition']    |        ['edition', 'this issue']        |
+|    ['Windows 7', '2009']    |      ['no episode', 'its cancellation']      |    ['another variant', 'this variant']     |         ['torque', 'this round']        |
+| ['Volkswagen Golf', '1974'] |        ['no episode', 'its premiere']        |   ['this installment', 'this timeline']    |       ['one player', 'relegation']      |
+|     ['word2vec', '2013']    |         ['no episode', 'its airing']         |       ['one vehicle', 'this model']        |           ['parole', 'mayhem']          |
+|      ['Avatar', '2009']     |         ['no film', 'its existence']         |          ['data', 'this article']          |     ['his statement', 'his request']    |
+|              \              |     ['another trailer', 'this trailer']      |       ['no evidence', 'conclusion']        |       ['sultan', 'the aftermath']       |
+|              \              |      ['another trailer', 'the trailer']      |         ['no news', 'the interim']         |    ['an injunction', 'this lawsuit']    |
+|              \              |        ['no video', 'its existence']         |             ['rice', 'later']              |      ['one specimen', 'captivity']      |
+|              \              |       ['no video', 'its cancellation']       |          ['no result', 'summary']          |      ['her memoir', 'her lifetime']     |
+|              \              |       ['no video', 'its announcement']       |            ['none', 'addition']            | ['platinum copies', 'limited editions'] |
+|              \              |       ['another film', 'this decade']        |  ['neither video', 'promotional videos']   |       ['multiplayer', 'this game']      |
+|              \              |         ['an update', 'this update']         |       ['this trailer', 'the video']        |          ['chase', 'the event']         |
+|              \              |       ['another remix', 'this remix']        | ['another advertisement', 'this campaign'] |      ['copies', 'limited editions']     |
+|              \              |   ['neither single', 'promotional dates']    |          ['page', 'this article']          |      ['an inquiry', 'the inquiry']      |
+|              \              |  ['neither single', 'promotional material']  |         ['harmony', 'this album']          |             ['beta', 'June']            |
+|              \              |   ['neither single', 'promotional copies']   |         ['water', 'this process']          |          ['print', 'the 1970s']         |
+|              \              |      ['the album', 'its announcement']       |        ['judgment', 'the judgment']        |     ['its score', 'its soundtrack']     |
+|              \              |       ['one episode', 'its premiere']        |           ['colt', 'september']            |         ['cocaine', 'the 1970s']        |
+|              \              |      ['neither album', 'its existence']      |       ['zero code', 'this project']        |     ['her daughter', 'her absence']     |
+|              \              | ['no evidence', 'subsequent investigations'] |          ['never', 'this movie']           |     ['his statement', 'his protest']    |
++-----------------------------+----------------------------------------------+--------------------------------------------+-----------------------------------------+
+==================================================
+Relation: processed_from
+Prompts:
+- 1.0000 The main source of <ENT1> is quartz, which is a type of <ENT0> .
+Harvested Tuples:
++-----------------------------+----------------------------------------------+---------------------------------------------+-------------------------------------------+
+|         Seed samples        |                Ours (Top 20)                 |             Ours (Random Sample)            |               Ours (Tail 20)              |
++-----------------------------+----------------------------------------------+---------------------------------------------+-------------------------------------------+
+| ['wool', 'woollen sweater'] |           ['mineral', 'minerals']            |  ['diamond diamond', 'diamond production']  |         ['hard liquor', 'alcohol']        |
+|      ['milk', 'yogurt']     |            ['mineral', 'calcium']            |   ['synthetic silicon', 'silicon dioxide']  |      ['carbon source', 'fossil fuel']     |
+|     ['sand', 'silicon']     |          ['limestone', 'minerals']           |             ['oxide', 'silicon']            |         ['soda soda', 'soda ash']         |
+|    ['iron mine', 'iron']    |             ['mineral', 'water']             |        ['crust', 'volcanic activity']       |        ['calcium powder', 'sodium']       |
+|    ['crude oil', 'fuel']    |            ['mineral', 'income']             |        ['lava', 'volcanic activity']        |             ['pearl', 'gold']             |
+|              \              |            ['limestone', 'water']            |    ['diamond cutter', 'diamond jewelry']    |      ['thermal iron', 'mineral iron']     |
+|              \              |           ['mineral', 'phosphate']           |          ['iron ore', 'ore mined']          |     ['synthetic wine', 'grape juice']     |
+|              \              |           ['limestone', 'income']            |        ['glass plate', 'glass beads']       | ['phosphate powder', 'mineral phosphate'] |
+|              \              |           ['limestone', 'calcium']           |           ['phosphate', 'calcium']          |     ['hydraulic waste', 'wastewater']     |
+|              \              |          ['limestone', 'phosphate']          |       ['copper alloy', 'copper oxide']      |    ['diamond cutter', 'diamond quartz']   |
+|              \              |     ['volcanic rock', 'volcanic rocks']      | ['potassium mineral', 'potassium minerals'] |     ['diamond chip', 'diamond chips']     |
+|              \              |           ['phosphate', 'calcium']           |    ['synthetic phosphate', 'phosphates']    |         ['zincite', 'copper ore']         |
+|              \              | ['mineral phosphate', 'phosphate phosphate'] |       ['carbon fibre', 'carbon fiber']      |   ['ceramic alloy', 'ceramic ceramics']   |
+|              \              |           ['granite', 'minerals']            |         ['ore mineral', 'ore mined']        |     ['metallic ore', 'ore extracted']     |
+|              \              |         ['sandstone', 'mineralogy']          |              ['clay', 'water']              |    ['organic medium', 'organic matter']   |
+|              \              |          ['sandstone', 'minerals']           |         ['ore ore', 'ore deposits']         |     ['metallic gold', 'mineral gold']     |
+|              \              | ['phosphate mineral', 'phosphate minerals']  | ['phosphate mineral', 'phosphate deposits'] |       ['soda soda', 'soda chloride']      |
+|              \              |          ['phosphate', 'minerals']           |           ['limestone', 'calcium']          |  ['diamond jewelry', 'diamond jewellery'] |
+|              \              |          ['granite', 'mineralogy']           |          ['ore ore', 'mineral ore']         |     ['synthetic fuel', 'fossil fuels']    |
+|              \              | ['mineral phosphate', 'phosphate minerals']  |   ['diamond jewelry', 'diamond jewellery']  |          ['timber', 'employment']         |
++-----------------------------+----------------------------------------------+---------------------------------------------+-------------------------------------------+
+==================================================
+Relation: graduate_from
+Prompts:
+- 1.0000 <ENT0> was a world-renowned physicist and cosmologist who graduated from the <ENT1> .
+Harvested Tuples:
++-------------------------------------------------------------+--------------------------------+------------------------------------+-------------------------------------+
+|                         Seed samples                        |         Ours (Top 20)          |        Ours (Random Sample)        |            Ours (Tail 20)           |
++-------------------------------------------------------------+--------------------------------+------------------------------------+-------------------------------------+
+|         ['Albert Einstein', 'University of Zurich']         |  ['Bell', 'same institution']  |   ['Kaplan', 'physics faculty']    |   ['Strand', 'royal institution']   |
+|           ['Alan Turing', 'Princeton University']           |  ['Bell', 'same university']   |     ['Das', 'same institute']      |     ['Pastor', 'same institute']    |
+| ['Claude Shannon', 'Massachusetts Institute of Technology'] |    ['Brown', 'university']     | ['Schwartz', 'physics department'] |      ['Dell', 'same institute']     |
+|            ['Barack Obama', 'Harvard University']           |  ['Hall', 'same institution']  |      ['Hall', 'same school']       | ['robin cook', 'royal institution'] |
+|        ['Stephen Hawking', 'University of Cambridge']       |   ['Bell', 'royal academy']    |    ['Ward', 'same university']     |   ['Hayashi', 'imperial academy']   |
+|                              \                              |     ['Brown', 'institute']     |     ['Schmidt', 'institution']     |         ['Ramov', 'faculty']        |
+|                              \                              |    ['Bell', 'same school']     | ['Schmidt', 'physics department']  |    ['Nevsky', 'physics faculty']    |
+|                              \                              |  ['Hall', 'same university']   |        ['Stern', 'school']         |         ['Rodov', 'faculty']        |
+|                              \                              |   ['Bell', 'royal society']    |   ['Price', 'same institution']    |      ['Karma', 'same college']      |
+|                              \                              |     ['Hill', 'university']     |       ['Foster', 'academy']        |    ['Petrov', 'physics faculty']    |
+|                              \                              | ['Price', 'same institution']  |        ['Hill', 'academy']         |   ['Dundas', 'royal institution']   |
+|                              \                              |      ['Brown', 'school']       |   ['Hull', 'royal institution']    |   ['Ramesh', 'physics department']  |
+|                              \                              |      ['Brown', 'academy']      |    ['Klein', 'same institute']     |        ['Petrov', 'faculty']        |
+|                              \                              | ['White', 'royal observatory'] |      ['Klein', 'institution']      |       ['Rodchenko', 'faculty']      |
+|                              \                              |    ['Foster', 'university']    |     ['Müller', 'institution']      |      ['Hayesh', 'same college']     |
+|                              \                              |      ['Brown', 'college']      |    ['Hunter', 'royal academy']     |     ['Storey', 'royal college']     |
+|                              \                              |   ['Young', 'royal society']   |     ['Hunter', 'same school']      |        ['Gallov', 'faculty']        |
+|                              \                              | ['Hunter', 'same institution'] |      ['Brown', 'university']       |    ['Branko', 'physics faculty']    |
+|                              \                              |   ['Hall', 'royal academy']    |  ['Ramesh', 'physics department']  |     ['Armour', 'royal college']     |
+|                              \                              |  ['Price', 'same university']  |  ['Nakamura', 'imperial academy']  |   ['Armour', 'royal institution']   |
++-------------------------------------------------------------+--------------------------------+------------------------------------+-------------------------------------+
+==================================================
+Relation: popular_sport_in
+Prompts:
+- 1.0000 There is no denying that <ENT0> is by far the most popular sport in <ENT1> .
+Harvested Tuples:
++---------------------------------+---------------------------+-------------------------------------------+------------------------------------+
+|           Seed samples          |       Ours (Top 20)       |            Ours (Random Sample)           |           Ours (Tail 20)           |
++---------------------------------+---------------------------+-------------------------------------------+------------------------------------+
+|      ['football', 'Brazil']     |   ['football', 'turkey']  |  ['squashleading', 'squash competitions'] |        ['piano', 'tennis']         |
+| ['basketball', 'United States'] |    ['boxing', 'turkey']   |         ['manga', 'manga culture']        |      ['espionage', 'general']      |
+|      ['baseball', 'Japan']      |   ['football', 'europe']  |           ['poker', 'existence']          |       ['cars', 'motorsport']       |
+|       ['hockey', 'Canada']      |     ['golf', 'turkey']    |         ['anime', 'manga history']        |       ['tapping', 'squash']        |
+|    ['table tennis', 'China']    |   ['surfing', 'turkey']   |          ['cricket', 'pakistan']          |      ['geometry', 'physics']       |
+|                \                |     ['golf', 'europe']    | ['ballroom ballroom', 'ballroom dancing'] |       ['playground', 'town']       |
+|                \                |   ['surfing', 'europe']   |          ['wrestling', 'norway']          |         ['film', 'cinema']         |
+|                \                |  ['handball', 'estonia']  |        ['street hurling', 'dublin']       |     ['modeling', 'gymnastics']     |
+|                \                |   ['cycling', 'europe']   |          ['brazil', 'Venezuela']          |  ['teaching', 'modern societies']  |
+|                \                |   ['cricket', 'turkey']   |           ['baseball', 'sports']          |     ['geology', 'archaeology']     |
+|                \                |    ['rugby', 'europe']    |    ['extreme yoga', 'western culture']    |   ['kindergarten', 'education']    |
+|                \                |   ['handball', 'norway']  |   ['surfingboarding', 'surfing circles']  | ['animation', 'cartoon animation'] |
+|                \                |   ['rugby', 'australia']  |           ['art', 'modern art']           |        ['foil', 'fencing']         |
+|                \                | ['volleyball', 'estonia'] |         ['ballet', 'modern times']        |     ['communism', 'hungarian']     |
+|                \                |    ['hockey', 'norway']   |          ['portugal', 'spanish']          |        ['vodka', 'hungary']        |
+|                \                |  ['volleyball', 'norway'] |            ['reggae', 'africa']           | ['animation', 'cartoon industry']  |
+|                \                |  ['wrestling', 'norway']  |           ['debate', 'schools']           |   ['teaching', 'modern schools']   |
+|                \                |   ['soccer', 'estonia']   |         ['freestyle', 'swimming']         |       ['fiddle', 'ireland']        |
+|                \                |    ['soccer', 'norway']   |           ['pistol', 'hungary']           |    ['animation', 'cartoondom']     |
+|                \                |  ['cricket', 'australia'] |       ['beach tennis', 'Singapore']       |  ['animation', 'cartoon history']  |
++---------------------------------+---------------------------+-------------------------------------------+------------------------------------+
+==================================================
+Relation: business
+Prompts:
+- 1.0000 <ENT0> is a company that sells <ENT1>s .
+Harvested Tuples:
++-----------------------------+------------------------------------+--------------------------------------+--------------------------------------+
+|         Seed samples        |           Ours (Top 20)            |         Ours (Random Sample)         |            Ours (Tail 20)            |
++-----------------------------+------------------------------------+--------------------------------------+--------------------------------------+
+|      ['Nissan', 'car']      |      ['the brewery', 'beer']       |        ['Horizon', 'mobile']         |      ['ace products', 'optic']       |
+|     ['Apple', 'laptop']     |      ['the bank', 'banking']       | ['candy brands', 'chocolate candy']  |    ['Micronation', 'microcycle']     |
+|       ['Shell', 'oil']      |  ['the pharmacy', 'prescription']  |       ['Toybox', 'toys toys']        |    ['Microstate', 'microscopic']     |
+|      ['Nvidia', 'GPU']      |      ['the bakery', 'bread']       |   ['Microlux', 'mobile wireless']    | ['apple cigarettes', 'apple brand']  |
+| ["McDonald's", 'hamburger'] |      ['the pharmacy', 'drug']      |        ['Avid', 'ultralight']        |         ['ace plc', 'opsin']         |
+|              \              |  ['the brewery', 'brewery beer']   |      ['Toymaster', 'toys and']       |   ['apple juice', 'apples juice']    |
+|              \              |       ['the bank', 'credit']       |       ['Smartfood', 'apparel']       |       ['Acetsu', 'car model']        |
+|              \              |      ['the bank', 'mortgage']      |      ['Smartmaster', 'laptop']       |     ['vintage toys', 'toys for']     |
+|              \              |   ['the brands', 'brand brand']    |        ['Avid', 'ultrafast']         |        ['ace stores', 'ops']         |
+|              \              |    ['the company', 'car model']    |    ['pizza foods', 'pizza pizza']    |      ['Toyola', 'model engine']      |
+|              \              |   ['the factory', 'auto parts']    |           ['Ace', 'toys']            |        ['Acera', 'car model']        |
+|              \              |     ['Target', 'mobile phone']     | ['smart bikes', 'smart motorcycle']  |    ['candy food', 'snack foods']     |
+|              \              |   ['the trader', 'trading card']   | ['apple packaging', 'apple product'] | ['candy brands', 'chocolate candy']  |
+|              \              |      ['the bakery', 'baking']      |      ['Smartcell', 'appliance']      |      ['Microgen', 'microgene']       |
+|              \              |    ['the pharmacy', 'generic']     |      ['Smartcard', 'card card']      |     ['Candy', 'chocolate candy']     |
+|              \              |     ['the brewery', 'brewing']     |           ['Acer', 'opel']           |          ['Pizzas', 'food']          |
+|              \              | ['the pharmacy', 'pharmaceutical'] |      ['smart labs', 'digital']       |       ['Acetone', 'synthetic']       |
+|              \              |    ['the trader', 'commodity']     |   ['micro foods', 'micro vitamin']   |    ['apple hardware', 'mac and']     |
+|              \              |        ['Apple', 'vitamin']        |     ['Microfood', 'frozen food']     |        ['Aceta', 'car model']        |
+|              \              |       ['the bank', 'dollar']       |      ['diamond mills', 'grade']      | ['candy factory', 'chocolate brand'] |
++-----------------------------+------------------------------------+--------------------------------------+--------------------------------------+
+==================================================
