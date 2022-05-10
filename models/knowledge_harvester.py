@@ -5,7 +5,7 @@ from scipy.special import softmax
 from models.language_model_wrapper import LanguageModelWrapper
 from models.entity_tuple_searcher import EntityTupleSearcher
 
-from data_utils.data_utils import get_n_ents, fix_prompt_style
+from data_utils.data_utils import get_n_ents # , fix_prompt_style
 
 
 class KnowledgeHarvester:
@@ -35,7 +35,7 @@ class KnowledgeHarvester:
 
     def init_prompts(self, prompts):
         for prompt in prompts:
-            self._weighted_prompts.append([fix_prompt_style(prompt), 1.])
+            self._weighted_prompts.append([prompt, 1.])
 
     def set_seed_ent_tuples(self, seed_ent_tuples):
         self._seed_ent_tuples = seed_ent_tuples
