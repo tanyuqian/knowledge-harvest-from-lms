@@ -1,3 +1,4 @@
+import os
 import fire
 import json
 import random
@@ -17,10 +18,10 @@ def get_samples(rel_set, rel, conceptnet, lama, n_samples):
 
 
 def main(output_dir, n_present=20):
-    rel_set = 'conceptnet' if 'conceptnet' in output_dir else 'lama'
+    rel_set = output_dir.split('/')[1]
 
-    conceptnet = ConceptNet() if rel_set == 'conceptnet' else None
-    lama = LAMA() if rel_set == 'lama' else None
+    # conceptnet = ConceptNet() if rel_set == 'conceptnet' else None
+    # lama = LAMA() if rel_set == 'lama' else None
 
     relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
 
@@ -29,17 +30,20 @@ def main(output_dir, n_present=20):
     for rel, info in relation_info.items():
         columns = {}
 
-        columns[f'{rel_set} Samples'] = get_samples(
-            rel_set=rel_set,
-            rel=rel,
-            conceptnet=conceptnet,
-            lama=lama,
-            n_samples=n_present)
+        columns[f'Seed samples'] = info['seed_ent_tuples']
+
+        if not os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
+            print(f'outputs of relation \"{rel}\" not found. skipped.')
+            continue
 
         weighted_prompts = json.load(open(f'{output_dir}/{rel}/prompts.json'))
-
         weighted_ent_tuples = json.load(open(
             f'{output_dir}/{rel}/ent_tuples.json'))[:500]
+
+        if weighted_ent_tuples == []:
+            print(f'outputs of relation \"{rel}\" not found. skipped.')
+            continue
+
 
         columns[f'Ours (Top {n_present})'] = [
             str(ent_tuple) for ent_tuple, _ in weighted_ent_tuples[:n_present]]

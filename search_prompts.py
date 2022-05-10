@@ -90,10 +90,15 @@ def main(rel_set='conceptnet', n_seed_tuples=5):
                 'init_prompts': info['init_prompts'],
                 'seed_ent_tuples': seed_ent_tuples
             }
+    elif rel_set == 'human':
+        relation_info = json.load(open('data/relations_human_5seeds.json'))
     else:
         raise ValueError
 
     for rel, info in relation_info.items():
+        if rel not in ['popular_sport_in', 'business']:
+            continue
+
         info['prompts'] = search_prompts(
             init_prompts=info['init_prompts'],
             seed_ent_tuples=info['seed_ent_tuples'])

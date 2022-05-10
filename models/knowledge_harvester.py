@@ -5,7 +5,7 @@ from scipy.special import softmax
 from models.language_model_wrapper import LanguageModelWrapper
 from models.entity_tuple_searcher import EntityTupleSearcher
 
-from data_utils.data_utils import get_n_ents, get_sent
+from data_utils.data_utils import get_n_ents, fix_prompt_style
 
 
 class KnowledgeHarvester:
@@ -35,8 +35,7 @@ class KnowledgeHarvester:
 
     def init_prompts(self, prompts):
         for prompt in prompts:
-            # prompt = prompt.strip(' .').lower().replace('<ent', '<ENT')
-            self._weighted_prompts.append([prompt, 1.])
+            self._weighted_prompts.append([fix_prompt_style(prompt), 1.])
 
     def set_seed_ent_tuples(self, seed_ent_tuples):
         self._seed_ent_tuples = seed_ent_tuples
@@ -75,11 +74,15 @@ class KnowledgeHarvester:
             for n_masks, tuples in tokenized_entity_pairs.items():
                 # print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
                 scores = self._model.score_tuples(tuples, prompt, n_masks=n_masks)
+                torch.cuda.empty_cache()
+
                 for score, ent_tuple in zip(scores, tuples):
                     # print(f"score and tuple: {score}, {ent_tuple}")
                     prompt_result_list.append((ent_tuple[1], (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item()))) # += [(ent_tuple[1], score) ]
             prompt_result_list = sorted(prompt_result_list, key=lambda x:x[0])
             result_list.append([result[1] for result in prompt_result_list])
+
+
         tuples_list = [result[0] for result in prompt_result_list]
         return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
     
