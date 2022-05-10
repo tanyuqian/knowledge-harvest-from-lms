@@ -94,7 +94,7 @@ def get_loss_gradients(harvester, embedding_gradient, prompt, ent_with_lengths, 
     losses = 0
     n_prompt = len(prompt)
     for n_ents, ents in ent_with_lengths.items():
-        encodings = harvester._model._tokenizer('<mask> ' * n_ents[0] + " ".join(["[T]"] * n_prompt) + ' <mask>' * n_ents[1], return_tensors='pt').to("cuda")
+        encodings = harvester._model._tokenizer('<mask> ' * n_ents[0] + '<mask> ' * n_ents[1] + " ".join(["[T]"] * n_prompt) + ' <mask>' * n_ents[2], return_tensors='pt').to("cuda")
         span = (encodings["input_ids"] == harvester._model._tokenizer.encode("[T]", add_special_tokens=False)[0]).to('cuda')
         encodings["input_ids"][span] = prompt # replace with the current prompt...
         
@@ -112,18 +112,28 @@ def get_loss_gradients(harvester, embedding_gradient, prompt, ent_with_lengths, 
                 new_masked_inputs = copy.deepcopy(cur_masked_inputs)
                 cur_masked_inputs = new_masked_inputs
                 cur_masked_inputs["input_ids"][0][1 + step] = ents[j][0][0][step]
-                
+
             for step in range(n_ents[1]):
                 logits = harvester._model.model(**cur_masked_inputs).logits
                 logprobs = torch.log_softmax(logits, dim=-1)[0]
                 scores.append(
-                    logprobs[-n_ents[1] + step - 1][ents[j][0][1][step]])
+                    logprobs[1 + step + n_ents[0]][ents[j][0][1][step]])
                 # print(scores[-1])
                 new_masked_inputs = copy.deepcopy(cur_masked_inputs)
                 cur_masked_inputs = new_masked_inputs
-                cur_masked_inputs["input_ids"][0][-n_ents[1] + step - 1] = ents[j][0][1][step]
+                cur_masked_inputs["input_ids"][0][1 + step + n_ents[0]] = ents[j][0][1][step]
+              
+            for step in range(n_ents[2]):
+                logits = harvester._model.model(**cur_masked_inputs).logits
+                logprobs = torch.log_softmax(logits, dim=-1)[0]
+                scores.append(
+                    logprobs[-n_ents[2] + step - 1][ents[j][0][2][step]])
+                # print(scores[-1])
+                new_masked_inputs = copy.deepcopy(cur_masked_inputs)
+                cur_masked_inputs = new_masked_inputs
+                cur_masked_inputs["input_ids"][0][-n_ents[2] + step - 1] = ents[j][0][2][step]
                 
-            sum_score = sum(scores) / 2
+            sum_score = sum(scores) / 3
             mean_score = sum(scores) / len(scores)
             min_score = min(scores)
             loss = - (sum_score * weights[0] + mean_score * weights[1] + min_score * weights[2])
@@ -154,13 +164,15 @@ def hotflip_attack(averaged_grad,
         _, top_k_ids = gradient_dot_embedding_matrix.topk(num_candidates)
     return top_k_ids
 
-def main(rel_set="humaneval", n_prompt=5, patience=20, num_candidates=10, max_iters=200):
-    # n_prompt = 5:  "<s> <ENT0> <T> <T> <T> <T> <T> <ENT1> </s>"
+def main(rel_set="human", n_prompt=5, patience=20, num_candidates=10, max_iters=200):
+    # n_prompt = 5:  "<s> <ENT0> <ENT1> <T> <T> <T> <T> <T> <ENT1> </s>"
     output_file = f"data/autoprompt_{rel_set}.txt"
     seed_file = f"data/relation_info_{rel_set}_5seeds.json"
     rel_info = json.load(open(seed_file, 'r'))
 
     for rel, info in rel_info.items():
+        if rel != 'somebody_do_something_at':
+            continue
         tuples = info["seed_ent_tuples"]
         tuples = [list(t) for t in tuples]
         harvester = KnowledgeHarvester("roberta-large")
@@ -169,7 +181,7 @@ def main(rel_set="humaneval", n_prompt=5, patience=20, num_candidates=10, max_it
         embeddings = harvester._model._model.roberta.embeddings.word_embeddings
         add_task_specific_tokens(harvester._model._tokenizer)
         embedding_gradient = GradientStorage(embeddings)
-        ent_with_lengths = harvester._model.tokenize_tuples_by_len(tuples, not_at_beginning=[False, True])
+        ent_with_lengths = harvester._model.tokenize_tuples_by_len(tuples, not_at_beginning=[False, True, True])
         harvester._model._model = harvester._model._model.to("cuda")
         prompt = harvester._model._tokenizer.encode("<mask>" * n_prompt, add_special_tokens=False, return_tensors='pt')[0].to("cuda")
         no_improvement = 0
@@ -206,7 +218,7 @@ def main(rel_set="humaneval", n_prompt=5, patience=20, num_candidates=10, max_it
                 print("Not found...")
                 
         with open(output_file, 'a') as result_file:
-            result_file.write(json.dumps({rel: "<ENT0>"+harvester._model._tokenizer.decode(prompt)+" <ENT1>", f"raw_{rel}": prompt.tolist()}) + "\n")
+            result_file.write(json.dumps({rel: "<ENT0> <ENT1>"+harvester._model._tokenizer.decode(prompt)+" <ENT1>", f"raw_{rel}": prompt.tolist()}) + "\n")
 
 if __name__ == "__main__":
     fire.Fire(main)
