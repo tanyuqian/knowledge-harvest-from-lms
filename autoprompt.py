@@ -1,4 +1,5 @@
 
+import fire
 import torch
 import copy
 from transformers import RobertaTokenizer, RobertaForMaskedLM
@@ -153,13 +154,8 @@ def hotflip_attack(averaged_grad,
         _, top_k_ids = gradient_dot_embedding_matrix.topk(num_candidates)
     return top_k_ids
 
-def main():
-
-    n_prompt = 5  # "<s> <ENT0> <T> <T> <T> <T> <T> <ENT1> </s>""
-    patience = 20
-    num_candidates = 10
-    max_iters = 200
-    rel_set = "humaneval"
+def main(rel_set="humaneval", n_prompt=5, patience=20, num_candidates=10, max_iters=200):
+    # n_prompt = 5:  "<s> <ENT0> <T> <T> <T> <T> <T> <ENT1> </s>"
     output_file = f"data/autoprompt_{rel_set}.txt"
     seed_file = f"data/relation_info_{rel_set}_5seeds.json"
     rel_info = json.load(open(seed_file, 'r'))
@@ -213,4 +209,4 @@ def main():
             result_file.write(json.dumps({rel: "<ENT0>"+harvester._model._tokenizer.decode(prompt)+" <ENT1>", f"raw_{rel}": prompt.tolist()}) + "\n")
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)
