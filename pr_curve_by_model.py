@@ -13,6 +13,7 @@ MODEL_NAMES = [
     'roberta-large',
     'roberta-base',
     'bert-large-cased',
+    'bert-base-cased',
     'distilbert-base-cased']
 
 

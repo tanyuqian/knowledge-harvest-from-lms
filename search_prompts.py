@@ -96,7 +96,7 @@ def main(rel_set='conceptnet', n_seed_tuples=5):
         raise ValueError
 
     for rel, info in relation_info.items():
-        if rel not in ['popular_sport_in', 'business']:
+        if info['prompts'] != []:
             continue
 
         info['prompts'] = search_prompts(

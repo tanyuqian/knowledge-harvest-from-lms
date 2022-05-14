@@ -28,9 +28,19 @@ def my_precision_recall_curve(y_true, y_score):
     # sorted by recall
     return np.array(precision), np.array(recall)
 
+
+def load_autoprompts(rel_set):
+    autoprompts = {}
+    for line in open(f'data/autoprompt_{rel_set}.txt').readlines():
+        for key, value in json.loads(line).items():
+            autoprompts[key] = value
+
+    return autoprompts
+
+
 SETTINGS = {
-    'conceptnet': ['comet', 'init', 1, 5, 20],
-    'lama': ['LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
+    'conceptnet': ['autoprompt', 'comet', 'init', 1, 5, 20],
+    'lama': ['autoprompt', 'LPAQA-manual_paraphrase', 'LPAQA-mine', 'LPAQA-paraphrase',
              'init', 1, 5, 20]
     # 'lama': ['cls']  # for test 
 }
@@ -54,6 +64,8 @@ def main(rel_set='lama',
 
         # lama_scorer = torch.load('roberta-large_lama_1e-05_0.0001_bestmodel.pt')
         # lama_scorer.encoder.eval()
+
+    autoprompts = load_autoprompts(rel_set=rel_set)
 
     save_dir = f'curves/{model_name}-temp{prompt_temp}/{rel_set}'
     os.makedirs(save_dir, exist_ok=True)
@@ -105,10 +117,12 @@ def main(rel_set='lama',
 
                     for prompt, weight in knowledge_harvester._weighted_prompts:
                         print(f'{weight:.6f} {prompt}')
-
                 else:
-                    prompts = info['init_prompts'] if setting == 'init' \
-                        else info['prompts']
+                    if setting == 'autoprompt':
+                        prompts = [autoprompts[rel]]
+                    else:
+                        prompts = info['init_prompts'] if setting == 'init' \
+                            else info['prompts']
 
                     knowledge_harvester.init_prompts(prompts=prompts)
                     knowledge_harvester.set_seed_ent_tuples(

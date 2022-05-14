@@ -149,7 +149,10 @@ class EntityTupleSearcher:
             pred_ent = self._model.tokenizer.decode(cur_token_ids)
 
             pred_ent = pred_ent.strip().lower()
-            if pred_ent in stopwords or len(pred_ent.replace(' ', '')) <= 2:
+            if any([word in stopwords for word in pred_ent.split()]):
+                return
+
+            if len(pred_ent.replace(' ', '')) <= 2:
                 return
 
             if min([len(t) for t in pred_ent.split()]) <= 1:
