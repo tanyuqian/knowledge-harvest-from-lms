@@ -27,11 +27,11 @@ def main(rel_set='conceptnet',
     for rel, info in relation_info.items():
         print(f'Harvesting for relation {rel}...')
 
-        setting = f'{n_tuples}tuples'
+        setting = f'{max_n_ent_tuples}tuples'
         if use_init_prompts:
             setting += '_initprompts'
         else:
-            setting += f'_top{n_prompts}prompts'
+            setting += f'_top{max_n_prompts}prompts'
 
         output_dir = f'results/{rel_set}/{setting}/{model_name}'
         if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
