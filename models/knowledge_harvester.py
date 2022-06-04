@@ -32,179 +32,21 @@ class KnowledgeHarvester:
     def clear(self):
         self._weighted_prompts = []
         self._weighted_ent_tuples = []
-
-    def init_prompts(self, prompts):
-        for prompt in prompts:
-            self._weighted_prompts.append([fix_prompt_style(prompt), 1.])
+        self._seed_ent_tuples = None
 
     def set_seed_ent_tuples(self, seed_ent_tuples):
         self._seed_ent_tuples = seed_ent_tuples
 
-    # def get_ent_tuple_weight(self, ent_tuple):
-    #     score = 0.
-    #     for prompt, weight in self._weighted_prompts:
-    #         score += weight * self.score(prompt=prompt, ent_tuple=ent_tuple)
-    #     return score
+    def set_prompts(self, prompts):
+        for prompt in prompts:
+            self._weighted_prompts.append([fix_prompt_style(prompt), 1.])
 
-    # need to be batchified
-    def get_ent_tuples_weight(self, ent_tuples, metric_weights=(1/3, 1/3, 1/3)):
-        scores, tuples = self._score_tuples_prompts(ent_tuples)
-        # now the score has the shape (n_prompts, n_tuples, 3)
-        metric_weights = torch.tensor(metric_weights)
-        scores = torch.sum(scores * metric_weights.reshape(1, 1, *metric_weights.shape)\
-            .expand(*scores.shape), dim=-1)
-        # aggregate all the metrics. Now (n_prompts, n_tuples)
-
-        weights = torch.tensor([weight for prompt, weight in self._weighted_prompts])
-        scores = torch.sum(scores * weights.reshape(*weights.shape, 1).expand(*scores.shape), dim=0)
-        scores_with_tuples = [(ent_tuple, score.item()) for score, ent_tuple in zip(scores, tuples)]
-        return scores_with_tuples
-        
-    def _score_tuples_prompts(self, ent_tuples):
-        result_list = []
-        # tuples_list = []
-        n_ents = get_n_ents(self._weighted_prompts[0][0])
-        # tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
-        for prompt, weight in self._weighted_prompts:
-            prompt_result_list = []
-            not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
-            tokenized_entity_pairs = self._model.tokenize_tuples_by_len(ent_tuples, not_at_beginning)
-            # {(len_ent_1, len_ent_2, ...): [(ent_1_ids, ent_2_ids, ...), (ent_1_text, ent_2_text, ...), ...]}
-            print(f"scoring with prompts: '{prompt}' ...")
-            for n_masks, tuples in tokenized_entity_pairs.items():
-                # print(f"scoring tuples of length {n_masks}... {len(tuples)} in total.")
-                scores = self._model.score_tuples(tuples, prompt, n_masks=n_masks)
-                torch.cuda.empty_cache()
-
-                for score, ent_tuple in zip(scores, tuples):
-                    # print(f"score and tuple: {score}, {ent_tuple}")
-                    prompt_result_list.append((ent_tuple[1], (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item()))) # += [(ent_tuple[1], score) ]
-            prompt_result_list = sorted(prompt_result_list, key=lambda x:x[0])
-            result_list.append([result[1] for result in prompt_result_list])
-
-
-        tuples_list = [result[0] for result in prompt_result_list]
-        return torch.tensor(result_list), tuples_list  # (n_prompt, n_tuples, 3), (n_tuples,)
-    
-    
-
-    def score_single(self, prompt, ent_tuple, weights=(1/3, 1/3, 1/3)):
-        n_ents = get_n_ents(prompt)
-        # tuples_list = sorted(ent_tuples) # must be in the same order... (alphabet)
-        not_at_beginning = [prompt.strip().find(f'<ENT{i}>') != 0 for i in range(n_ents)]
-        tokenized_entity_pairs = self._model.tokenize_tuples_by_len([ent_tuple], not_at_beginning)
-        # print(f"scoring with prompts: '{prompt}' ...")
-        # print(prompt, ent_tuple)
-        # print(tokenized_entity_pairs)
-        n_masks = list(tokenized_entity_pairs.keys())[0]
-        tokenized_tuple = tokenized_entity_pairs[n_masks][0]
-        scores = self._model.score_tuples([tokenized_tuple], prompt, n_masks=n_masks)
-        score = scores[0]
-        result = (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item())
-        return result[0] * weights[0] + result[1] * weights[1] + result[2] * weights[2]
-
-    # updated this function to avoid the use of `get_mask_spans` 
-    # tested ok. The result is the same except for one detail in tokenization 
-    # I capitalize the first letter of the entity when it's at the front of the prompt
-    '''
-    def score_single(self, prompt, ent_tuple, weights=(1/3, 1/3, 1/3)):
-        assert get_n_ents(prompt) == len(ent_tuple)
-
-        sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
-        mask_spans = self._model.get_mask_spans(
-            prompt=prompt, ent_tuple=ent_tuple)
-
-        masked_inputs = self._model.tokenizer(
-            sent, return_tensors='pt').to('cuda')
-        truth_input_ids = self._model.tokenizer(sent)['input_ids']
-        for mask_span in mask_spans:
-            for i in range(mask_span[0], mask_span[1]):
-                masked_inputs['input_ids'][0][i] = self._model.mask_token_id
-
-        scores = []
-        for mask_span in mask_spans:
-            for mask_pos in range(mask_span[0], mask_span[1]):
-                logits = self._model.model(**masked_inputs).logits
-                logprobs = torch.log_softmax(logits, dim=-1)[0]
-                scores.append(
-                    logprobs[mask_pos][truth_input_ids[mask_pos]].item())
-                masked_inputs['input_ids'][0][mask_pos] = \
-                    truth_input_ids[mask_pos]
-
-        sum_score = sum(scores) / len(ent_tuple)
-        mean_score = sum(scores) / len(scores)
-        min_score = min(scores)
-        return weights[0] * sum_score + weights[1] * mean_score + \
-               weights[2] * min_score
-    '''
-
-    def update_ent_tuples(self):
-        collected_tuples = self._ent_tuple_searcher.search(
-            weighted_prompts=self._weighted_prompts,
-            n=self._max_n_ent_tuples,
-            max_ent_repeat=self._max_ent_repeat,
-            max_ent_subwords=self._max_ent_subwords)
-
-        ent_tuples = sorted(
-            [t[0] for t in self._weighted_ent_tuples] + collected_tuples)
-
-        ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
-                      if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
-
-        ent_tuples_exp = []
-        for ent_tuple in ent_tuples:
-            for t in range(1 << len(ent_tuple)):
-                bin_t = f'{t:b}'
-                bin_t = '0' * (len(ent_tuple) - len(bin_t)) + bin_t
-
-                ent_tuple_exp = []
-                for b, ent in zip(bin_t, ent_tuple):
-                    if b == '1':
-                        ent_tuple_exp.append(ent.title())
-                    else:
-                        ent_tuple_exp.append(ent)
-                ent_tuples_exp.append(ent_tuple_exp)
-
-        weighted_ent_tuples_exp = self.get_ent_tuples_weight(ent_tuples_exp)
-        torch.cuda.empty_cache()
-
-        weighted_ent_tuples_exp.sort(key=lambda t: t[1], reverse=True)
-
-        self._weighted_ent_tuples = []
-        flag_set = set()
-        for ent_tuple, weight in weighted_ent_tuples_exp:
-            ent_tuple_str = '|||'.join(ent_tuple).lower()
-            if ent_tuple_str not in flag_set:
-                flag_set.add(ent_tuple_str)
-                self._weighted_ent_tuples.append([ent_tuple, weight])
-
-            if len(self._weighted_ent_tuples) > self._max_n_ent_tuples:
-                break
-
-        # self._weighted_ent_tuples = self.get_ent_tuples_weight(ent_tuples)
-        # self._weighted_ent_tuples = sorted(
-        #     self._weighted_ent_tuples,
-        #     key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
-
-    def validate_prompts(self, metric_weights):
-        weights = []
+    def update_prompts(self):
         for i, (prompt, _) in enumerate(self._weighted_prompts):
             scores = []
             for ent_tuple in self._seed_ent_tuples:
                 ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
-                scores.append(self.score_single(
-                    prompt=prompt, ent_tuple=ent_tuple, weights=metric_weights))
-            weights.append(sum(scores) / len(scores))
-        return weights
-
-    def update_prompts(self, metric_weights=(1/3, 1/3, 1/3)):
-        for i, (prompt, _) in enumerate(self._weighted_prompts):
-            scores = []
-            for ent_tuple in self._seed_ent_tuples:
-                ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
-
-                scores.append(self.score_single(
-                    prompt=prompt, ent_tuple=ent_tuple, weights=metric_weights))
+                scores.append(self.score(prompt=prompt, ent_tuple=ent_tuple))
 
             self._weighted_prompts[i][1] = \
                 sum(scores) / len(scores) / self._prompt_temp
@@ -219,6 +61,9 @@ class KnowledgeHarvester:
 
         for prompt, weight in self._weighted_prompts:
             print(f'{weight:.4f} {prompt}')
+
+    def score(self, prompt, ent_tuple):
+
 
     @property
     def weighted_ent_tuples(self):

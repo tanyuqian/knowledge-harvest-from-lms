@@ -1,9 +1,8 @@
 import torch
 import heapq
-import time
 
-from data_utils.data_utils import get_n_ents, get_mask_index_in_prompt, \
-    stopwords
+from data_utils.data_utils import get_n_ents, get_mask_place, \
+    get_masked_prompt, get_n_masks, stopwords
 
 
 class EntityTupleSearcher:
@@ -13,34 +12,18 @@ class EntityTupleSearcher:
     def search(self, weighted_prompts, max_ent_repeat, max_ent_subwords, n):
         n_ents = get_n_ents(weighted_prompts[0][0])
 
-        start = time.time()
-
         collected_tuples_heap = []
         repeat_cnt = {}
 
-        if max_ent_subwords == 2:
-            for t in range(1 << n_ents):
-                bin_t = f'{t:b}'
-                bin_t = '0' * (n_ents - len(bin_t)) + bin_t
+        for t in range(max_ent_subwords ** n_ents):
+            n_masks = get_n_masks(
+                t=t, n_ents=n_ents, max_ent_subwords=max_ent_subwords)
+            print(f'searching with n_masks={n_masks}')
 
-                n_masks = [int(ch) + 1 for ch in bin_t]
-                print(f'searching with n_masks={n_masks}')
-
-                self.dfs(
-                    weighted_prompts=weighted_prompts,
-                    n_ents=n_ents,
-                    n_masks=n_masks,
-                    cur_ent_tuple=[],
-                    cur_logprobs=[],
-                    collected_tuples_heap=collected_tuples_heap,
-                    repeat_cnt=repeat_cnt,
-                    max_ent_repeat=max_ent_repeat,
-                    n=n)
-        else:
             self.dfs(
                 weighted_prompts=weighted_prompts,
                 n_ents=n_ents,
-                n_masks=[1] * n_ents,
+                n_masks=n_masks,
                 cur_ent_tuple=[],
                 cur_logprobs=[],
                 collected_tuples_heap=collected_tuples_heap,
@@ -48,15 +31,7 @@ class EntityTupleSearcher:
                 max_ent_repeat=max_ent_repeat,
                 n=n)
 
-        collected_tuples = sorted(collected_tuples_heap, reverse=True)
-
-        print(f"searched for entity tuples in {time.time() - start} s", )
-
-        # for weight, ent_tuple in collected_tuples:
-        #     print(ent_tuple, weight)
-        # print('=' * 50)
-
-        return [t[1] for t in collected_tuples]
+        return [t[1] for t in collected_tuples_heap]
 
     def dfs(self,
             weighted_prompts,
@@ -86,11 +61,6 @@ class EntityTupleSearcher:
                 for ent in heap_top[1]:
                     repeat_cnt[ent] = repeat_cnt[ent] - 1
 
-            # if len(collected_tuples_heap) < n:
-            #     heapq.heappush(collected_tuples_heap, pred_ent_tuple)
-            # else:
-            #     heapq.heappushpop(
-            #         collected_tuples_heap, pred_ent_tuple)
             return
 
         collected_ents = []
@@ -109,10 +79,7 @@ class EntityTupleSearcher:
 
         collected_ents.sort(reverse=True)
 
-        # for prob, pred_ent in collected_ents:
-        #     print(pred_ent, prob)
-
-        for ent_min_logprob, _, pred_ent in collected_ents:
+        for ent_min_logprob, pred_ent in collected_ents:
             min_upd = min(cur_logprobs + [ent_min_logprob])
             if len(collected_tuples_heap) == n and \
                     min_upd < collected_tuples_heap[0][0]:
@@ -149,70 +116,60 @@ class EntityTupleSearcher:
             pred_ent = self._model.tokenizer.decode(cur_token_ids)
 
             pred_ent = pred_ent.strip().lower()
+            # filter "the xxx", "new xxx", etc.
             if any([word in stopwords for word in pred_ent.split()]):
                 return
 
+            # filter entity with less than 3 characters
             if len(pred_ent.replace(' ', '')) <= 2:
                 return
 
+            # filter entity with single-character words
             if min([len(t) for t in pred_ent.split()]) <= 1:
                 return
 
+            # filter repeating entity in the entity tuple
             for ent in cur_ent_tuple:
                 if pred_ent.replace(' ', '') == ent.replace(' ', ''):
                     return
 
+            # filter entity appearing in the prompt
             for raw_prompt, _ in weighted_prompts:
                 if pred_ent in raw_prompt:
                     return
 
-            if len(collected_ent_heap) < n:
-                heapq.heappush(collected_ent_heap, [
-                    min(cur_logprobs), cur_logprobs, pred_ent])
-            else:
-                heapq.heappushpop(collected_ent_heap, [
-                    min(cur_logprobs), cur_logprobs, pred_ent])
+            heapq.heappush(collected_ent_heap, [min(cur_logprobs), pred_ent])
+            while len(collected_ent_heap) > n:
+                heapq.heappop(collected_ent_heap)
 
             return
 
-        mask_logits = None
+        mask_logits_total = None
         for raw_prompt, weight in weighted_prompts:
             prompt = raw_prompt.replace(
                 f'<ENT{ent_idx}>',
                 self._model.tokenizer.decode(cur_token_ids) +
-                self._model._tokenizer.mask_token * (n_masks[ent_idx] - len(cur_token_ids)))
+                self._model.tokenizer.mask_token * (
+                        n_masks[ent_idx] - len(cur_token_ids)))
 
-            input_text = self._model.get_masked_input_text(
-                prompt=prompt, n_masks=n_masks)
-            
-            inputs = self._model.tokenizer(
-                input_text, return_tensors="pt").to('cuda')  # single sentence
+            input_text = get_masked_prompt(
+                prompt=prompt, n_masks=n_masks,
+                mask_token=self._model.tokenizer.mask_token)
+            mask_logits = self._model.get_mask_logits(input_text=input_text)
 
-            with torch.no_grad():
-                # outputs = self._model.encoder(**inputs)
-                outputs = self._model._model(**inputs) # 1, 16, 50265
-            # sequence_output = outputs.last_hidden_state[
-            #     inputs['input_ids'] == self._model.mask_token_id]
-            # 1, 16, 1024 / 1, 16
-            
-            sequence_logits = outputs.logits[
-                inputs['input_ids'] == self._model.mask_token_id]
+            mask_idx_in_prompt = get_mask_place(
+                ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)
+            mask_logits = mask_logits[mask_idx_in_prompt]
 
-            # n_mask (2) * embedding_dim (1024)
-            mask_idx_in_prompt = get_mask_index_in_prompt(
-                ent_idx=ent_idx, n_masks=n_masks, prompt=raw_prompt)  # 1
-            if mask_logits is None:
-                mask_logits = torch.zeros_like(
-                    sequence_logits[mask_idx_in_prompt])
-            mask_logits = \
-                mask_logits + sequence_logits[mask_idx_in_prompt] * weight
+            if mask_logits_total is None:
+                mask_logits_total = torch.zeros_like(mask_logits)
+            mask_logits_total = mask_logits_total + mask_logits * weight
 
-        mask_logits = mask_logits / sum(weight for _, weight in weighted_prompts)
+        mask_logits_total = mask_logits_total / sum(
+            weight for _, weight in weighted_prompts)
 
-        assert len(mask_logits.shape) == 1
-        # logits = self._model.lm_head(mask_state.reshape(1, -1))
-        mask_logits[self._model.banned_ids] = -float('inf')
-        logprobs = torch.log_softmax(mask_logits, dim=-1)
+        mask_logits_total[self._model.banned_ids] = -float('inf')
+        logprobs = torch.log_softmax(mask_logits_total, dim=-1)
         logprobs, pred_ids = torch.sort(logprobs, descending=True)
 
         for logprob, pred_id in zip(logprobs, pred_ids):
