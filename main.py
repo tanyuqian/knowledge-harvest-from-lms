@@ -7,8 +7,8 @@ from models.knowledge_harvester import KnowledgeHarvester
 
 def main(rel_set='conceptnet',
          model_name='roberta-large',
-         n_tuples=1000,
-         n_prompts=20,
+         max_n_ent_tuples=1000,
+         max_n_prompts=20,
          prompt_temp=2.,
          max_ent_repeat=5,
          max_ent_subwords=2,
@@ -16,8 +16,8 @@ def main(rel_set='conceptnet',
 
     knowledge_harvester = KnowledgeHarvester(
         model_name=model_name,
-        max_n_ent_tuples=n_tuples,
-        max_n_prompts=n_prompts,
+        max_n_ent_tuples=max_n_ent_tuples,
+        max_n_prompts=max_n_prompts,
         max_ent_repeat=max_ent_repeat,
         max_ent_subwords=max_ent_subwords,
         prompt_temp=prompt_temp)

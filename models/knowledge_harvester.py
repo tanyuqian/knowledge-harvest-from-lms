@@ -1,3 +1,4 @@
+from tqdm import tqdm
 from scipy.special import softmax
 
 from models.language_model_wrapper import LanguageModelWrapper
@@ -65,7 +66,7 @@ class KnowledgeHarvester:
             max_ent_subwords=self._max_ent_subwords)
 
         self._weighted_ent_tuples = []
-        for ent_tuple in ent_tuples:
+        for ent_tuple in tqdm(ent_tuples, desc='re-scoring ent_tuples'):
             best_ent_tuple = None
             best_score = float('-inf')
             for t in range(1 << len(ent_tuple)):
@@ -85,7 +86,7 @@ class KnowledgeHarvester:
 
         self._weighted_ent_tuples = sorted(
             self._weighted_ent_tuples,
-            key=lambda t: t[1], reverse=True)[self._max_n_ent_tuples]
+            key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
 
         norm_weights = softmax(
             [weight for _, weight in self._weighted_ent_tuples])
