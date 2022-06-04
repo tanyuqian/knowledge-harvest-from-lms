@@ -53,7 +53,9 @@ class KnowledgeHarvester:
             self._weighted_prompts,
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
 
-        self.normalize_weights()
+        norm_weights = softmax([weight for _, weight in self._weighted_prompts])
+        for i, norm_weight in enumerate(norm_weights):
+            self._weighted_prompts[i][1] = norm_weight
 
     def update_ent_tuples(self):
         ent_tuples = self._ent_tuple_searcher.search(
@@ -84,13 +86,6 @@ class KnowledgeHarvester:
         self._weighted_ent_tuples = sorted(
             self._weighted_ent_tuples,
             key=lambda t: t[1], reverse=True)[self._max_n_ent_tuples]
-
-        self.normalize_weights()
-
-    def normalize_weights(self):
-        norm_weights = softmax([weight for _, weight in self._weighted_prompts])
-        for i, norm_weight in enumerate(norm_weights):
-            self._weighted_prompts[i][1] = norm_weight
 
         norm_weights = softmax(
             [weight for _, weight in self._weighted_ent_tuples])
