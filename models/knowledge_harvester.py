@@ -1,11 +1,9 @@
-import torch
-
 from scipy.special import softmax
 
 from models.language_model_wrapper import LanguageModelWrapper
 from models.entity_tuple_searcher import EntityTupleSearcher
 
-from data_utils.data_utils import get_n_ents, fix_prompt_style
+from data_utils.data_utils import fix_prompt_style
 
 
 class KnowledgeHarvester:
@@ -55,12 +53,52 @@ class KnowledgeHarvester:
             self._weighted_prompts,
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
 
+    def update_ent_tuples(self):
+        ent_tuples = self._ent_tuple_searcher.search(
+            weighted_prompts=self._weighted_prompts,
+            n=self._max_n_ent_tuples,
+            max_ent_repeat=self._max_ent_repeat,
+            max_ent_subwords=self._max_ent_subwords)
+
+        self._weighted_ent_tuples = []
+        for ent_tuple in ent_tuples:
+            best_ent_tuple = None
+            best_score = float('-inf')
+            for t in range(1 << len(ent_tuple)):
+                bin_code = f'{t:b}'
+                bin_code = '0' * (len(ent_tuple) - len(bin_code)) + bin_code
+
+                coded_ent_tuple = []
+                for b, ent in zip(bin_code, ent_tuple):
+                    coded_ent_tuple.append(ent.title() if b == 1 else ent)
+
+                score = self.score_ent_tuple(ent_tuple=coded_ent_tuple)
+                if score > best_score:
+                    best_score = score
+                    best_ent_tuple = coded_ent_tuple
+
+            self._weighted_ent_tuples.append([best_ent_tuple, best_score])
+
+        self._weighted_ent_tuples = sorted(
+            self._weighted_ent_tuples,
+            key=lambda t: t[1], reverse=True)[self._max_n_ent_tuples]
+
+    def normalize_weights(self):
         norm_weights = softmax([weight for _, weight in self._weighted_prompts])
         for i, norm_weight in enumerate(norm_weights):
             self._weighted_prompts[i][1] = norm_weight
 
-        for prompt, weight in self._weighted_prompts:
-            print(f'{weight:.4f} {prompt}')
+        norm_weights = softmax(
+            [weight for _, weight in self._weighted_ent_tuples])
+        for i, norm_weight in enumerate(norm_weights):
+            self._weighted_ent_tuples[i][1] = norm_weight
+
+    def score_ent_tuple(self, ent_tuple):
+        score = 0.
+        for prompt, weight in self.weighted_prompts:
+            score += weight * self.score(prompt=prompt, ent_tuple=ent_tuple)
+
+        return score
 
     def score(self, prompt, ent_tuple):
         logprobs = self._model.get_mask_filling_logprobs(

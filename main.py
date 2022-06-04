@@ -52,9 +52,12 @@ def main(rel_set='conceptnet',
         json.dump(knowledge_harvester.weighted_prompts, open(
             f'{output_dir}/{rel}/prompts.json', 'w'), indent=4)
 
-        # knowledge_harvester.update_ent_tuples()
-        # json.dump(knowledge_harvester.weighted_ent_tuples, open(
-        #     f'{output_dir}/{rel}/ent_tuples.json', 'w'), indent=4)
+        for prompt, weight in knowledge_harvester.weighted_prompts:
+            print(f'{weight:.4f} {prompt}')
+
+        knowledge_harvester.update_ent_tuples()
+        json.dump(knowledge_harvester.weighted_ent_tuples, open(
+            f'{output_dir}/{rel}/ent_tuples.json', 'w'), indent=4)
 
 
 if __name__ == '__main__':
