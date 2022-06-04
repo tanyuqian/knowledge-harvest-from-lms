@@ -63,7 +63,14 @@ class KnowledgeHarvester:
             print(f'{weight:.4f} {prompt}')
 
     def score(self, prompt, ent_tuple):
+        logprobs = self._model.get_mask_filling_logprobs(
+            prompt=prompt, ent_tuple=ent_tuple)['mask_logprobs']
 
+        token_wise_score = sum(logprobs) / len(logprobs)
+        ent_wise_score = sum(logprobs) / len(ent_tuple)
+        min_score = min(logprobs)
+
+        return (token_wise_score + ent_wise_score + min_score) / 3.
 
     @property
     def weighted_ent_tuples(self):

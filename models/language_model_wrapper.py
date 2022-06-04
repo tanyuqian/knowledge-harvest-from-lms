@@ -34,7 +34,7 @@ class LanguageModelWrapper:
         return outputs.logits[
             inputs['input_ids'] == self.tokenizer.mask_token_id]
 
-    def get_logprob_filling(self, prompt, ent_tuple):
+    def get_mask_filling_logprobs(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
 
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
@@ -51,7 +51,7 @@ class LanguageModelWrapper:
         for i in range(len(mask_positions)):
             label_token_ids.append(
                 masked_inputs['input_ids'][i][mask_positions[i]])
-            for pos in mask_positions[:i+1]:
+            for pos in mask_positions[i:]:
                 masked_inputs['input_ids'][i][pos] = \
                     self.tokenizer.mask_token_id
 
@@ -60,13 +60,15 @@ class LanguageModelWrapper:
             logprobs = torch.log_softmax(logits, dim=-1)[0]
 
         mask_logprobs = logprobs[
-            torch.arange(0, len(masked_inputs)), masked_inputs].tolist()
+            torch.arange(0, len(masked_inputs)), masked_inputs,
+            label_token_ids].tolist()
 
-        token_score = sum(mask_logprobs) / len(mask_logprobs)
-        ent_score = sum(mask_logprobs) / len(ent_tuple)
-        min_score = min(mask_logprobs)
-
-        return (token_score + ent_score + min_score) / 3.
+        return {
+            'input_ids': self.tokenizer.encode(sent),
+            'mask_spans': mask_spans,
+            'mask_positions': mask_positions,
+            'mask_logprobs': mask_logprobs
+        }
 
     def get_mask_spans(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
