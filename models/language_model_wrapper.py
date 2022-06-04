@@ -1,5 +1,5 @@
+import string
 import torch
-
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
 from data_utils.data_utils import stopwords, get_n_ents, get_sent, find_sublist
@@ -84,7 +84,9 @@ class LanguageModelWrapper:
             prefix_ids = self.tokenizer.encode(prefix, add_special_tokens=False)
 
             # processing -ing, -s, etc.
-            ent = sent[len(prefix):].strip().split(' ')[0].split(',')[0]
+            ent = sent[len(prefix):].strip().split()[0]
+            for punc in string.punctuation:
+                ent = ent.split(punc)[0]
 
             ent_token_ids = self.tokenizer.encode(
                 f' {ent}' if sent[len(prefix)] == ' ' else ent,
