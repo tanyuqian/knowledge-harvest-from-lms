@@ -83,7 +83,9 @@ class LanguageModelWrapper:
                 prefix = prefix.replace(f'<ENT{i}>', ent_tuple[i])
             prefix_ids = self.tokenizer.encode(prefix, add_special_tokens=False)
 
-            ent = sent[len(prefix):].strip().split(' ')[0]  # -ing, -s, etc.
+            # processing -ing, -s, etc.
+            ent = sent[len(prefix):].strip().split(' ')[0].split(',')[0]
+
             ent_token_ids = self.tokenizer.encode(
                 f' {ent}' if sent[len(prefix)] == ' ' else ent,
                 add_special_tokens=False)
