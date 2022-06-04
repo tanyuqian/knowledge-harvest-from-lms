@@ -83,6 +83,7 @@ class LanguageModelWrapper:
                 prefix = prefix.replace(f'<ENT{i}>', ent_tuple[i])
             prefix_ids = self.tokenizer.encode(prefix, add_special_tokens=False)
 
+            ent = sent[len(prefix):].strip().split(' ')[0]  # -ing, -s, etc.
             ent_token_ids = self.tokenizer.encode(
                 f' {ent}' if sent[len(prefix)] == ' ' else ent,
                 add_special_tokens=False)
@@ -93,8 +94,7 @@ class LanguageModelWrapper:
                 l = find_sublist(input_ids, ent_token_ids)
             r = l + len(ent_token_ids)
 
-            # assert input_ids[l:r] == ent_token_ids
-            assert ent in self.tokenizer.decode(input_ids[l:r])
+            assert input_ids[l:r] == ent_token_ids
             mask_spans.append([l, r])
 
         return mask_spans
