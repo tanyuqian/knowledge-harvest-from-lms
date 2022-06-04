@@ -60,7 +60,7 @@ class LanguageModelWrapper:
             logprobs = torch.log_softmax(logits, dim=-1)[0]
 
         mask_logprobs = logprobs[
-            torch.arange(0, len(masked_inputs)), masked_inputs,
+            torch.arange(0, len(mask_positions)), mask_positions,
             label_token_ids].tolist()
 
         return {
