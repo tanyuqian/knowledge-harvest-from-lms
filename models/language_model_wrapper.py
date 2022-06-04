@@ -57,7 +57,7 @@ class LanguageModelWrapper:
 
         with torch.no_grad():
             logits = self.model(**masked_inputs).logits
-            logprobs = torch.log_softmax(logits, dim=-1)[0]
+            logprobs = torch.log_softmax(logits, dim=-1)
 
         mask_logprobs = logprobs[
             torch.arange(0, len(mask_positions)), mask_positions,
