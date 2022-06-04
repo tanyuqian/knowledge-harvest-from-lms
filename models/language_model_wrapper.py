@@ -87,7 +87,10 @@ class LanguageModelWrapper:
                 f' {ent}' if sent[len(prefix)] == ' ' else ent,
                 add_special_tokens=False)
 
-            l = find_sublist(input_ids, prefix_ids) + len(prefix_ids)
+            if len(prefix_ids) > 0:
+                l = find_sublist(input_ids, prefix_ids) + len(prefix_ids)
+            else:
+                l = find_sublist(input_ids, ent_token_ids)
             r = l + len(ent_token_ids)
 
             assert input_ids[l:r] == ent_token_ids
