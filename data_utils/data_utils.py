@@ -43,7 +43,7 @@ def get_mask_place(ent_idx, n_masks, prompt):
 def get_n_masks(t, n_ents, max_ent_subwords):
     n_masks = []
     for i in range(n_ents):
-        n_masks.append(t % max_ent_subwords)
+        n_masks.append(t % max_ent_subwords + 1)
         t //= max_ent_subwords
 
     return n_masks
