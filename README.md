@@ -1,4 +1,4 @@
-## BertNet: Harvesting Knowledge Graphs from Pretrained Language Models
+## BertNet: Harvesting Knowledge Graphs from PLMs
 
 ![](framework.png)
 
