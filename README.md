@@ -2,17 +2,18 @@
 
 ![](framework.png)
 
-### Preperation
+### Environment
+We use `python 3.8` and all the required packages can be installed by pip:
 ```
 pip install -r requirements.txt
 ```
 
-### Search prompts
+### Prompt Creation
 ```
 python search_prompts.py --rel_set conceptnet (lama/human)
 ```
 
-### Search entity tuples
+### Entity Pair Search
 ```
 python main.py --rel_set conceptnet --model_name roberta-large
 ```
