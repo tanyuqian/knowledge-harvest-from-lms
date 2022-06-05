@@ -8,7 +8,7 @@ from prettytable import PrettyTable
 
 def main(result_dir, n_present=20):
     rel_set = result_dir.split('/')[1]
-    relation_info = json.load(open(f'data/relation_info_{rel_set}_5seeds.json'))
+    relation_info = json.load(open(f'relation_info/{rel_set}.json'))
 
     summary_file = open(f'{result_dir}/summary.txt', 'w')
 
