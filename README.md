@@ -1,5 +1,7 @@
 ## BertNet: Harvesting Knowledge Graphs from Pretrained Language Models
 
+![](framework.png)
+
 ### Preperation
 ```
 pip install -r requirements.txt
@@ -12,7 +14,7 @@ python search_prompts.py --rel_set conceptnet (lama/human)
 
 ### Search entity tuples
 ```
-python main.py
+python main.py --rel_set conceptnet --model_name roberta-large
 ```
 
 ### Present results
