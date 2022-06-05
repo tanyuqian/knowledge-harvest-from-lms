@@ -63,6 +63,8 @@ class LanguageModelWrapper:
             torch.arange(0, len(mask_positions)), mask_positions,
             label_token_ids].tolist()
 
+        torch.cuda.empty_cache()
+
         return {
             'input_ids': self.tokenizer.encode(sent),
             'mask_spans': mask_spans,
