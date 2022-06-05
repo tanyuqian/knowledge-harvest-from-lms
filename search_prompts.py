@@ -51,7 +51,7 @@ def get_paraphrase_prompt(gpt3, prompt, ent_tuple):
     return None
 
 
-def search_prompts(init_prompts, seed_ent_tuples):
+def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold):
     gpt3 = GPT3()
 
     cache = {}
@@ -88,8 +88,9 @@ def search_prompts(init_prompts, seed_ent_tuples):
                     max_sim = max([fuzz.ratio(new_prompt, prompt)
                                    for prompt in prompts])
                     print(f'-- {new_prompt}: {max_sim}')
-                if len(prompts) == 0 or max([fuzz.ratio(
-                        new_prompt, prompt) for prompt in prompts]) < 75:
+                if len(prompts) == 0 or \
+                        max([fuzz.ratio(new_prompt, prompt)
+                             for prompt in prompts]) < similarity_threshold:
                     prompts.append(new_prompt)
                     flag = True
 
@@ -99,26 +100,27 @@ def search_prompts(init_prompts, seed_ent_tuples):
             if len(prompts) >= 10 or flag == False:
                 break
 
+    for i in range(len(prompts)):
+        prompts[i] = fix_prompt_style(prompts[i])
+
     return prompts
 
 
-def main(rel_set='conceptnet'):
+def main(rel_set='conceptnet', similarity_threshold=75):
     relation_info = json.load(open(f'relation_info/{rel_set}.json'))
 
     for rel, info in relation_info.items():
         if 'prompts' not in info or len(info['prompts']) == 0:
             info['prompts'] = search_prompts(
                 init_prompts=info['init_prompts'],
-                seed_ent_tuples=info['seed_ent_tuples'])
+                seed_ent_tuples=info['seed_ent_tuples'],
+                similarity_threshold=similarity_threshold)
 
             for key, value in info.items():
                 print(f'{key}: {value}')
             for prompt in info['prompts']:
                 print(f'- {prompt}')
             print('=' * 50)
-
-        for i in range(len(info['prompts'])):
-            info['prompts'][i] = fix_prompt_style(info['prompts'][i])
 
         output_path = f'relation_info/{rel_set}.json'
         json.dump(relation_info, open(output_path, 'w'), indent=4)

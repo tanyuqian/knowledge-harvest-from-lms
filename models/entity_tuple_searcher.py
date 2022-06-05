@@ -32,7 +32,12 @@ class EntityTupleSearcher:
                 max_word_repeat=max_word_repeat,
                 n=n)
 
-        return [t[1] for t in collected_tuples_heap]
+        ent_tuples = sorted([t[1] for t in collected_tuples_heap])
+
+        ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
+                      if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
+
+        return ent_tuples
 
     def dfs(self,
             weighted_prompts,
@@ -132,9 +137,12 @@ class EntityTupleSearcher:
             if min([len(t) for t in pred_ent.split()]) <= 1:
                 return
 
-            # filter repeating entity in the entity tuple
             for ent in cur_ent_tuple:
+                # filter repeating entity in the entity tuple
                 if pred_ent.replace(' ', '') == ent.replace(' ', ''):
+                    return
+                # filter repeating entity in the entity tuple
+                if ent in pred_ent or pred_ent in ent:
                     return
 
             # filter entity appearing in the prompt

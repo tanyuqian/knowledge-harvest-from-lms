@@ -10,7 +10,7 @@ stopwords.extend([
     'nothing', 'nobody',
     'one', 'neither', 'either', 'many',
     'us', 'first', 'second', 'next',
-    'following', 'last', 'new', 'main'])
+    'following', 'last', 'new', 'main', 'also'])
 
 
 def get_n_ents(prompt):
