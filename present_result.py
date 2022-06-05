@@ -23,7 +23,7 @@ def main(result_dir, n_present=20):
         weighted_ent_tuples = json.load(open(
             f'{result_dir}/{rel}/ent_tuples.json'))
 
-        if len(weighted_ent_tuples):
+        if len(weighted_ent_tuples) == 0:
             print(f'outputs of relation \"{rel}\" not found. skipped.')
             continue
         weighted_ent_tuples = \
