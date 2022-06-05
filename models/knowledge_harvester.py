@@ -12,14 +12,14 @@ class KnowledgeHarvester:
                  model_name,
                  max_n_prompts=20,
                  max_n_ent_tuples=10000,
-                 max_ent_repeat=10,
+                 max_word_repeat=5,
                  max_ent_subwords=1,
                  prompt_temp=1.):
         self._weighted_prompts = []
         self._weighted_ent_tuples = []
         self._max_n_prompts = max_n_prompts
         self._max_n_ent_tuples = max_n_ent_tuples
-        self._max_ent_repeat = max_ent_repeat
+        self._max_word_repeat = max_word_repeat
         self._max_ent_subwords = max_ent_subwords
         self._prompt_temp = prompt_temp
 
@@ -62,7 +62,7 @@ class KnowledgeHarvester:
         ent_tuples = self._ent_tuple_searcher.search(
             weighted_prompts=self._weighted_prompts,
             n=self._max_n_ent_tuples,
-            max_ent_repeat=self._max_ent_repeat,
+            max_word_repeat=self._max_word_repeat,
             max_ent_subwords=self._max_ent_subwords)
 
         self._weighted_ent_tuples = []

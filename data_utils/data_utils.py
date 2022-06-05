@@ -8,7 +8,7 @@ stopwords.extend([
     'anything', 'anybody', 'anyone',
     'something', 'somebody', 'someone',
     'nothing', 'nobody',
-    'one', 'neither', 'either',
+    'one', 'neither', 'either', 'many',
     'us', 'first', 'second', 'next',
     'following', 'last', 'new', 'main'])
 

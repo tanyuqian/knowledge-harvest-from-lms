@@ -10,7 +10,7 @@ def main(rel_set='conceptnet',
          max_n_ent_tuples=1000,
          max_n_prompts=20,
          prompt_temp=2.,
-         max_ent_repeat=5,
+         max_word_repeat=5,
          max_ent_subwords=2,
          use_init_prompts=False):
 
@@ -18,7 +18,7 @@ def main(rel_set='conceptnet',
         model_name=model_name,
         max_n_ent_tuples=max_n_ent_tuples,
         max_n_prompts=max_n_prompts,
-        max_ent_repeat=max_ent_repeat,
+        max_word_repeat=max_word_repeat,
         max_ent_subwords=max_ent_subwords,
         prompt_temp=prompt_temp)
 
@@ -46,7 +46,8 @@ def main(rel_set='conceptnet',
         knowledge_harvester.set_seed_ent_tuples(
             seed_ent_tuples=info['seed_ent_tuples'])
         knowledge_harvester.set_prompts(
-            prompts=info['init_prompts'] + info['prompts'])
+            prompts=info['init_prompts'] if use_init_prompts
+            else info['init_prompts'] + info['prompts'])
 
         knowledge_harvester.update_prompts()
         json.dump(knowledge_harvester.weighted_prompts, open(

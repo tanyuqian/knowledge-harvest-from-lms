@@ -1,3 +1,4 @@
+import string
 import torch
 import heapq
 
@@ -9,7 +10,7 @@ class EntityTupleSearcher:
     def __init__(self, model):
         self._model = model
 
-    def search(self, weighted_prompts, max_ent_repeat, max_ent_subwords, n):
+    def search(self, weighted_prompts, max_word_repeat, max_ent_subwords, n):
         n_ents = get_n_ents(weighted_prompts[0][0])
 
         collected_tuples_heap = []
@@ -28,7 +29,7 @@ class EntityTupleSearcher:
                 cur_logprobs=[],
                 collected_tuples_heap=collected_tuples_heap,
                 repeat_cnt=repeat_cnt,
-                max_ent_repeat=max_ent_repeat,
+                max_word_repeat=max_word_repeat,
                 n=n)
 
         return [t[1] for t in collected_tuples_heap]
@@ -41,7 +42,7 @@ class EntityTupleSearcher:
             cur_logprobs,
             collected_tuples_heap,
             repeat_cnt,
-            max_ent_repeat,
+            max_word_repeat,
             n):
         cur_ent_idx = len(cur_ent_tuple)
 
@@ -49,17 +50,20 @@ class EntityTupleSearcher:
             pred = [min(cur_logprobs), cur_ent_tuple]
 
             for ent in cur_ent_tuple:
-                if repeat_cnt.get(ent, 0) + 1 > max_ent_repeat:
-                    return
+                for word in ent.split():
+                    if repeat_cnt.get(word, 0) + 1 > max_word_repeat:
+                        return
 
             heapq.heappush(collected_tuples_heap, pred)
             for ent in cur_ent_tuple:
-                repeat_cnt[ent] = repeat_cnt.get(ent, 0) + 1
+                for word in ent.split():
+                    repeat_cnt[word] = repeat_cnt.get(word, 0) + 1
 
             while len(collected_tuples_heap) > n:
                 heap_top = heapq.heappop(collected_tuples_heap)
                 for ent in heap_top[1]:
-                    repeat_cnt[ent] = repeat_cnt[ent] - 1
+                    for word in ent.split():
+                        repeat_cnt[word] = repeat_cnt[word] - 1
 
             return
 
@@ -75,7 +79,7 @@ class EntityTupleSearcher:
             cur_logprobs=[],
             collected_ent_heap=collected_ents,
             logprob_threashold=logprob_threshold,
-            n=n if len(cur_ent_tuple) == 0 else max_ent_repeat)
+            n=n if len(cur_ent_tuple) == 0 else max_word_repeat)
 
         collected_ents.sort(reverse=True)
 
@@ -98,7 +102,7 @@ class EntityTupleSearcher:
                 cur_logprobs=cur_logprobs + [ent_min_logprob],
                 collected_tuples_heap=collected_tuples_heap,
                 repeat_cnt=repeat_cnt,
-                max_ent_repeat=max_ent_repeat,
+                max_word_repeat=max_word_repeat,
                 n=n)
 
     def dfs_ent(self,
@@ -183,6 +187,10 @@ class EntityTupleSearcher:
 
             if not any([ch.isalpha() for ch in
                         self._model.tokenizer.decode(pred_id)]):
+                continue
+
+            if any([punc in self._model.tokenizer.decode(pred_id)
+                    for punc in string.punctuation]):
                 continue
 
             self.dfs_ent(
