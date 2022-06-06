@@ -160,9 +160,7 @@ class EntityTupleSearcher:
                 if pred_ent in raw_prompt:
                     return
 
-            ent_logprob = (sum(cur_logprobs) + min(cur_logprobs)) / 2.
-
-            heapq.heappush(collected_ent_heap, [ent_logprob, pred_ent])
+            heapq.heappush(collected_ent_heap, [min(cur_logprobs), pred_ent])
             while len(collected_ent_heap) > n:
                 heapq.heappop(collected_ent_heap)
 
