@@ -47,7 +47,7 @@ def main(rel_set='conceptnet',
             seed_ent_tuples=info['seed_ent_tuples'])
         knowledge_harvester.set_prompts(
             prompts=info['init_prompts'] if use_init_prompts
-            else info['init_prompts'] + info['prompts'])
+            else list(set(info['init_prompts'] + info['prompts'])))
 
         knowledge_harvester.update_prompts()
         json.dump(knowledge_harvester.weighted_prompts, open(

@@ -54,10 +54,6 @@ class EntityTupleSearcher:
         if cur_ent_idx == n_ents:
             pred = [min(cur_logprobs), cur_ent_tuple]
 
-            # filter tuples with only very short entities
-            if sum([len(ent) for ent in cur_ent_tuple]) == 3 * n_ents:
-                return
-
             for ent in cur_ent_tuple:
                 for word in ent.split():
                     if repeat_cnt.get(word, 0) + 1 > max_word_repeat:
@@ -139,8 +135,8 @@ class EntityTupleSearcher:
             if any([word in stopwords for word in pred_ent.split()]):
                 return
 
-            # filter entity with less than 3 characters
-            if len(pred_ent.replace(' ', '')) <= 2:
+            # filter entity with less than 4 characters
+            if len(pred_ent.replace(' ', '')) <= 3:
                 return
 
             # filter entity with single-character words
@@ -170,7 +166,7 @@ class EntityTupleSearcher:
         for raw_prompt, weight in weighted_prompts:
             prompt = raw_prompt.replace(
                 f'<ENT{ent_idx}>',
-                self._model.tokenizer.decode(cur_token_ids) +
+                self._model.tokenizer.decode(cur_token_ids).lower() +
                 self._model.tokenizer.mask_token * (
                         n_masks[ent_idx] - len(cur_token_ids)))
 

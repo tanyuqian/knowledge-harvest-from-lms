@@ -45,7 +45,25 @@ class KnowledgeHarvester:
             scores = []
             for ent_tuple in self._seed_ent_tuples:
                 ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
-                scores.append(self.score(prompt=prompt, ent_tuple=ent_tuple))
+
+                score = self.score(prompt=prompt, ent_tuple=ent_tuple)
+
+                neg_scores = []
+                for ent_idx in range(len(ent_tuple)):
+                    for ent_tuple1 in self._seed_ent_tuples:
+                        if ent_tuple1[ent_idx] == ent_tuple[ent_idx]:
+                            continue
+
+                        ent_tuple_neg = \
+                            ent_tuple[:ent_idx] + \
+                            [ent_tuple1[ent_idx]] + \
+                            ent_tuple[ent_idx + 1:]
+
+                        neg_scores.append(self.score(
+                            prompt=prompt, ent_tuple=ent_tuple_neg))
+
+                neg_score = sum(neg_scores) / len(neg_scores)
+                scores.append(score - neg_score)
 
             self._weighted_prompts[i][1] = \
                 sum(scores) / len(scores) / self._prompt_temp
