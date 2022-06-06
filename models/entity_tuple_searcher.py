@@ -54,9 +54,9 @@ class EntityTupleSearcher:
         if cur_ent_idx == n_ents:
             pred = [min(cur_logprobs), cur_ent_tuple]
 
-            # # filter tuples with only very short entities
-            # if sum([len(ent) for ent in cur_ent_tuple]) == 3 * n_ents:
-            #     return
+            # filter tuples with only very short entities
+            if sum([len(ent) for ent in cur_ent_tuple]) == 3 * n_ents:
+                return
 
             for ent in cur_ent_tuple:
                 for word in ent.split():
