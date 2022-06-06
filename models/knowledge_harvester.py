@@ -75,7 +75,7 @@ class KnowledgeHarvester:
 
                 coded_ent_tuple = []
                 for b, ent in zip(bin_code, ent_tuple):
-                    coded_ent_tuple.append(ent.title() if b == 1 else ent)
+                    coded_ent_tuple.append(ent.title() if b == '1' else ent)
 
                 score = self.score_ent_tuple(ent_tuple=coded_ent_tuple)
                 if score > best_score:
