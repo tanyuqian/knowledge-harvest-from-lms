@@ -196,13 +196,13 @@ class EntityTupleSearcher:
         logprobs = torch.log_softmax(mask_logits_total, dim=-1)
         logprobs, pred_ids = torch.sort(logprobs, descending=True)
 
-        for logprob, pred_id in zip(logprobs[:5 * n], pred_ids[:5 * n]):
-            sum_logprob_upd = sum(cur_logprobs) + logprob.item()
+        for logprob, pred_id in zip(logprobs, pred_ids):
+            min_logprob_upd = min(cur_logprobs + [logprob.item()])
             if len(collected_ent_heap) == n and \
-                    sum_logprob_upd / 2. < collected_ent_heap[0][0]:
+                    min_logprob_upd < collected_ent_heap[0][0]:
                 break
 
-            if sum_logprob_upd / 2. < logprob_threashold:
+            if min_logprob_upd < logprob_threashold:
                 break
 
             if not any([ch.isalpha() for ch in
