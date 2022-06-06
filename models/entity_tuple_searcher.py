@@ -32,7 +32,7 @@ class EntityTupleSearcher:
                 max_word_repeat=max_word_repeat,
                 n=n)
 
-        ent_tuples = sorted([t[1] for t in collected_tuples_heap])
+        ent_tuples = sorted([t[1] for t in collected_tuples_heap], reverse=True)
 
         ent_tuples = [ent_tuples[i] for i in range(len(ent_tuples))
                       if i == 0 or ent_tuples[i] != ent_tuples[i - 1]]
