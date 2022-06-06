@@ -143,6 +143,14 @@ class EntityTupleSearcher:
             if min([len(t) for t in pred_ent.split()]) <= 1:
                 return
 
+            # filter entity full of short words
+            if max([len(t) for t in pred_ent.split()]) <= 2:
+                return
+
+            # filter entity with repeating words, e.g., "word word"
+            if len(pred_ent.split()) > 1 and len(set(pred_ent.split())) == 1:
+                return
+
             for ent in cur_ent_tuple:
                 # filter repeating entity in the entity tuple
                 if pred_ent.replace(' ', '') == ent.replace(' ', ''):
