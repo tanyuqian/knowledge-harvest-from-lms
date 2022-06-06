@@ -54,9 +54,9 @@ class EntityTupleSearcher:
         if cur_ent_idx == n_ents:
             pred = [min(cur_logprobs), cur_ent_tuple]
 
-            # filter tuples with only very short entities
-            if sum([len(ent) for ent in cur_ent_tuple]) == 3 * n_ents:
-                return
+            # # filter tuples with only very short entities
+            # if sum([len(ent) for ent in cur_ent_tuple]) == 3 * n_ents:
+            #     return
 
             for ent in cur_ent_tuple:
                 for word in ent.split():
@@ -160,7 +160,9 @@ class EntityTupleSearcher:
                 if pred_ent in raw_prompt:
                     return
 
-            heapq.heappush(collected_ent_heap, [sum(cur_logprobs), pred_ent])
+            ent_logprob = (sum(cur_logprobs) + min(cur_logprobs)) / 2.
+
+            heapq.heappush(collected_ent_heap, [ent_logprob, pred_ent])
             while len(collected_ent_heap) > n:
                 heapq.heappop(collected_ent_heap)
 
@@ -197,10 +199,10 @@ class EntityTupleSearcher:
         for logprob, pred_id in zip(logprobs[:5 * n], pred_ids[:5 * n]):
             sum_logprob_upd = sum(cur_logprobs) + logprob.item()
             if len(collected_ent_heap) == n and \
-                    sum_logprob_upd < collected_ent_heap[0][0]:
+                    sum_logprob_upd / 2. < collected_ent_heap[0][0]:
                 break
 
-            if sum_logprob_upd < logprob_threashold:
+            if sum_logprob_upd / 2. < logprob_threashold:
                 break
 
             if not any([ch.isalpha() for ch in

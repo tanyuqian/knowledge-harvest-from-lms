@@ -55,8 +55,13 @@ class KnowledgeHarvester:
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
 
         norm_weights = softmax([weight for _, weight in self._weighted_prompts])
+        norm_weights[norm_weights < 0.02] = 0.
+        norm_weights /= norm_weights.sum()
+
         for i, norm_weight in enumerate(norm_weights):
             self._weighted_prompts[i][1] = norm_weight
+        self._weighted_prompts = [
+            t for t in self._weighted_prompts if t[1] > 1e-4]
 
     def update_ent_tuples(self):
         ent_tuples = self._ent_tuple_searcher.search(
