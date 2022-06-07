@@ -66,7 +66,7 @@ class KnowledgeHarvester:
             neg_score = sum(neg_scores) / len(neg_scores)
 
             self._weighted_prompts[i][1] = \
-                (pos_score - neg_score) / self._prompt_temp
+                (pos_score - 0.5 * neg_score) / self._prompt_temp
 
         self._weighted_prompts = sorted(
             self._weighted_prompts,
