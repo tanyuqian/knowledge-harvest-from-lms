@@ -35,6 +35,10 @@ class LanguageModelWrapper:
     def get_mask_filling_logprobs(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
 
+        for ent_idx, ent in enumerate(ent_tuple):
+            if prompt.startswith(f'<ENT{ent_idx}>'):
+                ent_tuple[ent_idx] = ent[0].upper() + ent[1:]
+
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
         mask_spans = self.get_mask_spans(prompt=prompt, ent_tuple=ent_tuple)
 
@@ -46,7 +50,7 @@ class LanguageModelWrapper:
             [sent] * len(mask_positions), return_tensors='pt').to('cuda')
         label_token_ids = []
         for i, pos in enumerate(mask_positions):
-            label_token_ids.append(masked_inputs['input_ids'][i][pos])
+            label_token_ids.append(masked_inputs['input_ids'][i][pos].item())
             masked_inputs['input_ids'][i][mask_positions[i:]] = \
                 self.tokenizer.mask_token_id
 

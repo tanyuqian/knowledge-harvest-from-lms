@@ -66,11 +66,14 @@ class KnowledgeHarvester:
             neg_score = sum(neg_scores) / len(neg_scores)
 
             self._weighted_prompts[i][1] = \
-                (pos_score - 0.2 * neg_score) / self._prompt_temp
+                (pos_score - neg_score) / self._prompt_temp
 
         self._weighted_prompts = sorted(
             self._weighted_prompts,
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
+
+        for prompt, weight in self._weighted_prompts:
+            print(f'{weight:.4f}', prompt)
 
         norm_weights = softmax([weight for _, weight in self._weighted_prompts])
         norm_weights[norm_weights < 0.02] = 0.
