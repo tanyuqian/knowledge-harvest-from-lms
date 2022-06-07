@@ -72,11 +72,8 @@ class KnowledgeHarvester:
             self._weighted_prompts,
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
 
-        for prompt, weight in self._weighted_prompts:
-            print(f'{weight:.4f}', prompt)
-
         norm_weights = softmax([weight for _, weight in self._weighted_prompts])
-        norm_weights[norm_weights < 0.02] = 0.
+        norm_weights[norm_weights < 0.05] = 0.
         norm_weights /= norm_weights.sum()
 
         for i, norm_weight in enumerate(norm_weights):

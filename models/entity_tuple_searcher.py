@@ -135,8 +135,8 @@ class EntityTupleSearcher:
             if any([word in stopwords for word in pred_ent.split()]):
                 return
 
-            # filter entity with less than 4 characters
-            if len(pred_ent.replace(' ', '')) <= 3:
+            # filter entity with less than 3 characters
+            if len(pred_ent.replace(' ', '')) <= 2:
                 return
 
             # filter entity with single-character words
