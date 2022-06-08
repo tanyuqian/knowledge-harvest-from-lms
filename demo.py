@@ -161,8 +161,8 @@ def main(init_prompts_str,
         json.dump([], open(f'{output_dir}/{rel}/ent_tuples.json', 'w'))
 
     prompts_output_dir = f'results/demo/prompts/'
-    if os.path.exists(f'{output_dir}/{rel}.json'):
-        prompts = json.load(open(f'{output_dir}/{rel}.json'))
+    if os.path.exists(f'{prompts_output_dir}/{rel}.json'):
+        prompts = json.load(open(f'{prompts_output_dir}/{rel}.json'))
     else:
         os.makedirs(prompts_output_dir, exist_ok=True)
         prompts = search_prompts(
