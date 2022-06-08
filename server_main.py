@@ -11,12 +11,11 @@ app = Flask(__name__)
 
 
 def search(model_name, init_prompts_str, seed_ent_tuples_str):
-    pass
-    # os.system(f'python backend.py'
-    #           f' --model_name {model_name}'
-    #           f' --init_prompts_str {init_prompts_str}'
-    #           f' --seed_ent_tuples_str {seed_ent_tuples_str}'
-    #           f' &')
+    os.system(f'python backend.py'
+              f' --model_name {model_name}'
+              f' --init_prompts_str {init_prompts_str}'
+              f' --seed_ent_tuples_str {seed_ent_tuples_str}'
+              f' &')
 
 
 def retrieve_results(model_name, init_prompts_str, seed_ent_tuples_str):
