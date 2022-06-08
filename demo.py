@@ -156,6 +156,10 @@ def main(init_prompts_str,
     output_dir = f'results/demo/{max_n_ent_tuples}tuples/{model_name}'
     if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
         print('Results found in cache.')
+        for ent_tuple, weight in json.load(
+                open(f'{output_dir}/{rel}/ent_tuples.json')):
+            print(ent_tuple, weight)
+        print('=' * 50)
         return
     else:
         os.makedirs(f'{output_dir}/{rel}', exist_ok=True)
@@ -180,17 +184,17 @@ def main(init_prompts_str,
     print('\n'.join(prompts))
     print('=' * 50)
 
-    # weighted_ent_tuples = search_ent_tuples(
-    #     init_prompts=init_prompts,
-    #     seed_ent_tuples=seed_ent_tuples,
-    #     prompts=prompts,
-    #     model_name=model_name,
-    #     max_n_ent_tuples=max_n_ent_tuples,
-    #     result_dir=f'{output_dir}/{rel}/')
-    #
-    # for ent_tuple, weight in weighted_ent_tuples[:30]:
-    #     print(ent_tuple, weight)
-    # print('=' * 50)
+    weighted_ent_tuples = search_ent_tuples(
+        init_prompts=init_prompts,
+        seed_ent_tuples=seed_ent_tuples,
+        prompts=prompts,
+        model_name=model_name,
+        max_n_ent_tuples=max_n_ent_tuples,
+        result_dir=f'{output_dir}/{rel}/')
+
+    for ent_tuple, weight in weighted_ent_tuples[:30]:
+        print(ent_tuple, weight)
+    print('=' * 50)
 
 
 if __name__ == '__main__':
