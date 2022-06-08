@@ -124,11 +124,7 @@ def search_ent_tuples(
     return knowledge_harvester.weighted_ent_tuples
 
 
-def main(init_prompts_str,
-         seed_ent_tuples_str,
-         model_name='roberta-large',
-         max_n_ent_tuples=100):
-
+def get_rel(init_prompts_str, seed_ent_tuples_str):
     init_prompts = init_prompts_str.split('^')
     seed_ent_tuples = [ent_tuple_str.split('~')
                        for ent_tuple_str in seed_ent_tuples_str.split('^')]
@@ -143,6 +139,18 @@ def main(init_prompts_str,
 
     rel = f'INIT_PROMPTS-{init_prompts_str}_SEED-{seed_ent_tuples_str}'
 
+    return init_prompts, seed_ent_tuples, rel
+
+
+def main(init_prompts_str,
+         seed_ent_tuples_str,
+         model_name='roberta-large',
+         max_n_ent_tuples=100):
+
+    init_prompts, seed_ent_tuples, rel = get_rel(
+        init_prompts_str=init_prompts_str,
+        seed_ent_tuples_str=seed_ent_tuples_str)
+
     for i, prompt in enumerate(init_prompts):
         for ent_idx, ch in enumerate(string.ascii_uppercase):
             prompt = prompt.replace(ch, f'<ent{ent_idx}>')
@@ -152,6 +160,27 @@ def main(init_prompts_str,
     print(f'Initial prompts: {init_prompts}')
     print(f'Seed entity tuples: {seed_ent_tuples}')
     print('=' * 50)
+
+    prompts_output_dir = f'results/demo/prompts/'
+    prompts_output_path = f'{prompts_output_dir}/{rel}.json'
+    if os.path.exists(prompts_output_path):
+        prompts = json.load(open(prompts_output_path))
+    else:
+        os.makedirs(prompts_output_dir, exist_ok=True)
+        json.dump([], open(prompts_output_path, 'w'))
+
+        prompts = search_prompts(
+            init_prompts=init_prompts,
+            seed_ent_tuples=seed_ent_tuples,
+            similarity_threshold=SIMILARITY_THRESHOLD,
+            output_path=prompts_output_path)
+
+    print('Searched-out prompts:')
+    print('\n'.join(prompts))
+    print('=' * 50)
+
+    if max_n_ent_tuples == 0:
+        return
 
     output_dir = f'results/demo/{max_n_ent_tuples}tuples/{model_name}'
     if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
@@ -164,25 +193,6 @@ def main(init_prompts_str,
     else:
         os.makedirs(f'{output_dir}/{rel}', exist_ok=True)
         json.dump([], open(f'{output_dir}/{rel}/ent_tuples.json', 'w'))
-
-    prompts_output_dir = f'results/demo/prompts/'
-    prompts_output_path = f'{prompts_output_dir}/{rel}.json'
-    if os.path.exists(prompts_output_path):
-        prompts = json.load(open(prompts_output_path))
-    else:
-        os.makedirs(prompts_output_dir, exist_ok=True)
-        prompts = search_prompts(
-            init_prompts=init_prompts,
-            seed_ent_tuples=seed_ent_tuples,
-            similarity_threshold=SIMILARITY_THRESHOLD,
-            output_path=prompts_output_path)
-
-        if len(prompts) < 5:
-            os.remove(f'{prompts_output_dir}/{rel}.json')
-
-    print('Searched-out prompts:')
-    print('\n'.join(prompts))
-    print('=' * 50)
 
     weighted_ent_tuples = search_ent_tuples(
         init_prompts=init_prompts,

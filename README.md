@@ -8,17 +8,7 @@ We use `python 3.8` and all the required packages can be installed by pip:
 pip install -r requirements.txt
 ```
 
-### Prompt Creation
+### Start server
 ```
-python search_prompts.py --rel_set conceptnet (lama/human)
-```
-
-### Entity Pair Search
-```
-python main.py --rel_set conceptnet --model_name roberta-large
-```
-
-### Present results
-```
-python present_result.py --result_dir your_result_dir
+FLASK_ENV=development python server_main.py
 ```
