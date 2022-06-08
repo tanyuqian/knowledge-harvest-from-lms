@@ -114,6 +114,10 @@ def main(init_prompts,
          model_name='roberta-large',
          max_n_ent_tuples=100):
 
+    seed_ent_tuples = sorted(
+        [ent.lower().strip() for ent in ent_tuple]
+        for ent_tuple in seed_ent_tuples)
+
     rel = f'INIT_PROMPTS-{init_prompts}_SEED-{seed_ent_tuples}'
 
     output_dir = f'results/demo/{model_name}/{max_n_ent_tuples}tuples/'
