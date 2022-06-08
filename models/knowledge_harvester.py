@@ -4,7 +4,7 @@ from scipy.special import softmax
 from models.language_model_wrapper import LanguageModelWrapper
 from models.entity_tuple_searcher import EntityTupleSearcher
 
-from data_utils.data_utils import fix_prompt_style
+from data_utils.data_utils import fix_prompt_style, is_valid_prompt
 
 
 class KnowledgeHarvester:
@@ -38,7 +38,8 @@ class KnowledgeHarvester:
 
     def set_prompts(self, prompts):
         for prompt in prompts:
-            self._weighted_prompts.append([fix_prompt_style(prompt), 1.])
+            if is_valid_prompt(prompt=prompt):
+                self._weighted_prompts.append([fix_prompt_style(prompt), 1.])
 
     def update_prompts(self):
         for i, (prompt, _) in enumerate(self._weighted_prompts):

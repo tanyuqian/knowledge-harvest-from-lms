@@ -13,6 +13,14 @@ stopwords.extend([
     'following', 'last', 'new', 'main', 'also'])
 
 
+def is_valid_prompt(prompt):
+    for i in range(1, len(prompt)):
+        if prompt[i:].startswith('<ENT') and prompt[i - 1] not in [' ', '\"']:
+            return False
+
+    return True
+
+
 def get_n_ents(prompt):
     n = 0
     while f'<ENT{n}>' in prompt:
