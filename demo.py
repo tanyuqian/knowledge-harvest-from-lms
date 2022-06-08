@@ -1,21 +1,25 @@
 import os
+import string
+
 import fire
 import json
+from thefuzz import fuzz
 
-from data_utils.data_utils import fix_prompt_style
+from data_utils.data_utils import fix_prompt_style, is_valid_prompt
 from search_prompts import get_paraphrase_prompt
 from models.gpt3 import GPT3
 from models.knowledge_harvester import KnowledgeHarvester
 
 
 MAX_N_PROMPTS = 20
-MAX_WORD_REPEAT = 5
+MAX_WORD_REPEAT = 3
 MAX_ENT_SUBWORDS = 2
 PROMPT_TEMP = 2.
 SIMILARITY_THRESHOLD = 75
 
 
-def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold, output_dir, rel):
+def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold,
+                   output_file):
     gpt3 = GPT3()
 
     cache = {}
@@ -32,8 +36,8 @@ def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold, output_d
                         gpt3=gpt3, prompt=prompt, ent_tuple=ent_tuple)
 
                 para_prompt = cache[request_str]
-                print(f'prompt: {prompt}\tent_tuple: {ent_tuple}'
-                      f'\t-> para_prompt: {para_prompt}')
+                # print(f'prompt: {prompt}\tent_tuple: {ent_tuple}'
+                #       f'\t-> para_prompt: {para_prompt}')
 
                 if para_prompt is not None and \
                         para_prompt not in init_prompts + prompts:
@@ -48,10 +52,10 @@ def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold, output_d
             # prompts.extend(new_prompts)
             flag = False
             for new_prompt in sorted(new_prompts, key=lambda t: len(t)):
-                if len(prompts) != 0:
-                    max_sim = max([fuzz.ratio(new_prompt, prompt)
-                                   for prompt in prompts])
-                    print(f'-- {new_prompt}: {max_sim}')
+                # if len(prompts) != 0:
+                #     max_sim = max([fuzz.ratio(new_prompt, prompt)
+                #                    for prompt in prompts])
+                #     print(f'-- {new_prompt}: {max_sim}')
                 if len(prompts) == 0 or \
                         max([fuzz.ratio(new_prompt, prompt)
                              for prompt in prompts]) < similarity_threshold:
@@ -60,6 +64,17 @@ def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold, output_d
 
             prompts = list(set(prompts))
             prompts.sort(key=lambda s: len(s))
+            prompts = [prompt for prompt in prompts if is_valid_prompt(
+                prompt=prompt)]
+
+            json.dump(
+                [fix_prompt_style(prompt) for prompt in prompts], output_file,
+                indent=4)
+
+            print('=== Searched-out prompts for now ===')
+            for prompt in prompts:
+                print(prompt)
+            print('=' * 50)
 
             if len(prompts) >= 10 or flag == False:
                 break
@@ -76,8 +91,7 @@ def search_ent_tuples(
         prompts,
         model_name,
         max_n_ent_tuples,
-        output_dir,
-        rel):
+        result_dir):
 
     knowledge_harvester = KnowledgeHarvester(
         model_name=model_name,
@@ -97,50 +111,68 @@ def search_ent_tuples(
 
     knowledge_harvester.update_prompts()
     json.dump(knowledge_harvester.weighted_prompts, open(
-        f'{output_dir}/{rel}/prompts.json', 'w'), indent=4)
+        f'{result_dir}/prompts.json', 'w'), indent=4)
 
     for prompt, weight in knowledge_harvester.weighted_prompts:
         print(f'{weight:.4f} {prompt}')
 
     knowledge_harvester.update_ent_tuples()
     json.dump(knowledge_harvester.weighted_ent_tuples, open(
-        f'{output_dir}/{rel}/ent_tuples.json', 'w'), indent=4)
+        f'{result_dir}/ent_tuples.json', 'w'), indent=4)
 
     return knowledge_harvester.weighted_ent_tuples
 
 
-def main(init_prompts,
-         seed_ent_tuples,
+def main(init_prompts_str,
+         seed_ent_tuples_str,
          model_name='roberta-large',
          max_n_ent_tuples=100):
+
+    init_prompts = init_prompts_str.split('^')
+    seed_ent_tuples = [ent_tuple_str.split('~')
+                       for ent_tuple_str in seed_ent_tuples_str.split('^')]
 
     seed_ent_tuples = sorted(
         [ent.lower().strip() for ent in ent_tuple]
         for ent_tuple in seed_ent_tuples)
 
-    rel = f'INIT_PROMPTS-{init_prompts}_SEED-{seed_ent_tuples}'
+    init_prompts_str = '^'.join(init_prompts)
+    seed_ent_tuples_str = '^'.join(
+        ['~'.join(ent_tuple) for ent_tuple in seed_ent_tuples])
 
-    output_dir = f'results/demo/{model_name}/{max_n_ent_tuples}tuples/'
-    if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
-        print(f'file {output_dir}/{rel}/ent_tuples.json exists, skipped.')
-    else:
-        os.makedirs(f'{output_dir}/{rel}', exist_ok=True)
-        json.dump([], open(f'{output_dir}/{rel}/ent_tuples.json', 'w'))
+    rel = f'INIT_PROMPTS-{init_prompts_str}_SEED-{seed_ent_tuples_str}'
 
-    init_prompts = init_prompts.split('^')
-    seed_ent_tuples = [
-        ent_tuple.split('~') for ent_tuple in seed_ent_tuples.split('^')]
+    for i, prompt in enumerate(init_prompts):
+        for ent_idx, ch in enumerate(string.ascii_uppercase):
+            prompt = prompt.replace(ch, f'<ent{ent_idx}>')
+        prompt = prompt.replace('_', ' ').replace('<ent', '<ENT')
+        init_prompts[i] = fix_prompt_style(prompt=prompt)
 
     print(f'Initial prompts: {init_prompts}')
     print(f'Seed entity tuples: {seed_ent_tuples}')
     print('=' * 50)
 
-    prompts = search_prompts(
-        init_prompts=init_prompts,
-        seed_ent_tuples=seed_ent_tuples,
-        similarity_threshold=SIMILARITY_THRESHOLD,
-        output_dir=output_dir,
-        rel=rel)
+    output_dir = f'results/demo/{max_n_ent_tuples}tuples/{model_name}'
+    if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
+        print('Results found in cache.')
+        return
+    else:
+        os.makedirs(f'{output_dir}/{rel}', exist_ok=True)
+        json.dump([], open(f'{output_dir}/{rel}/ent_tuples.json', 'w'))
+
+    prompts_output_dir = f'results/demo/prompts/'
+    if os.path.exists(f'{output_dir}/{rel}.json'):
+        prompts = json.load(open(f'{output_dir}/{rel}.json'))
+    else:
+        os.makedirs(prompts_output_dir, exist_ok=True)
+        prompts = search_prompts(
+            init_prompts=init_prompts,
+            seed_ent_tuples=seed_ent_tuples,
+            similarity_threshold=SIMILARITY_THRESHOLD,
+            output_file=open(f'{prompts_output_dir}/{rel}.json', 'w'))
+
+        if len(prompts) < 5:
+            os.remove(f'{prompts_output_dir}/{rel}.json')
 
     print('Searched-out prompts:')
     print('\n'.join(prompts))
@@ -152,8 +184,7 @@ def main(init_prompts,
         prompts=prompts,
         model_name=model_name,
         max_n_ent_tuples=max_n_ent_tuples,
-        output_dir=output_dir,
-        rel=rel)
+        result_dir=f'{output_dir}/{rel}/')
 
     for ent_tuple, weight in weighted_ent_tuples[:30]:
         print(ent_tuple, weight)
