@@ -157,7 +157,7 @@ def main(init_prompts_str,
     if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
         print('Results found in cache.')
         for ent_tuple, weight in json.load(
-                open(f'{output_dir}/{rel}/ent_tuples.json')):
+                open(f'{output_dir}/{rel}/ent_tuples.json'))[:30]:
             print(ent_tuple, weight)
         print('=' * 50)
         return
