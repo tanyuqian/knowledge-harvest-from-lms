@@ -19,7 +19,7 @@ SIMILARITY_THRESHOLD = 75
 
 
 def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold,
-                   output_file):
+                   output_path):
     gpt3 = GPT3()
 
     cache = {}
@@ -68,7 +68,8 @@ def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold,
                 prompt=prompt)]
 
             json.dump(
-                [fix_prompt_style(prompt) for prompt in prompts], output_file,
+                [fix_prompt_style(prompt) for prompt in prompts],
+                open(output_path, 'w'),
                 indent=4)
 
             print('=== Searched-out prompts for now ===')
@@ -161,15 +162,16 @@ def main(init_prompts_str,
         json.dump([], open(f'{output_dir}/{rel}/ent_tuples.json', 'w'))
 
     prompts_output_dir = f'results/demo/prompts/'
-    if os.path.exists(f'{prompts_output_dir}/{rel}.json'):
-        prompts = json.load(open(f'{prompts_output_dir}/{rel}.json'))
+    prompts_output_path = f'{prompts_output_dir}/{rel}.json'
+    if os.path.exists(prompts_output_path):
+        prompts = json.load(open(prompts_output_path))
     else:
         os.makedirs(prompts_output_dir, exist_ok=True)
         prompts = search_prompts(
             init_prompts=init_prompts,
             seed_ent_tuples=seed_ent_tuples,
             similarity_threshold=SIMILARITY_THRESHOLD,
-            output_file=open(f'{prompts_output_dir}/{rel}.json', 'w'))
+            output_path=prompts_output_path)
 
         if len(prompts) < 5:
             os.remove(f'{prompts_output_dir}/{rel}.json')
@@ -178,17 +180,17 @@ def main(init_prompts_str,
     print('\n'.join(prompts))
     print('=' * 50)
 
-    weighted_ent_tuples = search_ent_tuples(
-        init_prompts=init_prompts,
-        seed_ent_tuples=seed_ent_tuples,
-        prompts=prompts,
-        model_name=model_name,
-        max_n_ent_tuples=max_n_ent_tuples,
-        result_dir=f'{output_dir}/{rel}/')
-
-    for ent_tuple, weight in weighted_ent_tuples[:30]:
-        print(ent_tuple, weight)
-    print('=' * 50)
+    # weighted_ent_tuples = search_ent_tuples(
+    #     init_prompts=init_prompts,
+    #     seed_ent_tuples=seed_ent_tuples,
+    #     prompts=prompts,
+    #     model_name=model_name,
+    #     max_n_ent_tuples=max_n_ent_tuples,
+    #     result_dir=f'{output_dir}/{rel}/')
+    #
+    # for ent_tuple, weight in weighted_ent_tuples[:30]:
+    #     print(ent_tuple, weight)
+    # print('=' * 50)
 
 
 if __name__ == '__main__':
