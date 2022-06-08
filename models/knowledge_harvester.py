@@ -42,21 +42,44 @@ class KnowledgeHarvester:
 
     def update_prompts(self):
         for i, (prompt, _) in enumerate(self._weighted_prompts):
-            scores = []
+            pos_scores, neg_scores = [], []
             for ent_tuple in self._seed_ent_tuples:
                 ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
-                scores.append(self.score(prompt=prompt, ent_tuple=ent_tuple))
+
+                pos_scores.append(self.score(
+                    prompt=prompt, ent_tuple=ent_tuple))
+
+                for ent_idx in range(len(ent_tuple)):
+                    for ent_tuple1 in self._seed_ent_tuples:
+                        if ent_tuple1[ent_idx] == ent_tuple[ent_idx]:
+                            continue
+
+                        ent_tuple_neg = \
+                            ent_tuple[:ent_idx] + \
+                            [ent_tuple1[ent_idx]] + \
+                            ent_tuple[ent_idx + 1:]
+
+                        neg_scores.append(self.score(
+                            prompt=prompt, ent_tuple=ent_tuple_neg))
+
+            pos_score = sum(pos_scores) / len(pos_scores)
+            neg_score = sum(neg_scores) / len(neg_scores)
 
             self._weighted_prompts[i][1] = \
-                sum(scores) / len(scores) / self._prompt_temp
+                (pos_score - 0.5 * neg_score) / self._prompt_temp
 
         self._weighted_prompts = sorted(
             self._weighted_prompts,
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
 
         norm_weights = softmax([weight for _, weight in self._weighted_prompts])
+        norm_weights[norm_weights < 0.05] = 0.
+        norm_weights /= norm_weights.sum()
+
         for i, norm_weight in enumerate(norm_weights):
             self._weighted_prompts[i][1] = norm_weight
+        self._weighted_prompts = [
+            t for t in self._weighted_prompts if t[1] > 1e-4]
 
     def update_ent_tuples(self):
         ent_tuples = self._ent_tuple_searcher.search(
@@ -75,7 +98,7 @@ class KnowledgeHarvester:
 
                 coded_ent_tuple = []
                 for b, ent in zip(bin_code, ent_tuple):
-                    coded_ent_tuple.append(ent.title() if b == 1 else ent)
+                    coded_ent_tuple.append(ent.title() if b == '1' else ent)
 
                 score = self.score_ent_tuple(ent_tuple=coded_ent_tuple)
                 if score > best_score:
@@ -85,8 +108,7 @@ class KnowledgeHarvester:
             self._weighted_ent_tuples.append([best_ent_tuple, best_score])
 
         self._weighted_ent_tuples = sorted(
-            self._weighted_ent_tuples,
-            key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
+            self._weighted_ent_tuples, key=lambda t: t[1], reverse=True)
 
         norm_weights = softmax(
             [weight for _, weight in self._weighted_ent_tuples])

@@ -110,6 +110,9 @@ def main(rel_set='conceptnet', similarity_threshold=75):
     relation_info = json.load(open(f'relation_info/{rel_set}.json'))
 
     for rel, info in relation_info.items():
+        info['init_prompts'] = [
+            fix_prompt_style(prompt) for prompt in info['init_prompts']]
+
         if 'prompts' not in info or len(info['prompts']) == 0:
             info['prompts'] = search_prompts(
                 init_prompts=info['init_prompts'],

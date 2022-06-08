@@ -1,5 +1,7 @@
 import string
 import torch
+from copy import deepcopy
+
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 
 from data_utils.data_utils import stopwords, get_n_ents, get_sent, find_sublist
@@ -8,11 +10,9 @@ from data_utils.data_utils import stopwords, get_n_ents, get_sent, find_sublist
 class LanguageModelWrapper:
     def __init__(self, model_name):
         self._model_name = model_name
-        self._max_batch_size = 64
 
         self._tokenizer = AutoTokenizer.from_pretrained(model_name)
         self._model = AutoModelForMaskedLM.from_pretrained(model_name)
-        self._encoder = getattr(self._model, model_name.split('-')[0])
 
         self._model.eval()
         self._model.to('cuda')
@@ -37,30 +37,32 @@ class LanguageModelWrapper:
     def get_mask_filling_logprobs(self, prompt, ent_tuple):
         assert get_n_ents(prompt) == len(ent_tuple)
 
+        ent_tuple = deepcopy(ent_tuple)
+        for ent_idx, ent in enumerate(ent_tuple):
+            if prompt.startswith(f'<ENT{ent_idx}>'):
+                ent_tuple[ent_idx] = ent[0].upper() + ent[1:]
+
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
         mask_spans = self.get_mask_spans(prompt=prompt, ent_tuple=ent_tuple)
 
         mask_positions = []
         for mask_span in mask_spans:
-            for i in range(mask_span[0], mask_span[1]):
-                mask_positions.append(i)
+            mask_positions.extend([pos for pos in range(*mask_span)])
 
         masked_inputs = self.tokenizer(
             [sent] * len(mask_positions), return_tensors='pt').to('cuda')
         label_token_ids = []
-        for i in range(len(mask_positions)):
-            label_token_ids.append(
-                masked_inputs['input_ids'][i][mask_positions[i]])
-            for pos in mask_positions[i:]:
-                masked_inputs['input_ids'][i][pos] = \
-                    self.tokenizer.mask_token_id
+        for i, pos in enumerate(mask_positions):
+            label_token_ids.append(masked_inputs['input_ids'][i][pos].item())
+            masked_inputs['input_ids'][i][mask_positions[i:]] = \
+                self.tokenizer.mask_token_id
 
         with torch.no_grad():
             logits = self.model(**masked_inputs).logits
             logprobs = torch.log_softmax(logits, dim=-1)
 
         mask_logprobs = logprobs[
-            torch.arange(0, len(mask_positions)), mask_positions,
+            torch.arange(len(mask_positions)), mask_positions,
             label_token_ids].tolist()
 
         torch.cuda.empty_cache()

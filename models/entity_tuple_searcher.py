@@ -54,10 +54,6 @@ class EntityTupleSearcher:
         if cur_ent_idx == n_ents:
             pred = [min(cur_logprobs), cur_ent_tuple]
 
-            # filter tuples with only very short entities
-            if sum([len(ent) for ent in cur_ent_tuple]) == 3 * n_ents:
-                return
-
             for ent in cur_ent_tuple:
                 for word in ent.split():
                     if repeat_cnt.get(word, 0) + 1 > max_word_repeat:
@@ -92,8 +88,14 @@ class EntityTupleSearcher:
 
         collected_ents.sort(reverse=True)
 
-        for ent_min_logprob, pred_ent in collected_ents:
-            min_upd = min(cur_logprobs + [ent_min_logprob])
+        flag = set()
+        for ent_logprob, pred_ent in collected_ents:
+            if pred_ent in flag:
+                continue
+            else:
+                flag.add(pred_ent)
+
+            min_upd = min(cur_logprobs + [ent_logprob])
             if len(collected_tuples_heap) == n and \
                     min_upd < collected_tuples_heap[0][0]:
                 break
@@ -108,7 +110,7 @@ class EntityTupleSearcher:
                 n_ents=n_ents,
                 n_masks=n_masks,
                 cur_ent_tuple=cur_ent_tuple + [pred_ent],
-                cur_logprobs=cur_logprobs + [ent_min_logprob],
+                cur_logprobs=cur_logprobs + [ent_logprob],
                 collected_tuples_heap=collected_tuples_heap,
                 repeat_cnt=repeat_cnt,
                 max_word_repeat=max_word_repeat,
@@ -141,12 +143,20 @@ class EntityTupleSearcher:
             if min([len(t) for t in pred_ent.split()]) <= 1:
                 return
 
+            # filter entity full of short words
+            if max([len(t) for t in pred_ent.split()]) <= 2:
+                return
+
+            # filter entity with repeating words, e.g., "word word"
+            if len(pred_ent.split()) > 1 and len(set(pred_ent.split())) == 1:
+                return
+
             for ent in cur_ent_tuple:
                 # filter repeating entity in the entity tuple
                 if pred_ent.replace(' ', '') == ent.replace(' ', ''):
                     return
                 # filter repeating entity in the entity tuple
-                if ent in pred_ent or pred_ent in ent:
+                if ent.startswith(pred_ent) or pred_ent.startswith(ent):
                     return
 
             # filter entity appearing in the prompt
@@ -164,7 +174,7 @@ class EntityTupleSearcher:
         for raw_prompt, weight in weighted_prompts:
             prompt = raw_prompt.replace(
                 f'<ENT{ent_idx}>',
-                self._model.tokenizer.decode(cur_token_ids) +
+                self._model.tokenizer.decode(cur_token_ids).lower() +
                 self._model.tokenizer.mask_token * (
                         n_masks[ent_idx] - len(cur_token_ids)))
 
@@ -189,12 +199,12 @@ class EntityTupleSearcher:
         logprobs, pred_ids = torch.sort(logprobs, descending=True)
 
         for logprob, pred_id in zip(logprobs, pred_ids):
-            min_upd = min(cur_logprobs + [logprob.item()])
+            min_logprob_upd = min(cur_logprobs + [logprob.item()])
             if len(collected_ent_heap) == n and \
-                    min_upd < collected_ent_heap[0][0]:
+                    min_logprob_upd < collected_ent_heap[0][0]:
                 break
 
-            if min_upd < logprob_threashold:
+            if min_logprob_upd < logprob_threashold:
                 break
 
             if not any([ch.isalpha() for ch in
