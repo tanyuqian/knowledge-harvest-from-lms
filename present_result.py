@@ -26,18 +26,14 @@ def main(result_dir, n_present=20):
         if len(weighted_ent_tuples) == 0:
             print(f'outputs of relation \"{rel}\" not found. skipped.')
             continue
-        weighted_ent_tuples = \
-            weighted_ent_tuples[:len(weighted_ent_tuples) // 2]
+        weighted_ent_tuples = weighted_ent_tuples[:200]
 
         columns[f'Ours (Top {n_present})'] = [
             str(ent_tuple) for ent_tuple, _ in weighted_ent_tuples[:n_present]]
 
-        columns[f'Ours (Random Sample)'] = [
+        columns[f'Ours (Random samples over top 200 tuples)'] = [
             str(ent_tuple) for ent_tuple, _ in random.sample(
                 weighted_ent_tuples, n_present)]
-
-        columns[f'Ours (Tail {n_present})'] = [
-            str(ent_tuple) for ent_tuple, _ in weighted_ent_tuples[-n_present:]]
 
         table = PrettyTable()
         for key, col in columns.items():

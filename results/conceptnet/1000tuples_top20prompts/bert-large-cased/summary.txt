@@ -1,0 +1,774 @@
+Relation: AtLocation
+Prompts:
+- 0.1561 The <ENT1> is the best place to store your <ENT0> when you're traveling .
+- 0.1328 The <ENT1> is where i put my <ENT0> .
+- 0.1099 There may be <ENT0> in the <ENT1> .
+- 0.0980 The <ENT1> is where the <ENT0> is located .
+- 0.0921 <ENT0> is an ingredient in <ENT1>s .
+- 0.0910 The <ENT0> is located in the <ENT1> .
+- 0.0885 A <ENT0> is typically found on a <ENT1> .
+- 0.0822 <ENT0> are found in <ENT1> .
+- 0.0763 The <ENT1> is the perfect place to get <ENT0> .
+- 0.0731 The <ENT1> is where you would typically find <ENT0> .
+Harvested Tuples:
++------------------------------+---------------------------------------------+-------------------------------------------+
+|         Seed samples         |                Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
++------------------------------+---------------------------------------------+-------------------------------------------+
+| ['flotation_device', 'boat'] |  ['French Translation', 'French Wikipedia'] |             ['room', 'attic']             |
+|   ['water', 'soft_drink']    |  ['Special Training', 'Training Facility']  |             ['food', 'fridge']            |
+|       ['gear', 'car']        |    ['special interest', 'Research Unit']    |         ['green grass', 'meadow']         |
+|    ['giraffes', 'africa']    |    ['Special Training', 'training hall']    |         ['film', 'Movie Trailer']         |
+|   ['trousers', 'suitcase']   | ['French Translation', 'French Dictionary'] |              ['fire', 'tree']             |
+|              \               |  ['French Translation', 'French Language']  |            ['coffee', 'fridge']           |
+|              \               |          ['red lipstick', 'mirror']         |            ['good oil', 'well']           |
+|              \               |          ['small boats', 'harbour']         |       ['good practice', 'classroom']      |
+|              \               |          ['green grass', 'meadow']          |          ['day', 'morning time']          |
+|              \               |           ['black pepper', 'pot']           |             ['food', 'table']             |
+|              \               |            ['red wine', 'bottle']           |             ['wine', 'cellar']            |
+|              \               |          ['black powder', 'barrel']         |              ['home', 'barn']             |
+|              \               |            ['milk', 'dairy cow']            |            ['work', 'basement']           |
+|              \               |          ['black smoke', 'chimney']         |            ['home', 'kitchen']            |
+|              \               |             ['key', 'door lock']            |      ['spacecraft', 'space shuttle']      |
+|              \               |         ['personal trainer', 'gym']         |           ['black hole', 'star']          |
+|              \               |          ['good news', 'newspaper']         |          ['noise', 'sound track']         |
+|              \               |          ['good weather', 'summer']         |          ['shadow', 'dark space']         |
+|              \               |            ['small fish', 'tank']           |           ['people', 'village']           |
+|              \               |      ['special power', 'power source']      |             ['wood', 'forest']            |
++------------------------------+---------------------------------------------+-------------------------------------------+
+==================================================
+Relation: CapableOf
+Prompts:
+- 0.1279 <ENT0> can <ENT1> that students have .
+- 0.1125 <ENT0> can <ENT1> .
+- 0.0974 <ENT0> can typically <ENT1>, which is when they scope out place in advance to see if it's good target for a .
+- 0.0929 A typical thing that a <ENT0> can do is to <ENT1> .
+- 0.0889 One of the skills that <ENT0> usually have is the ability to <ENT1> .
+- 0.0795 One of the many things that <ENT0> are able to do is <ENT1> .
+- 0.0782 <ENT0> can <ENT1>, or an arewhere they plan to commit crime, by scouting it out in advance to get an idea .
+- 0.0769 Something that <ENT0> can typically do is <ENT1> .
+- 0.0653 <ENT0> can often <ENT1>s, or locations, to find the best places to commit their crimes .
+- 0.0612 One thing that <ENT0> usually do is <ENT1> .
+- 0.0598 <ENT0> can typically <ENT1>, which means they observe and study a place in order to find vulnerabilities that they can exploit .
+- 0.0594 <ENT0> can <ENT1> beforehand in order to scope out the layout and find the best way to rob the place .
+Harvested Tuples:
++----------------------------------+---------------------------------------------------+---------------------------------------------+
+|           Seed samples           |                   Ours (Top 20)                   |  Ours (Random samples over top 200 tuples)  |
++----------------------------------+---------------------------------------------------+---------------------------------------------+
+|  ['neighbor', 'fence_property']  |    ['social relations', 'influence behaviour']    |     ['voters', 'elect representatives']     |
+|     ['cook', 'bread_filet']      |     ['social psychology', 'explain behaviour']    |        ['artists', 'paint pictures']        |
+|   ['plumbers', 'fix_faucets']    |     ['social psychology', 'explain behavior']     | ['social relations', 'influence behaviour'] |
+| ['teachers', 'answer_questions'] |     ['social relationships', 'develop trust']     |       ['information', 'become useful']      |
+|   ['criminals', 'case_joint']    | ['social relationships', 'develop relationships'] |           ['human minds', 'sense']          |
+|                \                 |             ['riders', 'ride horses']             |         ['riders', 'ride together']         |
+|                \                 |             ['young couples', 'marry']            |     ['conservatives', 'avoid criticism']    |
+|                \                 |             ['human brains', 'sense']             |             ['humans', 'sense']             |
+|                \                 |            ['riders', 'ride bicycles']            |      ['information', 'become valuable']     |
+|                \                 |             ['black holes', 'explode']            |  ['social psychology', 'explain behaviour'] |
+|                \                 |          ['researchers', 'find patterns']         |           ['prisoners', 'escape']           |
+|                \                 |        ['courts', 'determine jurisdiction']       |           ['criminals', 'escape']           |
+|                \                 |          ['engineers', 'design systems']          |     ['courts', 'determine jurisdiction']    |
+|                \                 |          ['red cells', 'detect movement']         |          ['two users', 'interact']          |
+|                \                 |              ['users', 'see videos']              |               ['spies', 'spy']              |
+|                \                 |               ['two teams', 'meet']               |       ['rulers', 'control resources']       |
+|                \                 |              ['riders', 'ride bikes']             |         ['tourists', 'visit places']        |
+|                \                 |               ['human life', 'live']              |               ['men', 'talk']               |
+|                \                 |              ['human minds', 'sense']             |           ['God Never', 'forget']           |
+|                \                 |         ['human intelligence', 'predict']         |       ['groups', 'organize together']       |
++----------------------------------+---------------------------------------------------+---------------------------------------------+
+==================================================
+Relation: Causes
+Prompts:
+- 0.1620 When people are <ENT0>, it is typical for them to be <ENT1> with someone .
+- 0.1305 It is common for people to experience <ENT1> while <ENT0> .
+- 0.1151 Most people experience <ENT1> while <ENT0>s at some point .
+- 0.0904 It is typical to <ENT1> when <ENT0>s .
+- 0.0871 <ENT0> usually results in <ENT1>s .
+- 0.0842 When you <ENT0>, you're typically <ENT1> .
+- 0.0781 When people are <ENT1> with one another, it is typical for them to <ENT0> .
+- 0.0751 When you are <ENT0>, it is common for you to <ENT1>e with others .
+- 0.0713 It is typical for <ENT0> to cause <ENT1> .
+- 0.0547 Most people <ENT1> when they <ENT0>s .
+- 0.0514 <ENT0> typically <ENT1> .
+Harvested Tuples:
++------------------------------------------------+---------------------------------------+-------------------------------------------+
+|                  Seed samples                  |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++------------------------------------------------+---------------------------------------+-------------------------------------------+
+|     ['buying_hamburger', 'spending_money']     |  ['meeting online', 'online meeting'] |             ['two', 'friends']            |
+|          ['typing', 'communicating']           |    ['online', 'social networking']    |             ['women', 'love']             |
+|    ['fighting_enemy', 'hopefully_victory']     |       ['online', 'social media']      |             ['female', 'sex']             |
+| ['entertaining_people', 'capturing_attention'] | ['meeting humans', 'Human Relations'] |       ['crossing', 'cross traffic']       |
+|         ['riding_bicycle', 'cramping']         |   ['meeting humans', 'human nature']  |       ['drawing', 'visual stimuli']       |
+|                       \                        |      ['online', 'Social Network']     |             ['alone', 'sleep']            |
+|                       \                        |      ['fishing', 'fish fishing']      |              ['ill', 'sick']              |
+|                       \                        |      ['burning', 'fire burning']      |          ['slow', 'fast running']         |
+|                       \                        |      ['missing', 'found missing']     |           ['single', 'friends']           |
+|                       \                        |        ['born twins', 'birth']        |          ['afraid', 'fear even']          |
+|                       \                        |     ['online', 'social networks']     |       ['online', 'social networks']       |
+|                       \                        |       ['racing', 'race racing']       |            ['wet', 'swimming']            |
+|                       \                        |       ['still smoking', 'smoke']      |        ['missing', 'found missing']       |
+|                       \                        |      ['still running', 'racing']      |             ['born', 'birth']             |
+|                       \                        |      ['male', 'sexual relations']     |       ['still standing', 'sitting']       |
+|                       \                        |     ['still standing', 'sitting']     |     ['Christian', 'religious people']     |
+|                       \                        |       ['men', 'sexual partners']      |         ['performing', 'singing']         |
+|                       \                        |       ['awake early', 'asleep']       |          ['drinking', 'sleeping']         |
+|                       \                        |      ['men', 'sexual relations']      |           ['high', 'depressed']           |
+|                       \                        |          ['drunk', 'dancing']         |             ['young', 'good']             |
++------------------------------------------------+---------------------------------------+-------------------------------------------+
+==================================================
+Relation: CausesDesire
+Prompts:
+- 0.1809 <ENT0> is a desire to <ENT1> or in large amounts .
+- 0.1618 People generally <ENT1>r for <ENT0> because they want to look their best .
+- 0.1182 The <ENT0> creates a desire in someone to <ENT1>r than they usually would .
+- 0.1039 A person who is interested in <ENT0> is likely to <ENT1>, since they care about what is inside .
+- 0.0964 The <ENT0> makes people want to <ENT1>r .
+- 0.0780 People usually feel the urge to <ENT1> when they <ENT0> .
+- 0.0741 Person who <ENT0> may want to <ENT1> in order to see what is inside .
+- 0.0739 A <ENT0> would make someone want to <ENT1>r than they would normally .
+- 0.0574 People <ENT0> by nature and this often drives them to want to <ENT1>s, even if they are not supposed to .
+- 0.0554 If someone <ENT0>, they may be more likely to want to <ENT1> to see what is inside .
+Harvested Tuples:
++-----------------------------------+----------------------------------+-------------------------------------------+
+|            Seed samples           |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++-----------------------------------+----------------------------------+-------------------------------------------+
+|       ['prom', 'dress_nice']      |       ['fish', 'eat fish']       |            ['red wine', 'pour']           |
+|  ['feeling_dirty', 'take_shower'] |  ['Free Trade', 'trade freely']  |          ['two people', 'share']          |
+|   ['being_curious', 'open_gift']  |       ['meat', 'eat meat']       |          ['Body Weight', 'carry']         |
+|    ['gluttony', 'eat_quickly']    |     ['video', 'watch video']     |           ['black wine', 'pour']          |
+| ['needing_things', 'run_errands'] |   ['church', 'attend church']    |         ['good weather', 'travel']        |
+|                 \                 | ['question', 'answer questions'] |          ['cars', 'drive around']         |
+|                 \                 |    ['free rent', 'rent free']    |             ['music', 'dance']            |
+|                 \                 |   ['free trade', 'trade free']   |         ['free rent', 'rent free']        |
+|                 \                 |  ['short films', 'make films']   |             ['sleep', 'talk']             |
+|                 \                 |     ['mail', 'send letters']     |            ['red ink', 'draw']            |
+|                 \                 |  ['building', 'build building']  |            ['skin', 'eat meat']           |
+|                 \                 |        ['art', 'see art']        |             ['death', 'kill']             |
+|                 \                 |   ['driving', 'drive faster']    |              ['need', 'help']             |
+|                 \                 |    ['email', 'send messages']    |           ['age', 'go outside']           |
+|                 \                 |  ['short films', 'make short']   |            ['panic', 'escape']            |
+|                 \                 |      ['fire', 'burn fire']       |           ['bad weather', 'fly']          |
+|                 \                 |    ['growth', 'grow larger']     |              ['fear', 'die']              |
+|                 \                 |  ['search', 'find information']  |              ['fire', 'burn']             |
+|                 \                 |   ['short drop', 'drop short']   |          ['like music', 'listen']         |
+|                 \                 |       ['skin', 'eat meat']       |              ['time', 'run']              |
++-----------------------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: CreatedBy
+Prompts:
+- 0.1478 The <ENT1> is the person who is in charge of making the <ENT0> .
+- 0.1420 A <ENT1> creates a <ENT0> .
+- 0.1282 A <ENT1> is someone who is responsible for making a <ENT0> .
+- 0.1102 The <ENT1> agent is responsible for the creation of the <ENT0> .
+- 0.0989 A <ENT1> is a creature who can make <ENT0>s .
+- 0.0921 A <ENT1> is a process or agent that creates <ENT0>s .
+- 0.0736 <ENT0> is a type of music that is created by <ENT1> without any instruments .
+- 0.0700 A <ENT0> is typically created by a <ENT1>, who oversees the overall vision for the project .
+- 0.0688 A <ENT1> is someone who creates a <ENT0>, typically by controlling its overall artistic and dramatic aspects .
+- 0.0685 A <ENT1> is a person who is responsible for the overall creative vision and execution of a <ENT0> .
+Harvested Tuples:
++-----------------------------+------------------------------------------+-------------------------------------------+
+|         Seed samples        |              Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++-----------------------------+------------------------------------------+-------------------------------------------+
+| ['paper_airplane', 'human'] | ['public statement', 'public official']  |        ['beat', 'Rhythm Generator']       |
+|     ['film', 'director']    |    ['public space', 'public servant']    |          ['wave', 'wind turbine']         |
+|      ['pee', 'kidneys']     |  ['public statement', 'public servant']  |            ['story', 'writer']            |
+|   ['cappella', 'singers']   |     ['business venture', 'company']      |           ['ball', 'Head Coach']          |
+|   ['utopia', 'community']   |    ['game score', 'score generator']     |             ['case', 'judge']             |
+|              \              | ['Project History', 'Project Historian'] |        ['complex image', 'viewer']        |
+|              \              |         ['norm', 'social norm']          |           ['good play', 'coach']          |
+|              \              |     ['music video', 'choreographer']     |        ['relationship', 'partner']        |
+|              \              |      ['broadcast', 'radio station']      |          ['life', 'Living Soul']          |
+|              \              |    ['whole country', 'national hero']    |   ['production device', 'manufacturer']   |
+|              \              |    ['sensation', 'sensory sensation']    |         ['recipe', 'kitchen maid']        |
+|              \              |   ['Complex Action', 'Complex Actor']    |          ['film', 'screenwriter']         |
+|              \              |   ['revolution', 'radical socialist']    |   ['public statement', 'public servant']  |
+|              \              |          ['pack', 'wolf pack']           |           ['change', 'creator']           |
+|              \              |       ['war', 'military dictator']       |    ['message', 'Communication Expert']    |
+|              \              |  ['Plan Proposal', 'Planning Officer']   |          ['decision', 'designer']         |
+|              \              |        ['shadow', 'Dark Shadow']         |             ['book', 'author']            |
+|              \              |          ['well', 'water well']          |        ['timeline', 'Time Keeper']        |
+|              \              |        ['music song', 'lyricist']        |         ['group project', 'team']         |
+|              \              |       ['music song', 'songwriter']       |          ['structure', 'builder']         |
++-----------------------------+------------------------------------------+-------------------------------------------+
+==================================================
+Relation: DefinedAs
+Prompts:
+- 0.1009 The word "<ENT1>" is more specific than the word "<ENT0>" because it refers to a specific type of object .
+- 0.0915 The word " <ENT1> " is more specific than the word " <ENT0> ." .
+- 0.0906 The word "<ENT1>" refers to the planet we live on, while the word "<ENT0>" can refer to anything in existence .
+- 0.0874 A <ENT1> is a more explanatory version of a <ENT0> .
+- 0.0792 A <ENT1> is a more specific and detailed term for <ENT0> .
+- 0.0771 <ENT0> is a general term that refers to the planet that we live on, while <ENT1> is a more specific term that refers to the physical landmass .
+- 0.0638 A <ENT1> is a more in-depth and expansive way to communicate ideas than a <ENT0> .
+- 0.0628 <ENT0> is an irrational <ENT1> something that poses no real threat .
+- 0.0617 <ENT0> is known as the <ENT1> because it can dissolve more substances than any other liquid .
+- 0.0606 The <ENT0> is everything that exists, including <ENT1> .
+- 0.0589 The <ENT1> is a more specific term than <ENT0>, which can refer to any planet .
+- 0.0587 A <ENT1> is a substance that can dissolve all other substances, while <ENT0> is simply a substance that can dissolve many substances .
+- 0.0548 The <ENT1> is a more in-depth explanation of what the <ENT0> is .
+- 0.0518 <ENT1> is a more explanatory version of <ENT0> .
+Harvested Tuples:
++---------------------------------+--------------------------------------+--------------------------------------------+
+|           Seed samples          |            Ours (Top 20)             | Ours (Random samples over top 200 tuples)  |
++---------------------------------+--------------------------------------+--------------------------------------------+
+|  ['water', 'universal_solvent'] |    ['Free Verse', 'Free Speech']     |             ['place', 'time']              |
+| ['jellyfishs_habitat', 'ocean'] |     ['free verse', 'free poem']      |              ['good', 'bad']               |
+|        ['world', 'earth']       |    ['Real People', 'Real Thing']     |           ['reality', 'theory']            |
+|         ['pen', 'book']         |      ['Real Man', 'Real Thing']      |             ['food', 'drink']              |
+|     ['paranoia', 'fear_of']     |         ['oil', 'fuel oil']          |            ['history', 'myth']             |
+|                \                |        ['cake', 'pie crust']         |          ['style', 'design type']          |
+|                \                |  ['Wikipedia', 'Google Wikipedia']   |             ['white', 'black']             |
+|                \                | ['physical phenomena', 'phenomenon'] |        ['public', 'private domain']        |
+|                \                |  ['population', 'mass population']   |     ['Wikipedia', 'Google Wikipedia']      |
+|                \                |        ['area', 'land area']         |            ['country', 'state']            |
+|                \                |       ['shot', 'bullet wound']       |       ['Free Verse', 'Free Speech']        |
+|                \                |  ['physical phenomena', 'physics']   |    ['individual', 'collective entity']     |
+|                \                |  ['primary', 'secondary component']  |              ['life', 'work']              |
+|                \                |   ['radio', 'television station']    |            ['green', 'yellow']             |
+|                \                |      ['seed', 'root vegetable']      |          ['culture', 'language']           |
+|                \                |  ['physical substance', 'chemical']  |          ['word string', 'text']           |
+|                \                |    ['drug', 'chemical reaction']     |       ['drug', 'chemical substance']       |
+|                \                |       ['shot', 'bullet shot']        |          ['society', 'community']          |
+|                \                |    ['physical realm', 'universe']    |      ['physical scale', 'dimension']       |
+|                \                |     ['public', 'private sector']     | ['individual', 'collective consciousness'] |
++---------------------------------+--------------------------------------+--------------------------------------------+
+==================================================
+Relation: Desires
+Prompts:
+- 0.1476 Every <ENT0> wants to mate in order to <ENT1> .
+- 0.1132 All <ENT0>s have the instinct to <ENT1> in order to continue their species .
+- 0.1070 Every <ENT0> desires a way to <ENT1> their frustration .
+- 0.1060 <ENT0>s <ENT1> in order to create new generations of their species .
+- 0.0898 The <ENT0> collects pollen from the <ENT1> in order to make honey .
+- 0.0878 Every <ENT0> desires an outlet, or a <ENT1>, for their anger .
+- 0.0875 <ENT0> desire to <ENT1> .
+- 0.0721 The <ENT1>s are what every <ENT0> wants .
+- 0.0666 <ENT0>s are attracted to <ENT1>s because they need the nectar to make honey .
+- 0.0617 <ENT0>s have a strong desire to fly toward <ENT1>s .
+- 0.0607 <ENT1> is something that every <ENT0> desires .
+Harvested Tuples:
++--------------------------+----------------------------+-------------------------------------------+
+|       Seed samples       |       Ours (Top 20)        | Ours (Random samples over top 200 tuples) |
++--------------------------+----------------------------+-------------------------------------------+
+|  ['anarchists', 'free']  |    ['bird', 'Fly Away']    |          ['flame', 'burn alive']          |
+| ['angry_person', 'vent'] |   ['insect', 'Fly Away']   |            ['alpha', 'control']           |
+| ['animal', 'reproduce']  |  ['male slave', 'master']  |             ['animal', 'feed']            |
+|    ['bee', 'flower']     | ['trader', 'trade goods']  |           ['insect', 'fly free']          |
+|  ['kids', 'play_games']  |    ['bird', 'fly free']    |              ['male', 'kill']             |
+|            \             |  ['reader', 'read books']  |    ['parent pair', 'separate species']    |
+|            \             | ['reader', 'read fiction'] |               ['fan', 'win']              |
+|            \             |   ['insect', 'fly free']   |             ['person', 'die']             |
+|            \             | ['writer', 'write poetry'] |         ['predator still', 'prey']        |
+|            \             |     ['human', 'kill']      |             ['human', 'kill']             |
+|            \             |     ['animal', 'feed']     |          ['singer', 'sing song']          |
+|            \             |     ['human', 'live']      |           ['visitor', 'return']           |
+|            \             |  ['witch doctor', 'cure']  |            ['bird', 'fly free']           |
+|            \             |    ['plant', 'flower']     |          ['mother', 'mate young']         |
+|            \             |      ['bird', 'nest']      |             ['vampire', 'die']            |
+|            \             |  ['reader', 'read aloud']  |          ['student', 'graduate']          |
+|            \             |      ['male', 'feed']      |             ['witch', 'power']            |
+|            \             |  ['singer', 'sing song']   |      ['student usually', 'graduate']      |
+|            \             |      ['male', 'kill']      |         ['wolf', 'mate together']         |
+|            \             |    ['human', 'escape']     |            ['bird', 'Fly Away']           |
++--------------------------+----------------------------+-------------------------------------------+
+==================================================
+Relation: HasA
+Prompts:
+- 0.2277 There are usually <ENT1> in a <ENT0> .
+- 0.1274 It is common for <ENT0> to have <ENT1> .
+- 0.1230 <ENT0> to have <ENT1> .
+- 0.1016 Usually, we would expect <ENT0> to have <ENT1> .
+- 0.0940 We would expect a <ENT0> of cards to have <ENT1> .
+- 0.0872 This is because most <ENT0> have <ENT1> coats .
+- 0.0867 A <ENT0> of cards contains <ENT1> .
+- 0.0840 <ENT0> typically have <ENT1>, although there are some breeds that don't .
+- 0.0684 We would expect <ENT0> to have <ENT1>, but he doesn't .
+Harvested Tuples:
++-----------------------------+-------------------------------------+-------------------------------------------+
+|         Seed samples        |            Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++-----------------------------+-------------------------------------+-------------------------------------------+
+|     ['timothy', 'kids']     |      ['Common Sense', 'issues']     |           ['forest', 'flowers']           |
+| ['purpose_to', 'direction'] |     ['single mothers', 'babies']    |               ['day', 'six']              |
+|       ['dogs', 'fur']       |   ['large groups', 'individuals']   |           ['house', 'children']           |
+|   ['square', 'four_sides']  |   ['small groups', 'individuals']   |             ['house', 'four']             |
+|     ['deck', '52_cards']    | ['different groups', 'differences'] |        ['single mothers', 'babies']       |
+|              \              |       ['good news', 'arrived']      |            ['woman', 'breasts']           |
+|              \              |    ['larger vessels', 'engines']    |             ['hands', 'hair']             |
+|              \              |       ['small animals', 'fur']      |              ['game', 'five']             |
+|              \              |     ['French Style', 'features']    |             ['house', 'five']             |
+|              \              |   ['couples', 'multiple partners']  |             ['money', 'power']            |
+|              \              |   ['single parents', 'offspring']   |             ['well', 'water']             |
+|              \              |      ['young woman', 'breasts']     |             ['land', 'water']             |
+|              \              |     ['home security', 'guards']     |     ['different families', 'siblings']    |
+|              \              |      ['good news', 'happened']      |            ['court', 'judges']            |
+|              \              |  ['different types', 'differences'] |     ['different types', 'differences']    |
+|              \              |     ['state', 'multiple states']    |              ['war', 'ended']             |
+|              \              |       ['large herd', 'cattle']      |              ['house', 'two']             |
+|              \              |       ['good health', 'well']       |          ['large size', 'issues']         |
+|              \              |    ['Chinese Style', 'features']    |      ['larger specimens', 'survived']     |
+|              \              |       ['Small Size', 'issues']      |            ['women', 'babies']            |
++-----------------------------+-------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasFirstSubevent
+Prompts:
+- 0.1634 When you <ENT0> someone, the first thing that happens is you <ENT1> .
+- 0.1548 The first thing that happens when you <ENT0> someone is you <ENT1> .
+- 0.1124 If you want to <ENT0> from someone, you'll need to <ENT1> on their level first .
+- 0.1118 When you <ENT0>, you may first <ENT1>, which is the beginning of the event .
+- 0.1076 If you want to <ENT0> someone, you first need to <ENT1> .
+- 0.0764 If you "<ENT0>," you're holding an event where you <ENT1> in advance in order to announce it to the public .
+- 0.0716 The beginning of the event "<ENT0>" is the subevent "<ENT1>" .
+- 0.0711 The subevent "<ENT1>" is the beginning of the event "<ENT0>" .
+- 0.0665 The "<ENT0>" event begins with the sub-event "<ENT1>." .
+- 0.0645 The event "<ENT0>" has the subevent "<ENT1>" as its beginning .
+Harvested Tuples:
++---------------------------------+---------------------------------+-------------------------------------------+
+|           Seed samples          |          Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++---------------------------------+---------------------------------+-------------------------------------------+
+|     ['hear_news', 'listne']     |    ['try trying', 'try hard']   |            ['become', 'learn']            |
+|    ['hear_music', 'get_down']   | ['try cheating', 'cheat twice'] |              ['call', 'wait']             |
+| ['go_public', 'call_newspaper'] |    ['become immortal', 'age']   |              ['make', 'get']              |
+|  ['drink_alcohol', 'feel_buzz'] |      ['become old', 'age']      |            ['finish', 'break']            |
+|    ['tickle', 'get_feather']    |    ['want much', 'want less']   |            ['trust', 'believe']           |
+|                \                |      ['go inside', 'enter']     |             ['like', 'leave']             |
+|                \                |     ['become sick', 'vomit']    |            ['believe', 'think']           |
+|                \                |         ['see', 'know']         |          ['Go Away', 'disappear']         |
+|                \                |      ['trust', 'go public']     |              ['meet', 'run']              |
+|                \                |       ['go past', 'pass']       |             ['answer', 'ask']             |
+|                \                |       ['take', 'go back']       |             ['strike', 'hit']             |
+|                \                |         ['love', 'die']         |             ['work', 'sleep']             |
+|                \                |     ['yell', 'shout loudly']    |              ['hit', 'move']              |
+|                \                |         ['love', 'know']        |             ['help', 'listen']            |
+|                \                |         ['kill', 'die']         |            ['change', 'shift']            |
+|                \                |         ['meet', 'know']        |              ['eat', 'drink']             |
+|                \                |     ['find treasure', 'dig']    |            ['break', 'change']            |
+|                \                |         ['meet', 'talk']        |              ['try', 'fail']              |
+|                \                |          ['see', 'run']         |           ['remember', 'sleep']           |
+|                \                |          ['see', 'die']         |          ['find treasure', 'dig']         |
++---------------------------------+---------------------------------+-------------------------------------------+
+==================================================
+Relation: HasLastSubevent
+Prompts:
+- 0.1680 If you <ENT0>, you will need to <ENT1> afterwards .
+- 0.1573 If you want to <ENT0>, you're going to have to <ENT1> afterward .
+- 0.1073 The subevent "<ENT1>" is a consequence of the event "<ENT0>" because when you love someone, you put yourself in a vulnerable .
+- 0.1012 When we <ENT0> person, we are vulnerable to being <ENT1> .
+- 0.0968 The event "<ENT0>" concludes with the subevent "<ENT1>" .
+- 0.0963 The conclusion of the event "<ENT0>" is the subevent "<ENT1>" .
+- 0.0943 The subevent "<ENT1>" is a consequence of the event "<ENT0>." .
+- 0.0908 The "<ENT0>" event is not complete until the "<ENT1>" subevent is finished .
+- 0.0880 When we <ENT0> person, we open ourselves up to the possibility of being <ENT1> .
+Harvested Tuples:
++---------------------------------------+------------------------------------+-------------------------------------------+
+|              Seed samples             |           Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++---------------------------------------+------------------------------------+-------------------------------------------+
+| ['pass_sentence', 'announce_penalty'] |       ['become old', 'age']        |            ['get tired', 'nap']           |
+|        ['love_another', 'hurt']       |    ['make sense', 'understand']    |              ['work', 'play']             |
+|         ['wash_hands', 'dry']         |        ['get tired', 'nap']        |            ['attack', 'escape']           |
+|       ['have_food', 'clean_up']       |      ['look pretty', 'dress']      |             ['escape', 'kill']            |
+|    ['start_family', 'get_married']    | ['need support', 'support people'] |          ['third', 'fourth step']         |
+|                   \                   |      ['become old', 'retire']      |        ['yellow', 'orange yellow']        |
+|                   \                   |    ['make mistakes', 'regret']     |            ['leave', 'return']            |
+|                   \                   |      ['become rich', 'money']      |           ['give', 'take away']           |
+|                   \                   |       ['enter', 'go inside']       |             ['death', 'life']             |
+|                   \                   |      ['go inside', 'outside']      |             ['lead', 'follow']            |
+|                   \                   |      ['get together', 'date']      |           ['look nice', 'dress']          |
+|                   \                   |       ['look nice', 'dress']       |             ['leave', 'sleep']            |
+|                   \                   |     ['get together', 'party']      |              ['lose', 'win']              |
+|                   \                   |   ['take less', 'take greater']    |          ['look pretty', 'dress']         |
+|                   \                   |       ['feel safe', 'relax']       |             ['return', 'stay']            |
+|                   \                   |      ['become sick', 'vomit']      |             ['attack', 'kill']            |
+|                   \                   |      ['go shopping', 'dress']      |         ['affect', 'cause effect']        |
+|                   \                   |        ['make love', 'sex']        |             ['leave', 'stay']             |
+|                   \                   |        ['go solo', 'lead']         |         ['want children', 'marry']        |
+|                   \                   |          ['die', 'live']           |          ['plant', 'seed plant']          |
++---------------------------------------+------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasPrerequisite
+Prompts:
+- 0.2007 In order to <ENT0>, one must first <ENT1> .
+- 0.1636 If someone wants to <ENT0>, they need to first <ENT1> .
+- 0.1514 If someone wants to <ENT0>, they need to <ENT1> to appear before them first .
+- 0.1494 If someone wants to <ENT0>, they need to <ENT1> first .
+- 0.1152 If you want to <ENT0>, you have to <ENT1> .
+- 0.0794 If someone wants to <ENT0>, they need to <ENT1> from the list of potential witnesses first .
+- 0.0739 The <ENT0>is cannot begin until the thinker has typed out their <ENT1>s on the keyboard .
+- 0.0666 Before someone can start <ENT0>, they need to <ENT1> on the keyboard .
+Harvested Tuples:
++----------------------------------------+---------------------------------+-------------------------------------------+
+|              Seed samples              |          Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++----------------------------------------+---------------------------------+-------------------------------------------+
+|        ['analysing', 'thought']        |   ['become old', 'age slowly']  |     ['manifest', 'appear physically']     |
+|  ['write_program', 'design_program']   |  ['keep score', 'score twice']  |         ['go online', 'register']         |
+|       ['make_grow', 'stimulate']       |     ['find treasure', 'dig']    |             ['read', 'write']             |
+| ['hear_testimony', 'summon_witnesses'] |     ['make jokes', 'laugh']     |             ['attend', 'come']            |
+|      ['typing', 'pressing_keys']       |      ['get away', 'escape']     |              ['eat', 'work']              |
+|                   \                    |     ['stay hidden', 'hide']     |             ['say', 'answer']             |
+|                   \                    |   ['keep score', 'score well']  |           ['negotiate', 'agree']          |
+|                   \                    | ['become religious', 'convert'] |            ['convert', 'pray']            |
+|                   \                    |    ['become old', 'age well']   |         ['believe', 'think twice']        |
+|                   \                    |    ['start painting', 'draw']   |         ['believe', 'think hard']         |
+|                   \                    |    ['stay still', 'breathe']    |            ['attend', 'apply']            |
+|                   \                    |    ['go online', 'register']    |             ['write', 'read']             |
+|                   \                    |   ['believe', 'think clearly']  |             ['lose', 'fight']             |
+|                   \                    |  ['start college', 'graduate']  |              ['die', 'kill']              |
+|                   \                    |      ['become old', 'age']      |             ['argue', 'agree']            |
+|                   \                    |     ['become old', 'retire']    |              ['walk', 'turn']             |
+|                   \                    |    ['participate', 'go home']   |              ['die', 'live']              |
+|                   \                    |      ['make bread', 'cook']     |           ['study', 'practice']           |
+|                   \                    | ['lead', 'think strategically'] |            ['practice', 'work']           |
+|                   \                    |         ['talk', 'ask']         |              ['die', 'know']              |
++----------------------------------------+---------------------------------+-------------------------------------------+
+==================================================
+Relation: HasProperty
+Prompts:
+- 0.1388 <ENT0>s are usually created with the intention of taking advantage of others, which is why they are often seen as being <ENT1> .
+- 0.1089 I believe that the <ENT0> is <ENT1> because it relies on a system of control and manipulation in order to function .
+- 0.0962 Many people believe that <ENT0> is <ENT1> in color .
+- 0.0857 There is a general consensus that <ENT0> are <ENT1> .
+- 0.0814 <ENT1> <ENT0>s are a convenient way to jot down notes on the go .
+- 0.0808 <ENT0>s are <ENT1> in size .
+- 0.0791 <ENT0>s are always up to something <ENT1> .
+- 0.0739 <ENT0> are known to be <ENT1> .
+- 0.0737 A <ENT0> is a <ENT1> notebook that can be easily carried in a pocket .
+- 0.0644 A notebook is a <ENT1> tool for carrying <ENT0> with you wherever you go .
+- 0.0587 I believe that <ENT0>s are <ENT1> .
+- 0.0584 A <ENT0> is a notebook designed to be easily carried in a pocket, which can be used for <ENT1> purposes .
+Harvested Tuples:
++------------------------------+-----------------------------------------+-------------------------------------------+
+|         Seed samples         |              Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
++------------------------------+-----------------------------------------+-------------------------------------------+
+|      ['scheme', 'evil']      | ['Child Abuse', 'widespread worldwide'] |              ['hell', 'real']             |
+| ['pocket_notebook', 'small'] | ['child pornography', 'illegal online'] |             ['reader', 'free']            |
+| ['canoes', 'very_unstable']  |      ['paper tape', 'used instead']     |             ['two', 'similar']            |
+|  ['knowledge', 'powerful']   |       ['Book Review', 'critical']       |      ['Indian Population', 'smaller']     |
+|      ['milk', 'white']       |   ['computer equipment', 'used often']  |           ['normal', 'perfect']           |
+|              \               |     ['Child Abuse', 'legal crimes']     |              ['home', 'safe']             |
+|              \               |       ['paper tape', 'used today']      |           ['white', 'superior']           |
+|              \               |  ['family resemblance', 'significant']  |          ['Beta Mode', 'normal']          |
+|              \               |         ['book size', 'larger']         |            ['sun', 'beautiful']           |
+|              \               |         ['book size', 'smaller']        |           ['species', 'similar']          |
+|              \               |        ['family size', 'larger']        |         ['baby chick', 'healthy']         |
+|              \               |        ['family size', 'smaller']       |             ['black', 'white']            |
+|              \               |    ['Chinese Cuisine', 'traditional']   |           ['Bible', 'religious']          |
+|              \               |  ['computer console', 'used together']  |           ['stone', 'valuable']           |
+|              \               |     ['Western Romance', 'romantic']     |        ['Cd Version', 'available']        |
+|              \               |      ['Book Reference', 'helpful']      |           ['world', 'dangerous']          |
+|              \               |         ['Baby Food', 'healthy']        |            ['phone', 'mobile']            |
+|              \               |   ['Chinese Medicine', 'traditional']   |            ['yellow', 'green']            |
+|              \               |     ['family structure', 'complex']     |          ['Phoenix', 'different']         |
+|              \               |      ['paper tablet', 'used today']     |            ['God', 'different']           |
++------------------------------+-----------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasSubEvent
+Prompts:
+- 0.1336 In the event of <ENT0> something, one will also need to <ENT1> in order to complete the purchase .
+- 0.1165 Since "<ENT0>" can be a subevent of "<ENT1>", it seems that the former triggers the latter .
+- 0.1112 If you are <ENT0>, it is possible that you will have to <ENT1> .
+- 0.0930 <ENT1> is a consequence of <ENT0> .
+- 0.0873 When you <ENT0>, part of what happens is that you <ENT1> .
+- 0.0817 The <ENT1> subevent occurs when you <ENT0> .
+- 0.0787 When you <ENT0>, you might <ENT1> as a reaction .
+- 0.0675 When you <ENT0>, one of the things that can happen is that you might be asked to <ENT1> .
+- 0.0659 If you <ENT0>, you may have to <ENT1> .
+- 0.0586 If you are trying to <ENT0>, you might have to <ENT1> at some point .
+- 0.0537 <ENT0> includes the subevent of <ENT1> .
+- 0.0523 <ENT1> happens as a subevent of <ENT0> .
+Harvested Tuples:
++------------------------------------+----------------------------------+-------------------------------------------+
+|            Seed samples            |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++------------------------------------+----------------------------------+-------------------------------------------+
+|    ['buying', 'get_directions']    |     ['set zero', 'set two']      |          ['care', 'act quickly']          |
+|  ['sleeping', 'rejuvinate_body']   |    ['set zero', 'set three']     |         ['input', 'output input']         |
+|   ['committing_murder', 'death']   |   ['two split', 'split apart']   |             ['know', 'think']             |
+|      ['meet_girls', 'blush']       |       ['get older', 'age']       |         ['set zero', 'set three']         |
+| ['attending_class', 'give_report'] |      ['get sick', 'vomit']       |            ['panic', 'escape']            |
+|                 \                  |     ['lost weight', 'diet']      |              ['fall', 'jump']             |
+|                 \                  |     ['like music', 'dance']      |             ['left', 'right']             |
+|                 \                  |   ['go missing', 'disappear']    |             ['hurt', 'fight']             |
+|                 \                  | ['two separate', 'separate two'] |              ['kill', 'live']             |
+|                 \                  |    ['become rich', 'retire']     |              ['fail', 'pass']             |
+|                 \                  |      ['Go Along', 'follow']      |         ['fish', 'swim upstream']         |
+|                 \                  | ['two touch', 'touch together']  |        ['lost weight', 'exercise']        |
+|                 \                  |     ['become sick', 'vomit']     |             ['change', 'move']            |
+|                 \                  |     ['go swimming', 'drown']     |             ['sleep', 'wake']             |
+|                 \                  |      ['go missing', 'hide']      |             ['die', 'return']             |
+|                 \                  |   ['lost weight', 'exercise']    |              ['lost', 'lose']             |
+|                 \                  |       ['get upset', 'cry']       |              ['lose', 'win']              |
+|                 \                  |      ['go inside', 'enter']      |           ['see light', 'blink']          |
+|                 \                  |    ['fish', 'swim upstream']     |          ['like music', 'dance']          |
+|                 \                  |      ['left side', 'right']      |         ['become rich', 'retire']         |
++------------------------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: IsA
+Prompts:
+- 0.1690 A <ENT0> is a type of <ENT1> .
+- 0.1199 A <ENT1> that is of the <ENT0> type is one that is characterized by its large size and population .
+- 0.1017 <ENT0>s are a type of <ENT1> that typically live in large colonies .
+- 0.0914 A <ENT0> is a type of <ENT1> that produces edible grains .
+- 0.0890 <ENT0>s are a subspecies of <ENT1> .
+- 0.0769 An <ENT0> is a specific type of <ENT1> that is known for living in large groups and being very aggressive .
+- 0.0757 A <ENT0> is a <ENT1> that has more than two sets of chromosomes .
+- 0.0742 More specifically, <ENT0> is a type of <ENT1> of the bile ducts .
+- 0.0681 A <ENT0> is a type of <ENT1> that is grown specifically for the grain that it produces .
+- 0.0671 In other words, <ENT0> is one particular <ENT1> .
+- 0.0670 A <ENT0> is a specific type of <ENT1> that is grown in order to harvest its grain, which is used as a food source .
+Harvested Tuples:
++-----------------------------------------+----------------------------------------+-------------------------------------------+
+|               Seed samples              |             Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
++-----------------------------------------+----------------------------------------+-------------------------------------------+
+|     ['cholangitis', 'inflammation']     |    ['mutation', 'genetic mutation']    |            ['hybrid', 'plant']            |
+|      ['rice_plant', 'cereal_plant']     |       ['street', 'urban street']       |            ['big toe', 'crab']            |
+| ['polyploid_cell', 'noncancerous_cell'] |  ['tradition', 'cultural tradition']   |            ['Big Wave', 'sea']            |
+|            ['minsk', 'city']            |          ['big toe', 'foot']           |              ['herd', 'farm']             |
+|           ['army_ant', 'ant']           |  ['location', 'geographic location']   |         ['street', 'urban street']        |
+|                    \                    | ['cooperative', 'social organisation'] |     ['treatment', 'medical procedure']    |
+|                    \                    |        ['black widow', 'moth']         |             ['herd', 'horse']             |
+|                    \                    |   ['compound', 'chemical compound']    |      ['natural world', 'environment']     |
+|                    \                    |   ['treatment', 'medical treatment']   |           ['mushroom', 'fruit']           |
+|                    \                    |        ['wild turkey', 'goose']        |         ['mushroom', 'vegetable']         |
+|                    \                    |       ['Black Wolf', 'werewolf']       |           ['hybrid', 'organism']          |
+|                    \                    |  ['municipality', 'local government']  |           ['house', 'building']           |
+|                    \                    |          ['big toe', 'crab']           |          ['basket', 'food item']          |
+|                    \                    |   ['Natural Selection', 'evolution']   |              ['pod', 'fruit']             |
+|                    \                    |        ['queen', 'female bee']         |       ['Natural World', 'ecosystem']      |
+|                    \                    |        ['Wild Wheat', 'potato']        |     ['school', 'social organisation']     |
+|                    \                    |        ['Big Wave', 'tsunami']         |              ['town', 'city']             |
+|                    \                    |   ['concert', 'musical performance']   |              ['bull', 'pig']              |
+|                    \                    |   ['Natural Selection', 'mutation']    |              ['host', 'cell']             |
+|                    \                    |      ['Common Noun', 'language']       |    ['hurricane', 'weather phenomenon']    |
++-----------------------------------------+----------------------------------------+-------------------------------------------+
+==================================================
+Relation: MadeOf
+Prompts:
+- 0.1214 An <ENT0> consists of a <ENT1> .
+- 0.0972 Various types of <ENT1> can be used to make <ENT0> .
+- 0.0944 A <ENT0> is made up of a <ENT1> and electrons .
+- 0.0802 <ENT0> is made of <ENT1> .
+- 0.0799 <ENT0> is made up of protein, which is found in <ENT1> .
+- 0.0754 <ENT0>s are <ENT1> that are passed from one person to another .
+- 0.0708 A <ENT0> is caused by <ENT1> .
+- 0.0683 <ENT0>s are made of a small, dense central core called the <ENT1>, which is made up of protons and neutrons .
+- 0.0678 <ENT0> are made of <ENT1> .
+- 0.0677 <ENT0> is typically made out of <ENT1> .
+- 0.0655 The main ingredient in <ENT0> is usually <ENT1> .
+- 0.0587 Many people are unaware that <ENT0> are made of <ENT1> .
+- 0.0528 The <ENT0> is constructed from <ENT1>en materials .
+Harvested Tuples:
++-------------------------------------------+-------------------------------------------+-------------------------------------------+
+|                Seed samples               |               Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++-------------------------------------------+-------------------------------------------+-------------------------------------------+
+|        ['hot_dogs', 'bi_products']        |      ['Heavy Weight', 'Heavy Metals']     |     ['Heavy Vehicle', 'Heavy Weight']     |
+|           ['furniture', 'wood']           | ['modern medicine', 'natural substances'] |       ['American Uniform', 'black']       |
+| ['transmitted_disease', 'microorganisms'] |     ['Heavy Vehicle', 'Heavy Weight']     |             ['salt', 'sugar']             |
+|            ['atom', 'nucleus']            |  ['modern medicine', 'natural products']  |     ['opera', 'musical compositions']     |
+|             ['muscle', 'meat']            |   ['modern medicine', 'Natural Sources']  |             ['shell', 'metal']            |
+|                     \                     |      ['modern radio', 'radio waves']      |        ['construction', 'concrete']       |
+|                     \                     |       ['Heavy Work', 'heavy metals']      |       ['council', 'local residents']      |
+|                     \                     |       ['French Pie', 'pie filling']       |              ['ice', 'glass']             |
+|                     \                     |     ['traditional medicine', 'herbs']     |              ['egg', 'shell']             |
+|                     \                     |        ['French Pie', 'pie crust']        |         ['Wikipedia', 'Web Pages']        |
+|                     \                     |       ['German Beer', 'beer yeast']       |          ['game', 'small stones']         |
+|                     \                     |      ['modern radio', 'radio tubes']      |              ['oil', 'fuel']              |
+|                     \                     |   ['French Sandwich', 'sandwich making']  |        ['American Uniform', 'blue']       |
+|                     \                     |            ['rose', 'red rose']           |          ['pig', 'animal skins']          |
+|                     \                     |          ['green tea', 'coffee']          |             ['shell', 'clay']             |
+|                     \                     |        ['force', 'physical forces']       |         ['legend', 'human flesh']         |
+|                     \                     |         ['soup', 'vegetable soup']        |        ['Chinese Soup', 'chicken']        |
+|                     \                     |           ['fur', 'animal fur']           |            ['rose', 'red rose']           |
+|                     \                     |    ['program', 'Computer Programming']    |             ['oil', 'liquid']             |
+|                     \                     |        ['traditional soap', 'wax']        |       ['traditional soup', 'beans']       |
++-------------------------------------------+-------------------------------------------+-------------------------------------------+
+==================================================
+Relation: MotivatedByGoal
+Prompts:
+- 0.1249 The main reason someone would want to <ENT0> is to <ENT1> .
+- 0.1169 In order to <ENT1>, someone needs to <ENT0> .
+- 0.1130 Someone needs to <ENT0> in order to <ENT1> .
+- 0.0970 Someone who wants to <ENT1> may <ENT0> .
+- 0.0937 Some people <ENT0> things as an opportunity to <ENT1> .
+- 0.0921 Material as a challenge
+
+someone who wants to <ENT1> may <ENT0> material as an opportunity to improve their skills .
+- 0.0921 Someone wants to <ENT1> because they are curious and want to <ENT0> things .
+- 0.0759 The person wants to <ENT1> because they want to learn more about the company and <ENT0> .
+- 0.0758 The person wants to <ENT1> more about the company in order to be able to make more informed decisions and <ENT0> opportunities .
+- 0.0658 Someone does <ENT0> because they want to <ENT1> .
+- 0.0528 If you want to be <ENT1>, you may <ENT0> .
+Harvested Tuples:
++-------------------------------------------+----------------------------------------+-------------------------------------------+
+|                Seed samples               |             Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
++-------------------------------------------+----------------------------------------+-------------------------------------------+
+|            ['see_new', 'learn']           |  ['use protection', 'protect others']  |              ['walk', 'run']              |
+| ['discover_truth', 'fight_mistification'] |        ['get married', 'marry']        |         ['maintain', 'keep going']        |
+|   ['improve_yourself', 'more_effective']  |      ['give birth', 'reproduce']       |        ['give better', 'give good']       |
+|    ['serve_customers', 'stay_employed']   |     ['enjoy others', 'enjoy life']     |             ['leave', 'stay']             |
+|        ['punch', 'offended_sister']       |       ['say sorry', 'apologize']       |         ['look pretty', 'impress']        |
+|                     \                     | ['consider marriage', 'marry another'] |             ['visit', 'come']             |
+|                     \                     |      ['go exploring', 'explore']       |              ['exist', 'die']             |
+|                     \                     |         ['get old', 'retire']          |              ['gain', 'lose']             |
+|                     \                     |    ['feel beautiful', 'feel happy']    |           ['understand', 'work']          |
+|                     \                     |        ['stop smoking', 'quit']        |          ['control', 'dominate']          |
+|                     \                     |     ['stop breathing', 'breathe']      |        ['advantage', 'gain power']        |
+|                     \                     |         ['use water', 'swim']          |              ['seek', 'find']             |
+|                     \                     |     ['consider marriage', 'marry']     |            ['attack', 'fight']            |
+|                     \                     |        ['get serious', 'date']         |             ['visit', 'stay']             |
+|                     \                     |    ['investigate', 'find answers']     |           ['make fun', 'laugh']           |
+|                     \                     |       ['stop smoking', 'smoke']        |           ['finish', 'continue']          |
+|                     \                     |         ['use water', 'fish']          |           ['change', 'survive']           |
+|                     \                     |         ['stop using', 'quit']         |            ['observe', 'study']           |
+|                     \                     |        ['try', 'learn english']        |              ['know', 'live']             |
+|                     \                     |            ['see', 'know']             |              ['lie', 'cheat']             |
++-------------------------------------------+----------------------------------------+-------------------------------------------+
+==================================================
+Relation: PartOf
+Prompts:
+- 0.1435 A <ENT0> in a <ENT1> is a self-contained segment that typically features a particular location, plot point, or characters .
+- 0.1281 The <ENT0> is a part of the <ENT1> .
+- 0.1196 The <ENT0> in the <ENT1> is set in a city .
+- 0.1141 A <ENT0> in a <ENT1> is a specific part of the film that generally takes place in one location and revolves around one particular event or plot point .
+- 0.1024 The <ENT0> in the <ENT1> is a great part of the film .
+- 0.0953 The <ENT0> is one of the main parts of an <ENT1> .
+- 0.0930 <ENT0> is a part of <ENT1> .
+- 0.0787 A <ENT0> is the highest point on a <ENT1> .
+- 0.0633 The <ENT0> is a lake that is bordered by <ENT1> to the east and israel to the west .
+- 0.0619 <ENT0> is a city in <ENT1> .
+Harvested Tuples:
++-------------------------------+-----------------------------------+-------------------------------------------+
+|          Seed samples         |           Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++-------------------------------+-----------------------------------+-------------------------------------------+
+|      ['egg_white', 'egg']     |      ['heart', 'human heart']     |           ['village', 'forest']           |
+| ['mountain_peak', 'mountain'] |  ['Central Unit', 'Central Plot'] |       ['meeting', 'public service']       |
+|     ['dead_sea', 'jordan']    |      ['Light', 'Dark Night']      |            ['setting', 'movie']           |
+|       ['scene', 'movie']      |     ['flag', 'national flag']     |      ['city street', 'neighborhood']      |
+|    ['stuttgart', 'germany']   |       ['film noir', 'genre']      |          ['crater', 'lunar mare']         |
+|               \               |  ['solution', 'problem solving']  |      ['period', 'historical record']      |
+|               \               |      ['strip', 'comic strip']     |      ['segment mentioned', 'section']     |
+|               \               |      ['bullet', 'gun barrel']     |             ['stage', 'play']             |
+|               \               |  ['city council', 'municipality'] |              ['day', 'year']              |
+|               \               |     ['snow', 'winter weather']    |         ['power', 'human nature']         |
+|               \               |       ['Man', 'Black Suit']       |        ['figure', 'central panel']        |
+|               \               |    ['film score', 'soundtrack']   |     ['decision', 'legal proceedings']     |
+|               \               | ['mission', 'military operation'] |         ['moon', 'lunar calendar']        |
+|               \               |       ['Hand', 'Human Hand']      |           ['building', 'museum']          |
+|               \               |    ['fort', 'historical fort']    |        ['Law', 'Legal Profession']        |
+|               \               |  ['South', 'Northern Hemisphere'] |  ['perspective', 'visual representation'] |
+|               \               |  ['mission', 'military mission']  |        ['King', 'Royal Household']        |
+|               \               |      ['film shot', 'studio']      |            ['town', 'province']           |
+|               \               |   ['issue', 'political debate']   |             ['work', 'series']            |
+|               \               |      ['crater', 'lunar mare']     |   ['perspective', 'visual presentation']  |
++-------------------------------+-----------------------------------+-------------------------------------------+
+==================================================
+Relation: ReceivesAction
+Prompts:
+- 0.1685 The <ENT0> can be <ENT1> .
+- 0.1548 This is a test to see if the <ENT0> can be <ENT1> .
+- 0.1284 The <ENT0> can be <ENT1> in order to assess their effectiveness and compliance .
+- 0.1253 The <ENT0> can be <ENT1> to the color that you want .
+- 0.0868 To ensure that both parties are satisfied, <ENT0> can be <ENT1> .
+- 0.0856 Both parties can ensure that <ENT0> are <ENT1> by taking them themselves .
+- 0.0742 <ENT0> can be <ENT1> to see if they are effective .
+- 0.0676 <ENT0> can be <ENT1> in a variety of colors .
+- 0.0549 <ENT0>s can be <ENT1> to create different pitch levels .
+- 0.0538 <ENT0> can be <ENT1> to ensure that they are fair and meet the needs of both parties .
+Harvested Tuples:
++------------------------------------+--------------------------------------+-------------------------------------------+
+|            Seed samples            |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++------------------------------------+--------------------------------------+-------------------------------------------+
+|  ['stringed_instrument', 'tuned']  | ['Basic Skills', 'learned quickly']  |           ['song', 'sung twice']          |
+| ['sometimes_guiltly', 'convicted'] |  ['various scenarios', 'simulated']  |        ['additional time', 'spent']       |
+|          ['silk', 'dyed']          | ['different strategies', 'employed'] |      ['different tools', 'utilized']      |
+|     ['pills', 'taken_orally']      | ['different techniques', 'employed'] |     ['aircraft', 'flown commercially']    |
+|     ['contracts', 'evaluated']     |  ['different versions', 'created']   |      ['additional units', 'created']      |
+|                 \                  |    ['two forms', 'distinguished']    |           ['solutions', 'found']          |
+|                 \                  |     ['Test Questions', 'asked']      |    ['individual systems', 'integrated']   |
+|                 \                  |    ['Test Questions', 'answered']    |           ['effects', 'varied']           |
+|                 \                  |    ['two cases', 'distinguished']    |     ['various scenarios', 'simulated']    |
+|                 \                  |    ['Final Report', 'published']     |          ['data', 'manipulated']          |
+|                 \                  |   ['three scenarios', 'simulated']   |           ['values', 'adjusted']          |
+|                 \                  | ['additional resources', 'obtained'] |            ['numbers', 'added']           |
+|                 \                  |     ['three goals', 'achieved']      |            ['costs', 'reduced']           |
+|                 \                  |     ['test cases', 'developed']      |          ['effects', 'measured']          |
+|                 \                  |   ['additional units', 'deployed']   |            ['data', 'analyzed']           |
+|                 \                  |   ['different tools', 'employed']    |           ['vote', 'cast twice']          |
+|                 \                  |      ['three lines', 'crossed']      |     ['current resources', 'utilized']     |
+|                 \                  | ['various mechanisms', 'described']  |           ['tools', 'modified']           |
+|                 \                  |   ['different tools', 'utilized']    |          ['samples', 'collected']         |
+|                 \                  |   ['additional units', 'created']    |           ['cost', 'calculated']          |
++------------------------------------+--------------------------------------+-------------------------------------------+
+==================================================
+Relation: SymbolOf
+Prompts:
+- 0.1543 A <ENT0> is a physical embodiment of <ENT1> .
+- 0.1470 A <ENT0> represents <ENT1> symbolically .
+- 0.1454 <ENT0> to someone symbolically represents <ENT1> .
+- 0.1211 Some people think that the <ENT0> symbolically represents <ENT1> .
+- 0.1149 The <ENT0> is a symbol of <ENT1> .
+- 0.0874 The <ENT0> mascot represents the <ENT1> kernel .
+- 0.0824 <ENT0> symbolically represents <ENT1> .
+- 0.0766 When you <ENT0> to someone, it is symbol of your <ENT1> for them .
+- 0.0709 <ENT0> is the official mascot of the <ENT1> kernel .
+Harvested Tuples:
++-------------------------+----------------------------------+-------------------------------------------+
+|       Seed samples      |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++-------------------------+----------------------------------+-------------------------------------------+
+|     ['tux', 'linux']    |  ['woman', 'female sexuality']   |          ['pig', 'pork products']         |
+| ['giving_rose', 'love'] |      ['bee', 'honey bees']       |         ['bow', 'good intentions']        |
+|  ['trophy', 'victory']  |  ['party', 'Political Parties']  |          ['skin', 'human flesh']          |
+|            \            | ['flag', 'national sovereignty'] |            ['face', 'humanity']           |
+|            \            | ['church', 'Christian Worship']  |           ['head', 'authority']           |
+|            \            |      ['White Wolf', 'snow']      |        ['metal', 'iron production']       |
+|            \            |   ['female', 'Male Sexuality']   |            ['rainbow', 'light']           |
+|            \            |      ['skin', 'human skin']      |           ['song', 'happiness']           |
+|            \            |    ['street', 'city streets']    |        ['beard', 'male sexuality']        |
+|            \            |   ['bottle', 'beer drinking']    |         ['street', 'city streets']        |
+|            \            |       ['pig', 'pork meat']       |             ['song', 'music']             |
+|            \            |      ['red rose', 'blood']       |       ['Word Sign', 'communication']      |
+|            \            |     ['pen', 'writing paper']     |         ['Chinese Tiger', 'China']        |
+|            \            | ['campus', 'University Campus']  |             ['house', 'love']             |
+|            \            |   ['mosque', 'Islamic Islam']    |             ['stone', 'water']            |
+|            \            |   ['blue streak', 'lightning']   |         ['yellow pen', 'writing']         |
+|            \            |     ['skin', 'human flesh']      |       ['woman', 'female sexuality']       |
+|            \            |      ['metal', 'iron ore']       |             ['Buddha', 'God']             |
+|            \            |       ['bow', 'good luck']       |             ['star', 'light']             |
+|            \            |    ['bow', 'good intentions']    |         ['snow', 'winter weather']        |
++-------------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: UsedFor
+Prompts:
+- 0.1347 The <ENT0> is used for <ENT1> .
+- 0.1250 One can use a <ENT0> as a means to <ENT1> .
+- 0.1068 The <ENT0> is a tool that is commonly used for <ENT1> .
+- 0.1059 <ENT0> can be used as a form of <ENT1> .
+- 0.0999 The <ENT0> provides <ENT1> for the player .
+- 0.0961 <ENT0> is used for <ENT1> .
+- 0.0895 The <ENT0> is where players <ENT1> .
+- 0.0873 A <ENT0> is primarily used as a surface to <ENT1>, usually in an office or school setting .
+- 0.0791 A <ENT0> is typically used for doing <ENT1>, such as writing or using a computer .
+- 0.0757 <ENT1> <ENT0>s are often made out of nylon or other synthetic materials .
+Harvested Tuples:
++--------------------------------------+----------------------------------------+-------------------------------------------+
+|             Seed samples             |             Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
++--------------------------------------+----------------------------------------+-------------------------------------------+
+|   ['outfield', 'catch_baseballs']    |   ['third eye', 'eye coordination']    |           ['ball', 'play ball']           |
+|         ['desk', 'work_on']          |     ['third number', 'number two']     |            ['camera', 'video']            |
+| ['playing', 'psychological_release'] |    ['Computer Printer', 'printing']    |         ['car', 'transportation']         |
+|  ['competing_against', 'challenge']  |    ['Mobile Camera', 'photography']    |       ['letter', 'writing letters']       |
+|          ['net', 'fishing']          |       ['Short Story', 'fiction']       |       ['script', 'writing scripts']       |
+|                  \                   |       ['pool', 'swimming pool']        |         ['rubber', 'hard rubber']         |
+|                  \                   |     ['box size', 'size reduction']     |    ['third channel', 'Audio Synthesis']   |
+|                  \                   |    ['piano', 'musical instruments']    |          ['mine', 'mining coal']          |
+|                  \                   | ['Computer Programmer', 'programming'] |  ['telescope', 'scientific observations'] |
+|                  \                   |  ['microphone', 'voice recognition']   |          ['cup', 'drinking wine']         |
+|                  \                   |    ['Simple Tool', 'simple tasks']     |        ['vent', 'Air Conditioning']       |
+|                  \                   |   ['guitar', 'Musical Instruments']    |           ['Red Suit', 'battle']          |
+|                  \                   |       ['green tea', 'breakfast']       |         ['stick', 'hand signals']         |
+|                  \                   |      ['newspaper', 'print news']       |       ['picture', 'visual effects']       |
+|                  \                   |  ['computer programmer', 'software']   |         ['beach', 'surf surfing']         |
+|                  \                   |      ['radio', 'broadcast radio']      |      ['Mobile Camera', 'photography']     |
+|                  \                   |      ['Short Story', 'narrative']      |      ['hospital', 'Medical Services']     |
+|                  \                   |    ['piano', 'musical composition']    |    ['Mobile Interface', 'interaction']    |
+|                  \                   |  ['third channel', 'Audio Synthesis']  |      ['blue pencil', 'illustration']      |
+|                  \                   |     ['website', 'Online Shopping']     |           ['book', 'education']           |
++--------------------------------------+----------------------------------------+-------------------------------------------+
+==================================================

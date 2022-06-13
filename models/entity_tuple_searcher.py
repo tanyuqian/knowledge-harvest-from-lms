@@ -152,10 +152,12 @@ class EntityTupleSearcher:
                 return
 
             for ent in cur_ent_tuple:
-                # filter repeating entity in the entity tuple
+                # filter repeating entity in the entity tuple,
+                # e.g., "grassland" vs "grass land"
                 if pred_ent.replace(' ', '') == ent.replace(' ', ''):
                     return
-                # filter repeating entity in the entity tuple
+                # filter repeating entity in the entity tuple,
+                # e.g., "play" vs "playing"
                 if ent.startswith(pred_ent) or pred_ent.startswith(ent):
                     return
 
