@@ -14,5 +14,5 @@ FLASK_ENV=development python server_main.py
 ```
 in your browser
 ````
-0.0.0.0:1111/predict/roberta-large/B_is_the_location_for_A/flotation_device~boat%5Ewater~soft_drink%5Egear~car%5Egiraffes~africa%5Etrousers~suitcase
+0.0.0.0:1111/predict/roberta-large/B_is_the_location_for_A/flotation_device~boat^water~soft_drink^gear~car^giraffes~africa^trousers~suitcase
 ````

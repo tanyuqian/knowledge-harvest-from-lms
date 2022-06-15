@@ -129,17 +129,56 @@ def get_rel(init_prompts_str, seed_ent_tuples_str):
     seed_ent_tuples = [ent_tuple_str.split('~')
                        for ent_tuple_str in seed_ent_tuples_str.split('^')]
 
+    init_prompts = sorted([prompt.replace('_', ' ') for prompt in init_prompts])
     seed_ent_tuples = sorted(
         [ent.lower().strip() for ent in ent_tuple]
         for ent_tuple in seed_ent_tuples)
 
-    init_prompts_str = '^'.join(init_prompts)
+    init_prompts_str = '^'.join([
+        prompt.replace(' ', '_') for prompt in init_prompts])
     seed_ent_tuples_str = '^'.join(
         ['~'.join(ent_tuple) for ent_tuple in seed_ent_tuples])
 
     rel = f'INIT_PROMPTS-{init_prompts_str}_SEED-{seed_ent_tuples_str}'
 
     return init_prompts, seed_ent_tuples, rel
+
+
+def find_in_rel_sets(rel, model_name):
+    for rel_set in ['conceptnet', 'lama', 'human']:
+        for rel_name, info in json.load(open(
+                f'relation_info/{rel_set}.json')).items():
+            init_prompts = info['init_prompts']
+            seed_ent_tuples = info['seed_ent_tuples']
+
+            for i, prompt in enumerate(init_prompts):
+                prompt = prompt.strip(' .')
+                prompt = prompt.replace(' ', '_')
+                for ent_idx, ch in enumerate(string.ascii_uppercase):
+                    prompt = prompt.replace(f'<ENT{ent_idx}>', ch)
+
+                init_prompts[i] = prompt
+
+            init_prompts_str = '^'.join([
+                prompt.replace(' ', '_') for prompt in init_prompts])
+            seed_ent_tuples_str = '^'.join(
+                ['~'.join(ent_tuple) for ent_tuple in seed_ent_tuples])
+
+            _, _, rel1 = get_rel(
+                    init_prompts_str=init_prompts_str,
+                    seed_ent_tuples_str=seed_ent_tuples_str)
+
+            if rel == rel1:
+                result_dir = f'results/{rel_set}/1000tuples_top20prompts/' \
+                             f'{model_name}/{rel_name}/'
+                weighted_prompts = json.load(open(f'{result_dir}/prompts.json'))
+                weighted_ent_tuples = json.load(
+                    open(f'{result_dir}/ent_tuples.json'))
+
+                return [prompt for prompt, weight in weighted_prompts], \
+                       weighted_ent_tuples
+
+    return None, None
 
 
 def main(init_prompts_str,
@@ -169,11 +208,14 @@ def main(init_prompts_str,
         os.makedirs(prompts_output_dir, exist_ok=True)
         json.dump([], open(prompts_output_path, 'w'))
 
-        prompts = search_prompts(
-            init_prompts=init_prompts,
-            seed_ent_tuples=seed_ent_tuples,
-            similarity_threshold=SIMILARITY_THRESHOLD,
-            output_path=prompts_output_path)
+        prompts = find_in_rel_sets(rel=rel, model_name=model_name)[0]
+
+        if prompts is None:
+            prompts = search_prompts(
+                init_prompts=init_prompts,
+                seed_ent_tuples=seed_ent_tuples,
+                similarity_threshold=SIMILARITY_THRESHOLD,
+                output_path=prompts_output_path)
 
     print('Searched-out prompts:')
     print('\n'.join(prompts))
@@ -183,28 +225,33 @@ def main(init_prompts_str,
         return
 
     output_dir = f'results/demo/{max_n_ent_tuples}tuples/{model_name}'
-    if os.path.exists(f'{output_dir}/{rel}/ent_tuples.json'):
+    output_path = f'{output_dir}/{rel}/ent_tuples.json'
+    if os.path.exists(output_path):
         print('Results found in cache.')
-        for ent_tuple, weight in json.load(
-                open(f'{output_dir}/{rel}/ent_tuples.json'))[:30]:
+        for ent_tuple, weight in json.load(open(output_path))[:30]:
             print(ent_tuple, weight)
         print('=' * 50)
-        return
     else:
         os.makedirs(f'{output_dir}/{rel}', exist_ok=True)
-        json.dump([], open(f'{output_dir}/{rel}/ent_tuples.json', 'w'))
+        json.dump([], open(output_path, 'w'))
 
-    weighted_ent_tuples = search_ent_tuples(
-        init_prompts=init_prompts,
-        seed_ent_tuples=seed_ent_tuples,
-        prompts=prompts,
-        model_name=model_name,
-        max_n_ent_tuples=max_n_ent_tuples,
-        result_dir=f'{output_dir}/{rel}/')
+        weighted_ent_tuples = find_in_rel_sets(
+            rel=rel, model_name=model_name)[1]
 
-    for ent_tuple, weight in weighted_ent_tuples[:30]:
-        print(ent_tuple, weight)
-    print('=' * 50)
+        if weighted_ent_tuples is None:
+            weighted_ent_tuples = search_ent_tuples(
+                init_prompts=init_prompts,
+                seed_ent_tuples=seed_ent_tuples,
+                prompts=prompts,
+                model_name=model_name,
+                max_n_ent_tuples=max_n_ent_tuples,
+                result_dir=f'{output_dir}/{rel}/')
+
+        json.dump(weighted_ent_tuples, open(output_path, 'w'), indent=4)
+
+        for ent_tuple, weight in weighted_ent_tuples[:30]:
+            print(ent_tuple, weight)
+        print('=' * 50)
 
 
 if __name__ == '__main__':
