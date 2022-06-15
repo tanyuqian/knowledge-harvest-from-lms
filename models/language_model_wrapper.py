@@ -88,12 +88,13 @@ class LanguageModelWrapper:
             prefix_ids = self.tokenizer.encode(prefix, add_special_tokens=False)
 
             # processing -ing, -s, etc.
-            ent = sent[len(prefix):].strip().split()[0]
+            ent_in_sent = prompt[prompt.find(f'<ENT{ent_idx}>'):].split()[0]
             for punc in string.punctuation:
-                ent = ent.split(punc)[0]
+                ent_in_sent = ent_in_sent.split(punc)[0]
+            ent_in_sent = ent_in_sent.replace(f'<ENT{ent_idx}>', ent)
 
             ent_token_ids = self.tokenizer.encode(
-                f' {ent}' if sent[len(prefix)] == ' ' else ent,
+                f' {ent_in_sent}' if sent[len(prefix)] == ' ' else ent_in_sent,
                 add_special_tokens=False)
 
             if len(prefix_ids) > 0:
