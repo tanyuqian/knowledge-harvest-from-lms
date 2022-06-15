@@ -90,7 +90,8 @@ class LanguageModelWrapper:
             # processing -ing, -s, etc.
             ent_in_sent = prompt[prompt.find(f'<ENT{ent_idx}>'):].split()[0]
             for punc in string.punctuation:
-                ent_in_sent = ent_in_sent.split(punc)[0]
+                if punc not in '<>':
+                    ent_in_sent = ent_in_sent.split(punc)[0]
             ent_in_sent = ent_in_sent.replace(f'<ENT{ent_idx}>', ent)
 
             ent_token_ids = self.tokenizer.encode(
