@@ -170,7 +170,7 @@ def find_in_rel_sets(rel, model_name):
 
             if rel == rel1:
                 result_dir = f'results/{rel_set}/1000tuples_top20prompts/' \
-                             f'{model_name}/{rel_name}/'
+                             f'{model_name}/{rel_name}'
                 weighted_prompts = json.load(open(f'{result_dir}/prompts.json'))
                 weighted_ent_tuples = json.load(
                     open(f'{result_dir}/ent_tuples.json'))

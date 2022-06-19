@@ -67,16 +67,16 @@ def generate_control_card():
             html.Br(),
             html.P('Model Type'),
             html.Div(
-                dcc.Checklist(
+                dcc.RadioItems(
                     id="model-type",
                     options=[
-                        {'label': '  BERT-base', 'value': 'bert-base'},
-                        {'label': '  BERT-large', 'value': 'bert-large'},
-                        {'label': '  DistilBERT', 'value': 'DistilBERT'},
-                        {'label': '  RoBERTa-base', 'value': 'roberta-base'},
-                        {'label': '  RoBERTa-large', 'value': 'roberta-large'},
+                        {'label': 'BERT-base', 'value': 'bert-base'},
+                        {'label': 'BERT-large', 'value': 'bert-large'},
+                        {'label': 'DistilBERT', 'value': 'DistilBERT'},
+                        {'label': 'RoBERTa-base', 'value': 'roberta-base'},
+                        {'label': 'RoBERTa-large', 'value': 'roberta-large'},
                         ],
-                    value=['bert-base'],
+                    value='roberta-large'
                 )
             ),
             html.Br(),
@@ -170,7 +170,7 @@ def result_bar(task_type):
                     dcc.Textarea(
                         id='Input-Relation',
                         placeholder='Enter Relationships...',
-                        value='',
+                        value='B_is_the_location_for_A',
                         style={'width': '100%', 'margin-top': '5px', 'height': '100px'}
                     ),
                 ],
@@ -183,7 +183,7 @@ def result_bar(task_type):
                     dcc.Textarea(
                         id='Seed-Entity',
                         placeholder='Enter Seed Entities...',
-                        value='',
+                        value='flotation_device~boat^water~soft_drink^gear~car^giraffes~africa^trousers~suitcase',
                         style={'width': '100%', 'margin-top': '5px'}
                     ),
                 ],
@@ -285,12 +285,13 @@ def update_output(n_clicks, interval, session_id, task_type, model_type, diversi
                 info = global_dict[session_id]['info']
                 x = requests.get(f"http://127.0.0.1:8000/predict/{model_type}/{info['relation']}/{info['prompt']}")
                 result = x.json()
+                print(result)
                 all_results = [{
                     'Head': r[0][0],
                     'Relation': info['relation'],
                     'Tail': r[0][1],
                     'Weight': r[1],
-                } for r in result]
+                } for r in result['ent_tuples']]
                 print(pd.DataFrame(all_results))
                 # return html.Div(generate_final_result(all_results))
                 return generate_table(all_results)
