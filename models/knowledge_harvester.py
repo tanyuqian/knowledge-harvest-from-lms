@@ -124,8 +124,19 @@ class KnowledgeHarvester:
         return score
 
     def score(self, prompt, ent_tuple):
-        logprobs = self._model.get_mask_filling_logprobs(
-            prompt=prompt, ent_tuple=ent_tuple)['mask_logprobs']
+        fill_in_result = self._model.fill_ent_tuple_in_prompt(
+            prompt=prompt, ent_tuple=ent_tuple)
+
+        logprobs = fill_in_result['mask_logprobs']
+
+        # encourage entities with multiple words
+        for mask_span in fill_in_result['mask_spans']:
+            ent_in_sent = self._model.tokenizer.decode(
+                fill_in_result['input_ids'][mask_span[0]:mask_span[1]]).strip()
+            n_words = len(ent_in_sent.split())
+            for i, pos in enumerate(fill_in_result['mask_positions']):
+                if mask_span[0] <= pos < mask_span[1]:
+                    logprobs[i] /= n_words
 
         token_wise_score = sum(logprobs) / len(logprobs)
         ent_wise_score = sum(logprobs) / len(ent_tuple)
