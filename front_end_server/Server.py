@@ -1,3 +1,4 @@
+import json
 import pathlib
 import uuid
 from collections import defaultdict
@@ -59,7 +60,7 @@ def generate_control_card():
             html.Div(
                 dcc.Dropdown(
                     id="task-type",
-                    options=['RC','All Entity'],
+                    options=['RC', 'All Entity'],
                     value='RC',
                     clearable=False,
                 )
@@ -75,22 +76,28 @@ def generate_control_card():
                         {'label': 'DistilBERT', 'value': 'DistilBERT'},
                         {'label': 'RoBERTa-base', 'value': 'roberta-base'},
                         {'label': 'RoBERTa-large', 'value': 'roberta-large'},
-                        ],
+                    ],
                     value='roberta-large'
                 )
             ),
-            html.Br(),
-            html.P("prompt diversity (similarity threshold)"),
-            html.Div(dcc.Slider(0, 100, marks=None, value=10, id="diversity",
-                                tooltip={"placement": "bottom", "always_visible": True})),
-            html.Br(),
-            html.P('top-k entity pairs'),
-            html.Div(dcc.Slider(0, 100, marks=None, value=10, id="top_k",
-                                tooltip={"placement": "bottom", "always_visible": True})),
-            html.Br(),
-            html.P("number of prompts"),
-            html.Div(dcc.Slider(0, 20, marks=None, value=10, id="top_p",
-                                tooltip={"placement": "bottom", "always_visible": True})),
+            # html.Br(),
+            # html.P("prompt diversity (similarity threshold)"),
+            # html.Div(dcc.Slider(0, 100, marks=None, value=10, id="diversity",
+            #                     tooltip={"placement": "bottom", "always_visible": True})),
+            # html.Br(),
+            # html.P('top-k entity pairs'),
+            # html.Div(dcc.Slider(0, 100, marks=None, value=10, id="top_k",
+            #                     tooltip={"placement": "bottom", "always_visible": True})),
+            # html.Br(),
+            # html.P("number of prompts"),
+            # html.Div(dcc.Slider(0, 20, marks=None, value=10, id="top_p",
+            #                     tooltip={"placement": "bottom", "always_visible": True})),
+
+            # Pseudo label
+            html.Div(id='diversity'),
+            html.Div(id='top_k'),
+            html.Div(id='top_p'),
+
             html.Br(),
             dcc.Interval(id="interval", interval=5000, n_intervals=0),
             html.Div(
@@ -129,6 +136,23 @@ def server_layout():
     )
 
 
+with open('../relation_info/conceptnet.json', 'r') as f:
+    all_predefined_example = json.load(f)
+
+
+@app.callback([Output('Input-Relation', 'value'),
+               Output('Seed-Entity', 'value')],
+              Input('predefined-example', 'value'))
+def predefined_example_task(example):
+    if example == '':
+        return None, None
+    print('Example', all_predefined_example[example])
+    seed_tuples = all_predefined_example[example]["seed_ent_tuples"]
+    return all_predefined_example[example]["init_prompts"][0].replace("<ENT0>", 'A').replace("<ENT1>", 'B') \
+               .replace(' .', '').replace(' ', '_'), \
+           '\n'.join([s[0] + '~' + s[1] for s in seed_tuples])
+
+
 @app.callback([Output('right-column', 'children'),
                Output('start-btn', 'n_clicks')],
               Input('task-type', 'value'))
@@ -163,6 +187,19 @@ def result_bar(task_type):
     else:
         return html.Div(children=[  # 注意修改CSS
             html.Div(
+                id="select_example_card",
+                children=[
+                    html.B("Select An Example"),
+                    html.Hr(),
+                    dcc.Dropdown(
+                        id="predefined-example",
+                        options=list(all_predefined_example.keys()),
+                        value='',
+                        clearable=False,
+                    )
+                ],
+            ),
+            html.Div(
                 id="input_relation_card",
                 children=[
                     html.B("Input Relation"),
@@ -170,7 +207,7 @@ def result_bar(task_type):
                     dcc.Textarea(
                         id='Input-Relation',
                         placeholder='Enter Relationships...',
-                        value='B_is_the_location_for_A',
+                        value='',
                         style={'width': '100%', 'margin-top': '5px', 'height': '100px'}
                     ),
                 ],
@@ -183,7 +220,7 @@ def result_bar(task_type):
                     dcc.Textarea(
                         id='Seed-Entity',
                         placeholder='Enter Seed Entities...',
-                        value='flotation_device~boat^water~soft_drink^gear~car^giraffes~africa^trousers~suitcase',
+                        value='',
                         style={'width': '100%', 'margin-top': '5px'}
                     ),
                 ],
@@ -272,7 +309,8 @@ app.layout = server_layout()
                   State('Input-Relation', 'value'),
                   State('Seed-Entity', 'value'),
               ])
-def update_output(n_clicks, interval, session_id, task_type, model_type, diversity, top_k, top_p, input_relation, seed_entity):
+def update_output(n_clicks, interval, session_id, task_type, model_type, diversity, top_k, top_p, input_relation,
+                  seed_entity):
     print('output session_id', session_id)
     if n_clicks > 0:
         if global_dict[session_id]['n_clicks'] == n_clicks:
@@ -283,7 +321,10 @@ def update_output(n_clicks, interval, session_id, task_type, model_type, diversi
             else:
                 # result = send_request(global_dict[session_id]['info'])
                 info = global_dict[session_id]['info']
-                x = requests.get(f"http://127.0.0.1:8000/predict/{model_type}/{info['relation']}/{info['prompt']}")
+                prompt_info = info['prompt'].replace('\n', '^')
+                print('Prompt', prompt_info)
+                relation = info['relation']
+                x = requests.get(f"http://127.0.0.1:8000/predict/{model_type}/{relation}/{prompt_info}")
                 result = x.json()
                 print(result)
                 all_results = [{
@@ -313,7 +354,9 @@ def update_output(n_clicks, interval, session_id, task_type, model_type, diversi
                 global_dict[session_id]['info'] = info
                 # result = send_request(info)
                 info = global_dict[session_id]['info']
-                x = requests.get(f"http://127.0.0.1:8000/predict/{info['relation']}/{info['prompt']}")
+                prompt_info = info['prompt'].replace('\n', '^')
+                relation = info['relation']
+                x = requests.get(f"http://127.0.0.1:8000/predict/{model_type}/{relation}/{prompt_info}")
                 result = x.json()
                 print('result', result)
                 all_results = [{
@@ -321,7 +364,7 @@ def update_output(n_clicks, interval, session_id, task_type, model_type, diversi
                     'Relation': info['relation'],
                     'Tail': r[0][1],
                     'Weight': r[1],
-                } for r in result]
+                } for r in result['ent_tuples']]
                 # return html.Div(generate_final_result(all_results))
                 return generate_table(all_results)
     else:
