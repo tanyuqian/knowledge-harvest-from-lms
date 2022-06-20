@@ -94,6 +94,10 @@ class LanguageModelWrapper:
                     ent_in_sent = ent_in_sent.split(punc)[0]
             ent_in_sent = ent_in_sent.replace(f'<ENT{ent_idx}>', ent)
 
+            # only mask the first word in an entity to
+            # encourage entities with multiple words
+            ent_in_sent = ent_in_sent.split()[0]
+
             ent_token_ids = self.tokenizer.encode(
                 f' {ent_in_sent}' if sent[len(prefix)] == ' ' else ent_in_sent,
                 add_special_tokens=False)
