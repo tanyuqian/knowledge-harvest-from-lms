@@ -127,22 +127,20 @@ class KnowledgeHarvester:
         fill_in_result = self._model.fill_ent_tuple_in_prompt(
             prompt=prompt, ent_tuple=ent_tuple)
 
-        logprobs = fill_in_result['mask_logprobs']
-
+        logprobs = []
         # encourage entities with multiple words
         for mask_span in fill_in_result['mask_spans']:
-            ent_in_sent = self._model.tokenizer.decode(
-                fill_in_result['input_ids'][mask_span[0]:mask_span[1]]).strip()
-            n_words = len(ent_in_sent.split())
+            span_logprobs = []
             for i, pos in enumerate(fill_in_result['mask_positions']):
                 if mask_span[0] <= pos < mask_span[1]:
-                    logprobs[i] /= n_words
+                    span_logprobs.append(fill_in_result['mask_logprobs'][i])
 
-        token_wise_score = sum(logprobs) / len(logprobs)
-        ent_wise_score = sum(logprobs) / len(ent_tuple)
+            logprobs.append(min(span_logprobs))
+
+        mean_score = sum(logprobs) / len(logprobs)
         min_score = min(logprobs)
 
-        return (token_wise_score + ent_wise_score + min_score) / 3.
+        return (mean_score * 2. + min_score) / 3.
 
     @property
     def weighted_ent_tuples(self):
