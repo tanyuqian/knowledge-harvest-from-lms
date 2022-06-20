@@ -40,7 +40,7 @@ class LanguageModelWrapper:
         ent_tuple = deepcopy(ent_tuple)
         for ent_idx, ent in enumerate(ent_tuple):
             if prompt.startswith(f'<ENT{ent_idx}>'):
-                ent_tuple[ent_idx] = ent[0].upper() + ent[1:]
+                ent_tuple[ent_idx] = ent.capitalize()
 
         sent = get_sent(prompt=prompt, ent_tuple=ent_tuple)
         mask_spans = self.get_mask_spans(prompt=prompt, ent_tuple=ent_tuple)
@@ -93,6 +93,9 @@ class LanguageModelWrapper:
                 if punc not in '<>':
                     ent_in_sent = ent_in_sent.split(punc)[0]
             ent_in_sent = ent_in_sent.replace(f'<ENT{ent_idx}>', ent)
+
+            # a trick to encourage generating longer entities
+            ent_in_sent = ent_in_sent.split()[0]
 
             ent_token_ids = self.tokenizer.encode(
                 f' {ent_in_sent}' if sent[len(prefix)] == ' ' else ent_in_sent,
