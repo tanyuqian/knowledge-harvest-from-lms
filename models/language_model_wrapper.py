@@ -25,7 +25,7 @@ class LanguageModelWrapper:
         self._model = AutoModelForMaskedLM.from_pretrained(model_name)
 
         self._model.eval()
-        self._model.to('cuda')
+        # self._model.to('cuda')
 
         self._banned_ids = None
         self._get_banned_ids()

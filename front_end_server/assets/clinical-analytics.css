@@ -1,0 +1,197 @@
+:root {
+    --c1: #FAF1E6; /* color1 */
+    --bg: #FDFAF6; /* backgound color */
+    --bg2: #E4EFE7; /* background color 2 */
+    --text: #064420; /* text color */
+    --borderline: #2C8CFF; /* blue color */
+    --font-size: 1.6rem; /* font size */
+    --font: 'Arial'; /* font type */
+    --font2: 'Arial'; /* font type */
+}
+
+@font-face {
+    font-family: var(--font);
+    font-weight: bold;
+}
+
+#app-container {
+    width: 100%;
+    max-width: none;
+}
+
+body {
+    background-color: var(--bg2);
+    font-size: var(--font-size);
+    margin: 0px;
+}
+
+textarea:focus, #Input-Relation:focus, #Seed-Entity:focus {
+    outline: none;
+    border: 1px solid var(--borderline);
+}
+
+#start-btn {
+    background-color: var(--bg);
+}
+
+#start-btn:hover {
+    background-color: var(--c1);
+}
+
+#entity_table {
+    color: var(--text);
+    background-color: var(--bg);
+    margin: auto;
+    margin-top: 20px;
+    font-family: var(--font2);
+    vertical-align: middle;
+    border-spacing: 0;
+    border-collapse: separate;
+    width: 95%;
+}
+
+th {
+    border: None;
+    vertical-align: middle;
+    border-radius: 10px 10px 0 0;
+}
+
+td {
+    border: None;
+    font-size: var(--font-size);
+    height: 50px;
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+thead {
+    background-color: var(--bg2);
+    color: var(--text);
+    font-size: var(--font-size);
+    height: 50px;
+    vertical-align: middle;
+}
+
+tr:nth-child(even) {
+    background-color: var(--c1);
+}
+
+tr:hover td {
+    background-color: var(--text);
+    color: var(--c1);
+}
+
+hr {
+    margin: 0rem 0rem;
+}
+
+.banner {
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+H6 {
+    font-family: var(--font);
+    color: var(--text);
+    font-weight: bold;
+}
+
+H5, H3 {
+    font-family: var(--font);
+}
+
+#left-column {
+    margin-top: 20px;
+    padding: 0rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 5.5rem);
+}
+
+#right-column {
+    background-color: var(--bg);
+    padding: 0rem 2rem;
+    min-height: calc(100vh - 5.5rem);
+}
+
+.table-row {
+    height: 63px;
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+.wait_time_graph > div, .patient_score_graph > div {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.draglayer {
+    cursor: pointer !important;
+}
+
+#intro {
+    margin: 20px 0px;
+    font-family: var(--font);
+    text-align: justify;
+}
+
+#control-card > p {
+    font-weight: bold;
+}
+
+#control-card {
+    width: 100%;
+}
+
+#patient_volume_card, #wait_time_card, #select_example_card, #input_relation_card, #seed_entity_card, #result_card {
+    font-family: var(--font);
+    color: var(--text);
+    background-color: var(--bg);
+    padding: 1rem;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#patient_volume_card > b, #wait_time_card > b, #select_example_card > b, #input_relation_card > b, #seed_entity_card > b, #result_card > b {
+    line-height: 1.5;
+
+}
+
+#wait_time_card {
+    margin: 20px 0px;
+}
+
+#patient_volume_hm {
+    height: 400px;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.row-department > b {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#header_wait_time_min, #header_care_score {
+    display: table;
+}
+
+#header_wait_time_min > b, #header_care_score > b {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.data_table {
+    word-wrap: break-word;
+    table-layout: fixed;
+    width: 100%;
+}
+
+#description-card {
+    width: 100%;
+}
