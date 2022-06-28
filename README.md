@@ -37,6 +37,7 @@ The prompt searching reads the relation definitions from `"init_prompts"` and `"
 (Files in the [relation_info/](relation_info/) folder have contained the results of this step.)
 
 #### Efficient Search for Knowledge Tuples
+This step corresponds to [paper]() Section 3.2.
 ```
 python main.py --rel_set conceptnet --model_name roberta-large --n_ent_tuples 1000 --n_prompts 20
 ```
@@ -57,7 +58,7 @@ The results will be saved into `summary.txt` in `{result_dir}`, e.g., [results/c
 
 
 
-#### Example -- "A can B but not good at" (RoBERTaNet-large)
+#### Example -- "A can B but not good at" (RoBERTaNet)
 ```
 +------------------------------------+--------------------------------+-------------------------------------------+
 |            Seed samples            |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
@@ -85,7 +86,7 @@ The results will be saved into `summary.txt` in `{result_dir}`, e.g., [results/c
 +------------------------------------+--------------------------------+-------------------------------------------+
 ```
 
-#### Example -- "A needs B to C"
+#### Example -- "A needs B to C" (BertNet)
 ```
 +------------------------------------------------+--------------------------------------------------------+--------------------------------------------------+
 |                  Seed samples                  |                     Ours (Top 20)                      |    Ours (Random samples over top 200 tuples)     |
