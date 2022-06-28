@@ -2,7 +2,7 @@
 
 This repo contains preliminary code of the following paper:
 
-BertNet: Harvesting Knowledge Graphs from Pretrained Language Models \
+**BertNet: Harvesting Knowledge Graphs from Pretrained Language Models** \
 Shibo Hao*, Bowen Tan*, Kaiwen Tang*, Hengzhe Zhang, Eric P. Xing, Zhiting Hu \
 (* Equal contribution) 
 
