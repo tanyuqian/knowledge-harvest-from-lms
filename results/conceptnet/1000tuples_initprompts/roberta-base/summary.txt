@@ -1,0 +1,580 @@
+Relation: AtLocation
+Prompts:
+- 1.0000 <ENT1> is the location for <ENT0> .
+Harvested Tuples:
++------------------------------+------------------------------------+-------------------------------------------+
+|         Seed samples         |           Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++------------------------------+------------------------------------+-------------------------------------------+
+| ['flotation_device', 'boat'] |   ['San Francisco', 'san jose']    |          ['Ukrainian', 'sliver']          |
+|   ['water', 'soft_drink']    |    ['san francisco', 'san fin']    |       ['coffee', 'location coffee']       |
+|       ['gear', 'car']        |    ['North Sea', 'north west']     |              ['Rome', 'pome']             |
+|    ['giraffes', 'africa']    |      ['part ii', 'table ii']       |            ['pizza', 'chicago']           |
+|   ['trousers', 'suitcase']   |     ['blog posts', 'blogger']      |            ['java lib', 'json']           |
+|              \               |     ['blog posts', 'blogspot']     |           ['Stockholm', 'paris']          |
+|              \               |      ['Part Ii', 'table iii']      |          ['Wikipedia', 'amazon']          |
+|              \               |   ['Mining', 'location mining']    |           ['Wikipedia', 'home']           |
+|              \               |  ['Russian Elections', 'ukraine']  |            ['work', 'hometown']           |
+|              \               |     ['Blog Posts', 'blogpost']     |            ['game', 'notebox']            |
+|              \               |        ['Twitter', 'home']         |         ['blog posts', 'blogger']         |
+|              \               | ['north carolina', 'northcentral'] |             ['Sweden', 'slip']            |
+|              \               |     ['Blog Posts', 'blogging']     |             ['example', 'let']            |
+|              \               |    ['construction', 'pictured']    |              ['code', 'src']              |
+|              \               |      ['Minecraft', 'london']       |              ['Java', 'src']              |
+|              \               |    ['apple picking', 'boston']     |         ['blog posts', 'blogspot']        |
+|              \               |        ['Walmart', 'waco']         |             ['Comet', 'earth']            |
+|              \               |       ['Minecraft', 'home']        |         ['Arduino', 'rightclick']         |
+|              \               |       ['Wikipedia', 'home']        |            ['bitcoin', 'asia']            |
+|              \               |      ['Helsinki', 'pictured']      |         ['Madrid', 'shutterstock']        |
++------------------------------+------------------------------------+-------------------------------------------+
+==================================================
+Relation: CapableOf
+Prompts:
+- 1.0000 Something that <ENT0> can typically do is <ENT1> .
+Harvested Tuples:
++----------------------------------+-----------------------------------------------+-------------------------------------------+
+|           Seed samples           |                 Ours (Top 20)                 | Ours (Random samples over top 200 tuples) |
++----------------------------------+-----------------------------------------------+-------------------------------------------+
+|  ['neighbor', 'fence_property']  |            ['chickens', 'lay eggs']           |      ['criminals', 'commit robbery']      |
+|     ['cook', 'bread_filet']      |           ['cells', 'divide cells']           |         ['toddlers', 'push toys']         |
+|   ['plumbers', 'fix_faucets']    |           ['hunters', 'go hunting']           |        ['firewood', 'break glass']        |
+| ['teachers', 'answer_questions'] |           ['Taxpayers', 'Pay Taxes']          |    ['computers', 'perform operations']    |
+|   ['criminals', 'case_joint']    |           ['rain', 'cause flooding']          |      ['startups', 'start businesses']     |
+|                \                 |      ['doctors', 'prescribe antibiotics']     |         ['pirates', 'steal money']        |
+|                \                 |         ['Web Browser', 'Open Window']        |           ['software', 'invoke']          |
+|                \                 |            ['hunters', 'hunt deer']           |        ['listeners', 'Listen Back']       |
+|                \                 | ['virtual reality', 'simulate teleportation'] |         ['generators', 'compute']         |
+|                \                 |         ['citizens', 'sign petitions']        |            ['browsers', 'use']            |
+|                \                 |        ['criminals', 'commit robbery']        |           ['Python', 'execute']           |
+|                \                 |         ['libraries', 'call library']         |      ['machine learning', 'predict']      |
+|                \                 |         ['criminals', 'commit theft']         |           ['Drones', 'capture']           |
+|                \                 |       ['fireworks', 'cause explosions']       |           ['developers', 'add']           |
+|                \                 |         ['web pages', 'display html']         |         ['text messages', 'send']         |
+|                \                 |            ['rain', 'cause floods']           |        ['spines', 'pull together']        |
+|                \                 |        ['machine learning', 'predict']        |         ['game hunters', 'watch']         |
+|                \                 |            ['Taxpayers', 'Pay Tax']           |        ['filters', 'apply filters']       |
+|                \                 |            ['water', 'boil water']            |        ['engines', 'boost torque']        |
+|                \                 |           ['text messages', 'send']           |      ['doctors', 'prescribe insulin']     |
++----------------------------------+-----------------------------------------------+-------------------------------------------+
+==================================================
+Relation: Causes
+Prompts:
+- 1.0000 It is typical for <ENT0> to cause <ENT1> .
+Harvested Tuples:
++------------------------------------------------+-------------------------------------------------+-------------------------------------------+
+|                  Seed samples                  |                  Ours (Top 20)                  | Ours (Random samples over top 200 tuples) |
++------------------------------------------------+-------------------------------------------------+-------------------------------------------+
+|     ['buying_hamburger', 'spending_money']     |       ['human nature', 'great suffering']       |          ['bugs', 'memory leaks']         |
+|          ['typing', 'communicating']           |            ['bad luck', 'misfortune']           |        ['mutations', 'instability']       |
+|    ['fighting_enemy', 'hopefully_victory']     |           ['bad karma', 'misfortune']           |   ['pesticides', 'respiratory diseases']  |
+| ['entertaining_people', 'capturing_attention'] |             ['strong winds', 'hail']            |           ['mutations', 'death']          |
+|         ['riding_bicycle', 'cramping']         |      ['immune systems', 'immune responses']     |           ['bad news', 'riots']           |
+|                       \                        |    ['Drug Dependence', 'depressive episodes']   |      ['heatwaves', 'extreme weather']     |
+|                       \                        |      ['Neural Systems', 'Neural Networks']      |           ['stress', 'cortisol']          |
+|                       \                        | ['autoimmune processes', 'autoimmune diseases'] |           ['genes', 'mutation']           |
+|                       \                        |             ['hot water', 'bubbles']            |         ['influenza', 'pneumonia']        |
+|                       \                        |           ['age', 'cognitive decline']          |   ['alcoholism', 'depressive episodes']   |
+|                       \                        |        ['Chemical Weapons', 'casualties']       |           ['mice', 'paralysis']           |
+|                       \                        |            ['Nuclear Weapons', 'War']           |       ['age', 'physical impairment']      |
+|                       \                        |      ['cardiac surgery', 'cardiac arrest']      |  ['inflammatory bowel', 'bowel movement'] |
+|                       \                        |            ['insulin', 'blood sugar']           |           ['radiation', 'death']          |
+|                       \                        |       ['certain genes', 'Gene Expression']      |    ['hot temperatures', 'dehydration']    |
+|                       \                        |           ['winds', 'heavy rainfall']           |     ['Chemical Weapons', 'casualties']    |
+|                       \                        |           ['small doses', 'toxicity']           |     ['experiments', 'false positives']    |
+|                       \                        |        ['age', 'physical deterioration']        |        ['winds', 'heavy rainfall']        |
+|                       \                        |             ['viruses', 'mutations']            |       ['diet', 'metabolic syndrome']      |
+|                       \                        |           ['Blood Work', 'blood clot']          |             ['mice', 'tumors']            |
++------------------------------------------------+-------------------------------------------------+-------------------------------------------+
+==================================================
+Relation: CausesDesire
+Prompts:
+- 1.0000 <ENT0> makes someone want <ENT1> .
+Harvested Tuples:
++-----------------------------------+-------------------------------------+-------------------------------------------+
+|            Seed samples           |            Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++-----------------------------------+-------------------------------------+-------------------------------------------+
+|       ['prom', 'dress_nice']      | ['sometimes depression', 'suicide'] |             ['cuff', 'candy']             |
+|  ['feeling_dirty', 'take_shower'] |  ['making mistakes', 'perfection']  |            ['really', 'stuff']            |
+|   ['being_curious', 'open_gift']  |   ['sometimes silence', 'answers']  |           ['bad taste', 'worse']          |
+|    ['gluttony', 'eat_quickly']    |    ['every problem', 'solutions']   |         ['killing', 'kill people']        |
+| ['needing_things', 'run_errands'] |        ['bad taste', 'worse']       |            ['bad tv', 'drama']            |
+|                 \                 |    ['sometimes silence', 'talk']    |          ['really', 'attention']          |
+|                 \                 |         ['bad tv', 'drama']         |        ['nuke', 'nuclear weapons']        |
+|                 \                 |       ['size', 'bigger size']       |            ['netflix', 'pizza']           |
+|                 \                 |         ['good tv', 'drama']        |       ['think feminism', 'equality']      |
+|                 \                 |      ['making noise', 'louder']     |            ['crying', 'vomit']            |
+|                 \                 |      ['good tv', 'television']      |           ['whatever', 'stuff']           |
+|                 \                 | ['writing stories', 'real stories'] |           ['whatever', 'money']           |
+|                 \                 |      ['every story', 'stories']     |            ['alcohol', 'drink']           |
+|                 \                 |        ['whatever', 'things']       |        ['every question', 'answer']       |
+|                 \                 |    ['writing jokes', 'real pain']   |           ['actually', 'stuff']           |
+|                 \                 |   ['maybe depression', 'suicide']   |           ['actually', 'better']          |
+|                 \                 |     ['maybe silence', 'answers']    |            ['russia', 'Putin']            |
+|                 \                 |       ['like candy', 'sweets']      |            ['maybe', 'coffee']            |
+|                 \                 |      ['making wine', 'alcohol']     |            ['cilling', 'blood']           |
+|                 \                 |        ['whatever', 'stuff']        |             ['might', 'stuff']            |
++-----------------------------------+-------------------------------------+-------------------------------------------+
+==================================================
+Relation: CreatedBy
+Prompts:
+- 1.0000 <ENT1> is a process or agent that creates <ENT0> .
+Harvested Tuples:
++----------------------+------------------------------------------+-------------------------------------------+
+|     Seed samples     |              Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++----------------------+------------------------------------------+-------------------------------------------+
+|  ['bread', 'baker']  |   ['human suffering', 'human disease']   |      ['consciousness', 'conscience']      |
+| ['film', 'director'] |  ['Special Situations', 'special case']  |          ['particles', 'magnet']          |
+|  ['pee', 'kidneys']  |  ['Virtual Worlds', 'virtual machine']   |             ['force', 'power']            |
+|    ['egg', 'hen']    |       ['human suffering', 'pain']        |            ['space', 'buffer']            |
+| ['song', 'composer'] |      ['equality', 'equal equality']      |            ['reality', 'magic']           |
+|          \           |       ['User Profile', 'password']       |        ['human suffering', 'pain']        |
+|          \           |    ['material', 'physical material']     |     ['transformation', 'transformer']     |
+|          \           |      ['user profiles', 'password']       |       ['transformations', 'matrix']       |
+|          \           |    ['reactions', 'active reactions']     |            ['objects', 'type']            |
+|          \           |   ['Special Situations', 'specialty']    |        ['User Profile', 'password']       |
+|          \           | ['Unique Experiences', 'virtualization'] |      ['physical structure', 'shape']      |
+|          \           |  ['physical conditions', 'temperature']  |           ['meaning', 'pointer']          |
+|          \           |   ['certain properties', 'agreement']    |    ['different things', 'every thing']    |
+|          \           |   ['different things', 'every thing']    |           ['policies', 'policy']          |
+|          \           |   ['transformation', 'transformator']    |        ['programs', 'programming']        |
+|          \           |    ['resources', 'resource creator']     |            ['reality', 'life']            |
+|          \           |  ['physical properties', 'temperature']  |           ['processes', 'type']           |
+|          \           |   ['transformations', 'transformers']    |            ['content', 'media']           |
+|          \           |  ['complex relationships', 'integrity']  |        ['changes', 'configuration']       |
+|          \           |        ['Virtual Worlds', 'lua']         |          ['knowledge', 'context']         |
++----------------------+------------------------------------------+-------------------------------------------+
+==================================================
+Relation: DefinedAs
+Prompts:
+- 1.0000 <ENT1> is a more explanatory version of <ENT0> .
+Harvested Tuples:
++------------------------------+----------------------------------+-------------------------------------------+
+|         Seed samples         |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++------------------------------+----------------------------------+-------------------------------------------+
+|  ['history', 'past_events']  | ['Google Search', 'google maps'] |          ['extract', 'provided']          |
+|   ['ice', 'frozen_water']    |   ['step three', 'step four']    |           ['Sqlql', 'sqlparse']           |
+| ['listen', 'receive_sound']  |    ['step two', 'step four']     |            ['analysis', 'let']            |
+|     ['door', 'entrance']     |    ['step two', 'step three']    |           ['printf', 'notebox']           |
+| ['health', 'body_condition'] |      ['err', 'running err']      |            ['Quanta', 'quorum']           |
+|              \               |  ['Object Type', 'type object']  |             ['Quip', 'quilib']            |
+|              \               |    ['Chapter Five', 'linked']    |         ['perlconf', 'pythonconf']        |
+|              \               | ['Object Type', 'object class']  |              ['qtm', 'quiz']              |
+|              \               |       ['Quora', 'quorum']        |         ['wikileaks', 'linkback']         |
+|              \               |  ['Chapter Eight', 'linkback']   |         ['Objectary', 'objective']        |
+|              \               |   ['Chapter Five', 'linkback']   |      ['Google Search', 'google maps']     |
+|              \               |  ['version two', 'update two']   |         ['Postscript', 'postdocs']        |
+|              \               |       ['Quora', 'quanta']        |            ['Quorum', 'quota']            |
+|              \               | ['version two', 'update three']  |       ['Objectmap', 'objectfilter']       |
+|              \               |   ['abstract', 'sub abstract']   |       ['Codecode', 'video encoding']      |
+|              \               |    ['Chapter Five', 'linker']    |      ['article elsewhere', 'content']     |
+|              \               |    ['Prelude', 'third track']    |        ['Codecode', 'video encode']       |
+|              \               |    ['version ii', 'note ii']     |               ['Htm', 'hsl']              |
+|              \               |       ['Quanta', 'quorum']       |            ['Haskell', 'hkell']           |
+|              \               |       ['map', 'note map']        |     ['objectification', 'objectivity']    |
++------------------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: Desires
+Prompts:
+- 1.0000 <ENT1> is something that every <ENT0> desires .
+Harvested Tuples:
++--------------------------+-------------------------------------+-------------------------------------------+
+|       Seed samples       |            Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++--------------------------+-------------------------------------+-------------------------------------------+
+|  ['anarchists', 'free']  |   ['leader', 'strong leadership']   |        ['immigrant', 'immigration']       |
+| ['angry_person', 'vent'] |   ['true patriot', 'true liberty']  |            ['athlete', 'speed']           |
+| ['animal', 'reproduce']  |    ['patriot', 'true patriotism']   |   ['economist', 'economic rationality']   |
+|    ['bee', 'flower']     |   ['little brother', 'play time']   |             ['human', 'life']             |
+|  ['kids', 'play_games']  |      ['driver', 'driving cars']     |           ['lover', 'sexuality']          |
+|            \             |      ['farmer', 'free pasture']     |     ['generation', 'social cohesion']     |
+|            \             | ['investor', 'financial stability'] |        ['good teacher', 'teaching']       |
+|            \             |  ['creative spirit', 'creativity']  |           ['lover', 'marriage']           |
+|            \             |       ['soul', 'self esteem']       |             ['child', 'music']            |
+|            \             | ['hacker', 'secure authentication'] |       ['hacker', 'secure anonymity']      |
+|            \             |   ['hacker', 'secure encryption']   |     ['developer', 'better visibility']    |
+|            \             |   ['economist', 'economic theory']  |         ['driver', 'driving car']         |
+|            \             |   ['minority', 'white supremacy']   |          ['American', 'equality']         |
+|            \             |  ['scientist', 'better sequencing'] |         ['patient', 'healthcare']         |
+|            \             |     ['soul', 'self expression']     |    ['successful women', 'successivity']   |
+|            \             |    ['loving father', 'parenting']   |      ['male', 'sexual satisfaction']      |
+|            \             |  ['city', 'public transportation']  |            ['human', 'freedom']           |
+|            \             |     ['good teacher', 'teaching']    |         ['American', 'socialism']         |
+|            \             |    ['little brother', 'playtime']   |         ['Jew', 'white privilege']        |
+|            \             |            ['man', 'sex']           |          ['goodman', 'good work']         |
++--------------------------+-------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasA
+Prompts:
+- 1.0000 Usually, we would expect <ENT0> to have <ENT1> .
+Harvested Tuples:
++-----------------------------+-----------------------------------+-------------------------------------------+
+|         Seed samples        |           Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++-----------------------------+-----------------------------------+-------------------------------------------+
+|    ['violins', 'strings']   |  ['businesses', 'fewer workers']  |     ['malware', 'Known Vulnerability']    |
+| ['actions', 'consequences'] |     ['web pages', 'html tags']    |       ['Human Subjects', 'diabetes']      |
+|       ['dogs', 'fur']       |      ['Star Wars', 'enemies']     |       ['postmaster', 'logged onto']       |
+|      ['car', 'wheels']      |    ['teams', 'better defense']    |           ['things', 'improved']          |
+|     ['sports', 'rules']     |       ['things', 'happened']      |             ['games', 'long']             |
+|              \              |   ['utilities', 'higher rates']   |         ['shares', 'higher yield']        |
+|              \              |       ['things', 'changed']       |             ['ships', 'cargo']            |
+|              \              |   ['Human Subjects', 'diabetes']  |             ['users', 'used']             |
+|              \              |   ['Bad Stuff', 'consequences']   |            ['boats', 'engines']           |
+|              \              |        ['things', 'ended']        |          ['every class', 'three']         |
+|              \              |     ['Netflix', 'low ratings']    |          ['badgers', 'big heads']         |
+|              \              |       ['things', 'improved']      |             ['trees', 'roots']            |
+|              \              |     ['every year', 'another']     |         ['stuff', 'dependencies']         |
+|              \              |     ['shares', 'higher yield']    |         ['Star Wars', 'conflicts']        |
+|              \              | ['random selection', 'generated'] |         ['objects', 'attributes']         |
+|              \              |      ['kids', 'fun together']     |            ['Tesla', 'issues']            |
+|              \              |      ['every day', 'another']     |            ['monsoon', 'rains']           |
+|              \              |    ['Human Subjects', 'autism']   |             ['Amazon', 'less']            |
+|              \              |   ['random selection', 'chosen']  |     ['random selection', 'generated']     |
+|              \              |      ['every day', 'events']      |            ['Linux', 'systemd']           |
++-----------------------------+-----------------------------------+-------------------------------------------+
+==================================================
+Relation: HasFirstSubevent
+Prompts:
+- 1.0000 <ENT0> is an event that begins with subevent <ENT1> .
+Harvested Tuples:
++-------------------------------+-----------------------------------+-------------------------------------------+
+|          Seed samples         |           Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++-------------------------------+-----------------------------------+-------------------------------------------+
+|     ['cook', 'wash_hands']    |  ['thirteen', 'Number Thirteen']  |     ['every condition', 'conditions']     |
+| ['fight_enemy', 'get_weapon'] |     ['service', 'sub service']    |          ['intermediate', 'Intr']         |
+|       ['study', 'read']       | ['every condition', 'conditions'] |         ['performer', 'subformer']        |
+|    ['sleep', 'close_eyes']    |      ['every item', 'items']      |           ['interpre', 'subpre']          |
+|  ['bathe', 'remove_clothes']  |       ['definition', 'name']      |         ['events', 'description']         |
+|               \               |      ['description', 'title']     |          ['interlude', 'sublude']         |
+|               \               |   ['definition', 'description']   |             ['hype', 'fnype']             |
+|               \               |          ['list', 'name']         |            ['thumb', 'Strumb']            |
+|               \               |       ['definition', 'type']      |           ['subloop', 'looped']           |
+|               \               |         ['list', 'title']         |    ['intersection', 'interconnection']    |
+|               \               |  ['per category', 'subcategory']  |          ['everykey', 'namekey']          |
+|               \               |       ['every key', 'keys']       |              ['perk', 'plk']              |
+|               \               |      ['section two', 'three']     |       ['interactive', 'subactivity']      |
+|               \               |      ['per view', 'subview']      |         ['permission', 'request']         |
+|               \               |  ['classification', 'classifier'] |           ['perrant', 'subrant']          |
+|               \               |    ['eventflow', 'flow events']   |          ['intervals', 'intents']         |
+|               \               |      ['permalink', 'pmalink']     |      ['thirteen', 'Number Thirteen']      |
+|               \               |       ['permalink', 'post']       |     ['interrelated', 'Interconnected']    |
+|               \               |      ['interrupt', 'subrupt']     |            ['summit', 'Subsum']           |
+|               \               |       ['summax', 'num max']       |         ['classify', 'classifier']        |
++-------------------------------+-----------------------------------+-------------------------------------------+
+==================================================
+Relation: HasLastSubevent
+Prompts:
+- 1.0000 <ENT0> is an event that concludes with subevent <ENT1> .
+Harvested Tuples:
++------------------------------------+----------------------------------+-------------------------------------------+
+|            Seed samples            |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++------------------------------------+----------------------------------+-------------------------------------------+
+|   ['analyse', 'make_conclusion']   | ['section two', 'section three'] |          ['convention', 'Concon']         |
+|      ['bathe', 'get_dressed']      | ['section two', 'section four']  |          ['interim', 'Intermix']          |
+| ['climb_mountain', 'reach_summit'] |    ['event finale', 'finals']    |          ['preblock', 'subblock']         |
+|   ['brush_teeth', 'rinse_mouth']   |    ['submatch', 'match play']    |           ['sumpt', 'summation']          |
+|   ['buy_hamburger', 'pay_money']   |  ['event finale', 'conclusion']  |          ['description', 'name']          |
+|                 \                  |  ['every method', 'submethod']   |            ['frozen', 'Frost']            |
+|                 \                  |   ['submatch', 'match winner']   |         ['interpre', 'Interlude']         |
+|                 \                  |    ['event finale', 'recap']     |      ['interjection', 'injectables']      |
+|                 \                  |     ['every post', 'posts']      |        ['submatch', 'matchmaking']        |
+|                 \                  |  ['every year', 'celebration']   |         ['perchance', 'subchance']        |
+|                 \                  |    ['cancel', 'call cancel']     |            ['summax', 'maxmax']           |
+|                 \                  |   ['class super', 'Class Sub']   |            ['fale', 'eventale']           |
+|                 \                  |      ['summing', 'merging']      |            ['hacker', 'Hhack']            |
+|                 \                  |     ['summing', 'matching']      |       ['class super', 'superclass']       |
+|                 \                  |   ['period', 'time interval']    |       ['interjection', 'injection']       |
+|                 \                  |   ['every record', 'records']    |           ['subloop', 'looping']          |
+|                 \                  |    ['submatch', 'match two']     |             ['list', 'entry']             |
+|                 \                  |      ['summing', 'suming']       |      ['interruption', 'interrupting']     |
+|                 \                  |    ['log zero', 'Log Three']     |          ['cascade', 'Cauldron']          |
+|                 \                  |  ['every method', 'subresult']   |        ['every record', 'records']        |
++------------------------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: HasPrerequisite
+Prompts:
+- 1.0000 If someone wants to <ENT0>, they need to <ENT1> first .
+Harvested Tuples:
++----------------------------------------+--------------------------------------+-------------------------------------------+
+|              Seed samples              |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++----------------------------------------+--------------------------------------+-------------------------------------------+
+|        ['analysing', 'thought']        |   ['switch', 'consider switching']   |            ['respond', 'write']           |
+|  ['write_program', 'design_program']   |   ['retire', 'consider retiring']    |            ['share', 'comment']           |
+|       ['make_grow', 'stimulate']       |       ['use java', 'compile']        |         ['make videos', 'upload']         |
+| ['hear_testimony', 'summon_witnesses'] |    ['become rich', 'become poor']    |             ['play', 'score']             |
+|      ['typing', 'pressing_keys']       |      ['adopt', 'find parents']       |           ['milk', 'feed cows']           |
+|                   \                    |           ['help', 'ask']            |             ['stay', 'leave']             |
+|                   \                    |      ['bridge', 'cross bridge']      |           ['go viral', 'tweet']           |
+|                   \                    | ['automate', 'implement automation'] |           ['graduate', 'finish']          |
+|                   \                    |       ['get fired', 'resign']        |             ['succeed', 'try']            |
+|                   \                    |      ['get married', 'propose']      |            ['vote', 'register']           |
+|                   \                    |      ['use python', 'compile']       |         ['cooperate', 'tell cops']        |
+|                   \                    |       ['make jokes', 'laugh']        |      ['fix software', 'fix hardware']     |
+|                   \                    |        ['go camping', 'pack']        |             ['share', 'know']             |
+|                   \                    |       ['use sudo', 'execute']        |             ['die', 'suffer']             |
+|                   \                    |           ['talk', 'ask']            |         ['adopt', 'tell parents']         |
+|                   \                    |        ['go viral', 'tweet']         |           ['go camping', 'pack']          |
+|                   \                    |  ['discuss gender', 'discuss sex']   |          ['participate', 'apply']         |
+|                   \                    |       ['make cookies', 'bake']       |          ['make jokes', 'laugh']          |
+|                   \                    |       ['suffer', 'feel pain']        |             ['party', 'drink']            |
+|                   \                    |      ['become wealthy', 'earn']      |      ['automate', 'implement python']     |
++----------------------------------------+--------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasProperty
+Prompts:
+- 1.0000 <ENT0> are <ENT1> .
+Harvested Tuples:
++------------------------------+------------------------------------------+-------------------------------------------+
+|         Seed samples         |              Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++------------------------------+------------------------------------------+-------------------------------------------+
+|     ['gun', 'dangerous']     | ['security vulnerabilities', 'reported'] |          ['windows', 'installed']         |
+| ['pocket_notebook', 'small'] |      ['sub subs', 'defined using']       |           ['authors', 'unknown']          |
+|   ['children', 'innocent']   |       ['extra points', 'awarded']        |      ['selections', 'filtered using']     |
+|   ['alcohol', 'addictive']   |  ['security vulnerabilities', 'known']   |           ['windows', 'closed']           |
+|      ['milk', 'white']       |    ['related stories', 'Coming Soon']    |           ['notes', 'optional']           |
+|              \               |      ['events', 'scheduled daily']       |          ['factions', 'granted']          |
+|              \               |  ['related topics', 'discussed later']   |            ['members', 'free']            |
+|              \               |          ['comments', 'closed']          |            ['fees', 'charged']            |
+|              \               |     ['bacteria', 'extremely toxic']      |      ['fates', 'often unpredictable']     |
+|              \               |      ['events', 'archived online']       |         ['questions', 'answered']         |
+|              \               |     ['fires', 'Burning Everywhere']      |          ['faults', 'calculated']         |
+|              \               |            ['names', 'given']            |     ['additional resources', 'needed']    |
+|              \               |       ['fees', 'Paid Immediately']       |   ['related urls', 'reported elsewhere']  |
+|              \               |     ['extra spaces', 'used instead']     |           ['references', 'made']          |
+|              \               |     ['security settings', 'default']     |  ['post suggestions', 'welcomed anytime'] |
+|              \               |        ['tips', 'always helpful']        |         ['fractions', 'assessed']         |
+|              \               |        ['today', 'special days']         |            ['windows', 'empty']           |
+|              \               |         ['fears', 'well known']          |            ['rules', 'strict']            |
+|              \               |           ['children', 'born']           |      ['fires', 'Burning Everywhere']      |
+|              \               |    ['sales', 'currently unavailable']    |           ['examples', 'shown']           |
++------------------------------+------------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasSubEvent
+Prompts:
+- 1.0000 <ENT1> happens as a subevent of <ENT0> .
+Harvested Tuples:
++------------------------------------+---------------------------------------+-------------------------------------------+
+|            Seed samples            |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++------------------------------------+---------------------------------------+-------------------------------------------+
+|     ['agree_with', 'nodding']      |      ['class user', 'user class']     |            ['true', 'default']            |
+|  ['sleeping', 'rejuvinate_body']   |  ['item selection', 'item creation']  |           ['chwin', 'champion']           |
+| ['attend_class', 'gain_knowledge'] | ['item selection', 'item allocation'] |     ['thread merge', 'thread merging']    |
+|  ['judge', 'gather_information']   |      ['matchmaking', 'game play']     |              ['fbf', 'flux']              |
+|      ['play_sports', 'sweat']      | ['file declaration', 'file creation'] |        ['matchfight', 'matchbreak']       |
+|                 \                  | ['initinit', 'module initialization'] |            ['Set Ord', 'order']           |
+|                 \                  |       ['Part Ii', 'section iii']      |        ['fileconfig', 'debugging']        |
+|                 \                  |      ['another state', 'states']      |          ['itemify', 'itemifier']         |
+|                 \                  |     ['process flow', 'processing']    |           ['initrc', 'setuprc']           |
+|                 \                  |       ['Part Ii', 'section ii']       |            ['Prelude', 'setup']           |
+|                 \                  |       ['Set Top', 'set bottom']       |            ['chbreak', 'chwin']           |
+|                 \                  |          ['String', 'value']          |              ['Exf', 'exbf']              |
+|                 \                  |   ['thread merge', 'thread merging']  |           ['subdata', 'subtype']          |
+|                 \                  | ['Item Selection', 'items selection'] |             ['chia', 'chaos']             |
+|                 \                  |      ['matchmaking', 'matchplay']     |             ['Wisp', 'waste']             |
+|                 \                  |    ['Class User', 'user instance']    |           ['Coda', 'conversion']          |
+|                 \                  |      ['monology', 'group theory']     |         ['fileconfig', 'filecfg']         |
+|                 \                  |    ['Posting', 'writing comments']    |     ['postscripts', 'script creation']    |
+|                 \                  |        ['List Ord', 'iterator']       |         ['postdoc', 'postmortem']         |
+|                 \                  |   ['Process Object', 'transaction']   |            ['Liste', 'listing']           |
++------------------------------------+---------------------------------------+-------------------------------------------+
+==================================================
+Relation: IsA
+Prompts:
+- 1.0000 <ENT0> is a subtype or a specific instance of <ENT1> .
+Harvested Tuples:
++-----------------------------------------+---------------------------------------+-------------------------------------------+
+|               Seed samples              |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++-----------------------------------------+---------------------------------------+-------------------------------------------+
+|     ['cholangitis', 'inflammation']     |    ['thirteen', 'number thirteen']    |              ['flux', 'Fuse']             |
+|      ['rice_plant', 'cereal_plant']     |       ['definition', 'defined']       |           ['narrow', 'singular']          |
+| ['polyploid_cell', 'noncancerous_cell'] |     ['every person', 'Human Race']    |           ['listings', 'items']           |
+|            ['minsk', 'city']            | ['sometimes python', 'Python Module'] |            ['fusing', 'fusion']           |
+|           ['army_ant', 'ant']           |          ['listing', 'lists']         |           ['thick', 'thin film']          |
+|                    \                    |        ['definition', 'define']       |          ['definition', 'define']         |
+|                    \                    |         ['divide', 'division']        |           ['coding', 'encoding']          |
+|                    \                    |     ['every person', 'Human Body']    |         ['categories', 'sections']        |
+|                    \                    |         ['html', 'type html']         |             ['fauna', 'plant']            |
+|                    \                    |   ['sometimes python', 'Python Sub']  |          ['subtypes', 'subclass']         |
+|                    \                    |       ['coding', 'programming']       |         ['classclass', 'subclass']        |
+|                    \                    |     ['every person', 'Human Form']    |             ['parv', 'param']             |
+|                    \                    |        ['cursive', 'recursive']       |         ['numb', 'Neural Network']        |
+|                    \                    |         ['listings', 'Lists']         |           ['fixture', 'formula']          |
+|                    \                    |       ['paranoia', 'psychosis']       |         ['strategy', 'strategies']        |
+|                    \                    |     ['divine', 'differentiation']     |             ['cabal', 'mask']             |
+|                    \                    |       ['categories', 'sections']      |             ['fiber', 'feed']             |
+|                    \                    |     ['categories', 'descriptions']    |           ['parsel', 'parsing']           |
+|                    \                    |     ['paranoia', 'schizophrenia']     |          ['divine', 'divination']         |
+|                    \                    |         ['subgroup', 'groups']        |          ['subgroup', 'grouping']         |
++-----------------------------------------+---------------------------------------+-------------------------------------------+
+==================================================
+Relation: MadeOf
+Prompts:
+- 1.0000 <ENT0> is made of <ENT1> .
+Harvested Tuples:
++-----------------------+----------------------------------+-------------------------------------------+
+|      Seed samples     |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++-----------------------+----------------------------------+-------------------------------------------+
+|   ['lens', 'glass']   |    ['human skin', 'collagen']    |       ['reality', 'mixed realities']      |
+|   ['brick', 'clay']   |       ['air', 'thin air']        |             ['flesh', 'bones']            |
+| ['balloon', 'rubber'] |   ['human tissue', 'collagen']   |            ['cinnamon', 'wax']            |
+|    ['cake', 'egg']    |     ['human tissue', 'bone']     |          ['kratom', 'hemp seeds']         |
+|   ['book', 'paper']   |      ['law', 'Natural Law']      |        ['subreddit', 'weird shit']        |
+|           \           |    ['module', 'Class Module']    |             ['easter', 'snow']            |
+|           \           |        ['earth', 'water']        |             ['bamboo', 'bark']            |
+|           \           |     ['law', 'Natural Laws']      |             ['gold', 'silver']            |
+|           \           |        ['earth', 'glass']        |           ['cinnamon', 'flour']           |
+|           \           |  ['cholesterol', 'fatty acids']  |            ['alcohol', 'sugar']           |
+|           \           |        ['earth', 'sand']         |              ['life', 'love']             |
+|           \           |   ['buffer', 'double buffer']    |           ['smog', 'tar sands']           |
+|           \           |        ['earth', 'iron']         |         ['body', 'Solid Material']        |
+|           \           |   ['bacteria', 'fatty acids']    |              ['woe', 'bread']             |
+|           \           |        ['earth', 'clay']         |             ['shame', 'women']            |
+|           \           |   ['character', 'Black Hair']    |        ['chocolate', 'cocoa bean']        |
+|           \           |   ['human society', 'animals']   |       ['reality', 'mixed metaphors']      |
+|           \           | ['evidence', 'false statements'] |           ['cave', 'limestone']           |
+|           \           |   ['character', 'Black Skin']    |       ['vodka', 'distilled spirit']       |
+|           \           |        ['gold', 'copper']        |          ['material', 'aluminum']         |
++-----------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: MotivatedByGoal
+Prompts:
+- 1.0000 Someone does <ENT0> because they want to <ENT1> .
+Harvested Tuples:
++--------------------------------------+--------------------------------+-------------------------------------------+
+|             Seed samples             |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++--------------------------------------+--------------------------------+-------------------------------------------+
+|      ['bathe', 'become_clean']       |  ['every week', 'keep going']  |           ['Silly Meme', 'joke']          |
+|          ['sell', 'money']           |      ['hat', 'wear hat']       |         ['diapers', 'use diapers']        |
+|      ['find_job', 'earn_money']      |   ['hate women', 'hate men']   |            ['violence', 'kill']           |
+| ['serve_customers', 'stay_employed'] |   ['every year', 'remember']   |         ['issues', 'Fix Problems']        |
+|           ['cook', 'eat']            |    ['another guy', 'date']     |          ['whatever', 'survive']          |
+|                  \                   | ['algebra', 'solve equations'] |             ['murder', 'kill']            |
+|                  \                   | ['sexual intercourse', 'mate'] |        ['plastics', 'use plastics']       |
+|                  \                   |   ['another woman', 'date']    |            ['things', 'please']           |
+|                  \                   |  ['stories', 'tell stories']   |             ['dishes', 'eat']             |
+|                  \                   |     ['fake html', 'spam']      |             ['dishes', 'cook']            |
+|                  \                   |   ['every friday', 'party']    |          ['blocks', 'use blocks']         |
+|                  \                   |    ['dirty tricks', 'get']     |           ['homework', 'learn']           |
+|                  \                   |  ['research', 'find answers']  |         ['trips', 'go somewhere']         |
+|                  \                   |    ['socks', 'wear socks']     |             ['wrong', 'help']             |
+|                  \                   |        ['stuff', 'die']        |           ['Cuts', 'Cut Costs']           |
+|                  \                   |       ['things', 'die']        |         ['rules', 'enforce rules']        |
+|                  \                   |        ['stuff', 'win']        |            ['errands', 'shop']            |
+|                  \                   |      ['hat', 'wear hats']      |       ['sexual stimulation', 'cum']       |
+|                  \                   |    ['Good Cause', 'donate']    |          ['another time', 'wait']         |
+|                  \                   |  ['sexual relations', 'mate']  |             ['stuff', 'help']             |
++--------------------------------------+--------------------------------+-------------------------------------------+
+==================================================
+Relation: PartOf
+Prompts:
+- 1.0000 <ENT0> is a part of <ENT1> .
+Harvested Tuples:
++-------------------------------+-------------------------------------------+-------------------------------------------+
+|          Seed samples         |               Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++-------------------------------+-------------------------------------------+-------------------------------------------+
+|      ['egg_white', 'egg']     |   ['email alerts', 'Email Newsletters']   |   ['postmodern', 'socialist philosophy']  |
+| ['mountain_peak', 'mountain'] |           ['today', 'every day']          |       ['chris taylor', 'christmas']       |
+|     ['dead_sea', 'jordan']    |        ['shooting', 'human nature']       |           ['japan', 'Indonesia']          |
+|       ['scene', 'movie']      |         ['slide', 'larger image']         |         ['slsl', 'Google Chrome']         |
+|    ['stuttgart', 'germany']   |        ['price', 'premium pricing']       |       ['edinburgh', 'British State']      |
+|               \               |      ['shopping', 'modern lifestyle']     |            ['life', 'humanity']           |
+|               \               |    ['crossplatform', 'Google Platform']   |           ['cancel', 'options']           |
+|               \               |           ['russia', 'Ukraine']           |        ['development', 'democracy']       |
+|               \               |    ['email alert', 'Email Newsletters']   |          ['edmonton', 'Ontario']          |
+|               \               |             ['europe', 'Asia']            |        ['courage', 'every person']        |
+|               \               |             ['post', 'Global']            |             ['life', 'death']             |
+|               \               |         ['crossfit', 'Nike Brand']        |          ['india', 'Bangladesh']          |
+|               \               |   ['sound correction', 'Audio Package']   |         ['crossrail', 'Crosslink']        |
+|               \               |           ['india', 'Pakistan']           |          ['postmedia', 'Ottawa']          |
+|               \               |            ['russia', 'Canada']           |         ['ukraine', 'Afghanistan']        |
+|               \               | ['mark zuckerberg', 'Bloomberg Magazine'] |    ['sponsorship', 'disclosure policy']   |
+|               \               |        ['cactus', 'natural flora']        |         ['showing', 'photography']        |
+|               \               |            ['newsday', 'Slate']           |         ['sponsors', 'Sponsoring']        |
+|               \               |         ['newsday', 'Multimedia']         |        ['sponsorship', 'Equality']        |
+|               \               |       ['postwork', 'daily routine']       |        ['chris atkins', 'Buzzfeed']       |
++-------------------------------+-------------------------------------------+-------------------------------------------+
+==================================================
+Relation: ReceivesAction
+Prompts:
+- 1.0000 <ENT1> can be done to <ENT0> .
+Harvested Tuples:
++------------------------------------+-------------------------------------------------+-------------------------------------------+
+|            Seed samples            |                  Ours (Top 20)                  | Ours (Random samples over top 200 tuples) |
++------------------------------------+-------------------------------------------------+-------------------------------------------+
+|  ['stringed_instrument', 'tuned']  |            ['enlarge', 'click image']           |           ['define', 'examples']          |
+| ['sometimes_guiltly', 'convicted'] | ['decrease mortality', 'several interventions'] |           ['include', 'change']           |
+|          ['silk', 'dyed']          |    ['decrease mortality', 'several measures']   |            ['save', 'options']            |
+|     ['pills', 'taken_orally']      |         ['cover', 'additional coverage']        |             ['remove', 'code']            |
+|     ['contracts', 'evaluated']     |             ['see', 'another test']             |      ['cover', 'additional coverage']     |
+|                 \                  |           ['enlarge', 'click images']           |          ['console', 'execution']         |
+|                 \                  |     ['mitigate risks', 'important actions']     |           ['restore', 'damage']           |
+|                 \                  |           ['donate', 'online paypal']           |        ['effect', 'direct actions']       |
+|                 \                  |       ['match', 'simple transformations']       |           ['use string', 'tip']           |
+|                 \                  |           ['modify', 'various steps']           |             ['modify', 'code']            |
+|                 \                  |    ['decrease stress', 'several activities']    |          ['use python', 'setup']          |
+|                 \                  |           ['fit', 'small adjustments']          |        ['help others', 'resources']       |
+|                 \                  |          ['Donate', 'online donations']         |              ['save', 'text']             |
+|                 \                  |               ['improve', 'much']               |            ['print', 'images']            |
+|                 \                  |      ['mitigate stress', 'several actions']     |      ['print', 'direct conversions']      |
+|                 \                  |              ['prevent', 'things']              |   ['mitigate stress', 'several actions']  |
+|                 \                  |          ['automate', 'various tasks']          |         ['download', 'step steps']        |
+|                 \                  |              ['improve', 'things']              |           ['affect', 'changes']           |
+|                 \                  |         ['train', 'sometimes training']         |           ['create', 'examples']          |
+|                 \                  |           ['help others', 'resources']          |            ['invoke', 'script']           |
++------------------------------------+-------------------------------------------------+-------------------------------------------+
+==================================================
+Relation: SymbolOf
+Prompts:
+- 1.0000 <ENT0> symbolically represents <ENT1> .
+Harvested Tuples:
++-------------------------+------------------------------------+-------------------------------------------+
+|       Seed samples      |           Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++-------------------------+------------------------------------+-------------------------------------------+
+|     ['tux', 'linux']    |    ['eclipse', 'Solar Eclipse']    |              ['bom', 'atom']              |
+| ['giving_rose', 'love'] |  ['risk', 'financial stability']   |        ['thousand', 'Ten Thousand']       |
+|  ['trophy', 'victory']  |    ['thousand', 'Ten Thousand']    |           ['wisdom', 'selfhood']          |
+|            \            |     ['frozen', 'ice skating']      |           ['fandom', 'interest']          |
+|            \            |    ['finite', 'infinite void']     |            ['xeros', 'numbers']           |
+|            \            |      ['crown', 'King Crown']       |            ['crown', 'Kingdom']           |
+|            \            |      ['noun', 'another verb']      |            ['xeros', 'twoeros']           |
+|            \            |   ['wisdom', 'Self Empowerment']   |         ['wisdom', 'selflessness']        |
+|            \            |       ['nano', 'zero space']       |            ['thousand', 'ten']            |
+|            \            |      ['noun', 'another word']      |            ['xhex', 'hex key']            |
+|            \            |     ['noun', 'another person']     |            ['shaft', 'safety']            |
+|            \            |   ['barrow', 'square brackets']    |        ['shipping', 'Buying Stock']       |
+|            \            |       ['xmas', 'Christmas']        |            ['wether', 'Wither']           |
+|            \            |        ['crown', 'victory']        |           ['fantasy', 'reality']          |
+|            \            | ['shakespeare', 'human suffering'] |        ['threes', 'three squares']        |
+|            \            |         ['vii', 'var ii']          |             ['nose', 'penis']             |
+|            \            |         ['xeros', 'zeros']         |     ['shakespeare', 'human suffering']    |
+|            \            |           ['xyz', 'zyz']           |            ['shine', 'sun god']           |
+|            \            |    ['raspberry', 'Apple Tree']     |              ['fern', 'wood']             |
+|            \            |     ['numeric', 'number zero']     |          ['espace', 'time warp']          |
++-------------------------+------------------------------------+-------------------------------------------+
+==================================================
+Relation: UsedFor
+Prompts:
+- 1.0000 <ENT0> is used for <ENT1> .
+Harvested Tuples:
++--------------------------------+--------------------------------------+-------------------------------------------+
+|          Seed samples          |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++--------------------------------+--------------------------------------+-------------------------------------------+
+|        ['bed', 'sleep']        |     ['similar syntax', 'String']     |     ['compressor', 'audio synthesis']     |
+|       ['arena', 'fight']       |      ['image source', 'embed']       |         ['function', 'arguments']         |
+|        ['wing', 'fly']         |      ['similar syntax', 'Perl']      |           ['bitter', 'coloring']          |
+| ['airplane', 'transportation'] |      ['similar syntax', 'Bash']      |        ['java binding', 'locking']        |
+|      ['scissors', 'cut']       |       ['common name', 'Perl']        |         ['resize', 'Saving Time']         |
+|               \                |    ['another port', 'receiving']     |           ['resite', 'resizing']          |
+|               \                |      ['bitter', 'baking soda']       |          ['resume', 'User Login']         |
+|               \                |  ['modularity', 'setting default']   |             ['data', 'output']            |
+|               \                |     ['bitter', 'baking powder']      |          ['function', 'example']          |
+|               \                | ['resolver', 'resolving conflicts']  |    ['factory', 'Production Equipment']    |
+|               \                |      ['fiber', 'cutting steel']      |           ['subtle', 'decoding']          |
+|               \                |      ['fiber', 'cutting wood']       |            ['whelp', 'support']           |
+|               \                |     ['cursor', 'typing cursor']      |          ['bamboo', 'making tea']         |
+|               \                |      ['resize', 'Saving Time']       |         ['common version', 'gcc']         |
+|               \                |       ['bamboo', 'making tea']       |              ['cron', 'coda']             |
+|               \                |   ['compressor', 'audio playback']   |          ['bose', 'making wine']          |
+|               \                | ['modularity', 'setting parameters'] |      ['fetch', 'receiving requests']      |
+|               \                |      ['bond', 'issuing shares']      |           ['waste', 'disposal']           |
+|               \                |  ['another variable', 'variables']   |    ['resolver', 'resolving conflicts']    |
+|               \                |   ['notebox', 'Terminal Commands']   |           ['pyramid', 'scaling']          |
++--------------------------------+--------------------------------------+-------------------------------------------+
+==================================================

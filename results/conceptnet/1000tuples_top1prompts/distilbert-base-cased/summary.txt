@@ -1,0 +1,580 @@
+Relation: AtLocation
+Prompts:
+- 1.0000 The <ENT1> is where i put my <ENT0> .
+Harvested Tuples:
++------------------------------+------------------------------------+-------------------------------------------+
+|         Seed samples         |           Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++------------------------------+------------------------------------+-------------------------------------------+
+| ['flotation_device', 'boat'] |     ['skate', 'skating rink']      |        ['backpack', 'parking lot']        |
+|   ['water', 'soft_drink']    |      ['bags', 'parking lot']       |           ['hand inside', 'key']          |
+|       ['gear', 'car']        | ['fingers gently', 'gentle touch'] |       ['fingers bare', 'bare wrist']      |
+|    ['giraffes', 'africa']    |     ['favorite foods', 'menu']     |             ['name', 'square']            |
+|   ['trousers', 'suitcase']   |       ['skate', 'ice rink']        |            ['finger', 'circle']           |
+|              \               |  ['favorite foods', 'cafeteria']   |          ['seed', 'green meadow']         |
+|              \               |     ['crown', 'golden crown']      |        ['thoughts', 'little pond']        |
+|              \               |     ['tongue', 'sweet taste']      |            ['things', 'store']            |
+|              \               |   ['fingers bare', 'bare wrist']   |           ['toes', 'toe patch']           |
+|              \               |    ['backpack', 'parking lot']     |         ['skate', 'skating rink']         |
+|              \               |  ['treasure', 'hidden treasure']   |           ['kit', 'green patch']          |
+|              \               |     ['favorite drink', 'bar']      |            ['bags', 'kitchen']            |
+|              \               |      ['soul', 'eternal soul']      |         ['crown', 'golden crown']         |
+|              \               |   ['fingers bare', 'bare skin']    |              ['shoes', 'gym']             |
+|              \               |   ['favorite food', 'cafeteria']   |           ['thoughts', 'house']           |
+|              \               |      ['dick', 'fucking dick']      |          ['files', 'file folder']         |
+|              \               | ['reasoning', 'logical reasoning'] |             ['heart', 'place']            |
+|              \               |      ['dick', 'fucking fuck']      |          ['knife', 'right side']          |
+|              \               |  ['favorite flowers', 'backyard']  |           ['coins', 'coin toss']          |
+|              \               |    ['files', 'file directory']     |       ['secret', 'hidden treasure']       |
++------------------------------+------------------------------------+-------------------------------------------+
+==================================================
+Relation: CapableOf
+Prompts:
+- 1.0000 One of the skills that <ENT0> usually have is the ability to <ENT1> .
+Harvested Tuples:
++----------------------------------+--------------------------------------------+-------------------------------------------+
+|           Seed samples           |               Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
++----------------------------------+--------------------------------------------+-------------------------------------------+
+|  ['neighbor', 'fence_property']  |       ['artists', 'create artwork']        |           ['students', 'speak']           |
+|     ['cook', 'bread_filet']      | ['photographers', 'photograph landscapes'] |     ['chess judges', 'declare tricks']    |
+|   ['plumbers', 'fix_faucets']    |        ['puzzles', 'solve puzzles']        |     ['companies', 'manage resources']     |
+| ['teachers', 'answer_questions'] |        ['zombies', 'kill zombies']         |      ['assassins', 'kill criminals']      |
+|   ['criminals', 'case_joint']    |    ['builders', 'construct buildings']     |        ['human muscles', 'stretch']       |
+|                \                 |   ['entrepreneurs', 'generate profits']    |            ['players', 'throw']           |
+|                \                 |        ['fishermen', 'catch fish']         |          ['athletes', 'compete']          |
+|                \                 |       ['fishermen', 'catch salmon']        |           ['soldiers', 'shoot']           |
+|                \                 |       ['werewolves', 'kill wolves']        |         ['sharks', 'detect rays']         |
+|                \                 |        ['analysts', 'analyze data']        |          ['pigs', 'eat rabbits']          |
+|                \                 |   ['entrepreneurs', 'generate revenue']    |             ['scouts', 'fly']             |
+|                \                 |         ['judges', 'judge judges']         |       ['firefighters', 'fire smoke']      |
+|                \                 |         ['consumers', 'buy goods']         |              ['bats', 'swim']             |
+|                \                 |      ['researchers', 'analyze data']       |     ['aspiring politicians', 'govern']    |
+|                \                 |    ['human minds', 'perceive reality']     |           ['cyclists', 'pedal']           |
+|                \                 |     ['composers', 'compose melodies']      |          ['locks', 'lock locks']          |
+|                \                 |      ['economists', 'predict prices']      |             ['people', 'walk']            |
+|                \                 |            ['students', 'read']            |             ['girls', 'sing']             |
+|                \                 |        ['students', 'communicate']         |              ['cats', 'move']             |
+|                \                 |        ['voters', 'choose voters']         |      ['economists', 'predict prices']     |
++----------------------------------+--------------------------------------------+-------------------------------------------+
+==================================================
+Relation: Causes
+Prompts:
+- 1.0000 Most people experience <ENT1> while <ENT0>s at some point .
+Harvested Tuples:
++------------------------------------------------+----------------------------------------------+---------------------------------------------+
+|                  Seed samples                  |                Ours (Top 20)                 |  Ours (Random samples over top 200 tuples)  |
++------------------------------------------------+----------------------------------------------+---------------------------------------------+
+|     ['buying_hamburger', 'spending_money']     |     ['paying tax', 'financial troubles']     | ['performing professional', 'disabilities'] |
+|          ['typing', 'communicating']           |      ['hearing nasal', 'nasal hearing']      |       ['remembering past', 'memories']      |
+|    ['fighting_enemy', 'hopefully_victory']     |   ['paying monthly', 'financial troubles']   |      ['suffering epidemic', 'malaria']      |
+| ['entertaining_people', 'capturing_attention'] |       ['eating chicken', 'starvation']       |        ['parole', 'mental breakdown']       |
+|         ['riding_bicycle', 'cramping']         |    ['paying price', 'negative responses']    |          ['pregnant', 'pregnancy']          |
+|                       \                        |        ['playing poker', 'gambling']         |    ['staying group', 'social isolation']    |
+|                       \                        |    ['hearing nasal', 'nasal irritation']     |     ['mobile', 'wireless transmissions']    |
+|                       \                        |    ['treating patient', 'complications']     | ['recovering multiple', 'multiple attacks'] |
+|                       \                        |       ['eating protein', 'starvation']       |     ['leaving list', 'mental disorders']    |
+|                       \                        |       ['playing string', 'vibration']        |          ['dreaming', 'nightmares']         |
+|                       \                        |      ['suffering epidemic', 'malaria']       |        ['floating', 'tidal currents']       |
+|                       \                        |         ['eating chicken', 'hunger']         |          ['blind', 'eye movements']         |
+|                       \                        |       ['remembering past', 'memories']       |   ['applying variable', 'cognitive bias']   |
+|                       \                        |       ['observing comet', 'astronomy']       |        ['playing poker', 'gambling']        |
+|                       \                        | ['meeting destination', 'social networking'] |      ['researching psychic', 'ghosts']      |
+|                       \                        |       ['observing comet', 'radiation']       |      ['applying substance', 'toxicity']     |
+|                       \                        |    ['performing ballet', 'disabilities']     |      ['vampire', 'supernatural powers']     |
+|                       \                        |       ['developing skill', 'learning']       |     ['wandering', 'strange situations']     |
+|                       \                        |         ['shooting gun', 'firearms']         |        ['weather', 'severe weather']        |
+|                       \                        |       ['observing climate', 'warming']       |       ['normal', 'abnormal behavior']       |
++------------------------------------------------+----------------------------------------------+---------------------------------------------+
+==================================================
+Relation: CausesDesire
+Prompts:
+- 1.0000 A person who is interested in <ENT0> is likely to <ENT1>, since they care about what is inside .
+Harvested Tuples:
++-----------------------------------+-------------------------------------------+---------------------------------------------+
+|            Seed samples           |               Ours (Top 20)               |  Ours (Random samples over top 200 tuples)  |
++-----------------------------------+-------------------------------------------+---------------------------------------------+
+|       ['prom', 'dress_nice']      |       ['suicide', 'commit suicide']       |       ['sexual penetration', 'resist']      |
+|  ['feeling_dirty', 'take_shower'] |    ['hospitality', 'enjoy hospitality']   |               ['food', 'bite']              |
+|   ['being_curious', 'open_gift']  |          ['poker', 'play poker']          |         ['sharing', 'share secrets']        |
+|    ['gluttony', 'eat_quickly']    |           ['odor', 'smell odor']          |         ['listening', 'hear music']         |
+| ['needing_things', 'run_errands'] | ['homosexuality', 'reject homosexuality'] |             ['reading', 'write']            |
+|                 \                 |        ['fantasy', 'enjoy fantasy']       |             ['smoking', 'smoke']            |
+|                 \                 |       ['pleasure', 'enjoy pleasure']      |         ['telling', 'tell stories']         |
+|                 \                 |      ['feminism', 'reject feminism']      | ['sexual exploration', 'attract customers'] |
+|                 \                 |       ['treasure', 'find treasure']       |       ['smelling', 'smell unpleasant']      |
+|                 \                 |       ['clothing', 'wear clothing']       |     ['forgetting', 'forget forgetting']     |
+|                 \                 |    ['temptation', 'reject temptation']    |             ['politics', 'vote']            |
+|                 \                 |        ['clothing', 'wear clothes']       |           ['survival', 'survive']           |
+|                 \                 |         ['food', 'become hungry']         |          ['sex', 'become jealous']          |
+|                 \                 |    ['submission', 'reject submission']    |           ['music', 'understand']           |
+|                 \                 |       ['fantasy', 'enjoy fantasies']      |        ['human behaviour', 'behave']        |
+|                 \                 |         ['sex', 'become jealous']         |          ['prostitution', 'cheat']          |
+|                 \                 |      ['pleasure', 'enjoy enjoyment']      |              ['cooking', 'ask']             |
+|                 \                 |      ['tourism', 'attract tourists']      |             ['sharing', 'share']            |
+|                 \                 |      ['messages', 'receive messages']     |            ['objects', 'notice']            |
+|                 \                 |      ['violence', 'commit violence']      |           ['privacy', 'disappear']          |
++-----------------------------------+-------------------------------------------+---------------------------------------------+
+==================================================
+Relation: CreatedBy
+Prompts:
+- 1.0000 A <ENT1> is a person who oversees the production of a <ENT0> .
+Harvested Tuples:
++----------------------+-----------------------------------------------+-----------------------------------------------+
+|     Seed samples     |                 Ours (Top 20)                 |   Ours (Random samples over top 200 tuples)   |
++----------------------+-----------------------------------------------+-----------------------------------------------+
+|  ['bread', 'baker']  | ['television show', 'television personality'] |             ['lie', 'false liar']             |
+| ['film', 'director'] |   ['digital media', 'digital entrepreneur']   |         ['prophecy', 'prophet divine']        |
+|  ['pee', 'kidneys']  | ['scientific research', 'scientific advisor'] |               ['pig', 'cow pig']              |
+|    ['egg', 'hen']    |  ['physical therapist', 'therapist emeritus'] |        ['crime', 'criminal prosecutor']       |
+| ['song', 'composer'] |             ['tale', 'fairy tale']            |     ['decoration', 'decorative architect']    |
+|          \           |         ['garden', 'botanical garden']        |          ['legal treatise', 'jurist']         |
+|          \           |    ['chemical explosive', 'chemical agent']   |        ['liquor cocktail', 'bartender']       |
+|          \           |          ['turbine', 'wind turbine']          |          ['film', 'cinematographer']          |
+|          \           |   ['physical therapy', 'physical therapist']  |        ['commercial airline', 'pilot']        |
+|          \           |    ['physical fitness', 'physical trainer']   |          ['portfolio', 'consultant']          |
+|          \           |        ['sermon', 'preaching preacher']       |             ['wine', 'vine owner']            |
+|          \           |            ['penis', 'male penis']            |           ['beverage', 'supervisor']          |
+|          \           |        ['crime', 'criminal prosecutor']       |         ['garden', 'botanical garden']        |
+|          \           |          ['newscast', 'news anchor']          | ['scientific research', 'scientific advisor'] |
+|          \           |     ['professional wrestler', 'promoter']     |      ['history', 'historical historian']      |
+|          \           |           ['logo', 'corporate logo']          |        ['software database', 'server']        |
+|          \           |      ['building', 'structural architect']     |         ['liquor license', 'sheriff']         |
+|          \           |          ['guitar', 'bass guitarist']         |    ['company', 'corporate representative']    |
+|          \           |           ['newspaper', 'publisher']          |       ['crime', 'criminal investigator']      |
+|          \           |          ['legal treatise', 'jurist']         |  ['physical therapist', 'therapist emeritus'] |
++----------------------+-----------------------------------------------+-----------------------------------------------+
+==================================================
+Relation: DefinedAs
+Prompts:
+- 1.0000 Instead of "<ENT0>" you could say "<ENT1>" .
+Harvested Tuples:
++------------------------------+---------------------------------+-------------------------------------------+
+|         Seed samples         |          Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++------------------------------+---------------------------------+-------------------------------------------+
+|  ['history', 'past_events']  |     ['chill', 'cold chill']     |         ['ghosts', 'ghost ghosts']        |
+|   ['ice', 'frozen_water']    |    ['ghosts', 'ghost ghosts']   |          ['whatever', 'someday']          |
+| ['listen', 'receive_sound']  |     ['tempo', 'slow tempo']     |         ['super robot', 'robotic']        |
+|     ['door', 'entrance']     |     ['hell', 'fucking hell']    |         ['wired', 'electric wire']        |
+| ['health', 'body_condition'] |       ['taxi', 'cab taxi']      |        ['girlfriend', 'boyfriend']        |
+|              \               |   ['italics', 'bold italics']   |        ['precious', 'dear friend']        |
+|              \               |     ['dick', 'fucking dick']    |          ['punch', 'smack punch']         |
+|              \               |     ['punch', 'smack punch']    |       ['friendship', 'mutual trust']      |
+|              \               |   ['analog', 'digital analog']  |        ['moonlight', 'dark nights']       |
+|              \               |   ['static', 'dynamic static']  |             ['loving', 'love']            |
+|              \               |        ['huh', 'uh huh']        |          ['skinny', 'fat skinny']         |
+|              \               |      ['soda', 'lemon soda']     |          ['disco style', 'punk']          |
+|              \               |     ['chips', 'chip chips']     |          ['ashes', 'burnt wood']          |
+|              \               |     ['lemon', 'lime lemon']     |          ['tempo', 'slow tempo']          |
+|              \               |    ['bones', 'broken bones']    |        ['carnival', 'fairy tales']        |
+|              \               |    ['wings', 'winged wings']    |         ['alive', 'living still']         |
+|              \               |   ['royalty', 'royal royalty']  |           ['pure wonder', 'awe']          |
+|              \               |   ['frozen', 'freeze frozen']   |            ['hits', 'hit hard']           |
+|              \               | ['borrowed', 'borrow borrowed'] |          ['chill', 'cold winter']         |
+|              \               |     ['hits', 'hit singles']     |             ['sic', 'cum sic']            |
++------------------------------+---------------------------------+-------------------------------------------+
+==================================================
+Relation: Desires
+Prompts:
+- 1.0000 All <ENT0>s have the instinct to <ENT1> in order to continue their species .
+Harvested Tuples:
++--------------------------+--------------------------------------------+-------------------------------------------+
+|       Seed samples       |               Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
++--------------------------+--------------------------------------------+-------------------------------------------+
+|  ['anarchists', 'free']  |           ['animal', 'survive']            |      ['list', 'nominate individuals']     |
+| ['angry_person', 'vent'] |          ['animal', 'reproduce']           |             ['banana', 'eat']             |
+| ['animal', 'reproduce']  |        ['marine gastropod', 'dive']        |     ['resource', 'acquire nutrients']     |
+|    ['bee', 'flower']     |            ['animal', 'adapt']             |             ['killer', 'hunt']            |
+|  ['kids', 'play_games']  |            ['animal', 'evolve']            |         ['predator', 'reproduce']         |
+|            \             |             ['animal', 'feed']             |       ['resource', 'acquire wealth']      |
+|            \             |              ['bird', 'fly']               |              ['bird', 'fly']              |
+|            \             |              ['bird', 'hunt']              |             ['plant', 'grow']             |
+|            \             |             ['bird', 'breed']              |           ['two star', 'merge']           |
+|            \             |    ['cell receptor', 'activate genes']     |          ['passenger', 'travel']          |
+|            \             |   ['cell receptor', 'activate neurons']    |             ['hunter', 'kill']            |
+|            \             |             ['turtle', 'swim']             |          ['threat', 'intervene']          |
+|            \             |  ['cell receptor', 'activate receptors']   |           ['two tribe', 'merge']          |
+|            \             |          ['predator', 'survive']           |              ['tree', 'grow']             |
+|            \             |            ['predator', 'hunt']            |            ['animal', 'evolve']           |
+|            \             |       ['swimmer', 'dive underwater']       |             ['angel', 'obey']             |
+|            \             | ['electron particle', 'undergo reactions'] |          ['passenger', 'escape']          |
+|            \             |         ['farmer', 'raise cattle']         |         ['name', 'change colors']         |
+|            \             |     ['coloured colour', 'camouflage']      |            ['egg', 'eat food']            |
+|            \             |         ['predator', 'reproduce']          |             ['type', 'breed']             |
++--------------------------+--------------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasA
+Prompts:
+- 1.0000 It is not uncommon for <ENT0> to have more than four <ENT1> .
+Harvested Tuples:
++-----------------------------+--------------------------------------------+---------------------------------------------+
+|         Seed samples        |               Ours (Top 20)                |  Ours (Random samples over top 200 tuples)  |
++-----------------------------+--------------------------------------------+---------------------------------------------+
+|    ['violins', 'strings']   |      ['vineyards', 'dozen vineyards']      |             ['horses', 'wheels']            |
+| ['actions', 'consequences'] |    ['airports', 'passenger terminals']     |          ['mature wheat', 'grains']         |
+|       ['dogs', 'fur']       |       ['dancers', 'hundred dancers']       |           ['black sheep', 'ears']           |
+|      ['car', 'wheels']      |     ['elephants', 'hundred elephants']     |        ['ants', 'abdominal segments']       |
+|     ['sports', 'rules']     |         ['trucks', 'axle trucks']          |     ['large gatherings', 'participants']    |
+|              \              |        ['wards', 'electoral wards']        |            ['infants', 'fingers']           |
+|              \              |        ['proteins', 'amino acids']         |             ['children', 'toes']            |
+|              \              |        ['planets', 'solar masses']         |         ['wards', 'electoral wards']        |
+|              \              |       ['donors', 'thousand donors']        | ['electric appliances', 'electrical wires'] |
+|              \              |       ['locomotives', 'axle loads']        |    ['individual artists', 'exhibitions']    |
+|              \              |   ['mobile providers', 'mobile phones']    |          ['monks', 'monastic vows']         |
+|              \              |      ['nouns', 'vowel combinations']       |          ['male birds', 'feathers']         |
+|              \              |          ['trucks', 'axle loads']          |               ['dogs', 'legs']              |
+|              \              |     ['modern submarines', 'torpedoes']     |              ['males', 'legs']              |
+|              \              |         ['drivers', 'wheel drive']         |       ['senators', 'concurrent terms']      |
+|              \              |        ['vineyards', 'dozen vines']        |     ['pregnant girls', 'pregnant boys']     |
+|              \              |       ['airlines', 'passenger jets']       |     ['computers', 'simultaneous inputs']    |
+|              \              | ['universities', 'undergraduate programs'] |           ['couples', 'daughters']          |
+|              \              |        ['twins', 'identical twins']        |          ['drivers', 'wheel drive']         |
+|              \              |    ['computers', 'simultaneous inputs']    |          ['older boxers', 'fights']         |
++-----------------------------+--------------------------------------------+---------------------------------------------+
+==================================================
+Relation: HasFirstSubevent
+Prompts:
+- 1.0000 The <ENT0> begins by having the participants <ENT1> a text .
+Harvested Tuples:
++-------------------------------+--------------------------------------------------+--------------------------------------------+
+|          Seed samples         |                  Ours (Top 20)                   | Ours (Random samples over top 200 tuples)  |
++-------------------------------+--------------------------------------------------+--------------------------------------------+
+|     ['cook', 'wash_hands']    |         ['challenge', 'correctly guess']         |         ['play', 'begin writing']          |
+| ['fight_enemy', 'get_weapon'] |        ['discussion', 'begin discussing']        |      ['preliminary survey', 'select']      |
+|       ['study', 'read']       |           ['contest', 'randomly pick']           |            ['process', 'write']            |
+|    ['sleep', 'close_eyes']    |         ['discussion', 'begin writing']          |         ['final dance', 'perform']         |
+|  ['bathe', 'remove_clothes']  |         ['discussion', 'begin drafting']         |     ['review', 'individually review']      |
+|               \               |               ['program', 'read']                |         ['round', 'randomly pick']         |
+|               \               |             ['video clip', 'typing']             |     ['category', 'visually recognize']     |
+|               \               | ['online collaboration', 'collaborate creating'] |             ['search', 'find']             |
+|               \               |            ['competition', 'submit']             |      ['interactive lesson', 'learn']       |
+|               \               | ['online collaboration', 'collaborate sharing']  |  ['consultation', 'individually consult']  |
+|               \               |          ['test', 'correctly identify']          |         ['article', 'contribute']          |
+|               \               |               ['program', 'write']               |             ['chorus', 'sing']             |
+|               \               |              ['program', 'submit']               |   ['task execution', 'manually execute']   |
+|               \               |              ['process', 'submit']               | ['composition', 'individually contribute'] |
+|               \               |               ['process', 'read']                |         ['intro scene', 'typing']          |
+|               \               |            ['play', 'begin writing']             |     ['discussion', 'begin discussing']     |
+|               \               |            ['round', 'randomly pick']            |          ['sequence', 'reading']           |
+|               \               |               ['process', 'write']               |      ['discussion', 'begin writing']       |
+|               \               |                 ['game', 'read']                 |             ['game', 'submit']             |
+|               \               |             ['competition', 'read']              |           ['procedure', 'sign']            |
++-------------------------------+--------------------------------------------------+--------------------------------------------+
+==================================================
+Relation: HasLastSubevent
+Prompts:
+- 1.0000 After you <ENT0>, you will need to <ENT1> .
+Harvested Tuples:
++------------------------------------+------------------------------------------------+-------------------------------------------+
+|            Seed samples            |                 Ours (Top 20)                  | Ours (Random samples over top 200 tuples) |
++------------------------------------+------------------------------------------------+-------------------------------------------+
+|   ['analyse', 'make_conclusion']   | ['lose consciousness', 'regain consciousness'] |        ['tested', 'test positive']        |
+|      ['bathe', 'get_dressed']      |           ['feel pain', 'feel fear']           |              ['eat', 'relax']             |
+| ['climb_mountain', 'reach_summit'] |           ['wear trousers', 'dress']           |      ['transform', 'become stronger']     |
+|   ['brush_teeth', 'rinse_mouth']   |        ['want revenge', 'kill people']         |             ['finish', 'eat']             |
+|   ['buy_hamburger', 'pay_money']   |        ['start practicing', 'practice']        |           ['perform', 'prepare']          |
+|                 \                  |              ['get wet', 'sweat']              |           ['forget', 'remember']          |
+|                 \                  |             ['get shot', 'shoot']              |         ['take pictures', 'paint']        |
+|                 \                  |            ['get arrested', 'bail']            |             ['cry', 'breathe']            |
+|                 \                  |           ['wear uniforms', 'dress']           |            ['survive', 'fight']           |
+|                 \                  |               ['get wet', 'dry']               |             ['stay', 'relax']             |
+|                 \                  |          ['wear underwear', 'dress']           |         ['react', 'act carefully']        |
+|                 \                  |        ['lose momentum', 'accelerate']         |              ['die', 'sleep']             |
+|                 \                  |            ['take pills', 'vomit']             |         ['wear uniforms', 'dress']        |
+|                 \                  |           ['get married', 'divorce']           |              ['run', 'walk']              |
+|                 \                  |         ['remain neutral', 'retreat']          |             ['got wet', 'dry']            |
+|                 \                  |                ['die', 'heal']                 |            ['decide', 'relax']            |
+|                 \                  |    ['need treatment', 'undergo treatment']     |         ['wear trousers', 'dress']        |
+|                 \                  |       ['become invisible', 'transform']        |          ['need caution', 'obey']         |
+|                 \                  |           ['say farewell', 'depart']           |            ['retire', 'resign']           |
+|                 \                  |               ['leave', 'rest']                |            ['finish', 'hurry']            |
++------------------------------------+------------------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasPrerequisite
+Prompts:
+- 1.0000 In order to <ENT0>, one must first <ENT1> .
+Harvested Tuples:
++----------------------------------------+-------------------------------------------+-------------------------------------------+
+|              Seed samples              |               Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++----------------------------------------+-------------------------------------------+-------------------------------------------+
+|        ['analysing', 'thought']        |    ['become immortal', 'become mortal']   |    ['achieve', 'obtain certification']    |
+|  ['write_program', 'design_program']   |      ['become king', 'become queen']      |          ['spend', 'earn income']         |
+|       ['make_grow', 'stimulate']       | ['remain anonymous', 'contact strangers'] |      ['remain competitive', 'skate']      |
+| ['hear_testimony', 'summon_witnesses'] |         ['get dressed', 'shower']         |         ['take office', 'resign']         |
+|      ['typing', 'pressing_keys']       |    ['perfection', 'attain perfection']    |             ['survive', 'eat']            |
+|                   \                    |        ['find solutions', 'solve']        |     ['create images', 'create videos']    |
+|                   \                    |    ['achieve integration', 'integrate']   |              ['draw', 'win']              |
+|                   \                    |        ['acquire wealth', 'invest']       |        ['seek counsel', 'testify']        |
+|                   \                    |        ['make decisions', 'decide']       |       ['establish copyright', 'sue']      |
+|                   \                    |       ['avoid bankruptcy', 'retire']      |             ['climb', 'dive']             |
+|                   \                    |       ['dream', 'experience dreams']      |            ['fly', 'parachute']           |
+|                   \                    |      ['acquire firearms', 'possess']      |           ['train', 'graduate']           |
+|                   \                    |          ['fish', 'catch salmon']         |      ['collect donations', 'donate']      |
+|                   \                    |        ['seek reelection', 'file']        | ['gain possession', 'possess possession'] |
+|                   \                    |          ['fish', 'catch trout']          |        ['medal', 'receive medals']        |
+|                   \                    |        ['reach adulthood', 'adopt']       |        ['cross', 'reach altitude']        |
+|                   \                    |     ['create images', 'create videos']    |      ['receive treatment', 'undergo']     |
+|                   \                    |            ['qualify', 'apply']           |            ['qualify', 'apply']           |
+|                   \                    |    ['create images', 'create drawings']   |       ['commit violence', 'consent']      |
+|                   \                    |     ['avoid detection', 'investigate']    |         ['take pictures', 'pose']         |
++----------------------------------------+-------------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasProperty
+Prompts:
+- 1.0000 Many people find <ENT0> <ENT1> and difficult to quit consuming .
+Harvested Tuples:
++------------------------------+-------------------------------------+-------------------------------------------+
+|         Seed samples         |            Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
++------------------------------+-------------------------------------+-------------------------------------------+
+|     ['gun', 'dangerous']     |    ['fatty liver', 'fatty acids']   |           ['marijuana', 'risky']          |
+| ['pocket_notebook', 'small'] |          ['food', 'scarce']         |        ['beer relatively', 'easy']        |
+|   ['children', 'innocent']   |      ['brightly', 'lit lamps']      |         ['cannabis', 'hazardous']         |
+|   ['alcohol', 'addictive']   |          ['food', 'cheap']          |         ['marijuana', 'hazardous']        |
+|      ['milk', 'white']       |     ['tobacco smoke', 'harmful']    |              ['meat', 'hard']             |
+|              \               |        ['food', 'expensive']        |            ['drugs', 'illegal']           |
+|              \               |     ['brightly', 'lit candles']     |             ['diet', 'tough']             |
+|              \               | ['respiratory', 'tract infections'] |             ['life', 'lonely']            |
+|              \               |       ['cigarettes', 'cheap']       |             ['baking', 'hot']             |
+|              \               |       ['alcohol', 'consumed']       |            ['fruit', 'bitter']            |
+|              \               |     ['cigarettes', 'expensive']     |         ['drinking', 'excessive']         |
+|              \               |         ['alcohol', 'hard']         |             ['eating', 'slow']            |
+|              \               |         ['alcohol', 'heavy']        |          ['cigarettes', 'risky']          |
+|              \               |       ['wine much', 'harder']       |        ['bread cost', 'effective']        |
+|              \               |       ['alcohol', 'excessive']      |           ['drinking', 'heavy']           |
+|              \               |           ['food', 'poor']          |          ['eating', 'unpleasant']         |
+|              \               |     ['cigarettes', 'dangerous']     |         ['beverages', 'dangerous']        |
+|              \               |       ['drinks', 'expensive']       |              ['diet', 'poor']             |
+|              \               |       ['alcohol', 'dangerous']      |             ['liquor', 'safe']            |
+|              \               |         ['drinks', 'cheap']         |          ['semi', 'arid regions']         |
++------------------------------+-------------------------------------+-------------------------------------------+
+==================================================
+Relation: HasSubEvent
+Prompts:
+- 1.0000 You <ENT1> when you <ENT0> .
+Harvested Tuples:
++------------------------------------+-----------------------------------+-------------------------------------------+
+|            Seed samples            |           Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++------------------------------------+-----------------------------------+-------------------------------------------+
+|     ['agree_with', 'nodding']      |    ['belong', 'always belong']    |          ['break bones', 'snap']          |
+|  ['sleeping', 'rejuvinate_body']   |    ['dreamed', 'never dreamed']   |          ['keep singing', 'hum']          |
+| ['attend_class', 'gain_knowledge'] |     ['arrive', 'shall depart']    |       ['got divorced', 'remarried']       |
+|  ['judge', 'gather_information']   |        ['bid', 'must bid']        |              ['eat', 'drink']             |
+|      ['play_sports', 'sweat']      |    ['see stars', 'see clouds']    |             ['blink', 'glow']             |
+|                 \                  |     ['arrive', 'shall arrive']    |        ['become restless', 'arise']       |
+|                 \                  | ['meet regularly', 'meet weekly'] |              ['fall', 'come']             |
+|                 \                  |     ['visit', 'always visit']     |        ['find pleasure', 'delight']       |
+|                 \                  |  ['find pleasure', 'take risks']  |             ['laugh', 'smile']            |
+|                 \                  |     ['marry', 'always marry']     |             ['smoke', 'smell']            |
+|                 \                  |     ['get married', 'divorce']    |         ['break contact', 'react']        |
+|                 \                  |      ['go lucky', 'go crazy']     |             ['bite', 'taste']             |
+|                 \                  |   ['got divorced', 'remarried']   |           ['go hungry', 'milk']           |
+|                 \                  |       ['get scared', 'fear']      |             ['write', 'read']             |
+|                 \                  |       ['fish', 'catch fish']      |        ['think properly', 'behave']       |
+|                 \                  |    ['qualify', 'score points']    |              ['die', 'live']              |
+|                 \                  | ['think necessary', 'take risks'] |               ['die', 'cry']              |
+|                 \                  |       ['get hungry', 'milk']      |              ['came', 'knew']             |
+|                 \                  |     ['break', 'always break']     |              ['wake', 'come']             |
+|                 \                  |     ['arrive', 'shall return']    |        ['chose', 'choose choices']        |
++------------------------------------+-----------------------------------+-------------------------------------------+
+==================================================
+Relation: IsA
+Prompts:
+- 1.0000 A <ENT0> is a type of <ENT1> that produces edible grains .
+Harvested Tuples:
++-----------------------------------------+---------------------------------+----------------------------------------------+
+|               Seed samples              |          Ours (Top 20)          |  Ours (Random samples over top 200 tuples)   |
++-----------------------------------------+---------------------------------+----------------------------------------------+
+|     ['cholangitis', 'inflammation']     |      ['gum', 'chewing gum']     |          ['seed nursery', 'garden']          |
+|      ['rice_plant', 'cereal_plant']     |  ['rubber', 'synthetic rubber'] |         ['basket', 'spinning wheel']         |
+| ['polyploid_cell', 'noncancerous_cell'] |   ['pond', 'freshwater pond']   |              ['dough', 'bread']              |
+|            ['minsk', 'city']            |      ['reef', 'coral reef']     |        ['creek', 'freshwater creek']         |
+|           ['army_ant', 'ant']           |   ['turbine', 'steam turbine']  |         ['wheel', 'spinning wheel']          |
+|                    \                    |  ['perch', 'freshwater perch']  |           ['tomato', 'vegetable']            |
+|                    \                    |     ['vase', 'ceramic vase']    |           ['grinding', 'process']            |
+|                    \                    |   ['duck', 'freshwater duck']   |          ['coconut meal', 'snack']           |
+|                    \                    | ['salmon', 'freshwater salmon'] |              ['pulp', 'paper']               |
+|                    \                    |    ['honey', 'edible honey']    |       ['hay', 'agricultural produce']        |
+|                    \                    |   ['tire', 'automobile tire']   |       ['leather', 'synthetic leather']       |
+|                    \                    |  ['banana', 'tropical banana']  |             ['fruit', 'fungus']              |
+|                    \                    |  ['spring', 'perennial spring'] |          ['harvest', 'agriculture']          |
+|                    \                    |     ['dye', 'synthetic dye']    |             ['lamp', 'lit lamp']             |
+|                    \                    |    ['dam', 'irrigation dam']    | ['corporation', 'multinational corporation'] |
+|                    \                    |      ['nut', 'edible nut']      |          ['stem', 'flowering stem']          |
+|                    \                    |  ['creek', 'freshwater creek']  |            ['silk', 'woven silk']            |
+|                    \                    |    ['carpet', 'woven carpet']   |         ['swamp', 'tropical swamp']          |
+|                    \                    |    ['duck', 'domestic duck']    |         ['maple', 'deciduous maple']         |
+|                    \                    |    ['knife', 'cutting knife']   |      ['coffee', 'agricultural product']      |
++-----------------------------------------+---------------------------------+----------------------------------------------+
+==================================================
+Relation: MadeOf
+Prompts:
+- 1.0000 A <ENT0> is typically made of <ENT1> .
+Harvested Tuples:
++-----------------------+--------------------------------------+-------------------------------------------+
+|      Seed samples     |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++-----------------------+--------------------------------------+-------------------------------------------+
+|   ['lens', 'glass']   |  ['vacuum filter', 'vacuum tubes']   |     ['cigarette', 'smoked cigarettes']    |
+|   ['brick', 'clay']   |      ['sauce', 'tomato sauce']       |              ['dish', 'pork']             |
+| ['balloon', 'rubber'] |      ['cigar', 'smoked cigar']       |     ['triangle', 'triangular squares']    |
+|    ['cake', 'egg']    |    ['calendar', 'lunar calendar']    |              ['cake', 'rice']             |
+|   ['book', 'paper']   | ['champagne', 'sparkling champagne'] |             ['cup', 'plastic']            |
+|           \           |    ['vacuum bag', 'vacuum tubes']    |             ['drink', 'vodka']            |
+|           \           |      ['lake', 'glacial lakes']       |         ['rock', 'volcanic rock']         |
+|           \           | ['beverage', 'alcoholic beverages']  |             ['ribbon', 'gold']            |
+|           \           |  ['cigarette', 'smoked cigarettes']  |        ['flower', 'yellow flowers']       |
+|           \           |   ['vacuum shoe', 'vacuum tubes']    |             ['shoe', 'rubber']            |
+|           \           |    ['recording', 'vinyl records']    |       ['recording', 'analog audio']       |
+|           \           |  ['selection', 'random selection']   |           ['glass', 'aluminium']          |
+|           \           |      ['tape', 'magnetic tape']       |             ['jacket', 'wool']            |
+|           \           |        ['map', 'linear maps']        |            ['plate', 'copper']            |
+|           \           |      ['soup', 'vegetable soup']      |             ['bag', 'cotton']             |
+|           \           |    ['recording', 'analog audio']     |          ['pipe system', 'pipes']         |
+|           \           |     ['cigar', 'smoked tobacco']      |            ['cheese', 'butter']           |
+|           \           |   ['beverage', 'alcoholic drinks']   |           ['text', 'plain text']          |
+|           \           |        ['text', 'plain text']        |           ['vine', 'grape vine']          |
+|           \           |  ['selection', 'random selections']  |          ['bottle', 'cardboard']          |
++-----------------------+--------------------------------------+-------------------------------------------+
+==================================================
+Relation: MotivatedByGoal
+Prompts:
+- 1.0000 If someone wants to <ENT1>, they need to <ENT0> well .
+Harvested Tuples:
++--------------------------------------+------------------------------------+--------------------------------------------+
+|             Seed samples             |           Ours (Top 20)            | Ours (Random samples over top 200 tuples)  |
++--------------------------------------+------------------------------------+--------------------------------------------+
+|      ['bathe', 'become_clean']       | ['serve society', 'serve mankind'] |           ['seal', 'break ice']            |
+|          ['sell', 'money']           |       ['fish', 'catch fish']       | ['handle reasonably', 'handle situations'] |
+|      ['find_job', 'earn_money']      |   ['practice yoga', 'exercise']    |              ['fight', 'win']              |
+| ['serve_customers', 'stay_employed'] |      ['trade', 'make trades']      |            ['perform', 'play']             |
+|           ['cook', 'eat']            |    ['treat children', 'adopt']     |              ['sleep', 'eat']              |
+|                  \                   |     ['get dressed', 'shower']      |         ['get dressed', 'shower']          |
+|                  \                   |      ['fish', 'catch salmon']      |              ['know', 'ask']               |
+|                  \                   |          ['sleep', 'eat']          |       ['function', 'become wealthy']       |
+|                  \                   |          ['live', 'die']           |        ['treat children', 'adopt']         |
+|                  \                   |     ['treat babies', 'adopt']      |          ['judge', 'prove wrong']          |
+|                  \                   |        ['perform', 'play']         |            ['listen', 'answer']            |
+|                  \                   |   ['function', 'commit suicide']   |          ['spend', 'earn wealth']          |
+|                  \                   |       ['perform', 'succeed']       |         ['get married', 'divorce']         |
+|                  \                   |     ['get married', 'divorce']     |              ['sit', 'drink']              |
+|                  \                   |     ['perform', 'participate']     |             ['travel', 'stay']             |
+|                  \                   |   ['function', 'commit murder']    |            ['survive', 'fight']            |
+|                  \                   |     ['cope', 'commit suicide']     |            ['adjust', 'relax']             |
+|                  \                   |          ['act', 'help']           |      ['deliver', 'receive treatment']      |
+|                  \                   |          ['heal', 'die']           |             ['fight', 'lose']              |
+|                  \                   |        ['live', 'survive']         |             ['sleep', 'relax']             |
++--------------------------------------+------------------------------------+--------------------------------------------+
+==================================================
+Relation: PartOf
+Prompts:
+- 1.0000 A <ENT0> in a <ENT1> is a specific part of the film that generally takes place in one location and revolves around one particular event or plot point .
+Harvested Tuples:
++-------------------------------+------------------------------------------+-------------------------------------------+
+|          Seed samples         |              Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++-------------------------------+------------------------------------------+-------------------------------------------+
+|      ['egg_white', 'egg']     |      ['coaster', 'roller coaster']       |          ['robbery', 'nightclub']         |
+| ['mountain_peak', 'mountain'] |  ['typical episode', 'television show']  |            ['murder', 'prison']           |
+|     ['dead_sea', 'jordan']    |        ['ride', 'roller coaster']        |         ['filmed', 'documentary']         |
+|       ['scene', 'movie']      |       ['trial', 'criminal trial']        |    ['historical battle', 'battlefield']   |
+|    ['stuttgart', 'germany']   |         ['twist', 'plot twist']          |            ['scenes', 'movie']            |
+|               \               |  ['typical segment', 'television show']  |          ['adventure', 'mystery']         |
+|               \               |            ['scene', 'movie']            |          ['tragedy', 'thriller']          |
+|               \               |   ['fictional universe', 'franchise']    |            ['wedding', 'town']            |
+|               \               |    ['romantic interest', 'character']    |         ['breakdown', 'storyline']        |
+|               \               |    ['filmed', 'particular location']     |           ['shot', 'warehouse']           |
+|               \               |  ['typical segment', 'typical episode']  |          ['detail', 'film noir']          |
+|               \               |      ['shopping', 'grocery store']       |         ['conflict', 'situation']         |
+|               \               |      ['plot outline', 'screenplay']      |              ['role', 'play']             |
+|               \               |          ['scene', 'flashback']          |       ['trafficking', 'drug trade']       |
+|               \               | ['recurring segment', 'television show'] |             ['night', 'motel']            |
+|               \               |      ['filmed', 'single location']       |             ['night', 'park']             |
+|               \               |        ['plot arc', 'miniseries']        |             ['twist', 'story']            |
+|               \               |  ['fictional character', 'miniseries']   |           ['scene', 'sequence']           |
+|               \               |         ['scene', 'documentary']         |           ['trial', 'courtroom']          |
+|               \               |      ['trafficking', 'drug trade']       |      ['soldier', 'military uniform']      |
++-------------------------------+------------------------------------------+-------------------------------------------+
+==================================================
+Relation: ReceivesAction
+Prompts:
+- 1.0000 The <ENT0> can be <ENT1> .
+Harvested Tuples:
++------------------------------------+----------------------------------------------+---------------------------------------------+
+|            Seed samples            |                Ours (Top 20)                 |  Ours (Random samples over top 200 tuples)  |
++------------------------------------+----------------------------------------------+---------------------------------------------+
+|  ['stringed_instrument', 'tuned']  |       ['climate', 'humid subtropical']       |            ['rules', 'modified']            |
+| ['sometimes_guiltly', 'convicted'] |          ['nouns', 'plural nouns']           |     ['agreement', 'negotiated legally']     |
+|          ['silk', 'dyed']          |        ['weather', 'quite pleasant']         |    ['temperature', 'significantly lower']   |
+|     ['pills', 'taken_orally']      |        ['weather', 'extremely cold']         |       ['relevant topics', 'discussed']      |
+|     ['contracts', 'evaluated']     |        ['exact meaning', 'disputed']         |         ['algorithm', 'simplified']         |
+|                 \                  |       ['soils', 'moderately fertile']        |      ['entire system', 'reconstructed']     |
+|                 \                  |        ['soils', 'moderately acidic']        |        ['process', 'easily patented']       |
+|                 \                  |       ['differences', 'quite subtle']        |         ['fare', 'charged monthly']         |
+|                 \                  |       ['root node', 'uniquely named']        | ['spectral evolution', 'considered linear'] |
+|                 \                  |           ['two ways', 'combined']           |     ['specifications', 'freely updated']    |
+|                 \                  |       ['children', 'legally married']        |            ['method', 'extended']           |
+|                 \                  |     ['correct spelling', 'problematic']      |         ['game', 'played anywhere']         |
+|                 \                  | ['original drawing', 'reproduced digitally'] |   ['appropriate procedures', 'prescribed']  |
+|                 \                  |       ['relevant topics', 'discussed']       |       ['engines', 'manually operated']      |
+|                 \                  |         ['exact formula', 'derived']         |   ['corresponding graphs', 'constructed']   |
+|                 \                  |        ['habitat', 'heavily wooded']         |        ['breed', 'quite aggressive']        |
+|                 \                  |        ['risk', 'greatly increased']         |        ['exact meanings', 'disputed']       |
+|                 \                  |         ['product', 'freely traded']         |              ['method', 'used']             |
+|                 \                  |    ['instruments', 'individually tuned']     |    ['instruments', 'individually tuned']    |
+|                 \                  |       ['root node', 'uniquely unique']       |    ['specific significance', 'disputed']    |
++------------------------------------+----------------------------------------------+---------------------------------------------+
+==================================================
+Relation: SymbolOf
+Prompts:
+- 1.0000 A <ENT0> represents <ENT1> symbolically .
+Harvested Tuples:
++-------------------------+------------------------------------------+-------------------------------------------+
+|       Seed samples      |              Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++-------------------------+------------------------------------------+-------------------------------------------+
+|     ['tux', 'linux']    |        ['flame', 'eternal flame']        |    ['region', 'geographical diversity']   |
+| ['giving_rose', 'love'] |     ['sphere', 'spherical spheres']      |       ['zone', 'geographical zones']      |
+|  ['trophy', 'victory']  |    ['wave', 'electromagnetic waves']     |          ['vowel', 'consonants']          |
+|            \            |      ['plural', 'feminine plural']       |     ['necklace', 'precious minerals']     |
+|            \            |      ['circle', 'geometric shapes']      |       ['stylized logo', 'cannabis']       |
+|            \            |          ['ray', 'cosmic rays']          |            ['noun', 'objects']            |
+|            \            |       ['parent', 'another parent']       |          ['nose', 'facial hair']          |
+|            \            |    ['landscape', 'natural landscape']    |        ['star', 'lunar prominence']       |
+|            \            | ['literal translation', 'pronunciation'] |           ['letter', 'meaning']           |
+|            \            |    ['region', 'geographical regions']    |       ['mask', 'facial recognition']      |
+|            \            |         ['date', 'birth years']          |      ['digit', 'numerical precision']     |
+|            \            |       ['star', 'lunar prominence']       |       ['symbol alphabet', 'letters']      |
+|            \            |     ['prayer', 'divine revelation']      |  ['relationship', 'mutual understanding'] |
+|            \            |        ['dog', 'animal cruelty']         |       ['dot', 'horizontal stripes']       |
+|            \            |       ['cube', 'geometric shapes']       |            ['noun', 'meaning']            |
+|            \            |  ['sentence', 'conditional sentences']   |            ['node', 'objects']            |
+|            \            |     ['stimulus', 'sensory stimuli']      |       ['baby', 'maternal pregnancy']      |
+|            \            |   ['landscape', 'natural landscapes']    |      ['symbolic gesture', 'gestures']     |
+|            \            |     ['key variable', 'key elements']     |         ['deity', 'divine power']         |
+|            \            |     ['landscape', 'natural scenery']     |     ['necklace', 'precious treasures']    |
++-------------------------+------------------------------------------+-------------------------------------------+
+==================================================
+Relation: UsedFor
+Prompts:
+- 1.0000 The <ENT0> is a common mode of <ENT1> used by people all over the world .
+Harvested Tuples:
++--------------------------------+-------------------------------------+---------------------------------------------+
+|          Seed samples          |            Ours (Top 20)            |  Ours (Random samples over top 200 tuples)  |
++--------------------------------+-------------------------------------+---------------------------------------------+
+|        ['bed', 'sleep']        | ['fishing', 'recreational fishing'] |          ['bread', 'baking bread']          |
+|       ['arena', 'fight']       |      ['canoe', 'sailing canoe']     |          ['plural', 'noun phrases']         |
+|        ['wing', 'fly']         |    ['puzzle', 'solving puzzles']    | ['photography', 'photographic photography'] |
+| ['airplane', 'transportation'] |     ['smoke', 'cigarette smoke']    |          ['facial tissue', 'care']          |
+|      ['scissors', 'cut']       |    ['bombing', 'suicide bombing']   |          ['table', 'naming tables']         |
+|               \                |      ['tree', 'planting trees']     |           ['cane', 'chewing cane']          |
+|               \                |     ['puzzle', 'solving puzzle']    |         ['oral sex', 'intercourse']         |
+|               \                |      ['trail', 'hiking trail']      |     ['gathering', 'communal gathering']     |
+|               \                |    ['helmet', 'wearing helmets']    |        ['oral testimony', 'hearing']        |
+|               \                |       ['cake', 'baking cake']       |        ['cafeteria', 'eating meals']        |
+|               \                |   ['bombing', 'suicide bombings']   |        ['internet', 'communication']        |
+|               \                |      ['bread', 'baking bread']      |           ['foot tap', 'tapping']           |
+|               \                |      ['trail', 'hiking trails']     |      ['surgery', 'surgical procedure']      |
+|               \                |      ['phone', 'mobile phones']     |         ['melody', 'melodic melody']        |
+|               \                |      ['phone', 'mobile phone']      |           ['cake', 'baking cake']           |
+|               \                |    ['meter', 'measuring meters']    |        ['sewing', 'everyday sewing']        |
+|               \                |      ['bow', 'ceremonial bow']      |        ['auction', 'selling tickets']       |
+|               \                |       ['oath', 'solemn oath']       |         ['rifle', 'shooting rifle']         |
+|               \                | ['holiday', 'celebrating holidays'] |          ['tree', 'planting tree']          |
+|               \                |    ['sewing', 'everyday sewing']    |      ['weather', 'climate prediction']      |
++--------------------------------+-------------------------------------+---------------------------------------------+
+==================================================

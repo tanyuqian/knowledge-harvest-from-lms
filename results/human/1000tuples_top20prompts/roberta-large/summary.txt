@@ -1,0 +1,645 @@
+Relation: somebody_do_something_at
+Prompts:
+- 0.1308 The <ENT0> can choose to <ENT1> in the <ENT2> or online .
+- 0.1079 A <ENT0> can <ENT1> in a <ENT2> by themselves or with a group of friends .
+- 0.1024 <ENT0>s can <ENT1> in the <ENT2> .
+- 0.0879 At the <ENT2>, <ENT0>s can <ENT1> together and learn from each other .
+- 0.0871 Looking up at the <ENT2>, it's easy to see that <ENT0>s can <ENT1> .
+- 0.0852 At the <ENT2>, <ENT0> can <ENT1> by using the various machines and equipment available .
+- 0.0782 The <ENT2> is a place where <ENT0> can <ENT1> .
+- 0.0733 A <ENT0> can learn effectively by <ENT1>ing in a <ENT2> setting .
+- 0.0701 <ENT0> can <ENT1> in <ENT2> .
+- 0.0624 At the <ENT2>, <ENT0> can use the machines to <ENT1>, or they can take classes .
+- 0.0597 At the <ENT2>, <ENT0> can <ENT1> .
+- 0.0550 There are many facilities available for <ENT0> who want to stay in shape and <ENT1>, one of which is the <ENT2> .
+Harvested Tuples:
++-------------------------------------+--------------------------------------------------------+-------------------------------------------------+
+|             Seed samples            |                     Ours (Top 20)                      |    Ours (Random samples over top 200 tuples)    |
++-------------------------------------+--------------------------------------------------------+-------------------------------------------------+
+|    ['people', 'work out', 'gym']    |        ['voter', 'cast votes', 'voting booth']         |     ['player', 'get involved', 'tournament']    |
+|        ['bird', 'fly', 'sky']       |        ['voter', 'cast votes', 'polling place']        |   ['human population', 'thrive', 'wilderness']  |
+|  ['student', 'study', 'classroom']  |       ['voters', 'cast votes', 'polling places']       |         ['person', 'live', 'community']         |
+|     ['player', 'play', 'ground']    |       ['voters', 'cast votes', 'polling place']        |     ['recipient', 'receive mail', 'mailbox']    |
+| ['sodier', 'fight', 'battleground'] |     ['Working Group', 'discuss topics', 'session']     |           ['person', 'live', 'house']           |
+|                  \                  | ['two parties', 'discuss problems', 'private session'] |      ['merchant', 'sell', 'local markets']      |
+|                  \                  |    ['printer', 'print documents', 'printing press']    |          ['family', 'gather', 'church']         |
+|                  \                  |  ['two parties', 'discuss matters', 'private place']   |        ['bather', 'shower', 'water tank']       |
+|                  \                  |      ['two parties', 'discuss issues', 'session']      |          ['users', 'register', 'forum']         |
+|                  \                  |            ['human eye', 'look', 'mirror']             |          ['Blogger', 'post', 'forums']          |
+|                  \                  |              ['children', 'play', 'park']              |         ['muslim', 'worship', 'mosque']         |
+|                  \                  |       ['Givers', 'Give Gifts', 'Gift Exchange']        |        ['people', 'participate', 'game']        |
+|                  \                  |       ['private data', 'remain', 'Data Storage']       | ['potential employee', 'interview', 'building'] |
+|                  \                  |           ['youth', 'take part', 'festival']           |        ['teacher', 'train', 'classroom']        |
+|                  \                  |             ['children', 'play', 'school']             |          ['pilot', 'fly', 'simulator']          |
+|                  \                  |            ['children', 'play', 'library']             |           ['bather', 'shower', 'spa']           |
+|                  \                  |              ['children', 'play', 'gym']               |         ['Donor', 'volunteer', 'clinic']        |
+|                  \                  |             ['children', 'play', 'museum']             |      ['Buyer', 'purchase', 'Retail Stores']     |
+|                  \                  |       ['Online Class', 'teach', 'Online Course']       |           ['family', 'meet', 'church']          |
+|                  \                  |        ['player', 'get involved', 'tournament']        |           ['customer', 'order', 'bar']          |
++-------------------------------------+--------------------------------------------------------+-------------------------------------------------+
+==================================================
+Relation: prevent
+Prompts:
+- 0.1425 <ENT0> prevents <ENT1> .
+- 0.1312 It could be said that <ENT0> prevents <ENT1>, as it provides a safety net for people in the event of an unexpected setback .
+- 0.1204 <ENT0> is an important part of staying healthy and preventing <ENT1> .
+- 0.1058 <ENT0> provides a safety net against <ENT1> .
+- 0.1034 A <ENT0> will protect you from getting the <ENT1> .
+- 0.0975 If you <ENT0>, you are less likely to <ENT1> .
+- 0.0817 If you <ENT0>, you will not <ENT1> .
+- 0.0737 Regular <ENT0> has been shown to be one of the most effective ways to prevent <ENT1> .
+- 0.0726 This is a paraphrase of the saying "<ENT0> prevents <ENT1>ity." .
+- 0.0712 If you want to avoid being <ENT1>, start <ENT0> more .
+Harvested Tuples:
++---------------------------------+--------------------------------------------+-------------------------------------------+
+|           Seed samples          |               Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
++---------------------------------+--------------------------------------------+-------------------------------------------+
+|        ['mask', 'virus']        |  ['Personal Identity', 'Identity Crisis']  |          ['exercise', 'obesity']          |
+|     ['exercise', 'disease']     |          ['milk', 'breast milk']           |       ['time together', 'conflict']       |
+| ['study hard', 'fail the exam'] |   ['personal safety', 'personal danger']   |      ['research', 'future diseases']      |
+|      ['reading', 'stupid']      | ['physical strength', 'physical weakness'] |         ['exercise', 'depression']        |
+|   ['insurance', 'bankruptcy']   |     ['breastfeeding', 'birth defects']     |   ['personal safety', 'personal danger']  |
+|                \                |    ['social interaction', 'isolation']     |    ['Social Security', 'unemployment']    |
+|                \                |   ['breastfeeding', 'infant mortality']    |        ['sweat', 'heat exhaustion']       |
+|                \                |        ['money', 'financial ruin']         |    ['social interaction', 'isolation']    |
+|                \                |          ['Healthy Skin', 'acne']          |            ['walking', 'fall']            |
+|                \                |       ['sunscreen', 'skin cancers']        |         ['Nuke', 'Nuclear Winter']        |
+|                \                |       ['marriage', 'sexual assault']       |           ['smoking', 'obesity']          |
+|                \                |       ['money', 'financial crisis']        |         ['privacy', 'data theft']         |
+|                \                |       ['vaccine', 'childhood polio']       |          ['exercise', 'disease']          |
+|                \                |     ['Physical Weight', 'weight gain']     |           ['soap', 'skin rash']           |
+|                \                |       ['Parenting', 'Child Neglect']       |          ['education', 'disease']         |
+|                \                |     ['Parenting', 'Child Pornography']     |             ['email', 'spam']             |
+|                \                |    ['Social Security', 'unemployment']     |      ['circumcision', 'birth defect']     |
+|                \                |          ['water', 'heat shock']           |          ['pudge', 'weight gain']         |
+|                \                |        ['Healthy Skin', 'wrinkles']        |        ['gardening', 'home fires']        |
+|                \                |       ['cooking', 'food poisoning']        |         ['driving', 'car crashes']        |
++---------------------------------+--------------------------------------------+-------------------------------------------+
+==================================================
+Relation: help
+Prompts:
+- 0.1228 A <ENT0> can help a <ENT1> by providing guidance and support .
+- 0.1159 A <ENT0> can help a <ENT1> by providing guidance, answering questions, and offering feedback .
+- 0.0987 A <ENT0> can assist a <ENT1> with her duties .
+- 0.0964 A <ENT0> can help a <ENT1> with their workload by taking on some of the teaching responsibilities .
+- 0.0858 A <ENT0> can help a <ENT1> by grading papers, leading discussion sections, and providing office hours .
+- 0.0857 A <ENT0> can help take care of the household duties for a <ENT1> .
+- 0.0853 The <ENT0> can help with the <ENT1>'s chores .
+- 0.0814 A <ENT0> can help a <ENT1> in many ways, from grading papers to leading discussion sections .
+- 0.0803 A <ENT0> can help a <ENT1> .
+- 0.0778 The <ENT0> can help the <ENT1> with their medical needs .
+- 0.0699 A <ENT0> can help out a <ENT1> by doing things like cleaning, cooking, and running errands .
+Harvested Tuples:
++-------------------------------------+------------------------------------------------+-------------------------------------------+
+|             Seed samples            |                 Ours (Top 20)                  | Ours (Random samples over top 200 tuples) |
++-------------------------------------+------------------------------------------------+-------------------------------------------+
+|        ['doctor', 'patient']        |   ['financial planner', 'financial advisor']   |           ['mentor', 'teenager']          |
+|        ['teacher', 'student']       |   ['financial planner', 'financial adviser']   |     ['private secretary', 'minister']     |
+|     ['housekeeper', 'housewife']    |         ['brother', 'younger brother']         |       ['suspect', 'police officer']       |
+| ['teaching assistant', 'professor'] |      ['Great Employer', 'Great Employee']      |       ['single man', 'married man']       |
+|         ['police', 'victim']        | ['Service Representative', 'Service Provider'] |         ['supervisor', 'manager']         |
+|                  \                  |     ['supportive boyfriend', 'girlfriend']     |            ['teacher', 'child']           |
+|                  \                  |  ['Service Professional', 'Service Provider']  |             ['coach', 'team']             |
+|                  \                  |      ['health clinic', 'health provider']      |          ['volunteer', 'family']          |
+|                  \                  |       ['translator', 'foreign language']       |            ['parent', 'child']            |
+|                  \                  |       ['health plan', 'health provider']       |      ['veterinarian', 'young horse']      |
+|                  \                  |         ['Blogger', 'Fellow Blogger']          |     ['Firefighter', 'Fire Department']    |
+|                  \                  |        ['listener', 'fellow listener']         |             ['host', 'guest']             |
+|                  \                  |       ['supporter', 'fellow supporter']        |        ['cop', 'police department']       |
+|                  \                  |     ['Care Practitioner', 'Care Provider']     |      ['psychologist', 'young adult']      |
+|                  \                  |       ['health clinic', 'health center']       |            ['woman', 'husband']           |
+|                  \                  |        ['survivor', 'fellow survivor']         |        ['valentine', 'loved ones']        |
+|                  \                  |         ['single man', 'married man']          |            ['pastor', 'church']           |
+|                  \                  |         ['Blogger', 'Fellow Bloggers']         |           ['brother', 'sister']           |
+|                  \                  |        ['private sector', 'government']        |     ['Certified Attorney', 'law firm']    |
+|                  \                  |         ['brother', 'younger sibling']         |      ['Salesman', 'Sales Associate']      |
++-------------------------------------+------------------------------------------------+-------------------------------------------+
+==================================================
+Relation: place_for
+Prompts:
+- 0.1699 The <ENT0> is a place where people go to <ENT1> .
+- 0.1643 The <ENT0> is the best place to get some <ENT1> done .
+- 0.1376 The <ENT0> provides an environment for people to <ENT1> .
+- 0.0999 The <ENT0> is the place for <ENT1> .
+- 0.0959 <ENT0> is a great place to do some <ENT1> .
+- 0.0954 There's no place like the <ENT0> for <ENT1> because you have access to all the equipment you need to get a good workout .
+- 0.0890 <ENT0> is the place for <ENT1> .
+- 0.0742 If you're looking to get fit and <ENT1>, the <ENT0> is the perfect place to do so .
+- 0.0738 There's no better place to <ENT1> than in an <ENT0> .
+Harvested Tuples:
++------------------------------------+---------------------------------------+-------------------------------------------+
+|            Seed samples            |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++------------------------------------+---------------------------------------+-------------------------------------------+
+|        ['gym', 'exercise']         |       ['brewery', 'craft beers']      |           ['airport', 'travel']           |
+|       ['classroom', 'study']       |       ['brewery', 'craft beer']       |         ['classroom', 'learning']         |
+|         ['office', 'work']         |       ['public restroom', 'pee']      |        ['Shower', 'Clean Clothes']        |
+| ['hosipital', 'medical treatment'] | ['Brooklyn Zoo', 'animal encounters'] |       ['Bookstore', 'Book Reviews']       |
+|        ['mart', 'shopping']        |        ['Red Car', 'car wash']        |          ['City Map', 'explore']          |
+|                 \                  |          ['gym', 'exercise']          |      ['Artroom', 'creative projects']     |
+|                 \                  |        ['public toilet', 'pee']       |       ['public school', 'education']      |
+|                 \                  |       ['Boston Marathon', 'run']      |            ['mall', 'shopping']           |
+|                 \                  |     ['greenhouse', 'plant seeds']     |       ['Junction', 'Cross Traffic']       |
+|                 \                  |   ['Brooklyn Zoo', 'Animal Lovers']   |           ['school', 'learning']          |
+|                 \                  |       ['workplace', 'work done']      |           ['temple', 'worship']           |
+|                 \                  |        ['rink', 'ice skating']        |         ['harbor', 'sea turtles']         |
+|                 \                  |  ['courthouse', 'legal proceedings']  |            ['sun', 'warm body']           |
+|                 \                  |       ['public toilet', 'poop']       |     ['American College', 'education']     |
+|                 \                  |        ['ocean', 'clean water']       |            ['theater', 'dance']           |
+|                 \                  |        ['hangar', 'fly planes']       |      ['Vatican', 'spiritual renewal']     |
+|                 \                  |         ['North Pole', 'snow']        |         ['outdoors', 'free time']         |
+|                 \                  |     ['bathroom', 'Clean Clothes']     |          ['North Pole', 'winter']         |
+|                 \                  |       ['basement', 'work done']       |   ['Brooklyn Zoo', 'animal encounters']   |
+|                 \                  |        ['North Pole', 'winter']       |     ['Brooklyn Zoo', 'Animal Lovers']     |
++------------------------------------+---------------------------------------+-------------------------------------------+
+==================================================
+Relation: antonym
+Prompts:
+- 0.1888 <ENT0> and <ENT1> are opposite concepts .
+- 0.1384 <ENT1> is to <ENT0> as night is to day .
+- 0.0993 The two words "<ENT0>" and "<ENT1>" are antonyms .
+- 0.0951 A <ENT0> is not a <ENT1> .
+- 0.0912 When you're <ENT1>, you're not <ENT0> .
+- 0.0907 <ENT0> is the opposite of <ENT1> .
+- 0.0836 <ENT1> is the opposite of <ENT0> .
+- 0.0764 The antonym of <ENT0> is <ENT1> .
+- 0.0704 When a person is <ENT0>, they are not <ENT1> .
+- 0.0661 <ENT0> is the direction that is opposite of <ENT1> .
+Harvested Tuples:
++--------------------+----------------------------------+-------------------------------------------+
+|    Seed samples    |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
++--------------------+----------------------------------+-------------------------------------------+
+|  ['fat', 'thin']   |  ['Free Press', 'Free Speech']   |              ['five', 'six']              |
+|  ['happy', 'sad']  | ['Good Neighbor', 'Good Friend'] |         ['giving', 'taking back']         |
+| ['north', 'south'] |  ['Free World', 'Free Market']   |           ['realty', 'illusion']          |
+|  ['woman', 'man']  |   ['Real Value', 'Real Price']   |               ['nay', 'say']              |
+|  ['pass', 'fail']  |   ['giving', 'receiving gift']   |             ['hate', 'hatred']            |
+|         \          |     ['water', 'salt water']      |             ['right', 'wrong']            |
+|         \          | ['Real World', 'virtual world']  |            ['good', 'perfect']            |
+|         \          |   ['Real Value', 'Real Cost']    |              ['Nana', 'Nani']             |
+|         \          |    ['water', 'liquid water']     |           ['homing', 'hunting']           |
+|         \          |  ['Free World', 'Free Country']  |            ['caring', 'loving']           |
+|         \          |    ['lying', 'truth telling']    |           ['realist', 'radical']          |
+|         \          |    ['giving', 'taking away']     |           ['Hiking', 'camping']           |
+|         \          |     ['water', 'liquid salt']     |           ['Gase', 'Liquid Gas']          |
+|         \          |      ['girth', 'body size']      |             ['Liking', 'like']            |
+|         \          |        ['right', 'left']         |           ['gase', 'liquid ion']          |
+|         \          |     ['girth', 'body weight']     |          ['realism', 'idealism']          |
+|         \          |        ['right', 'wrong']        |             ['greek', 'Latin']            |
+|         \          |         ['good', 'bad']          |           ['firing', 'gun shot']          |
+|         \          |      ['life', 'human life']      |            ['greek', 'German']            |
+|         \          |        ['life', 'death']         |           ['realtor', 'lawyer']           |
++--------------------+----------------------------------+-------------------------------------------+
+==================================================
+Relation: separated_by_the_ocean
+Prompts:
+- 0.1395 <ENT0> and <ENT1> are two countries that are close to each other but are separated by the ocean .
+- 0.1162 While <ENT1> and <ENT0> are both located in the oceania region of the world, the two countries are separated by the tasman sea .
+- 0.1119 There is an ocean separating <ENT1> and <ENT0> .
+- 0.1039 <ENT1> and <ENT0> are separated by the tasman sea .
+- 0.0984 The distance between <ENT1> and <ENT0> is vast, with an ocean between them .
+- 0.0918 <ENT1> and <ENT0> are two different countries located on different continents .
+- 0.0872 The pacific ocean lies between <ENT0> and <ENT1> .
+- 0.0839 There is a large body of water, known as the atlantic ocean, which separates the two land masses of <ENT1> and the <ENT0> .
+- 0.0837 <ENT1> and <ENT0> are separated by the ocean .
+- 0.0835 The ocean separates <ENT1> from the <ENT0> .
+Harvested Tuples:
++-------------------------------------+--------------------------------------------------+------------------------------------------------+
+|             Seed samples            |                  Ours (Top 20)                   |   Ours (Random samples over top 200 tuples)    |
++-------------------------------------+--------------------------------------------------+------------------------------------------------+
+|          ['China', 'Japan']         |  ['Southern Hemisphere', 'Northern Hemisphere']  |              ['China', 'Russia']               |
+|     ['Australia', 'New Zealand']    | ['southern philippines', 'northern philippines'] |                ['earth', 'sun']                |
+| ['United Kingdom', 'the Continent'] |      ['eastern pacific', 'western pacific']      |             ['Portugal', 'Brazil']             |
+|       ['United State', 'Cuba']      |         ['Great Lakes', 'Great Rivers']          |              ['Yemen', 'Somalia']              |
+|         ['Spain', 'Morocco']        |         ['Great Powers', 'Small Powers']         |             ['bermuda', 'Jamaica']             |
+|                  \                  |   ['Eastern Hemisphere', 'Western Hemisphere']   |             ['Scotland', 'Norway']             |
+|                  \                  |      ['southern states', 'northern states']      |          ['Philippines', 'Indonesia']          |
+|                  \                  |            ['hong san', 'hong ping']             |              ['Sweden', 'Norway']              |
+|                  \                  | ['Northern Territories', 'southern territories'] |               ['Japan', 'China']               |
+|                  \                  |              ['Australia', 'India']              |            ['Venezuela', 'Brazil']             |
+|                  \                  |  ['eastern philippines', 'central philippines']  |              ['Tibet', 'Taiwan']               |
+|                  \                  |  ['western territories', 'eastern territories']  | ['Southern Hemisphere', 'Northern Hemisphere'] |
+|                  \                  |              ['Australia', 'Japan']              |           ['California', 'Arizona']            |
+|                  \                  |     ['eastern pacific', 'southern pacific']      |             ['Denmark', 'Norway']              |
+|                  \                  |                ['India', 'China']                |           ['middle pacific', 'Asia']           |
+|                  \                  |                ['Japan', 'China']                |           ['Indonesia', 'Malaysia']            |
+|                  \                  |              ['India', 'Pakistan']               |            ['Lithuania', 'Poland']             |
+|                  \                  |            ['Honduras', 'Costa Rica']            |            ['Australia', 'America']            |
+|                  \                  |              ['Australia', 'China']              |               ['Asia', 'Europe']               |
+|                  \                  |             ['Myanmar', 'Sri Lanka']             |            ['California', 'Mexico']            |
++-------------------------------------+--------------------------------------------------+------------------------------------------------+
+==================================================
+Relation: representative_figure
+Prompts:
+- 0.2439 If <ENT0> is the representative figure of <ENT1>, then that means he is the one who speaks for the country .
+- 0.2399 If <ENT0> were the representative figure of <ENT1>, he would be an extremely influential and popular artist .
+- 0.1745 As one of the most successful and popular <ENT1> artists, <ENT0> represents the genre well .
+- 0.1718 If you're looking for a representative figure of <ENT1>, you can't do much better than <ENT0> .
+- 0.1699 If we're talking about current, popular <ENT1>, then yeah, you could say that <ENT0> is the representative figure .
+Harvested Tuples:
++------------------------------------+---------------------------------------+-------------------------------------------+
+|            Seed samples            |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
++------------------------------------+---------------------------------------+-------------------------------------------+
+|   ['Lionel Messi', 'Barcelona']    |  ['El Salvador', 'Spanish Language']  |            ['Gandhi', 'India']            |
+|      ['Steven Jobs', 'Apple']      |     ['Bill Clinton', 'black men']     |           ['Hitler', 'Germany']           |
+| ['Nelson Mandela', 'South Africa'] |       ['Al Qaeda', 'terrorism']       |         ['Chucky', 'comic strips']        |
+| ['Taylor Swift', 'country music']  |       ['Donald Duck', 'Disney']       |        ['Alexander', 'Human Race']        |
+|       ['2Pac', 'pop music']        |      ['Zeus', 'Greek Mythology']      |              ['Kim', 'Korea']             |
+|                 \                  |     ['Jack Apple', 'apple juice']     |            ['Obama', 'America']           |
+|                 \                  |         ['al qaeda', 'jihad']         |            ['Jeter', 'sports']            |
+|                 \                  |          ['Kanye', 'hip hop']         |       ['Plato', 'Greek Philosophy']       |
+|                 \                  |      ['Jack Apple', 'Apple Pie']      |           ['Trudeau', 'Canada']           |
+|                 \                  |          ['al qaeda', 'Iraq']         |        ['Chris White', 'diversity']       |
+|                 \                  | ['Aristotle', 'Western Civilization'] |           ['Superman', 'Batman']          |
+|                 \                  |     ['Plato', 'Greek Philosophy']     |            ['Gandhi', 'Indian']           |
+|                 \                  |   ['Buddha', 'Buddhist Philosophy']   |        ['James Brown', 'diversity']       |
+|                 \                  |    ['Buddha', 'Buddhist Tradition']   |            ['Marx', 'history']            |
+|                 \                  |      ['Pope', 'Catholic Church']      |           ['Muhammad', 'Islam']           |
+|                 \                  |         ['king kong', 'Asia']         |        ['Nietzsche', 'philosophy']        |
+|                 \                  |      ['John Black', 'black men']      |            ['Gabriel', 'Jesus']           |
+|                 \                  |       ['king kong', 'Thailand']       |        ['Junta', 'political party']       |
+|                 \                  |     ['jupiter', 'planet jupiter']     |         ['Peter Van', 'Amsterdam']        |
+|                 \                  |          ['Gandhi', 'India']          |           ['Francis', 'France']           |
++------------------------------------+---------------------------------------+-------------------------------------------+
+==================================================
+Relation: ingredient_for
+Prompts:
+- 0.1621 <ENT0> is a dish made from <ENT1> that has been fried in a wok or a pan .
+- 0.1262 <ENT0> is a key ingredient in making a <ENT1> .
+- 0.1088 One of the ingredients for making a <ENT1> is <ENT0> .
+- 0.1076 <ENT0> is a popular dish made with <ENT1> as the main ingredient .
+- 0.0951 <ENT0> is a dish that contains <ENT1> as one of its ingredients .
+- 0.0906 A <ENT0> is an ingredient that is used to make <ENT1>s .
+- 0.0884 <ENT0> is an ingredient for <ENT1> .
+- 0.0834 <ENT0> is a type of fish pie that is typically made with <ENT1>s .
+- 0.0826 If you want to make a <ENT1>, you'll need some <ENT0> .
+- 0.0550 <ENT1> needs <ENT0> as an ingredient .
+Harvested Tuples:
++-------------------------------+---------------------------------+-------------------------------------------+
+|          Seed samples         |          Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++-------------------------------+---------------------------------+-------------------------------------------+
+|       ['flour', 'cake']       |      ['wax', 'candle wax']      |             ['sugar', 'syrup']            |
+|     ['beef', 'hamburger']     |    ['car grease', 'car wash']   |           ['fag', 'hash brown']           |
+|       ['potato', 'chip']      |      ['pulp', 'wood pulp']      |            ['tomato', 'salsa']            |
+|     ['fried rice', 'rice']    |    ['saliva', 'human saliva']   |            ['Kale', 'cabbage']            |
+| ['stargazer pie', 'pilchard'] | ['potatoes', 'mashed potatoes'] |           ['pulp', 'paper pulp']          |
+|               \               |    ['carrot', 'fresh carrot']   |            ['Salsa', 'tomato']            |
+|               \               |  ['tomatoes', 'fresh tomatoes'] |             ['bread', 'loaf']             |
+|               \               | ['vanilla', 'powdered vanilla'] |            ['vanilla', 'cream']           |
+|               \               |      ['pulp', 'paper pulp']     |            ['pizza', 'sausage']           |
+|               \               |       ['hive', 'bee hive']      |            ['fruit', 'yogurt']            |
+|               \               |      ['hives', 'bee hive']      |          ['nuke', 'nuclear bomb']         |
+|               \               |      ['blood', 'red blood']     |             ['bread', 'cake']             |
+|               \               |     ['litter', 'cat litter']    |             ['sauce', 'curry']            |
+|               \               |  ['starch', 'vegetable starch'] |             ['sauce', 'chili']            |
+|               \               |    ['laser', 'liquid laser']    |            ['chicken', 'soup']            |
+|               \               |     ['shave', 'fresh shave']    |          ['lint', 'cotton wool']          |
+|               \               |       ['eel', 'sea snail']      |             ['oil', 'butter']             |
+|               \               |    ['baking', 'baked goods']    |            ['eel', 'sea snail']           |
+|               \               |      ['lager', 'cold brew']     |            ['wafer', 'dry ice']           |
+|               \               |   ['yeast', 'fermented yeast']  |             ['tea', 'coffee']             |
++-------------------------------+---------------------------------+-------------------------------------------+
+==================================================
+Relation: processed_from
+Prompts:
+- 0.1792 Most <ENT1> is made from <ENT0> .
+- 0.1242 <ENT0> is the main source of <ENT1> used in vehicles and other machinery .
+- 0.1076 <ENT0> is a major source of <ENT1> .
+- 0.0987 <ENT0> is used to make <ENT1> .
+- 0.0968 <ENT0> is the primary ingredient in the production of <ENT1> .
+- 0.0867 The <ENT0> is what turns into <ENT1> .
+- 0.0838 The main source of <ENT1> is <ENT0> .
+- 0.0807 Many <ENT1>s contain <ENT0> as a major ingredient .
+- 0.0785 <ENT0>s are where <ENT1> is pulled from the ground .
+- 0.0636 The <ENT0> is the place where <ENT1> is mined .
+Harvested Tuples:
++-----------------------------+-------------------------------------------+-------------------------------------------+
+|         Seed samples        |               Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
++-----------------------------+-------------------------------------------+-------------------------------------------+
+| ['wool', 'woollen sweater'] |            ['red dye', 'color']           |           ['kohl', 'eye shadow']          |
+|      ['milk', 'yogurt']     |          ['red pepper', 'spice']          | ['technology', 'artificial intelligence'] |
+|     ['sand', 'silicon']     |          ['Google', 'web search']         |        ['Africa', 'Raw Materials']        |
+|    ['iron mine', 'iron']    |    ['sewage', 'industrial wastewater']    |          ['vinyl', 'car exhaust']         |
+|    ['crude oil', 'fuel']    |      ['Bitcoin', 'Digital Currency']      |      ['Arsenic', 'Natural Products']      |
+|              \              |         ['cumin', 'black pepper']         |        ['Pesticide', 'insecticide']       |
+|              \              |           ['cedar', 'pine sap']           |             ['coal', 'steel']             |
+|              \              |          ['red pepper', 'chili']          |      ['current', 'electric current']      |
+|              \              |       ['nylon', 'synthetic fibers']       |             ['water', 'food']             |
+|              \              |      ['red phosphorus', 'phosphate']      |          ['manure', 'fertilizer']         |
+|              \              |              ['oil', 'fuel']              |          ['Gzip', 'file formats']         |
+|              \              |     ['silicon', 'electronic devices']     |            ['cotton', 'fiber']            |
+|              \              |       ['Bitcoin', 'electronic cash']      |         ['petroleum', 'gasoline']         |
+|              \              | ['technology', 'artificial intelligence'] |         ['Noun', 'English Words']         |
+|              \              |           ['soy', 'animal feed']          |             ['steel', 'iron']             |
+|              \              |          ['feed', 'animal feed']          |            ['Acrylic', 'paint']           |
+|              \              |    ['research', 'scientific research']    |           ['pulp', 'cellulose']           |
+|              \              |           ['kohl', 'eye makeup']          |         ['lava', 'volcanic rock']         |
+|              \              |            ['lava', 'hot lava']           |       ['current', 'electric charge']      |
+|              \              |       ['yeast', 'Industrial Yeast']       |        ['algae', 'organic matter']        |
++-----------------------------+-------------------------------------------+-------------------------------------------+
+==================================================
+Relation: popular_sport_in
+Prompts:
+- 0.1389 There is no sport more popular in <ENT1> than <ENT0> .
+- 0.1180 There is no denying that <ENT0> is by far the most popular sport in <ENT1> .
+- 0.1134 <ENT0> is more than just a popular sport in <ENT1>--it's a way of life .
+- 0.1110 In <ENT1>, <ENT0> is a popular sport .
+- 0.1030 <ENT0> is a popular sport in many countries, including <ENT1> .
+- 0.1026 <ENT0> is a popular sport in <ENT1> .
+- 0.0967 <ENT0> is a sport that is popular in <ENT1> .
+- 0.0817 A large number of people in <ENT1> like to play <ENT0> .
+- 0.0752 Many people in <ENT1> enjoy playing <ENT0> .
+- 0.0596 <ENT1>ians are passionate about <ENT0> and it is one of the most popular sports in the country .
+Harvested Tuples:
++---------------------------------+--------------------------------+-------------------------------------------+
+|           Seed samples          |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++---------------------------------+--------------------------------+-------------------------------------------+
+|      ['football', 'Brazil']     | ['street ball', 'Los Angeles'] |          ['baha', 'Saudi Arabia']         |
+| ['basketball', 'United States'] |     ['football', 'India']      |           ['Barbecue', 'Texas']           |
+|      ['baseball', 'Japan']      |      ['cricket', 'India']      |         ['ice fishing', 'Alaska']         |
+|       ['hockey', 'Canada']      |      ['soccer', 'Brazil']      |     ['Barcelona', 'Spanish Language']     |
+|    ['table tennis', 'China']    |      ['soccer', 'India']       |           ['kosovo', 'Bulgaria']          |
+|                \                |   ['rugby union', 'Ireland']   |      ['Snow Cycling', 'Switzerland']      |
+|                \                |   ['ice fishing', 'Alaska']    |        ['ice fishing', 'Wisconsin']       |
+|                \                |    ['cricket', 'Pakistan']     |        ['liverpool', 'west london']       |
+|                \                |    ['football', 'Pakistan']    |            ['rugby', 'Ireland']           |
+|                \                |      ['hockey', 'Canada']      |            ['skiing', 'Sweden']           |
+|                \                |    ['football', 'Nigeria']     |            ['golf', 'Pakistan']           |
+|                \                |     ['football', 'China']      |           ['polball', 'Poland']           |
+|                \                |  ['ice fishing', 'Minnesota']  |           ['climbing', 'Nepal']           |
+|                \                |     ['soccer', 'Nigeria']      |       ['Hearthstone', 'South Wales']      |
+|                \                |    ['basketball', 'India']     |           ['boca', 'Costa Rica']          |
+|                \                |      ['soccer', 'Spain']       |          ['Bollywood', 'Mumbai']          |
+|                \                |     ['football', 'Brazil']     |             ['bongo', 'Ghana']            |
+|                \                |      ['soccer', 'China']       |         ['Barcelona', 'Catalonia']        |
+|                \                |     ['baseball', 'Japan']      |        ['Polki', 'Czech Republic']        |
+|                \                |   ['basketball', 'Nigeria']    |         ['swedish', 'Scandinavia']        |
++---------------------------------+--------------------------------+-------------------------------------------+
+==================================================
+Relation: business
+Prompts:
+- 0.2283 <ENT0> is a company that sells <ENT1>s .
+- 0.1209 <ENT0> sells <ENT1>s through its online store and retail locations .
+- 0.1063 <ENT0> is known for selling <ENT1>s .
+- 0.0985 <ENT0> is a <ENT1> company that manufactures and sells vehicles .
+- 0.0854 <ENT0> is an <ENT1> company .
+- 0.0804 <ENT0> describes themselves as "the world’s largest information technology company by revenue," and they sell many products, including <ENT1>s .
+- 0.0758 <ENT0> sells <ENT1> .
+- 0.0757 <ENT0> is a japanese <ENT1> company that sells a wide variety of vehicles, from small to large, and from economy to luxury .
+- 0.0700 <ENT0> sells <ENT1>s .
+- 0.0587 <ENT0> is a popular fast food chain that is known for selling <ENT1>s .
+Harvested Tuples:
++---------------------------+-----------------------------------------+-------------------------------------------+
+|        Seed samples       |              Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
++---------------------------+-----------------------------------------+-------------------------------------------+
+|     ['Nissan', 'car']     |         ['big data', 'big bang']        |        ['mars', 'Automotive Parts']       |
+|    ['Apple', 'laptop']    |    ['facebook', 'social networking']    |         ['chassis', 'motorcycle']         |
+|      ['Shell', 'oil']     |        ['fitch', 'Credit Rating']       |        ['nike', 'Sports Equipment']       |
+|     ['Nvidia', 'GPU']     |         ['comcast', 'cable tv']         |         ['flickr', 'free upload']         |
+| ['McDonald', 'hamburger'] | ['wrestling', 'professional wrestling'] |         ['stock', 'private stock']        |
+|             \             |    ['comcast', 'internet bandwidth']    |         ['bicycle', 'motorcycle']         |
+|             \             |      ['al jazeera', 'news content']     |          ['cord', 'audio codec']          |
+|             \             |     ['cisco', 'computer networking']    |           ['chubb', 'life raft']          |
+|             \             |     ['nissan', 'electric vehicles']     |      ['target', 'consumer products']      |
+|             \             |    ['general motors', 'motor shaft']    |      ['general motors', 'motorcraft']     |
+|             \             |       ['fitch', 'credit outlook']       |             ['nokia', 'phone']            |
+|             \             |    ['nissan', 'Japanese Automobile']    |        ['black hole', 'blacksmith']       |
+|             \             |       ['youtube', 'video upload']       |        ['airborne', 'air payload']        |
+|             \             |  ['panasonic', 'electronic subsystem']  |          ['red hat', 'red hood']          |
+|             \             |     ['cisco', 'computer subsystem']     |      ['cisco', 'computer equipment']      |
+|             \             |          ['snap', 'mobile app']         |        ['loki', 'Japanese Lantern']       |
+|             \             |        ['adblock', 'ad blocker']        |         ['marriott', 'hotel inn']         |
+|             \             |       ['fitch', 'credit ratings']       |      ['hundai', 'Korean Automobile']      |
+|             \             |       ['lotto', 'lottery ticket']       |     ['netflix', 'digital storefront']     |
+|             \             |     ['general motors', 'motorcycle']    |         ['china', 'Chinese Cloth']        |
++---------------------------+-----------------------------------------+-------------------------------------------+
+==================================================
+Relation: featured_thing
+Prompts:
+- 0.1565 There is no doubt that <ENT0> is a very <ENT1> <ENT2> .
+- 0.1478 <ENT0> is a very <ENT1> and successful <ENT2> .
+- 0.1449 <ENT0> is a very <ENT1> <ENT2> .
+- 0.1213 <ENT0> is definitely a <ENT1> <ENT2> .
+- 0.0948 <ENT0>s are a very <ENT1> <ENT2> .
+- 0.0756 <ENT0>s are a type of <ENT2> that can grow to be very <ENT1> .
+- 0.0710 Although <ENT0> is not the world's <ENT1>est <ENT2>, it is still very wealthy .
+- 0.0683 It covers a lot of ground, <ENT0> is a very <ENT1> <ENT2> .
+- 0.0600 The <ENT0> <ENT2> is very <ENT1> .
+- 0.0597 You can hardly find a <ENT1>er <ENT2> than <ENT0>s .
+Harvested Tuples:
++------------------------------------------+----------------------------------------------+----------------------------------------------+
+|               Seed samples               |                Ours (Top 20)                 |  Ours (Random samples over top 200 tuples)   |
++------------------------------------------+----------------------------------------------+----------------------------------------------+
+|         ['egg', 'cheap', 'food']         |  ['Zika', 'widespread', 'viral infection']   |          ['John', 'nice', 'person']          |
+|         ['boa', 'long', 'snake']         |   ['Reddit', 'active', 'discussion forum']   |       ['fire', 'dangerous', 'weapon']        |
+| ['Messi', 'skillful', 'football player'] |   ['Zika', 'widespread', 'tropical virus']   |     ['America', 'much bigger', 'market']     |
+|      ['Russia', 'large', 'country']      |       ['cedar', 'hard wood', 'grain']        |     ['Bitcoin', 'valuable', 'currency']      |
+|      ['Amazon', 'rich', 'company']       | ['Zika', 'widespread', 'Infectious Disease'] |           ['panda', 'cute', 'cat']           |
+|                    \                     |    ['wool', 'versatile', 'natural fiber']    |       ['Wikipedia', 'useful', 'site']        |
+|                    \                     |     ['Twitter', 'well used', 'platform']     |         ['Trump', 'good', 'person']          |
+|                    \                     |        ['cedar', 'hard wood', 'nut']         |         ['life', 'long', 'process']          |
+|                    \                     |   ['wool', 'versatile', 'textile fabric']    |  ['Wool', 'versatile', 'Textile Material']   |
+|                    \                     |         ['Google', 'big', 'company']         |         ['Woven', 'soft', 'surface']         |
+|                    \                     |  ['Zika', 'widespread', 'Tropical Disease']  |        ['Zimbabwe', 'poor', 'place']         |
+|                    \                     | ['lead', 'low energy', 'chemical substance'] |        ['India', 'diverse', 'nation']        |
+|                    \                     |     ['Twitter', 'well used', 'service']      |      ['Dad', 'proud', 'family member']       |
+|                    \                     |   ['Zika', 'widespread', 'viral disease']    |         ['today', 'special', 'date']         |
+|                    \                     |       ['Twitter', 'well used', 'app']        | ['Zika', 'widespread', 'Infectious Disease'] |
+|                    \                     |       ['Twitter', 'well used', 'tool']       |   ['love', 'complicated', 'relationship']    |
+|                    \                     |         ['China', 'rich', 'country']         |          ['Jockey', 'tough', 'job']          |
+|                    \                     |      ['Twitter', 'well used', 'medium']      |        ['Puma', 'fabled', 'species']         |
+|                    \                     |     ['Dad', 'proud', 'American Patriot']     |        ['money', 'fickle', 'animal']         |
+|                    \                     |        ['Google', 'big', 'business']         |      ['Instagram', 'social', 'website']      |
++------------------------------------------+----------------------------------------------+----------------------------------------------+
+==================================================
+Relation: need_sth_to_do_sth
+Prompts:
+- 0.1359 <ENT0> feel that they need <ENT1> in order to <ENT2> .
+- 0.1272 <ENT0> need <ENT1> to <ENT2> .
+- 0.1127 In order to <ENT2>, <ENT0> need <ENT1> .
+- 0.1009 <ENT0> needs <ENT1> to <ENT2> .
+- 0.0915 <ENT0> feel the need to <ENT2> through <ENT1> .
+- 0.0808 A <ENT0> requires <ENT1> in order to <ENT2> .
+- 0.0790 Without <ENT1>, <ENT0> would have a harder time <ENT2>ing with others .
+- 0.0753 There is a need for <ENT1> to <ENT2> <ENT0> .
+- 0.0740 A <ENT0> will only <ENT2> if it has enough <ENT1> to eat .
+- 0.0636 A <ENT0> requires <ENT1> to <ENT2> with each other .
+- 0.0591 It is important for <ENT0> to be able to <ENT2> with each other through <ENT1> .
+Harvested Tuples:
++------------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+
+|                  Seed samples                  |                    Ours (Top 20)                    |       Ours (Random samples over top 200 tuples)       |
++------------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+
+|       ['developer', 'computer', 'code']        |     ['bacteria', 'glucose', 'produce proteins']     |        ['children', 'attention', 'communicate']       |
+|     ['people', 'social media', 'connect']      | ['businesses', 'Business Cards', 'reach consumers'] |      ['females', 'sexual intercourse', 'orgasm']      |
+|            ['pig', 'food', 'grow']             |     ['voters', 'Voting Machine', 'cast ballots']    |       ['girls', 'sexual intercourse', 'orgasm']       |
+|          ['people', 'money', 'live']           |     ['species', 'predators', 'avoid extinction']    |           ['thongs', 'extra weight', 'fit']           |
+| ['intern', 'good performance', 'return offer'] |         ['farmers', 'land', 'produce crops']        |         ['german', 'foreign workers', 'build']        |
+|                       \                        | ['culture', 'cultural diversity', 'maintain unity'] |    ['current state', 'State Changes', 'changeable']   |
+|                       \                        |         ['robots', 'human brains', 'think']         |       ['website', 'web server', 'host content']       |
+|                       \                        |     ['males', 'testosterone', 'sexually mature']    |         ['Greens', 'green spaces', 'flourish']        |
+|                       \                        |    ['culture', 'cultural diversity', 'flourish']    |       ['democrats', 'Democratic Party', 'unite']      |
+|                       \                        |          ['farmers', 'land', 'raise crops']         |          ['doctors', 'drugs', 'treat cancer']         |
+|                       \                        |     ['females', 'sexual intercourse', 'orgasm']     |       ['class', 'multiple methods', 'implement']      |
+|                       \                        |         ['doctors', 'drugs', 'treat cancer']        |   ['producers', 'incentives', 'increase efficiency']  |
+|                       \                        |      ['girls', 'sexual intercourse', 'orgasm']      | ['Genders', 'Gender Pronouns', 'Properly Understood'] |
+|                       \                        |     ['females', 'sexual stimulation', 'orgasm']     |       ['thread', 'multiple threads', 'execute']       |
+|                       \                        |      ['social problems', 'solutions', 'solve']      |            ['Nigeria', 'peace', 'prosper']            |
+|                       \                        |  ['producers', 'incentives', 'increase production'] |              ['Fido', 'Dog Poop', 'pee']              |
+|                       \                        |              ['people', 'food', 'live']             |           ['person', 'good reason', 'stop']           |
+|                       \                        |          ['panda', 'bamboo', 'eat bamboo']          |      ['scientist', 'research', 'find solutions']      |
+|                       \                        |    ['gene', 'protein molecules', 'express genes']   |              ['men', 'women', 'succeed']              |
+|                       \                        |      ['search', 'Google Account', 'use search']     |    ['Social Communities', 'diversity', 'flourish']    |
++------------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+
+==================================================
+Relation: more_than
+Prompts:
+- 0.1492 It's more <ENT1> to <ENT0> than it is to <ENT2> .
+- 0.1287 <ENT0> is more <ENT1> than <ENT2> .
+- 0.1097 Some people believe that <ENT0> is more <ENT1> than <ENT2> because it is more active and engaging .
+- 0.1021 The <ENT0> is <ENT1>r than the <ENT2> bear .
+- 0.1018 <ENT0>s are generally much <ENT1>er than <ENT2>s .
+- 0.1011 Many people believe that <ENT0> is more <ENT1> than <ENT2> .
+- 0.0823 Compared to <ENT2>s, <ENT0>s are typically much <ENT1>er .
+- 0.0589 <ENT0> is generally more <ENT1> than <ENT2>ing because it is more enjoyable and engaging .
+- 0.0589 There is often more <ENT1> in <ENT0>s than in <ENT2>s .
+- 0.0538 <ENT0>ing is more <ENT1> than <ENT2>ing .
+- 0.0537 <ENT0>s are often <ENT1>r in size than <ENT2>s .
+Harvested Tuples:
++----------------------------------------+---------------------------------------------------+-----------------------------------------------------+
+|              Seed samples              |                   Ours (Top 20)                   |      Ours (Random samples over top 200 tuples)      |
++----------------------------------------+---------------------------------------------------+-----------------------------------------------------+
+|      ['car', 'fast', 'carriage']       |     ['high stress', 'stressful', 'low stress']    |          ['Trump', 'dangerous', 'Hillary']          |
+|      ['judge', 'easy', 'create']       | ['shutdown', 'disruptive', 'government shutdown'] |             ['butter', 'sweet', 'cream']            |
+| ['golden retriever', 'large', 'teddy'] |        ['netflix', 'like netflix', 'cable']       |            ['milk', 'nutritious', 'meat']           |
+|       ['tiger', 'strong', 'cat']       |       ['netflix', 'like netflix', 'youtube']      |            ['word', 'verbose', 'letter']            |
+|    ['play', 'interesting', 'study']    |  ['high stress', 'stressful', 'moderate stress']  |    ['High Stress', 'stressful', 'Normal Stress']    |
+|                   \                    |           ['term', 'often used', 'word']          |     ['Bitcoin', 'moneyless', 'traditional cash']    |
+|                   \                    |     ['church', 'religious', 'secular church']     | ['Congress', 'Politically Correct', 'Presidential'] |
+|                   \                    |         ['money', 'like money', 'credit']         |          ['Facebook', 'important', 'email']         |
+|                   \                    |   ['High Stress', 'stressful', 'Normal Stress']   |           ['Trump', 'popular', 'Hillary']           |
+|                   \                    |     ['religion', 'culturally related', 'race']    |         ['Facebook', 'important', 'Twitter']        |
+|                   \                    |       ['sausage', 'meatly', 'pork sausage']       |    ['shutdown', 'disruptive', 'regular shutdown']   |
+|                   \                    |           ['term', 'often used', 'noun']          |  ['shutdown', 'disruptive', 'government shutdown']  |
+|                   \                    |       ['youth', 'emotionally raw', 'adult']       |            ['sleep', 'pleasant', 'work']            |
+|                   \                    |  ['bitcoin', 'moneyless', 'traditional bitcoin']  |           ['chocolate', 'sweet', 'candy']           |
+|                   \                    |          ['money', 'like money', 'food']          |        ['history', 'much better', 'fiction']        |
+|                   \                    |   ['shutdown', 'disruptive', 'normal shutdown']   |           ['suicide', 'deadly', 'murder']           |
+|                   \                    |    ['Abortion', 'Socially Beneficial', 'Birth']   |           ['football', 'fun', 'baseball']           |
+|                   \                    |           ['Pint', 'pfull', 'Half Pint']          |   ['high stress', 'stressful', 'moderate stress']   |
+|                   \                    |         ['Sausage', 'meatly', 'Pork Chop']        |          ['breakfast', 'savory', 'dessert']         |
+|                   \                    |  ['bitcoin', 'moneyless', 'traditional currency'] |        ['netflix', 'like netflix', 'youtube']       |
++----------------------------------------+---------------------------------------------------+-----------------------------------------------------+
+==================================================
+Relation: can_but_not_good
+Prompts:
+- 0.1188 <ENT0>s can <ENT1>, but they aren't very good at it .
+- 0.1042 Although <ENT0>s are theoretically able to <ENT1>, they are not very good at it and usually stay on the ground .
+- 0.0989 <ENT0>s are not good at <ENT1>ing because they are not built for it .
+- 0.0980 The average <ENT0> is not especially good at <ENT1>ing .
+- 0.0968 While <ENT0>s are able to <ENT1>, they are not instinctively good at it and may need some help or encouragement to do so .
+- 0.0883 <ENT0>s are not good at <ENT1>ing because they lack the proper equipment and training .
+- 0.0838 <ENT0> can <ENT1> but not good at .
+- 0.0835 The <ENT0> is skilled at <ENT1>ing, but not particularly good at it .
+- 0.0785 <ENT0>s are not good at <ENT1>ing .
+- 0.0752 While <ENT0>s are typically excellent at their jobs, <ENT1>ing is not usually a strong suit .
+- 0.0741 <ENT1>ing requires explosive speed and power, which <ENT0>s typically lack .
+Harvested Tuples:
++------------------------------------+--------------------------------+-------------------------------------------+
+|            Seed samples            |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++------------------------------------+--------------------------------+-------------------------------------------+
+|         ['chicken', 'fly']         |        ['dog', 'fetch']        |             ['Cough', 'lung']             |
+|          ['dog', 'swim']           |  ['human stomach', 'ferment']  |       ['young football', 'kickers']       |
+| ['long-distance runner', 'sprint'] |      ['human', 'invent']       |            ['Bisexual', 'woo']            |
+|         ['skater', 'ski']          |   ['hiker', 'cross country']   |            ['Cpl', 'firefight']           |
+|      ['researcher', 'teach']       |      ['brawler', 'fight']      |            ['barrow', 'wheel']            |
+|                 \                  |        ['dog', 'snoop']        |          ['png', 'image preview']         |
+|                 \                  |        ['dog', 'snuff']        |              ['ant', 'snoop']             |
+|                 \                  |   ['young children', 'sit']    |           ['baseball', 'field']           |
+|                 \                  |     ['young child', 'sit']     |          ['individual', 'bluff']          |
+|                 \                  |     ['Cpl', 'fire truck']      |             ['raven', 'roost']            |
+|                 \                  |        ['frog', 'swim']        |             ['frog', 'sprint']            |
+|                 \                  |        ['fern', 'grow']        |        ['hollywood', 'make movie']        |
+|                 \                  |      ['mother', 'parent']      |           ['brug', 'water well']          |
+|                 \                  |    ['young maid', 'gossip']    |              ['ant', 'sniff']             |
+|                 \                  |       ['clown', 'sing']        |             ['bough', 'twirl']            |
+|                 \                  |  ['Human Medium', 'manifest']  |             ['troll', 'tweet']            |
+|                 \                  |  ['human medium', 'channel']   |             ['jack', 'shovel']            |
+|                 \                  |       ['frog', 'sprint']       |             ['bull', 'bluff']             |
+|                 \                  |    ['individual', 'invent']    |             ['maid', 'shower']            |
+|                 \                  | ['Psychopath', 'Social Trick'] |            ['mother', 'father']           |
++------------------------------------+--------------------------------+-------------------------------------------+
+==================================================
+Relation: worth_celebrating
+Prompts:
+- 0.1405 It is seen as significant accomplishment for <ENT0> when they <ENT1> .
+- 0.1211 There is value in celebrating when group of <ENT0>s <ENT1> .
+- 0.1190 It's great when a group of <ENT0> <ENT1> .
+- 0.1189 It's great for <ENT0> to <ENT1> .
+- 0.1101 When a group of <ENT0> <ENT1>, it is worth celebrating .
+- 0.0974 It's worth celebrating when a <ENT0> <ENT1> .
+- 0.0892 It's great when <ENT0>s <ENT1>s as a group .
+- 0.0779 It’s worth celebrating for a <ENT0> to <ENT1> .
+- 0.0718 It's good when <ENT0> <ENT1> .
+- 0.0541 It's always good when <ENT0> <ENT1> is doing well .
+Harvested Tuples:
++---------------------------------+--------------------------------+-------------------------------------------+
+|           Seed samples          |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
++---------------------------------+--------------------------------+-------------------------------------------+
+|         ['team', 'wim']         |    ['Old Timers', 'gather']    |         ['local folks', 'gather']         |
+|     ['student', 'pass exam']    | ['community members', 'join']  |            ['team', 'succeed']            |
+| ['researcher', 'publish paper'] |   ['young couple', 'marry']    |       ['local youth', 'participate']      |
+|     ['people', 'earn money']    |  ['local farmers', 'produce']  |          ['musicians', 'perform']         |
+|    ['parents', 'get a baby']    |  ['working towards', 'goal']   |          ['good thing', 'occur']          |
+|                \                |     ['deer', 'eat grass']      |         ['woman takes', 'control']        |
+|                \                |      ['deer', 'eat deer']      |         ['comet', 'orbit saturn']         |
+|                \                |   ['small things', 'matter']   |            ['women', 'achieve']           |
+|                \                |  ['smokers', 'quit smoking']   |        ['human rights', 'prevail']        |
+|                \                |    ['mother', 'give birth']    |         ['yoga', 'practice yoga']         |
+|                \                | ['two countries', 'cooperate'] |          ['comet', 'orbit earth']         |
+|                \                |  ['small business', 'thrive']  |             ['youth', 'excel']            |
+|                \                |     ['people', 'succeed']      |         ['code', 'gets published']        |
+|                \                |  ['good things', 'happened']   |      ['college senior', 'graduates']      |
+|                \                |    ['good thing', 'occur']     |         ['mental', 'health care']         |
+|                \                |   ['local media', 'report']    |        ['Google', 'Search Engines']       |
+|                \                | ['college football', 'coach']  |             ['four', 'score']             |
+|                \                |   ['good thing', 'happened']   |         ['artists', 'collaborate']        |
+|                \                |  ['working towards', 'goals']  |           ['deer', 'eat grass']           |
+|                \                |       ['people', 'win']        |          ['north', 'face north']          |
++---------------------------------+--------------------------------+-------------------------------------------+
+==================================================
+Relation: potential_risk
+Prompts:
+- 0.1578 <ENT0> may lead to <ENT1> .
+- 0.1414 <ENT0> can potentially cause <ENT1> .
+- 0.1279 If a <ENT0> is not well-planned or executed, it may lead to a <ENT1> .
+- 0.1177 A potential risk of <ENT0> is <ENT1> .
+- 0.1152 One potential risk of <ENT0> is <ENT1> .
+- 0.1040 <ENT0> has been linked to an increased risk of <ENT1> .
+- 0.0893 <ENT0> can lead to <ENT1> if it is not eaten in moderation .
+- 0.0744 If a <ENT1>es, it is a potential risk of <ENT0> .
+- 0.0723 If a <ENT0> is not properly executed, it can cause a <ENT1> .
+Harvested Tuples:
++------------------------------------------+--------------------------------------------+-------------------------------------------+
+|               Seed samples               |               Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
++------------------------------------------+--------------------------------------------+-------------------------------------------+
+|    ['playing game', 'fail the exam']     |      ['Blood Flow', 'Blood Pressure']      |        ['Porsche', 'Car Accident']        |
+| ['sleep insufficiency', 'heart disease'] |      ['Eating Habit', 'Weight Gain']       |        ['Nuclear Winter', 'famine']       |
+|         ['candy', 'tooth decay']         |      ['Blood Shot', 'Blood Pressure']      |         ['smoking', 'depression']         |
+|        ['flight', 'plane crash']         |    ['shutdown', 'government shutdown']     |        ['divorce', 'child neglect']       |
+|       ['investment', 'lose money']       |       ['warming', 'Global Warming']        |           ['vaccine', 'autism']           |
+|                    \                     |      ['mutation', 'genetic mutation']      |       ['therapy', 'brain swelling']       |
+|                    \                     |        ['Food Allergies', 'autism']        |          ['marriage', 'divorce']          |
+|                    \                     |         ['food waste', 'illness']          |         ['Calf', 'kidney stones']         |
+|                    \                     |       ['fracture', 'Bone Fracture']        |         ['fishing', 'fish kills']         |
+|                    \                     |         ['driving', 'car crashes']         |      ['premature aging', 'dementia']      |
+|                    \                     |         ['food safety', 'illness']         |           ['pregnancy', 'death']          |
+|                    \                     |    ['foreclosure', 'home foreclosure']     |     ['Warming', 'Climate Disruption']     |
+|                    \                     |       ['concussion', 'brain bleed']        |      ['implementation', 'user error']     |
+|                    \                     | ['fermentation', 'bacterial fermentation'] |    ['cough', 'respiratory infections']    |
+|                    \                     |       ['Drug Injection', 'overdose']       |      ['Blood Flow', 'Blood Pressure']     |
+|                    \                     |      ['vaccination', 'birth defects']      |           ['treatment', 'death']          |
+|                    \                     |          ['diet', 'Weight Gain']           |       ['exercise', 'heart attacks']       |
+|                    \                     |      ['sperm', 'sexual intercourse']       |    ['virus', 'respiratory infections']    |
+|                    \                     |         ['therapy', 'Brain Tumor']         |    ['shutdown', 'government shutdown']    |
+|                    \                     |   ['medical delivery', 'Fetal Distress']   |          ['treatment', 'disease']         |
++------------------------------------------+--------------------------------------------+-------------------------------------------+
+==================================================
