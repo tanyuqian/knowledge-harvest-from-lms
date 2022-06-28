@@ -9,9 +9,9 @@ Shibo Hao*, Bowen Tan*, Kaiwen Tang*, Hengzhe Zhang, Eric P. Xing, Zhiting Hu \
 ### Getting Started
 * Symbolic knowledge graphs (KGs) have been constructed either by expensive human crowdsourcing or with domain-specific complex information extraction pipelines.
 * In this work, we aim at harvesting symbolic KGs from the LMs, a new framework for automatic KG construction empowered by the neural LMs' flexibility and scalability. 
-* Compared to prior works that often rely on large human annotated data or existing massive KGs, our approach requires only the minimal definition of relations as inputs, and hence is suitable for extracting knowledge of rich **new** relations not available before. 
-* As a result, we derive from diverse LMs a family of new KGs (e.g., *BertNet* and *RoBERTaNet*) 
-  * contain a richer set of commonsense relations, including complex ones (e.g., *"A is capable of but not good at B"*), than the human-annotated KGs (e.g., *ConceptNet*). 
+* Compared to prior works that often rely on large human annotated data or existing massive KGs, our approach requires only the minimal definition of relations as inputs, and hence is suitable for extracting knowledge of rich new relations not available before. 
+* As a result, we derive from diverse LMs a family of new KGs (e.g., **BertNet** and **RoBERTaNet**) 
+  * contain a richer set of commonsense relations, including complex ones (e.g., *"A is capable of but not good at B"*), than the human-annotated KGs (e.g., ConceptNet). 
 * Besides, the resulting KGs also serve as a vehicle to interpret the respective source LMs, leading to new insights into the varying knowledge capability of different LMs.
 
 
