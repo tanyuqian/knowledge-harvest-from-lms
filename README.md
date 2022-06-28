@@ -1,4 +1,4 @@
-## BertNet: Harvesting Knowledge Graphs from PLMs
+# BertNet: Harvesting Knowledge Graphs from PLMs
 
 This repo contains preliminary code of the following paper:
 
@@ -6,7 +6,7 @@ This repo contains preliminary code of the following paper:
 Shibo Hao*, Bowen Tan*, Kaiwen Tang*, Hengzhe Zhang, Eric P. Xing, Zhiting Hu \
 (* Equal contribution) 
 
-### Getting Started
+## Getting Started
 * Symbolic knowledge graphs (KGs) have been constructed either by expensive human crowdsourcing or with domain-specific complex information extraction pipelines.
 * In this work, we aim at harvesting symbolic KGs from the LMs, a new framework for automatic KG construction empowered by the neural LMs' flexibility and scalability. 
 * Compared to prior works that often rely on large human annotated data or existing massive KGs, our approach requires only the minimal definition of relations as inputs, and hence is suitable for extracting knowledge of rich new relations not available before. 
@@ -17,16 +17,16 @@ Shibo Hao*, Bowen Tan*, Kaiwen Tang*, Hengzhe Zhang, Eric P. Xing, Zhiting Hu \
 
 ![](framework.png)
 
-### Requirements
+## Requirements
 We use `python 3.8` and all the required packages can be installed by pip:
 ```
 pip install -r requirements.txt
 ```
 Our code runs on a single GTX 1080Ti GPU.
 
-### Harvesting KGs from LMs
+## Harvesting KGs from LMs
 
-#### Automatic Creation of Diverse Prompts
+### Automatic Creation of Diverse Prompts
 This step corresponds to [paper]() Section 3.1. 
 ```
 python search_prompts.py --rel_set conceptnet
@@ -36,7 +36,7 @@ python search_prompts.py --rel_set conceptnet
 The prompt searching reads the relation definitions from `"init_prompts"` and `"seed_ent_tuples"` values from `relation_info/{rel_set}.json` and save the searched-out prompts into `"prompts"` values.\
 (Files in the [relation_info/](relation_info/) folder have contained the results of this step.)
 
-#### Efficient Search for Knowledge Tuples
+### Efficient Search for Knowledge Tuples
 This step corresponds to [paper]() Section 3.2.
 ```
 python main.py --rel_set conceptnet --model_name roberta-large --n_ent_tuples 1000 --n_prompts 20
@@ -49,7 +49,7 @@ python main.py --rel_set conceptnet --model_name roberta-large --n_ent_tuples 10
 The searched-out knowledge tuples will be saved into [results/](results/), e.g., [results/conceptnet/1000tuples_top20prompts/roberta-large/](results/conceptnet/1000tuples_top20prompts/roberta-large/).
 
 
-### Results
+## Results
 This command can present results in a formatted manner:
 ```
 python present_result.py --result_dir results/conceptnet/1000tuples_top20prompts/roberta-large/
@@ -58,7 +58,7 @@ The results will be saved into `summary.txt` in `{result_dir}`, e.g., [results/c
 
 
 
-#### Example relation -- "A can B but not good at" (from RoBERTaNet)
+### Example relation -- "A can B but not good at" (from RoBERTaNet)
 ```
 +------------------------------------+--------------------------------+-------------------------------------------+
 |            Seed samples            |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
@@ -86,7 +86,7 @@ The results will be saved into `summary.txt` in `{result_dir}`, e.g., [results/c
 +------------------------------------+--------------------------------+-------------------------------------------+
 ```
 
-#### Example relation -- "A needs B to C" (from BertNet)
+### Example relation -- "A needs B to C" (from BertNet)
 ```
 +------------------------------------------------+--------------------------------------------------------+--------------------------------------------------+
 |                  Seed samples                  |                     Ours (Top 20)                      |    Ours (Random samples over top 200 tuples)     |
