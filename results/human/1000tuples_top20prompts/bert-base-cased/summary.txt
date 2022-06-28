@@ -13,30 +13,30 @@ Prompts:
 - 0.0594 <ENT0> can <ENT1> in <ENT2> .
 - 0.0522 Looking up at the <ENT2>, it's easy to see that <ENT0>s can <ENT1> .
 Harvested Tuples:
-+-------------------------------------+------------------------------------------------------+-------------------------------------------+
-|             Seed samples            |                    Ours (Top 20)                     | Ours (Random samples over top 200 tuples) |
-+-------------------------------------+------------------------------------------------------+-------------------------------------------+
-|    ['people', 'work out', 'gym']    | ['professional cyclists', 'climb', 'Mountain Range'] |        ['person', 'live', 'house']        |
-|        ['bird', 'fly', 'sky']       |  ['different models', 'fit', 'different locations']  |         ['girls', 'dance', 'gym']         |
-|  ['student', 'study', 'classroom']  |    ['listeners', 'hear music', 'radio stations']     |        ['pilots', 'fly', 'cockpit']       |
-|     ['player', 'play', 'ground']    |  ['professional singers', 'sing songs', 'concert']   |       ['people', 'work', 'factory']       |
-| ['sodier', 'fight', 'battleground'] |       ['local tourist', 'enjoy life', 'town']        |      ['student', 'study', 'library']      |
-|                  \                  |             ['children', 'play', 'park']             |        ['couple', 'meet', 'hotel']        |
-|                  \                  |      ['local tourist', 'enjoy nature', 'town']       |        ['family', 'travel', 'home']       |
-|                  \                  |            ['children', 'play', 'school']            |         ['dog', 'hunt', 'forest']         |
-|                  \                  |        ['skier', 'ski downhill', 'mountain']         |       ['viewer', 'watch', 'cinema']       |
-|                  \                  |          ['student', 'study', 'university']          |   ['pedestrian', 'pass', 'parking lot']   |
-|                  \                  |            ['student', 'study', 'school']            |      ['customers', 'eat', 'kitchen']      |
-|                  \                  |           ['student', 'study', 'college']            |       ['artist', 'paint', 'museum']       |
-|                  \                  |       ['local artists', 'exhibit', 'festival']       |     ['contestants', 'perform', 'show']    |
-|                  \                  |            ['children', 'play', 'house']             |     ['user', 'communicate', 'website']    |
-|                  \                  |           ['children', 'play', 'village']            |      ['student', 'study', 'college']      |
-|                  \                  |            ['children', 'play', 'field']             |     ['customers', 'eat', 'restaurant']    |
-|                  \                  |     ['female birds', 'mate', 'breeding season']      |  ['users', 'get information', 'website']  |
-|                  \                  |   ['different artists', 'collaborate', 'gallery']    |    ['singer', 'sing songs', 'theatre']    |
-|                  \                  |           ['human mind', 'think', 'brain']           |      ['players', 'interact', 'game']      |
-|                  \                  |            ['people', 'work', 'factory']             | ['students', 'participate', 'university'] |
-+-------------------------------------+------------------------------------------------------+-------------------------------------------+
++-------------------------------------+------------------------------------------------------+--------------------------------------------------+
+|             Seed samples            |                    Ours (Top 20)                     |    Ours (Random samples over top 200 tuples)     |
++-------------------------------------+------------------------------------------------------+--------------------------------------------------+
+|    ['people', 'work out', 'gym']    | ['professional cyclists', 'climb', 'Mountain Range'] | ['subject', 'learn skills', 'training facility'] |
+|        ['bird', 'fly', 'sky']       |  ['different models', 'fit', 'different locations']  |       ['batsman', 'bowl', 'cricket pitch']       |
+|  ['student', 'study', 'classroom']  |    ['listeners', 'hear music', 'radio stations']     |       ['singer', 'sing songs', 'concert']        |
+|     ['player', 'play', 'ground']    |  ['professional singers', 'sing songs', 'concert']   |            ['girls', 'dance', 'gym']             |
+| ['sodier', 'fight', 'battleground'] |       ['local tourist', 'enjoy life', 'town']        |        ['customers', 'eat', 'restaurant']        |
+|                  \                  |             ['children', 'play', 'park']             |            ['child', 'walk', 'house']            |
+|                  \                  |      ['local tourist', 'enjoy nature', 'town']       |       ['patients', 'get better', 'clinic']       |
+|                  \                  |            ['children', 'play', 'school']            |  ['living conditions', 'improve', 'workplace']   |
+|                  \                  |        ['skier', 'ski downhill', 'mountain']         |            ['girls', 'dance', 'club']            |
+|                  \                  |          ['student', 'study', 'university']          |          ['viewers', 'watch', 'studio']          |
+|                  \                  |            ['student', 'study', 'school']            |          ['patients', 'sleep', 'hotel']          |
+|                  \                  |           ['student', 'study', 'college']            |   ['female birds', 'mate', 'breeding season']    |
+|                  \                  |       ['local artists', 'exhibit', 'festival']       |          ['viewers', 'watch', 'cinema']          |
+|                  \                  |            ['children', 'play', 'house']             |         ['taxi', 'stop', 'parking area']         |
+|                  \                  |           ['children', 'play', 'village']            |       ['user', 'communicate', 'computer']        |
+|                  \                  |            ['children', 'play', 'field']             |    ['contestants', 'perform', 'competition']     |
+|                  \                  |     ['female birds', 'mate', 'breeding season']      |          ['artist', 'paint', 'museum']           |
+|                  \                  |   ['different artists', 'collaborate', 'gallery']    | ['developers', 'build projects', 'Project Site'] |
+|                  \                  |           ['human mind', 'think', 'brain']           |         ['voice', 'hear', 'High Voice']          |
+|                  \                  |            ['people', 'work', 'factory']             |           ['family', 'travel', 'home']           |
++-------------------------------------+------------------------------------------------------+--------------------------------------------------+
 ==================================================
 Relation: prevent
 Prompts:
@@ -56,26 +56,26 @@ Harvested Tuples:
 +---------------------------------+------------------------------------------+-------------------------------------------+
 |           Seed samples          |              Ours (Top 20)               | Ours (Random samples over top 200 tuples) |
 +---------------------------------+------------------------------------------+-------------------------------------------+
-|        ['mask', 'virus']        |     ['Test Status', 'Test Results']      |         ['poverty', 'poor living']        |
-|     ['exercise', 'disease']     | ['medical license', 'medical treatment'] |         ['government', 'violence']        |
-| ['study hard', 'fail the exam'] |   ['Test Suspension', 'Test Results']    |        ['call', 'emergency calls']        |
-|      ['reading', 'stupid']      |     ['test status', 'test positive']     |             ['watch', 'panic']            |
-|   ['insurance', 'bankruptcy']   |        ['snow', 'winter storms']         |              ['heat', 'cold']             |
-|                \                |  ['human trafficking', 'prostitution']   |       ['temperature', 'heat shock']       |
-|                \                |    ['religion', 'religious beliefs']     |         ['banking', 'bank loans']         |
-|                \                |     ['religion', 'religious belief']     |       ['dating', 'sexual relations']      |
-|                \                |           ['love', 'bad luck']           |       ['court', 'legal proceedings']      |
-|                \                |         ['Stop Crying', 'tears']         |      ['police', 'criminal behavior']      |
-|                \                |       ['call', 'emergency calls']        |         ['theft', 'safe passage']         |
-|                \                |       ['human waste', 'pollution']       |            ['time', 'illness']            |
-|                \                |        ['snow', 'winter weather']        |              ['use', 'harm']              |
-|                \                |      ['court', 'legal proceedings']      |             ['fire', 'damage']            |
-|                \                |          ['love', 'bad things']          |          ['drinking', 'suicide']          |
-|                \                |        ['stop smoking', 'smoke']         |      ['drowning', 'life threatening']     |
-|                \                |        ['email', 'text messages']        |        ['human skin', 'infections']       |
-|                \                |  ['medical education', 'tuberculosis']   |           ['blood', 'bleeding']           |
-|                \                |        ['call', 'Emergency Call']        |           ['eat', 'food waste']           |
-|                \                |        ['banking', 'bank loans']         |      ['call', 'Emergency Situations']     |
+|        ['mask', 'virus']        |     ['Test Status', 'Test Results']      |         ['eat', 'food poisoning']         |
+|     ['exercise', 'disease']     | ['medical license', 'medical treatment'] |             ['smoke', 'fire']             |
+| ['study hard', 'fail the exam'] |   ['Test Suspension', 'Test Results']    |            ['water', 'disease']           |
+|      ['reading', 'stupid']      |     ['test status', 'test positive']     |       ['temperature', 'heat shock']       |
+|   ['insurance', 'bankruptcy']   |        ['snow', 'winter storms']         |         ['banking', 'bank fraud']         |
+|                \                |  ['human trafficking', 'prostitution']   |         ['driving', 'car crashes']        |
+|                \                |    ['religion', 'religious beliefs']     |             ['sweat', 'cold']             |
+|                \                |     ['religion', 'religious belief']     |           ['training', 'injury']          |
+|                \                |           ['love', 'bad luck']           |      ['Congress', 'political unrest']     |
+|                \                |         ['Stop Crying', 'tears']         |            ['use', 'infection']           |
+|                \                |       ['call', 'emergency calls']        |           ['water', 'infection']          |
+|                \                |       ['human waste', 'pollution']       |         ['drinking', 'drug users']        |
+|                \                |        ['snow', 'winter weather']        |            ['time', 'failure']            |
+|                \                |      ['court', 'legal proceedings']      |           ['control', 'damage']           |
+|                \                |          ['love', 'bad things']          |         ['alcohol', 'drug users']         |
+|                \                |        ['stop smoking', 'smoke']         |       ['sleeping', 'sleep sickness']      |
+|                \                |        ['email', 'text messages']        |           ['care', 'infection']           |
+|                \                |  ['medical education', 'tuberculosis']   |        ['marriage', 'child birth']        |
+|                \                |        ['call', 'Emergency Call']        |     ['religion', 'religious practice']    |
+|                \                |        ['banking', 'bank loans']         |          ['drinking', 'suicide']          |
 +---------------------------------+------------------------------------------+-------------------------------------------+
 ==================================================
 Relation: help
@@ -92,30 +92,30 @@ Prompts:
 - 0.0738 A <ENT0> can help a <ENT1> in many ways, from grading papers to leading discussion sections .
 - 0.0711 A <ENT0> can help take care of the household duties for a <ENT1> .
 Harvested Tuples:
-+-------------------------------------+------------------------------------------------+------------------------------------------------+
-|             Seed samples            |                 Ours (Top 20)                  |   Ours (Random samples over top 200 tuples)    |
-+-------------------------------------+------------------------------------------------+------------------------------------------------+
-|        ['doctor', 'patient']        | ['private detective', 'private investigator']  |        ['field commander', 'battalion']        |
-|        ['teacher', 'student']       |  ['Health Therapist', 'Health Professional']   |              ['computer', 'user']              |
-|     ['housekeeper', 'housewife']    | ['health psychologist', 'health professional'] |            ['secretary', 'client']             |
-| ['teaching assistant', 'professor'] |             ['teacher', 'student']             |              ['soldier', 'woman']              |
-|         ['police', 'victim']        |   ['Service Technician', 'Service Provider']   |          ['field marshal', 'general']          |
-|                  \                  |          ['counselor', 'young adult']          |              ['nurse', 'client']               |
-|                  \                  |     ['programmer', 'computer programmer']      |             ['daughter', 'father']             |
-|                  \                  |         ['publisher', 'book reviewer']         | ['health psychologist', 'health professional'] |
-|                  \                  |     ['field trainer', 'field instructor']      |     ['commander', 'military organization']     |
-|                  \                  |              ['teacher', 'child']              |               ['host', 'guest']                |
-|                  \                  |       ['governor', 'state legislature']        |               ['player', 'team']               |
-|                  \                  |       ['staff sergeant', 'subordinate']        |                ['guy', 'girl']                 |
-|                  \                  |   ['health psychologist', 'health educator']   |             ['group', 'community']             |
-|                  \                  |        ['publisher', 'book publisher']         |        ['contractor', 'building owner']        |
-|                  \                  |        ['teammate', 'fellow teammate']         |             ['coach', 'young man']             |
-|                  \                  |   ['Service Supervisor', 'Service Employee']   |      ['presenter', 'programme presenter']      |
-|                  \                  |              ['teacher', 'pupil']              |     ['civilian', 'military organization']      |
-|                  \                  |        ['local government', 'village']         |           ['narrator', 'character']            |
-|                  \                  |    ['Private Employee', 'private employer']    |            ['character', 'player']             |
-|                  \                  |         ['curator', 'museum curator']          |            ['ranger', 'volunteer']             |
-+-------------------------------------+------------------------------------------------+------------------------------------------------+
++-------------------------------------+------------------------------------------------+-----------------------------------------------+
+|             Seed samples            |                 Ours (Top 20)                  |   Ours (Random samples over top 200 tuples)   |
++-------------------------------------+------------------------------------------------+-----------------------------------------------+
+|        ['doctor', 'patient']        | ['private detective', 'private investigator']  |         ['local manager', 'resident']         |
+|        ['teacher', 'student']       |  ['Health Therapist', 'Health Professional']   |            ['diver', 'diving crew']           |
+|     ['housekeeper', 'housewife']    | ['health psychologist', 'health professional'] |            ['secretary', 'client']            |
+| ['teaching assistant', 'professor'] |             ['teacher', 'student']             |             ['daughter', 'father']            |
+|         ['police', 'victim']        |   ['Service Technician', 'Service Provider']   | ['private detective', 'private investigator'] |
+|                  \                  |          ['counselor', 'young adult']          |               ['mother', 'baby']              |
+|                  \                  |     ['programmer', 'computer programmer']      |         ['prisoner', 'prison officer']        |
+|                  \                  |         ['publisher', 'book reviewer']         |             ['student', 'school']             |
+|                  \                  |     ['field trainer', 'field instructor']      |          ['medical staff', 'doctor']          |
+|                  \                  |              ['teacher', 'child']              |        ['landlord', 'tenant directly']        |
+|                  \                  |       ['governor', 'state legislature']        |              ['person', 'child']              |
+|                  \                  |       ['staff sergeant', 'subordinate']        |       ['staff sergeant', 'subordinate']       |
+|                  \                  |   ['health psychologist', 'health educator']   |     ['programmer', 'computer programmer']     |
+|                  \                  |        ['publisher', 'book publisher']         |       ['programmer', 'computer system']       |
+|                  \                  |        ['teammate', 'fellow teammate']         |       ['Senior Scientist', 'researcher']      |
+|                  \                  |   ['Service Supervisor', 'Service Employee']   |   ['working supervisor', 'work supervisor']   |
+|                  \                  |              ['teacher', 'pupil']              |              ['child', 'family']              |
+|                  \                  |        ['local government', 'village']         |       ['playwright', 'theatre director']      |
+|                  \                  |    ['Private Employee', 'private employer']    |           ['robot', 'living entity']          |
+|                  \                  |         ['curator', 'museum curator']          |        ['teammate', 'fellow teammate']        |
++-------------------------------------+------------------------------------------------+-----------------------------------------------+
 ==================================================
 Relation: place_for
 Prompts:
@@ -135,26 +135,26 @@ Harvested Tuples:
 +------------------------------------+---------------------------------------+-------------------------------------------+
 |            Seed samples            |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
 +------------------------------------+---------------------------------------+-------------------------------------------+
-|        ['gym', 'exercise']         |  ['High Schools', 'college studies']  |          ['sink', 'clean dishes']         |
-|       ['classroom', 'study']       |    ['private jet', 'flying today']    |         ['university', 'studying']        |
-|         ['office', 'work']         |      ['office', 'work together']      |        ['big stadium', 'football']        |
-| ['hosipital', 'medical treatment'] |      ['church', 'work together']      |            ['park', 'practice']           |
-|        ['mart', 'shopping']        |       ['village', 'good deeds']       |          ['public pool', 'swim']          |
-|                 \                  |        ['office', 'work today']       |           ['school', 'practice']          |
-|                 \                  |      ['high schools', 'college']      |           ['hotel', 'shopping']           |
-|                 \                  |       ['home turf', 'football']       |            ['city', 'business']           |
-|                 \                  |    ['local university', 'college']    |        ['church', 'work together']        |
-|                 \                  | ['private prison', 'torture victims'] |          ['auditorium', 'dance']          |
-|                 \                  |         ['Big Screen', 'film']        |         ['hotel bed', 'sleeping']         |
-|                 \                  |      ['laundry', 'clean laundry']     |           ['store', 'shopping']           |
-|                 \                  |         ['gym', 'work today']         |         ['House Tonight', 'party']        |
-|                 \                  |     ['local newspaper', 'gossip']     |            ['spring', 'water']            |
-|                 \                  |   ['private toilet', 'toilet paper']  |             ['city', 'study']             |
-|                 \                  |     ['Public Schools', 'learning']    |             ['home', 'sleep']             |
-|                 \                  |     ['Public Schools', 'teaching']    |          ['Fire Station', 'help']         |
-|                 \                  |   ['private plane', 'flying today']   |          ['hotel bar', 'drinks']          |
-|                 \                  |         ['ocean', 'good luck']        |     ['American Wilderness', 'hiking']     |
-|                 \                  |          ['school', 'study']          |        ['local theater', 'movies']        |
+|        ['gym', 'exercise']         |  ['High Schools', 'college studies']  |            ['bar', 'drinking']            |
+|       ['classroom', 'study']       |    ['private jet', 'flying today']    |            ['studio', 'music']            |
+|         ['office', 'work']         |      ['office', 'work together']      |             ['ocean', 'fish']             |
+| ['hosipital', 'medical treatment'] |      ['church', 'work together']      |        ['toilet', 'clean laundry']        |
+|        ['mart', 'shopping']        |       ['village', 'good deeds']       |            ['town', 'training']           |
+|                 \                  |        ['office', 'work today']       |          ['stadium', 'football']          |
+|                 \                  |      ['high schools', 'college']      |           ['Lagoon', 'surfing']           |
+|                 \                  |       ['home turf', 'football']       |           ['country', 'travel']           |
+|                 \                  |    ['local university', 'college']    |            ['mall', 'shopping']           |
+|                 \                  | ['private prison', 'torture victims'] |           ['store', 'shopping']           |
+|                 \                  |         ['Big Screen', 'film']        |          ['chapel', 'meditation']         |
+|                 \                  |      ['laundry', 'clean laundry']     |           ['chapel', 'worship']           |
+|                 \                  |         ['gym', 'work today']         |       ['Public Schools', 'learning']      |
+|                 \                  |     ['local newspaper', 'gossip']     |             ['desert', 'rest']            |
+|                 \                  |   ['private toilet', 'toilet paper']  |            ['park', 'exercise']           |
+|                 \                  |     ['Public Schools', 'learning']    |           ['school', 'research']          |
+|                 \                  |     ['Public Schools', 'teaching']    |          ['hospital', 'research']         |
+|                 \                  |   ['private plane', 'flying today']   |           ['school', 'exercise']          |
+|                 \                  |         ['ocean', 'good luck']        |        ['Sanctuary', 'good deeds']        |
+|                 \                  |          ['school', 'study']          |              ['gym', 'yoga']              |
 +------------------------------------+---------------------------------------+-------------------------------------------+
 ==================================================
 Relation: antonym
@@ -171,26 +171,26 @@ Harvested Tuples:
 +--------------------+-------------------------------------+-------------------------------------------+
 |    Seed samples    |            Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
 +--------------------+-------------------------------------+-------------------------------------------+
-|  ['fat', 'thin']   |      ['present', 'past tense']      |         ['flat', 'straight lines']        |
-|  ['happy', 'sad']  |     ['gothic', 'modern gothic']     |             ['green', 'white']            |
-| ['north', 'south'] |  ['history', 'historical history']  |           ['love', 'friendship']          |
-|  ['woman', 'man']  |    ['Russian', 'Soviet Russian']    |          ['base', 'ground zone']          |
-|  ['pass', 'fail']  |   ['capital', 'political capital']  |       ['natural vegetation', 'soil']      |
-|         \          |     ['memory', 'mental memory']     |            ['sex', 'marriage']            |
-|         \          |   ['natural vegetation', 'forest']  |              ['good', 'evil']             |
-|         \          |      ['lake', 'mountain lake']      |             ['time', 'place']             |
-|         \          |       ['long', 'short vowels']      |             ['three', 'four']             |
-|         \          |       ['long', 'short length']      |    ['college', 'university education']    |
-|         \          |     ['church', 'parish church']     |            ['music', 'poetry']            |
-|         \          |       ['lead', 'strong lead']       |            ['war', 'conflict']            |
-|         \          |        ['stop', 'slow stop']        |              ['home', 'work']             |
-|         \          |     ['pure wisdom', 'knowledge']    |           ['school', 'college']           |
-|         \          |     ['road', 'Highway Traffic']     |            ['human', 'animal']            |
-|         \          | ['college', 'university education'] |           ['Texas', 'de facto']           |
-|         \          |       ['short', 'long vowels']      |               ['God', 'man']              |
-|         \          |    ['straight', 'short straight']   |            ['death', 'suicide']           |
-|         \          |      ['real world', 'fantasy']      |             ['light', 'dark']             |
-|         \          | ['natural vegetation', 'landscape'] |             ['sex', 'desire']             |
+|  ['fat', 'thin']   |      ['present', 'past tense']      |            ['music', 'poetry']            |
+|  ['happy', 'sad']  |     ['gothic', 'modern gothic']     |             ['home', 'house']             |
+| ['north', 'south'] |  ['history', 'historical history']  |           ['space', 'distance']           |
+|  ['woman', 'man']  |    ['Russian', 'Soviet Russian']    |              ['white', 'red']             |
+|  ['pass', 'fail']  |   ['capital', 'political capital']  |            ['meaning', 'truth']           |
+|         \          |     ['memory', 'mental memory']     |             ['right', 'left']             |
+|         \          |   ['natural vegetation', 'forest']  |              ['time', 'date']             |
+|         \          |      ['lake', 'mountain lake']      |               ['God', 'man']              |
+|         \          |       ['long', 'short vowels']      |              ['God', 'human']             |
+|         \          |       ['long', 'short length']      |             ['water', 'land']             |
+|         \          |     ['church', 'parish church']     |             ['human', 'beast']            |
+|         \          |       ['lead', 'strong lead']       |             ['red', 'yellow']             |
+|         \          |        ['stop', 'slow stop']        |             ['death', 'birth']            |
+|         \          |     ['pure wisdom', 'knowledge']    |           ['language', 'music']           |
+|         \          |     ['road', 'Highway Traffic']     |            ['love', 'passion']            |
+|         \          | ['college', 'university education'] |             ['water', 'wind']             |
+|         \          |       ['short', 'long vowels']      |             ['time', 'place']             |
+|         \          |    ['straight', 'short straight']   |              ['love', 'lust']             |
+|         \          |      ['real world', 'fantasy']      |            ['money', 'wealth']            |
+|         \          | ['natural vegetation', 'landscape'] |             ['green', 'brown']            |
 +--------------------+-------------------------------------+-------------------------------------------+
 ==================================================
 Relation: separated_by_the_ocean
@@ -207,30 +207,30 @@ Prompts:
 - 0.0562 There is a distance of about 1,500 miles between <ENT1> and the <ENT0>s .
 - 0.0546 <ENT1> and <ENT0> are separated by the ocean .
 Harvested Tuples:
-+-------------------------------------+---------------------------------------------+-------------------------------------------+
-|             Seed samples            |                Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
-+-------------------------------------+---------------------------------------------+-------------------------------------------+
-|          ['China', 'Japan']         |     ['United States', 'United Nations']     |           ['England', 'Denmark']          |
-|     ['Australia', 'New Zealand']    |            ['gold', 'silver ore']           |         ['Kazakhstan', 'Siberia']         |
-| ['United Kingdom', 'the Continent'] |         ['beaches', 'beach resorts']        |           ['Africa', 'Iceland']           |
-|       ['United State', 'Cuba']      |         ['Nicaragua', 'El Salvador']        |      ['Atlantic Routes', 'Maritime']      |
-|         ['Spain', 'Morocco']        |         ['rocks', 'rock formations']        |        ['beaches', 'beach resorts']       |
-|                  \                  |          ['Ecuador', 'El Salvador']         |          ['Botswana', 'Namibia']          |
-|                  \                  |         ['Australia', 'Antarctica']         |         ['Botswana', 'Mozambique']        |
-|                  \                  |         ['plains', 'coastal plains']        |           ['Antarctica', 'Asia']          |
-|                  \                  | ['Antarctic Region', 'Antarctic Continent'] |        ['Nicaragua', 'El Salvador']       |
-|                  \                  |            ['Australia', 'Asia']            |           ['Britain', 'Ireland']          |
-|                  \                  |           ['Australia', 'Africa']           |          ['Barbados', 'Trinidad']         |
-|                  \                  |             ['Europe', 'Africa']            |         ['Tanzania', 'Cape Verde']        |
-|                  \                  |          ['two planets', 'Jupiter']         |           ['mainland', 'Taiwan']          |
-|                  \                  |              ['Earth', 'Mars']              |   ['Australian Languages', 'Aboriginal']  |
-|                  \                  |          ['two planets', 'Saturn']          |        ['Australia', 'Madagascar']        |
-|                  \                  |             ['Canada', 'Mexico']            |             ['Canada', 'Cuba']            |
-|                  \                  |          ['King', 'Queen Consort']          |     ['neighbouring villages', 'towns']    |
-|                  \                  |              ['Rio', 'El Oro']              |            ['India', 'Africa']            |
-|                  \                  |         ['glacier', 'glacial till']         |           ['Ireland', 'Iceland']          |
-|                  \                  |          ['surface', 'ocean floor']         |            ['Israel', 'Egypt']            |
-+-------------------------------------+---------------------------------------------+-------------------------------------------+
++-------------------------------------+---------------------------------------------+------------------------------------------------+
+|             Seed samples            |                Ours (Top 20)                |   Ours (Random samples over top 200 tuples)    |
++-------------------------------------+---------------------------------------------+------------------------------------------------+
+|          ['China', 'Japan']         |     ['United States', 'United Nations']     |           ['two planets', 'Saturn']            |
+|     ['Australia', 'New Zealand']    |            ['gold', 'silver ore']           |               ['space', 'time']                |
+| ['United Kingdom', 'the Continent'] |         ['beaches', 'beach resorts']        |              ['Canada', 'Mexico']              |
+|       ['United State', 'Cuba']      |         ['Nicaragua', 'El Salvador']        |      ['international', 'national level']       |
+|         ['Spain', 'Morocco']        |         ['rocks', 'rock formations']        |                ['East', 'West']                |
+|                  \                  |          ['Ecuador', 'El Salvador']         |        ['nation', 'individual nations']        |
+|                  \                  |         ['Australia', 'Antarctica']         |               ['Samoa', 'Tonga']               |
+|                  \                  |         ['plains', 'coastal plains']        |     ['international', 'national borders']      |
+|                  \                  | ['Antarctic Region', 'Antarctic Continent'] |            ['Southern', 'Northern']            |
+|                  \                  |            ['Australia', 'Asia']            | ['United Territories', 'separate territories'] |
+|                  \                  |           ['Australia', 'Africa']           |             ['Ireland', 'Iceland']             |
+|                  \                  |             ['Europe', 'Africa']            |            ['Bolivia', 'Argentina']            |
+|                  \                  |          ['two planets', 'Jupiter']         |                ['West', 'East']                |
+|                  \                  |              ['Earth', 'Mars']              |             ['Russia', 'Siberia']              |
+|                  \                  |          ['two planets', 'Saturn']          |       ['Atlantic Countries', 'European']       |
+|                  \                  |             ['Canada', 'Mexico']            |               ['North', 'East']                |
+|                  \                  |          ['King', 'Queen Consort']          |          ['Nicaragua', 'El Salvador']          |
+|                  \                  |              ['Rio', 'El Oro']              |            ['Bolivia', 'La Costa']             |
+|                  \                  |         ['glacier', 'glacial till']         |          ['Kazakhstan', 'Uzbekistan']          |
+|                  \                  |          ['surface', 'ocean floor']         |         ['Namibia', 'African Waters']          |
++-------------------------------------+---------------------------------------------+------------------------------------------------+
 ==================================================
 Relation: representative_figure
 Prompts:
@@ -243,26 +243,26 @@ Harvested Tuples:
 +------------------------------------+--------------------------------------+-------------------------------------------+
 |            Seed samples            |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
 +------------------------------------+--------------------------------------+-------------------------------------------+
-|   ['Lionel Messi', 'Barcelona']    |      ['Lord Krishna', 'Vishnu']      |            ['John', 'culture']            |
-|      ['Steven Jobs', 'Apple']      |       ['Black Metal', 'rock']        |        ['Young Artists', 'talent']        |
-| ['Nelson Mandela', 'South Africa'] |  ['President Westwood', 'America']   |              ['shah', 'Iran']             |
-| ['Taylor Swift', 'country music']  |      ['young adulthood', 'age']      |           ['Richard', 'France']           |
-|       ['2Pac', 'pop music']        |      ['white trash', 'America']      |             ['John', 'China']             |
-|                 \                  | ['El Salvador', 'Argentine Country'] |         ['Lord Krishna', 'Vishnu']        |
-|                 \                  |    ['Prince William', 'royalty']     |          ['White Woman', 'color']         |
-|                 \                  |    ['General Theory', 'science']     |      ['young children', 'education']      |
-|                 \                  |      ['El Greco', 'Argentina']       |            ['Thomas', 'nature']           |
-|                 \                  |         ['El Toro', 'Chile']         |            ['Picasso', 'Italy']           |
-|                 \                  | ['President Westwood', 'Washington'] |           ['man', 'government']           |
-|                 \                  |      ['Prince Igor', 'royalty']      |          ['Peter', 'government']          |
-|                 \                  |       ['Black Metal', 'punk']        |            ['David', 'culture']           |
-|                 \                  |        ['El Monte', 'Chile']         |            ['George', 'power']            |
-|                 \                  |     ['Young Artists', 'talent']      |            ['God', 'humanity']            |
-|                 \                  |    ['every student', 'education']    |             ['George', 'man']             |
-|                 \                  |      ['King Stephen', 'kings']       |      ['Christian Tradition', 'faith']     |
-|                 \                  |       ['El Hassan', 'Morocco']       |       ['Griffin', 'British Fashion']      |
-|                 \                  |    ['every student', 'students']     |            ['Pierre', 'French']           |
-|                 \                  |   ['another writer', 'literature']   |        ['Jared', 'Human Sexuality']       |
+|   ['Lionel Messi', 'Barcelona']    |      ['Lord Krishna', 'Vishnu']      |     ['Gustav', 'Russian Nationalism']     |
+|      ['Steven Jobs', 'Apple']      |       ['Black Metal', 'rock']        |     ['General Suffrage', 'democracy']     |
+| ['Nelson Mandela', 'South Africa'] |  ['President Westwood', 'America']   |            ['Jacob', 'Israel']            |
+| ['Taylor Swift', 'country music']  |      ['young adulthood', 'age']      |       ['James', 'African Politics']       |
+|       ['2Pac', 'pop music']        |      ['white trash', 'America']      |           ['Charles', 'nature']           |
+|                 \                  | ['El Salvador', 'Argentine Country'] |        ['Lord Robert', 'authority']       |
+|                 \                  |    ['Prince William', 'royalty']     |          ['Black Metal', 'rock']          |
+|                 \                  |    ['General Theory', 'science']     |         ['Hitler', 'American Art']        |
+|                 \                  |      ['El Greco', 'Argentina']       |         ['Lord Krishna', 'Vishnu']        |
+|                 \                  |         ['El Toro', 'Chile']         |        ['Young Artists', 'talent']        |
+|                 \                  | ['President Westwood', 'Washington'] |      ['Jones', 'American Literature']     |
+|                 \                  |      ['Prince Igor', 'royalty']      |      ['Webster', 'social networking']     |
+|                 \                  |       ['Black Metal', 'punk']        |          ['Peter', 'government']          |
+|                 \                  |        ['El Monte', 'Chile']         |       ['Prince William', 'royalty']       |
+|                 \                  |     ['Young Artists', 'talent']      |             ['John', 'people']            |
+|                 \                  |    ['every student', 'education']    |             ['Mao', 'Chinese']            |
+|                 \                  |      ['King Stephen', 'kings']       |            ['David', 'culture']           |
+|                 \                  |       ['El Hassan', 'Morocco']       |            ['Johnson', 'youth']           |
+|                 \                  |    ['every student', 'students']     |            ['David', 'society']           |
+|                 \                  |   ['another writer', 'literature']   |             ['White', 'China']            |
 +------------------------------------+--------------------------------------+-------------------------------------------+
 ==================================================
 Relation: ingredient_for
@@ -282,66 +282,27 @@ Harvested Tuples:
 +-------------------------------+-----------------------------------+-------------------------------------------+
 |          Seed samples         |           Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
 +-------------------------------+-----------------------------------+-------------------------------------------+
-|       ['flour', 'cake']       |       ['luck', 'good luck']       |            ['cheese', 'bread']            |
-|     ['beef', 'hamburger']     |     ['money', 'good fortune']     |             ['cheese', 'meat']            |
-|       ['potato', 'chip']      | ['Indian Cotton', 'cotton cloth'] |          ['black fish', 'salmon']         |
-|     ['fried rice', 'rice']    |    ['smoke', 'cigarette smoke']   |         ['rubber', 'plastic wrap']        |
-| ['stargazer pie', 'pilchard'] |      ['gold', 'good fortune']     |          ['Thai Pot', 'Thai Pan']         |
-|               \               |      ['snow', 'Winter Snow']      |          ['apples', 'Apple Tree']         |
-|               \               |  ['Dutch Pepper', 'pepper spray'] |          ['cocaine', 'Drug Use']          |
-|               \               |     ['red velvet', 'perfume']     |         ['black leather', 'shoe']         |
-|               \               |      ['blood', 'human flesh']     |          ['White Fish', 'salmon']         |
-|               \               |      ['white crab', 'shrimp']     |      ['Dutch Pepper', 'pepper spray']     |
-|               \               |   ['smoke', 'cigarette smoking']  |             ['garlic', 'wine']            |
-|               \               |      ['luck', 'good fortune']     |          ['green powder', 'soap']         |
-|               \               |      ['wool', 'cotton wool']      |         ['wool', 'cotton thread']         |
-|               \               |      ['venom', 'snake venom']     |         ['red paint', 'painting']         |
-|               \               |      ['money', 'good money']      |             ['wheat', 'corn']             |
-|               \               |      ['white linen', 'soap']      |              ['oil', 'rice']              |
-|               \               |      ['white linen', 'cloth']     |          ['cocaine', 'cannabis']          |
-|               \               |      ['Green Leaf', 'lemon']      |          ['venom', 'snake venom']         |
-|               \               |     ['Thai Pot', 'Thai Dish']     |          ['heroin', 'Human Skin']         |
-|               \               |    ['white potatoes', 'turkey']   |              ['wood', 'fire']             |
+|       ['flour', 'cake']       |       ['luck', 'good luck']       |       ['smoke', 'cigarette smoking']      |
+|     ['beef', 'hamburger']     |     ['money', 'good fortune']     |         ['Swiss Sticks', 'pizza']         |
+|       ['potato', 'chip']      | ['Indian Cotton', 'cotton cloth'] |        ['Chinese Tile', 'pottery']        |
+|     ['fried rice', 'rice']    |    ['smoke', 'cigarette smoke']   |          ['tobacco', 'cigarette']         |
+| ['stargazer pie', 'pilchard'] |      ['gold', 'good fortune']     |              ['rice', 'tea']              |
+|               \               |      ['snow', 'Winter Snow']      |         ['American Rubber', 'gum']        |
+|               \               |  ['Dutch Pepper', 'pepper spray'] |          ['grapes', 'grape vine']         |
+|               \               |     ['red velvet', 'perfume']     |        ['pottery', 'ceramic tiles']       |
+|               \               |      ['blood', 'human flesh']     |             ['sugar', 'bread']            |
+|               \               |      ['white crab', 'shrimp']     |        ['white potatoes', 'turkey']       |
+|               \               |   ['smoke', 'cigarette smoking']  |         ['life', 'living things']         |
+|               \               |      ['luck', 'good fortune']     |          ['luck', 'good fortune']         |
+|               \               |      ['wool', 'cotton wool']      |           ['snow', 'Winter Ice']          |
+|               \               |      ['venom', 'snake venom']     |          ['blood', 'human skin']          |
+|               \               |      ['money', 'good money']      |              ['pork', 'beef']             |
+|               \               |      ['white linen', 'soap']      |       ['American Jam', 'jam syrup']       |
+|               \               |      ['white linen', 'cloth']     |          ['heroin', 'Human Skin']         |
+|               \               |      ['Green Leaf', 'lemon']      |          ['foam', 'plastic foam']         |
+|               \               |     ['Thai Pot', 'Thai Dish']     |            ['salt', 'chicken']            |
+|               \               |    ['white potatoes', 'turkey']   |            ['garlic', 'bread']            |
 +-------------------------------+-----------------------------------+-------------------------------------------+
-==================================================
-Relation: processed_from
-Prompts:
-- 0.1293 The main source of <ENT1> is <ENT0> .
-- 0.1151 Most <ENT1> is made from <ENT0> .
-- 0.1077 The <ENT0> is the place where <ENT1> is mined .
-- 0.1057 The main source of <ENT1> is quartz, which is a type of <ENT0> .
-- 0.0916 <ENT0> is the primary ingredient in the production of <ENT1> .
-- 0.0844 <ENT1> is a dairy product that is made from <ENT0> .
-- 0.0836 The <ENT0> is what turns into <ENT1> .
-- 0.0785 <ENT0> is the main source of <ENT1> used in vehicles and other machinery .
-- 0.0713 Many <ENT1>s contain <ENT0> as a major ingredient .
-- 0.0699 <ENT0> is a major source of <ENT1> .
-- 0.0630 <ENT0> is the source of <ENT1> .
-Harvested Tuples:
-+-----------------------------+---------------------------------------------+-------------------------------------------+
-|         Seed samples        |                Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
-+-----------------------------+---------------------------------------------+-------------------------------------------+
-| ['wool', 'woollen sweater'] |       ['Mountain Top', 'Mountain Air']      |        ['tape', 'electronic tape']        |
-|      ['milk', 'yogurt']     |     ['ground cover', 'ground moisture']     |        ['wire', 'electrical wire']        |
-|     ['sand', 'silicon']     |        ['silicon', 'organic silicon']       |        ['Indian Whiskey', 'liquor']       |
-|    ['iron mine', 'iron']    |      ['software', 'computer software']      |              ['meat', 'fish']             |
-|    ['crude oil', 'fuel']    |        ['organic solvent', 'ethanol']       |              ['rice', 'food']             |
-|              \              |          ['red velvet', 'leather']          |             ['wood', 'energy']            |
-|              \              |            ['fur', 'animal fur']            |             ['copper', 'iron']            |
-|              \              |        ['rubber', 'synthetic rubber']       |     ['mountain runoff', 'groundwater']    |
-|              \              | ['mineral potassium', 'potassium chloride'] |            ['oil', 'petroleum']           |
-|              \              |           ['white pine', 'lumber']          |      ['mineral potassium', 'sodium']      |
-|              \              |          ['red velvet', 'perfume']          |        ['rock bottom', 'sediment']        |
-|              \              |         ['white marble', 'granite']         |         ['black sheep', 'cattle']         |
-|              \              |         ['pure potassium', 'sodium']        |      ['diamonds', 'diamond jewelry']      |
-|              \              |         ['pure platinum', 'nickel']         |           ['petroleum', 'coal']           |
-|              \              |       ['local government', 'revenue']       |             ['wheat', 'flour']            |
-|              \              |         ['dry slate', 'slate dust']         |              ['coal', 'fuel']             |
-|              \              |          ['local granite', 'rock']          |              ['wine', 'beer']             |
-|              \              |         ['black powder', 'mercury']         |      ['software', 'computer science']     |
-|              \              |         ['wire', 'electrical wire']         |              ['sand', 'clay']             |
-|              \              |           ['black smoke', 'fire']           |         ['eggs', 'egg production']        |
-+-----------------------------+---------------------------------------------+-------------------------------------------+
 ==================================================
 Relation: business
 Prompts:
@@ -361,26 +322,26 @@ Harvested Tuples:
 +---------------------------+-------------------------------------------------+-------------------------------------------+
 |        Seed samples       |                  Ours (Top 20)                  | Ours (Random samples over top 200 tuples) |
 +---------------------------+-------------------------------------------------+-------------------------------------------+
-|     ['Nissan', 'car']     |             ['toyota', 'auto parts']            |         ['open source', 'version']        |
-|    ['Apple', 'laptop']    |         ['south atlantic', 'ship cargo']        |           ['volkswagen', 'part']          |
-|      ['Shell', 'oil']     |          ['enterprise', 'product line']         |            ['green', 'plastic']           |
-|     ['Nvidia', 'GPU']     |           ['star cinema', 'video tv']           |        ['construction', 'building']       |
-| ['McDonald', 'hamburger'] |              ['dell', 'Auto Parts']             |           ['pioneer', 'mobile']           |
-|             \             | ['western electronics', 'electronics products'] |            ['honda', 'coffee']            |
-|             \             |     ['western airlines', 'passenger ticket']    |           ['general', 'service']          |
-|             \             |            ['lotus', 'large volume']            |        ['bliss', 'computer system']       |
-|             \             |         ['arsenal', 'military weapons']         |         ['king', 'company owned']         |
-|             \             |       ['planet express', 'station wagon']       |          ['pizza', 'restaurant']          |
-|             \             |            ['legend', 'large volume']           |             ['fox', 'pig fat']            |
-|             \             |             ['smart phones', 'app']             |      ['arsenal', 'military weapons']      |
-|             \             |             ['today', 'auto repair']            |            ['rogers', 'mobile']           |
-|             \             |            ['baker', 'Food Products']           |       ['thompson', 'pizza delivery']      |
-|             \             |            ['baker', 'Food Product']            |            ['youtube', 'video']           |
-|             \             |    ['western airlines', 'passenger airline']    |        ['police', 'Driver License']       |
-|             \             |            ['bell', 'company owned']            |            ['diamond', 'brand']           |
-|             \             |             ['lotus', 'large sized']            |           ['blue star', 'color']          |
-|             \             |             ['eagle', 'chicken egg']            |            ['green', 'mobile']            |
-|             \             |           ['miller', 'company owned']           |          ['little john', 'mini']          |
+|     ['Nissan', 'car']     |             ['toyota', 'auto parts']            |        ['pace', 'computer system']        |
+|    ['Apple', 'laptop']    |         ['south atlantic', 'ship cargo']        |         ['alpha energy', 'solar']         |
+|      ['Shell', 'oil']     |          ['enterprise', 'product line']         |            ['diesel', 'engine']           |
+|     ['Nvidia', 'GPU']     |           ['star cinema', 'video tv']           |             ['gray', 'color']             |
+| ['McDonald', 'hamburger'] |              ['dell', 'Auto Parts']             |             ['boots', 'shoe']             |
+|             \             | ['western electronics', 'electronics products'] |         ['management', 'service']         |
+|             \             |     ['western airlines', 'passenger ticket']    |        ['open window', 'furniture']       |
+|             \             |            ['lotus', 'large volume']            |    ['planet express', 'station wagon']    |
+|             \             |         ['arsenal', 'military weapons']         |             ['rogers', 'car']             |
+|             \             |       ['planet express', 'station wagon']       |           ['amazon', 'plastic']           |
+|             \             |            ['legend', 'large volume']           |      ['south atlantic', 'ship cargo']     |
+|             \             |             ['smart phones', 'app']             |       ['eclipse', 'computer system']      |
+|             \             |             ['today', 'auto repair']            |             ['miller', 'beer']            |
+|             \             |            ['baker', 'Food Products']           |      ['central motors', 'automotive']     |
+|             \             |            ['baker', 'Food Product']            |            ['green', 'mobile']            |
+|             \             |    ['western airlines', 'passenger airline']    |         ['west bay', 'ship cargo']        |
+|             \             |            ['bell', 'company owned']            |         ['smart phone', 'iphone']         |
+|             \             |             ['lotus', 'large sized']            |            ['sierra', 'coffee']           |
+|             \             |             ['eagle', 'chicken egg']            | ['western airlines', 'passenger airline'] |
+|             \             |           ['miller', 'company owned']           |            ['fox', 'pig meat']            |
 +---------------------------+-------------------------------------------------+-------------------------------------------+
 ==================================================
 Relation: featured_thing
@@ -397,30 +358,30 @@ Prompts:
 - 0.0650 A single <ENT0> is a very <ENT1> and affordable <ENT2> item .
 - 0.0514 It covers a lot of ground, <ENT0> is a very <ENT1> <ENT2> .
 Harvested Tuples:
-+------------------------------------------+--------------------------------------------------------+-------------------------------------------+
-|               Seed samples               |                     Ours (Top 20)                      | Ours (Random samples over top 200 tuples) |
-+------------------------------------------+--------------------------------------------------------+-------------------------------------------+
-|         ['egg', 'cheap', 'food']         |    ['Black Light', 'light colored', 'light source']    |     ['white wheat', 'fertile', 'crop']    |
-|         ['boa', 'long', 'snake']         |           ['white wheat', 'fertile', 'crop']           |           ['Dad', 'nice', 'kid']          |
-| ['Messi', 'skillful', 'football player'] |       ['black leather', 'expensive', 'material']       |      ['india', 'small', 'community']      |
-|      ['Russia', 'large', 'country']      |   ['Indian Cooking', 'traditional', 'cooking style']   |         ['time', 'short', 'span']         |
-|      ['Amazon', 'rich', 'company']       |      ['Indian Cinema', 'modern', 'film industry']      |     ['china', 'valuable', 'commodity']    |
-|                    \                     |           ['brown wheat', 'fertile', 'crop']           |          ['name', 'old', 'story']         |
-|                    \                     |            ['white wool', 'fine', 'fibre']             |       ['winter', 'cold', 'climate']       |
-|                    \                     |     ['black dress', 'fashionable', 'dress style']      |       ['society', 'social', 'group']      |
-|                    \                     | ['Indian Cooking', 'traditional', 'cooking technique'] |        ['Mary', 'popular', 'drink']       |
-|                    \                     |     ['Indian Cinema', 'modern', 'movie industry']      |     ['death', 'important', 'process']     |
-|                    \                     |    ['Black Dress', 'fashionable', 'fashion style']     |         ['red', 'bright', 'shade']        |
-|                    \                     |           ['white wheat', 'fertile', 'soil']           |         ['Earth', 'rich', 'land']         |
-|                    \                     |          ['white wheat', 'fertile', 'plant']           |     ['nature', 'different', 'species']    |
-|                    \                     |         ['brown skin', 'attractive', 'color']          |      ['cancer', 'serious', 'problem']     |
-|                    \                     |   ['Indian Cooking', 'traditional', 'food industry']   |        ['Mary', 'popular', 'dish']        |
-|                    \                     |         ['Grey Syndrome', 'severe', 'disease']         |         ['John', 'good', 'person']        |
-|                    \                     |        ['Green Flower', 'attractive', 'plant']         |        ['hair', 'fine', 'quality']        |
-|                    \                     |          ['white wheat', 'fertile', 'field']           |      ['summer', 'pleasant', 'season']     |
-|                    \                     |           ['Little Woman', 'pretty', 'girl']           |         ['berry', 'sweet', 'wine']        |
-|                    \                     |           ['brown skin', 'soft', 'texture']            |   ['television', 'expensive', 'medium']   |
-+------------------------------------------+--------------------------------------------------------+-------------------------------------------+
++------------------------------------------+--------------------------------------------------------+----------------------------------------------------+
+|               Seed samples               |                     Ours (Top 20)                      |     Ours (Random samples over top 200 tuples)      |
++------------------------------------------+--------------------------------------------------------+----------------------------------------------------+
+|         ['egg', 'cheap', 'food']         |    ['Black Light', 'light colored', 'light source']    |         ['white wheat', 'fertile', 'crop']         |
+|         ['boa', 'long', 'snake']         |           ['white wheat', 'fertile', 'crop']           |           ['said', 'well used', 'term']            |
+| ['Messi', 'skillful', 'football player'] |       ['black leather', 'expensive', 'material']       |    ['black dress', 'fashionable', 'dress code']    |
+|      ['Russia', 'large', 'country']      |   ['Indian Cooking', 'traditional', 'cooking style']   |             ['John', 'good', 'person']             |
+|      ['Amazon', 'rich', 'company']       |      ['Indian Cinema', 'modern', 'film industry']      |           ['God', 'powerful', 'person']            |
+|                    \                     |           ['brown wheat', 'fertile', 'crop']           |            ['berry', 'sweet', 'fruit']             |
+|                    \                     |            ['white wool', 'fine', 'fibre']             |     ['black leather', 'expensive', 'material']     |
+|                    \                     |     ['black dress', 'fashionable', 'dress style']      |          ['today', 'rare', 'phenomenon']           |
+|                    \                     | ['Indian Cooking', 'traditional', 'cooking technique'] |               ['hell', 'bad', 'man']               |
+|                    \                     |     ['Indian Cinema', 'modern', 'movie industry']      |       ['daughter', 'young', 'female model']        |
+|                    \                     |    ['Black Dress', 'fashionable', 'fashion style']     | ['Indian Cooking', 'traditional', 'cooking style'] |
+|                    \                     |           ['white wheat', 'fertile', 'soil']           |            ['time', 'short', 'process']            |
+|                    \                     |          ['white wheat', 'fertile', 'plant']           |              ['age', 'low', 'level']               |
+|                    \                     |         ['brown skin', 'attractive', 'color']          |           ['life', 'simple', 'business']           |
+|                    \                     |   ['Indian Cooking', 'traditional', 'food industry']   |            ['david', 'large', 'animal']            |
+|                    \                     |         ['Grey Syndrome', 'severe', 'disease']         |           ['love', 'strong', 'emotion']            |
+|                    \                     |        ['Green Flower', 'attractive', 'plant']         |     ['American Vegetation', 'diverse', 'area']     |
+|                    \                     |          ['white wheat', 'fertile', 'field']           |             ['sunday', 'hot', 'night']             |
+|                    \                     |           ['Little Woman', 'pretty', 'girl']           |          ['tonight', 'special', 'event']           |
+|                    \                     |           ['brown skin', 'soft', 'texture']            |             ['family', 'big', 'place']             |
++------------------------------------------+--------------------------------------------------------+----------------------------------------------------+
 ==================================================
 Relation: need_sth_to_do_sth
 Prompts:
@@ -436,69 +397,30 @@ Prompts:
 - 0.0672 <ENT0> feel the need to <ENT2> through <ENT1> .
 - 0.0630 Without <ENT1>, <ENT0> would have a harder time <ENT2>ing with others .
 Harvested Tuples:
-+------------------------------------------------+----------------------------------------------------------+----------------------------------------------------------+
-|                  Seed samples                  |                      Ours (Top 20)                       |        Ours (Random samples over top 200 tuples)         |
-+------------------------------------------------+----------------------------------------------------------+----------------------------------------------------------+
-|       ['developer', 'computer', 'code']        |    ['young males', 'sexual orientation', 'identify']     |          ['single parent', 'parents', 'marry']           |
-|     ['people', 'social media', 'connect']      |   ['True Believers', 'religious reasons', 'identify']    |         ['patients', 'medical care', 'recover']          |
-|            ['pig', 'food', 'grow']             |          ['males', 'sexual maturity', 'mature']          |               ['female', 'males', 'mate']                |
-|          ['people', 'money', 'live']           |         ['child welfare', 'support', 'improve']          |              ['species', 'energy', 'grow']               |
-| ['intern', 'good performance', 'return offer'] |      ['certain characters', 'dialogue', 'interact']      |          ['different breeds', 'horses', 'race']          |
-|                       \                        | ['hospital', 'Medical Facilities', 'provide healthcare'] |                 ['girls', 'sex', 'play']                 |
-|                       \                        |        ['different worlds', 'magic', 'interact']         | ['hospital', 'Medical Facilities', 'provide healthcare'] |
-|                       \                        |               ['people', 'money', 'work']                |   ['True Believers', 'religious reasons', 'identify']    |
-|                       \                        |       ['little details', 'little effort', 'tell']        |                ['men', 'women', 'fight']                 |
-|                       \                        |              ['small fish', 'meat', 'cook']              |                ['still', 'words', 'talk']                |
-|                       \                        |               ['people', 'money', 'live']                |              ['vampires', 'power', 'kill']               |
-|                       \                        |          ['different breeds', 'horses', 'race']          |               ['species', 'water', 'grow']               |
-|                       \                        |    ['hospital', 'medical facilities', 'provide care']    |     ['government', 'Political Parties', 'cooperate']     |
-|                       \                        |  ['hospital', 'Medical Facilities', 'provide services']  |             ['cars', 'extra parts', 'race']              |
-|                       \                        |   ['different languages', 'translation', 'translate']    |            ['cars', 'extra weight', 'drive']             |
-|                       \                        |        ['little bodies', 'little hands', 'touch']        |      ['states', 'legislation', 'regulate commerce']      |
-|                       \                        |            ['three teams', 'points', 'score']            |          ['species', 'resources', 'reproduce']           |
-|                       \                        |      ['states', 'legislation', 'regulate commerce']      |         ['patients', 'treatment', 'get better']          |
-|                       \                        |             ['Living Spaces', 'room', 'fit']             |        ['Living Alone', 'little effort', 'cope']         |
-|                       \                        |     ['certain circumstances', 'caution', 'proceed']      |             ['Like Guys', 'girls', 'dance']              |
-+------------------------------------------------+----------------------------------------------------------+----------------------------------------------------------+
-==================================================
-Relation: more_than
-Prompts:
-- 0.1258 <ENT0> is more <ENT1> than <ENT2> .
-- 0.1231 Many people believe that <ENT0> is more <ENT1> than <ENT2> .
-- 0.1139 Some people believe that <ENT0> is more <ENT1> than <ENT2> because it is more active and engaging .
-- 0.1064 It's more <ENT1> to <ENT0> than it is to <ENT2> .
-- 0.0966 <ENT0>s are generally much <ENT1>er than <ENT2>s .
-- 0.0852 The <ENT0> is <ENT1>r than the <ENT2> bear .
-- 0.0813 Compared to <ENT2>s, <ENT0>s are typically much <ENT1>er .
-- 0.0783 There is often more <ENT1> in <ENT0>s than in <ENT2>s .
-- 0.0729 <ENT0> is generally more <ENT1> than <ENT2>ing because it is more enjoyable and engaging .
-- 0.0585 <ENT0>s are often <ENT1>r in size than <ENT2>s .
-- 0.0580 <ENT0>ing is more <ENT1> than <ENT2>ing .
-Harvested Tuples:
-+----------------------------------------+-----------------------------------------------+-------------------------------------------+
-|              Seed samples              |                 Ours (Top 20)                 | Ours (Random samples over top 200 tuples) |
-+----------------------------------------+-----------------------------------------------+-------------------------------------------+
-|      ['car', 'fast', 'carriage']       |        ['beta', 'stable', 'alpha beta']       |   ['marriage', 'complicated', 'divorce']  |
-|      ['judge', 'easy', 'create']       |        ['women', 'like women', 'girls']       |    ['breathing', 'painful', 'walking']    |
-| ['golden retriever', 'large', 'teddy'] |  ['American Football', 'played', 'baseball']  |       ['murder', 'violent', 'rape']       |
-|       ['tiger', 'strong', 'cat']       | ['American Football', 'played', 'basketball'] |         ['song', 'sung', 'dance']         |
-|    ['play', 'interesting', 'study']    |   ['American Football', 'played', 'soccer']   |        ['God', 'powerful', 'evil']        |
-|                   \                    |    ['anger', 'intense', 'violent violence']   |       ['love', 'important', 'life']       |
-|                   \                    |    ['American Football', 'played', 'rugby']   |  ['anger', 'intense', 'violent violence'] |
-|                   \                    |      ['love', 'important', 'friendship']      |        ['God', 'powerful', 'magic']       |
-|                   \                    |          ['love', 'important', 'sex']         |      ['reading', 'useful', 'writing']     |
-|                   \                    |          ['winter', 'cold', 'summer']         |       ['blue', 'beautiful', 'white']      |
-|                   \                    |     ['change', 'often needed', 'existing']    |  ['American Football', 'played', 'rugby'] |
-|                   \                    |           ['God', 'powerful', 'man']          |         ['skin', 'lighter', 'fur']        |
-|                   \                    |         ['death', 'common', 'disease']        |          ['fear', 'real', 'true']         |
-|                   \                    |         ['death', 'common', 'suicide']        |      ['silver', 'precious', 'copper']     |
-|                   \                    |            ['life', 'fun', 'work']            |        ['white', 'equal', 'brown']        |
-|                   \                    |          ['God', 'powerful', 'human']         |      ['cancer', 'severe', 'disease']      |
-|                   \                    |            ['life', 'fun', 'death']           |      ['eating', 'beneficial', 'food']     |
-|                   \                    |         ['love', 'important', 'life']         |     ['touch', 'intimate', 'physical']     |
-|                   \                    |      ['change', 'often seen', 'original']     |        ['alcohol', 'toxic', 'beer']       |
-|                   \                    |         ['age', 'often seen', 'older']        |       ['blue', 'beautiful', 'green']      |
-+----------------------------------------+-----------------------------------------------+-------------------------------------------+
++------------------------------------------------+----------------------------------------------------------+-----------------------------------------------------+
+|                  Seed samples                  |                      Ours (Top 20)                       |      Ours (Random samples over top 200 tuples)      |
++------------------------------------------------+----------------------------------------------------------+-----------------------------------------------------+
+|       ['developer', 'computer', 'code']        |    ['young males', 'sexual orientation', 'identify']     |              ['still', 'words', 'talk']             |
+|     ['people', 'social media', 'connect']      |   ['True Believers', 'religious reasons', 'identify']    |       ['children', 'education', 'communicate']      |
+|            ['pig', 'food', 'grow']             |          ['males', 'sexual maturity', 'mature']          |      ['single units', 'maintenance', 'operate']     |
+|          ['people', 'money', 'live']           |         ['child welfare', 'support', 'improve']          |      ['Living Alone', 'little effort', 'cope']      |
+| ['intern', 'good performance', 'return offer'] |      ['certain characters', 'dialogue', 'interact']      |              ['fish', 'oxygen', 'swim']             |
+|                       \                        | ['hospital', 'Medical Facilities', 'provide healthcare'] |        ['different breeds', 'horses', 'race']       |
+|                       \                        |        ['different worlds', 'magic', 'interact']         |     ['little details', 'little effort', 'tell']     |
+|                       \                        |               ['people', 'money', 'work']                |         ['Single Player', 'games', 'score']         |
+|                       \                        |       ['little details', 'little effort', 'tell']        |       ['failure', 'effort', 'maintain order']       |
+|                       \                        |              ['small fish', 'meat', 'cook']              |              ['life', 'change', 'live']             |
+|                       \                        |               ['people', 'money', 'live']                |           ['patients', 'therapy', 'cope']           |
+|                       \                        |          ['different breeds', 'horses', 'race']          |           ['living hell', 'souls', 'die']           |
+|                       \                        |    ['hospital', 'medical facilities', 'provide care']    |       ['single agent', 'control', 'cooperate']      |
+|                       \                        |  ['hospital', 'Medical Facilities', 'provide services']  |       ['teams', 'additional points', 'score']       |
+|                       \                        |   ['different languages', 'translation', 'translate']    |              ['things', 'words', 'say']             |
+|                       \                        |        ['little bodies', 'little hands', 'touch']        |               ['man', 'love', 'exist']              |
+|                       \                        |            ['three teams', 'points', 'score']            |            ['vampires', 'power', 'kill']            |
+|                       \                        |      ['states', 'legislation', 'regulate commerce']      |     ['customer', 'service', 'provide services']     |
+|                       \                        |             ['Living Spaces', 'room', 'fit']             |             ['people', 'money', 'live']             |
+|                       \                        |     ['certain circumstances', 'caution', 'proceed']      | ['True Believers', 'religious reasons', 'identify'] |
++------------------------------------------------+----------------------------------------------------------+-----------------------------------------------------+
 ==================================================
 Relation: can_but_not_good
 Prompts:
@@ -517,26 +439,26 @@ Harvested Tuples:
 +------------------------------------+----------------------------------+-------------------------------------------+
 |            Seed samples            |          Ours (Top 20)           | Ours (Random samples over top 200 tuples) |
 +------------------------------------+----------------------------------+-------------------------------------------+
-|         ['chicken', 'fly']         |    ['pet owner', 'pet pets']     |           ['vampire', 'attack']           |
-|          ['dog', 'swim']           |     ['Pirate Ship', 'sail']      |     ['Shepherd Farmer', 'herd sheep']     |
-| ['long-distance runner', 'sprint'] |        ['human', 'fight']        |        ['chicken bar', 'cook food']       |
-|         ['skater', 'ski']          |     ['spider web', 'crawl']      |           ['jet plane', 'glide']          |
-|      ['researcher', 'teach']       | ['Pirate Captain', 'ship ships'] |       ['Nine Number', 'Go Forward']       |
-|                 \                  |         ['human', 'fly']         |             ['chicken', 'eat']            |
-|                 \                  |      ['jet plane', 'land']       |        ['Chinese Artist', 'paint']        |
-|                 \                  |         ['dog', 'hunt']          |             ['player', 'win']             |
-|                 \                  |     ['marine crew', 'sail']      |        ['Special Subject', 'study']       |
-|                 \                  |   ['Indian Language', 'speak']   |          ['instructor', 'teach']          |
-|                 \                  |     ['Chicken Egg', 'cook']      |          ['Evil Wizard', 'trick']         |
-|                 \                  |    ['snake venom', 'poison']     |         ['jet plane', 'maneuver']         |
-|                 \                  |    ['Pirate Captain', 'sail']    |       ['Beta Gene', 'bind protein']       |
-|                 \                  | ['snake venom', 'poison venom']  |          ['ray detector', 'scan']         |
-|                 \                  |         ['dog', 'walk']          |       ['reader', 'find information']      |
-|                 \                  |  ['engineer', 'project design']  |             ['Black', 'play']             |
-|                 \                  |  ['animal population', 'breed']  |        ['Nine Star', 'Go Forward']        |
-|                 \                  |   ['Chinese Artist', 'paint']    |            ['Joe', 'Get Shot']            |
-|                 \                  |        ['horse', 'walk']         |          ['low pressure', 'burn']         |
-|                 \                  |         ['adult', 'fly']         |             ['blind', 'walk']             |
+|         ['chicken', 'fly']         |    ['pet owner', 'pet pets']     |             ['horse', 'ride']             |
+|          ['dog', 'swim']           |     ['Pirate Ship', 'sail']      |              ['adult', 'run']             |
+| ['long-distance runner', 'sprint'] |        ['human', 'fight']        |             ['human', 'read']             |
+|         ['skater', 'ski']          |     ['spider web', 'crawl']      |             ['Black', 'fight']            |
+|      ['researcher', 'teach']       | ['Pirate Captain', 'ship ships'] |        ['Indian Language', 'speak']       |
+|                 \                  |         ['human', 'fly']         |          ['snake venom', 'bind']          |
+|                 \                  |      ['jet plane', 'land']       |            ['mad man', 'think']           |
+|                 \                  |         ['dog', 'hunt']          |        ['chicken bar', 'cook food']       |
+|                 \                  |     ['marine crew', 'sail']      |          ['tiny spider', 'crawl']         |
+|                 \                  |   ['Indian Language', 'speak']   |        ['miller', 'produce grain']        |
+|                 \                  |     ['Chicken Egg', 'cook']      |           ['character', 'fight']          |
+|                 \                  |    ['snake venom', 'poison']     |         ['Pirate Captain', 'sail']        |
+|                 \                  |    ['Pirate Captain', 'sail']    |             ['Indian', 'read']            |
+|                 \                  | ['snake venom', 'poison venom']  |            ['Joe', 'Get Shot']            |
+|                 \                  |         ['dog', 'walk']          |        ['farmer', 'produce grain']        |
+|                 \                  |  ['engineer', 'project design']  |           ['vampire', 'attack']           |
+|                 \                  |  ['animal population', 'breed']  |       ['low intelligence', 'think']       |
+|                 \                  |   ['Chinese Artist', 'paint']    |        ['storm weather', 'predict']       |
+|                 \                  |        ['horse', 'walk']         |         ['Warrior Type', 'combat']        |
+|                 \                  |         ['adult', 'fly']         |            ['speaker', 'hear']            |
 +------------------------------------+----------------------------------+-------------------------------------------+
 ==================================================
 Relation: worth_celebrating
@@ -554,26 +476,26 @@ Harvested Tuples:
 +---------------------------------+--------------------------------------+-------------------------------------------+
 |           Seed samples          |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
 +---------------------------------+--------------------------------------+-------------------------------------------+
-|         ['team', 'wim']         |         ['fish', 'eat fish']         |          ['musicians', 'perform']         |
-|     ['student', 'pass exam']    |    ['species', 'become extinct']     |          ['four minutes', 'wait']         |
-| ['researcher', 'publish paper'] | ['different artists', 'collaborate'] |           ['living', 'survive']           |
-|     ['people', 'earn money']    |       ['two groups', 'merge']        |          ['girl lives', 'alone']          |
-|    ['parents', 'get a baby']    |       ['animals', 'eat meat']        |         ['characters', 'interact']        |
-|                \                |       ['human minds', 'think']       |             ['time', 'change']            |
-|                \                |       ['five minutes', 'wait']       |         ['person wants', 'money']         |
-|                \                |          ['people', 'die']           |            ['members', 'join']            |
-|                \                |          ['people', 'meet']          |            ['saying', 'say hi']           |
-|                \                |    ['young students', 'graduate']    |             ['babies', 'cry']             |
-|                \                |         ['dog', 'eat meat']          |           ['vampires', 'fight']           |
-|                \                |          ['people', 'live']          |          ['couples', 'interact']          |
-|                \                |         ['people', 'change']         |            ['band', 'perform']            |
-|                \                |        ['god', 'worship god']        |           ['soldiers', 'fight']           |
-|                \                |         ['people', 'visit']          |             ['horses', 'race']            |
-|                \                |         ['children', 'play']         |           ['man needs', 'care']           |
-|                \                |        ['Little Girl', 'cry']        |           ['vampires', 'attack']          |
-|                \                |       ['animals', 'eat fish']        |           ['Little Girl', 'cry']          |
-|                \                |       ['human hearts', 'beat']       |           ['men go', 'hunting']           |
-|                \                |      ['three minutes', 'wait']       |             ['humans', 'live']            |
+|         ['team', 'wim']         |         ['fish', 'eat fish']         |             ['girls', 'play']             |
+|     ['student', 'pass exam']    |    ['species', 'become extinct']     |            ['band', 'perform']            |
+| ['researcher', 'publish paper'] | ['different artists', 'collaborate'] |            ['saying', 'say hi']           |
+|     ['people', 'earn money']    |       ['two groups', 'merge']        |            ['friends', 'talk']            |
+|    ['parents', 'get a baby']    |       ['animals', 'eat meat']        |             ['person', 'work']            |
+|                \                |       ['human minds', 'think']       |           ['five year', 'olds']           |
+|                \                |       ['five minutes', 'wait']       |       ['human remains', 'disappear']      |
+|                \                |          ['people', 'die']           |             ['people', 'die']             |
+|                \                |          ['people', 'meet']          |           ['child born', 'died']          |
+|                \                |    ['young students', 'graduate']    |            ['human', 'survive']           |
+|                \                |         ['dog', 'eat meat']          |            ['children', 'come']           |
+|                \                |          ['people', 'live']          |           ['man makes', 'money']          |
+|                \                |         ['people', 'change']         |           ['children', 'visit']           |
+|                \                |        ['god', 'worship god']        |            ['dog', 'eat meat']            |
+|                \                |         ['people', 'visit']          |         ['girl starts', 'singing']        |
+|                \                |         ['children', 'play']         |             ['person', 'live']            |
+|                \                |        ['Little Girl', 'cry']        |              ['love', 'kiss']             |
+|                \                |       ['animals', 'eat fish']        |             ['time', 'change']            |
+|                \                |       ['human hearts', 'beat']       |           ['visitors', 'arrive']          |
+|                \                |      ['three minutes', 'wait']       |          ['two groups', 'merge']          |
 +---------------------------------+--------------------------------------+-------------------------------------------+
 ==================================================
 Relation: potential_risk
@@ -592,25 +514,25 @@ Harvested Tuples:
 +------------------------------------------+------------------------------------------------+-------------------------------------------+
 |               Seed samples               |                 Ours (Top 20)                  | Ours (Random samples over top 200 tuples) |
 +------------------------------------------+------------------------------------------------+-------------------------------------------+
-|    ['playing game', 'fail the exam']     |       ['higher yield', 'Higher Prices']        |     ['eruption', 'volcanic eruption']     |
-| ['sleep insufficiency', 'heart disease'] |      ['higher yields', 'higher yielding']      |      ['neglect', 'child abandonment']     |
-|         ['candy', 'tooth decay']         |        ['higher yield', 'higher price']        |       ['mutation', 'genetic defect']      |
-|        ['flight', 'plane crash']         |         ['cold water', 'cold weather']         |     ['revolution', 'political unrest']    |
-|       ['investment', 'lose money']       |        ['addiction', 'drug addiction']         |         ['recall', 'brain tumor']         |
-|                    \                     |         ['bad work', 'bad reputation']         |            ['injury', 'stroke']           |
-|                    \                     |         ['warming', 'global warming']          |     ['litigation', 'legal liability']     |
-|                    \                     |         ['fracture', 'bone fracture']          |         ['movement', 'Head Pain']         |
-|                    \                     |   ['increased temperature', 'heat transfer']   |     ['certain species', 'extinction']     |
-|                    \                     |         ['poor sanitation', 'malaria']         |         ['neglect', 'child abuse']        |
-|                    \                     |    ['early selection', 'early retirement']     |     ['rebellion', 'political unrest']     |
-|                    \                     |       ['Poor Work', 'Poor Productivity']       |         ['smoking', 'health risk']        |
-|                    \                     |        ['high unemployment', 'poverty']        |            ['fire', 'disaster']           |
-|                    \                     |       ['eruption', 'volcanic eruption']        |     ['litigation', 'legal challenge']     |
-|                    \                     | ['increased population', 'population decline'] |    ['controversy', 'political scandal']   |
-|                    \                     |      ['congestion', 'traffic congestion']      |         ['good', 'bad reputation']        |
-|                    \                     |  ['negative thinking', 'negative perception']  |          ['cancer', 'mortality']          |
-|                    \                     |      ['recession', 'economic recession']       |       ['high voltage', 'discharge']       |
-|                    \                     |      ['increased weight', 'weight gain']       |          ['infection', 'cancer']          |
-|                    \                     |            ['snow', 'winter snow']             |      ['excessive sleep', 'headache']      |
+|    ['playing game', 'fail the exam']     |       ['higher yield', 'Higher Prices']        |     ['litigation', 'legal liability']     |
+| ['sleep insufficiency', 'heart disease'] |      ['higher yields', 'higher yielding']      |          ['false news', 'panic']          |
+|         ['candy', 'tooth decay']         |        ['higher yield', 'higher price']        |       ['warming', 'global warming']       |
+|        ['flight', 'plane crash']         |         ['cold water', 'cold weather']         |          ['infection', 'cancer']          |
+|       ['investment', 'lose money']       |        ['addiction', 'drug addiction']         |         ['cold flu', 'pneumonia']         |
+|                    \                     |         ['bad work', 'bad reputation']         |          ['false hope', 'panic']          |
+|                    \                     |         ['warming', 'global warming']          |            ['war', 'conflict']            |
+|                    \                     |         ['fracture', 'bone fracture']          |      ['temperature', 'cold weather']      |
+|                    \                     |   ['increased temperature', 'heat transfer']   |           ['failure', 'injury']           |
+|                    \                     |         ['poor sanitation', 'malaria']         |        ['damage', 'severe illness']       |
+|                    \                     |    ['early selection', 'early retirement']     |   ['social exclusion', 'discrimination']  |
+|                    \                     |       ['Poor Work', 'Poor Productivity']       |         ['good', 'Bad Behaviour']         |
+|                    \                     |        ['high unemployment', 'poverty']        |      ['high inflation', 'recession']      |
+|                    \                     |       ['eruption', 'volcanic eruption']        |         ['neglect', 'child abuse']        |
+|                    \                     | ['increased population', 'population decline'] |          ['size', 'small scale']          |
+|                    \                     |      ['congestion', 'traffic congestion']      |    ['inheritance', 'genetic variation']   |
+|                    \                     |  ['negative thinking', 'negative perception']  |            ['success', 'loss']            |
+|                    \                     |      ['recession', 'economic recession']       |       ['crack', 'fracture cracking']      |
+|                    \                     |      ['increased weight', 'weight gain']       |      ['higher yield', 'higher price']     |
+|                    \                     |            ['snow', 'winter snow']             |             ['damage', 'fire']            |
 +------------------------------------------+------------------------------------------------+-------------------------------------------+
 ==================================================

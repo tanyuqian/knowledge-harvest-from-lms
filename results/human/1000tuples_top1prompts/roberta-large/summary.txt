@@ -2,30 +2,30 @@ Relation: somebody_do_something_at
 Prompts:
 - 1.0000 The <ENT0> can choose to <ENT1> in the <ENT2> or online .
 Harvested Tuples:
-+-------------------------------------+------------------------------------------------------+------------------------------------------------------+
-|             Seed samples            |                    Ours (Top 20)                     |      Ours (Random samples over top 200 tuples)       |
-+-------------------------------------+------------------------------------------------------+------------------------------------------------------+
-|    ['people', 'work out', 'gym']    | ['incumbent', 'seek reelection', 'General Election'] |            ['player', 'watch', 'cinema']             |
-|        ['bird', 'fly', 'sky']       |             ['user', 'register', 'app']              |      ['recipient', 'receive emails', 'morning']      |
-|  ['student', 'study', 'classroom']  |            ['user', 'register', 'field']             |             ['player', 'watch', 'game']              |
-|     ['player', 'play', 'ground']    |              ['reader', 'vote', 'poll']              |             ['customers', 'buy', 'shop']             |
-| ['sodier', 'fight', 'battleground'] |           ['user', 'register', 'browser']            |           ['respondent', 'reply', 'email']           |
-|                  \                  |         ['user', 'register', 'application']          |         ['Audiences', 'interact', 'theatre']         |
-|                  \                  |            ['user', 'register', 'lobby']             |    ['host', 'accept reservations', 'restaurant']     |
-|                  \                  |             ['reader', 'vote', 'paper']              |        ['decision people', 'make', 'moment']         |
-|                  \                  |           ['reader', 'vote', 'newspaper']            |            ['author', 'publish', 'print']            |
-|                  \                  |       ['recipient', 'receive emails', 'inbox']       |               ['users', 'pay', 'bank']               |
-|                  \                  |             ['reader', 'vote', 'polls']              |          ['public', 'comment', 'newspaper']          |
-|                  \                  |      ['recipient', 'receive messages', 'inbox']      |         ['parties', 'communicate', 'flesh']          |
-|                  \                  |            ['reader', 'vote', 'comments']            |           ['winners', 'enter', 'drawing']            |
-|                  \                  |        ['issuer', 'trade', 'Stock Exchange']         |   ['Facebook Member', 'share posts', 'Messenger']    |
-|                  \                  |      ['recipient', 'receive emails', 'morning']      |         ['victims', 'testify', 'courtroom']          |
-|                  \                  |       ['plaintiff', 'seek damages', 'action']        |             ['visitors', 'login', 'app']             |
-|                  \                  |    ['affected workers', 'complain', 'workplace']     |           ['donor', 'donate', 'hospital']            |
-|                  \                  |  ['Facebook Friend', 'add friends', 'conversation']  |           ['user', 'register', 'browser']            |
-|                  \                  |               ['users', 'pay', 'app']                | ['incumbent', 'seek reelection', 'November Primary'] |
-|                  \                  | ['incumbent', 'seek reelection', 'November Primary'] |            ['customers', 'buy', 'store']             |
-+-------------------------------------+------------------------------------------------------+------------------------------------------------------+
++-------------------------------------+------------------------------------------------------+---------------------------------------------------------+
+|             Seed samples            |                    Ours (Top 20)                     |        Ours (Random samples over top 200 tuples)        |
++-------------------------------------+------------------------------------------------------+---------------------------------------------------------+
+|    ['people', 'work out', 'gym']    | ['incumbent', 'seek reelection', 'General Election'] |               ['members', 'join', 'event']              |
+|        ['bird', 'fly', 'sky']       |             ['user', 'register', 'app']              |          ['two authors', 'discuss', 'abstract']         |
+|  ['student', 'study', 'classroom']  |            ['user', 'register', 'field']             |           ['publisher', 'advertise', 'print']           |
+|     ['player', 'play', 'ground']    |              ['reader', 'vote', 'poll']              |            ['public', 'comment', 'newspaper']           |
+| ['sodier', 'fight', 'battleground'] |           ['user', 'register', 'browser']            |              ['public', 'comment', 'form']              |
+|                  \                  |         ['user', 'register', 'application']          |            ['voter', 'participate', 'booth']            |
+|                  \                  |            ['user', 'register', 'lobby']             |              ['customers', 'buy', 'stores']             |
+|                  \                  |             ['reader', 'vote', 'paper']              |            ['candidates', 'appear', 'paper']            |
+|                  \                  |           ['reader', 'vote', 'newspaper']            |               ['visitor', 'search', 'app']              |
+|                  \                  |       ['recipient', 'receive emails', 'inbox']       |           ['participants', 'enroll', 'event']           |
+|                  \                  |             ['reader', 'vote', 'polls']              |            ['respondents', 'answer', 'text']            |
+|                  \                  |      ['recipient', 'receive messages', 'inbox']      |     ['postal addresses', 'include', 'mailing lists']    |
+|                  \                  |            ['reader', 'vote', 'comments']            |     ['postal delivery', 'arrive', 'postal facility']    |
+|                  \                  |        ['issuer', 'trade', 'Stock Exchange']         |                ['donors', 'give', 'bank']               |
+|                  \                  |      ['recipient', 'receive emails', 'morning']      |   ['incumbent', 'seek reelection', 'November Primary']  |
+|                  \                  |       ['plaintiff', 'seek damages', 'action']        |               ['visitors', 'login', 'app']              |
+|                  \                  |    ['affected workers', 'complain', 'workplace']     |             ['user', 'register', 'browser']             |
+|                  \                  |  ['Facebook Friend', 'add friends', 'conversation']  |      ['host', 'accept reservations', 'restaurant']      |
+|                  \                  |               ['users', 'pay', 'app']                | ['firms', 'solicit proposals', 'printed advertisement'] |
+|                  \                  | ['incumbent', 'seek reelection', 'November Primary'] |              ['player', 'watch', 'cinema']              |
++-------------------------------------+------------------------------------------------------+---------------------------------------------------------+
 ==================================================
 Relation: prevent
 Prompts:
@@ -34,56 +34,56 @@ Harvested Tuples:
 +---------------------------------+----------------------------------------+-------------------------------------------+
 |           Seed samples          |             Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
 +---------------------------------+----------------------------------------+-------------------------------------------+
-|        ['mask', 'virus']        |     ['pregnancy', 'birth defects']     |          ['elder', 'Child Abuse']         |
-|     ['exercise', 'disease']     |     ['pregnancy', 'birth control']     |           ['gravity', 'escape']           |
-| ['study hard', 'fail the exam'] |    ['poverty', 'economic success']     |         ['noun', 'sexual assault']        |
-|      ['reading', 'stupid']      |  ['pregnancy', 'Birth Complications']  |         ['caching', 'file access']        |
-|   ['insurance', 'bankruptcy']   |    ['longevity', 'premature death']    |         ['poverty', 'opportunity']        |
-|                \                |        ['fusion', 'blood clot']        |            ['golf', 'strokes']            |
-|                \                |     ['gambling', 'healthy living']     |       ['pregnancy', 'birth control']      |
-|                \                |   ['cough', 'respiratory diseases']    |      ['hating', 'Good Relationships']     |
-|                \                |      ['eclipse', 'Solar Storms']       |           ['damage', 'recovery']          |
-|                \                |    ['napping', 'sleep deprivation']    |          ['stigma', 'education']          |
-|                \                |     ['pulse', 'Brain Stimulation']     |            ['pushing', 'tears']           |
-|                \                |   ['longevity', 'premature deaths']    |          ['gravity', 'collapse']          |
-|                \                |         ['longevity', 'aging']         |           ['reduce', 'bleeding']          |
-|                \                |       ['fitness', 'weight gain']       |        ['hanging', 'wind erosion']        |
-|                \                | ['poverty', 'education opportunities'] |            ['water', 'erosion']           |
-|                \                |    ['happiness', 'Mental Illness']     |        ['fertility', 'infertility']       |
-|                \                |      ['pizza', 'food poisoning']       |       ['pulse', 'Brain Stimulation']      |
-|                \                |  ['purity', 'bacterial colonization']  |           ['piping', 'leakage']           |
-|                \                |     ['pushing', 'falling forward']     |     ['cough', 'respiratory diseases']     |
-|                \                |      ['pushing', 'falling back']       |    ['purity', 'bacterial colonization']   |
+|        ['mask', 'virus']        |     ['pregnancy', 'birth defects']     |         ['losing', 'weight gain']         |
+|     ['exercise', 'disease']     |     ['pregnancy', 'birth control']     |        ['homing', 'unwanted pets']        |
+| ['study hard', 'fail the exam'] |    ['poverty', 'economic success']     |   ['poverty', 'education opportunities']  |
+|      ['reading', 'stupid']      |  ['pregnancy', 'Birth Complications']  |      ['rabbit', 'Mouse Reproduction']     |
+|   ['insurance', 'bankruptcy']   |    ['longevity', 'premature death']    |        ['stigma', 'participation']        |
+|                \                |        ['fusion', 'blood clot']        |           ['cough', 'pneumonia']          |
+|                \                |     ['gambling', 'healthy living']     |        ['eclipse', 'Solar Storms']        |
+|                \                |   ['cough', 'respiratory diseases']    |          ['pulse', 'brain waves']         |
+|                \                |      ['eclipse', 'Solar Storms']       |        ['fraud', 'Credit Reports']        |
+|                \                |    ['napping', 'sleep deprivation']    |        ['waterboarding', 'torture']       |
+|                \                |     ['pulse', 'Brain Stimulation']     |           ['gambling', 'crime']           |
+|                \                |   ['longevity', 'premature deaths']    |     ['longevity', 'premature deaths']     |
+|                \                |         ['longevity', 'aging']         |        ['pizza', 'food poisoning']        |
+|                \                |       ['fitness', 'weight gain']       |      ['racking', 'data transmission']     |
+|                \                | ['poverty', 'education opportunities'] |          ['litter', 'recycling']          |
+|                \                |    ['happiness', 'Mental Illness']     |         ['halloween', 'bullying']         |
+|                \                |      ['pizza', 'food poisoning']       |           ['damage', 'healing']           |
+|                \                |  ['purity', 'bacterial colonization']  |          ['always', 'infection']          |
+|                \                |     ['pushing', 'falling forward']     |    ['pregnancy', 'Birth Complications']   |
+|                \                |      ['pushing', 'falling back']       |           ['stability', 'panic']          |
 +---------------------------------+----------------------------------------+-------------------------------------------+
 ==================================================
 Relation: help
 Prompts:
 - 1.0000 A <ENT0> can help a <ENT1> by providing guidance and support .
 Harvested Tuples:
-+-------------------------------------+-----------------------------------------------------+-------------------------------------------------+
-|             Seed samples            |                    Ours (Top 20)                    |    Ours (Random samples over top 200 tuples)    |
-+-------------------------------------+-----------------------------------------------------+-------------------------------------------------+
-|        ['doctor', 'patient']        |           ['healthy mind', 'healthy body']          |         ['conductor', 'train operator']         |
-|        ['teacher', 'student']       |      ['financial planner', 'financial crisis']      |            ['caller', 'call center']            |
-|     ['housekeeper', 'housewife']    |        ['firefighter', 'fellow firefighter']        | ['concerned neighbour', 'vulnerable neighbour'] |
-| ['teaching assistant', 'professor'] | ['Successful Entrepreneur', 'budding entrepreneur'] |        ['responsible employer', 'worker']       |
-|         ['police', 'victim']        |          ['translator', 'foreign language']         |           ['girlfriend', 'boyfriend']           |
-|                  \                  |          ['christian', 'fellow christian']          |          ['feminist', 'Male Feminist']          |
-|                  \                  |          ['supporter', 'fellow supporter']          |              ['job site', 'resume']             |
-|                  \                  |          ['classmate', 'fellow classmate']          |                 ['mom', 'baby']                 |
-|                  \                  |                ['mentor', 'student']                |            ['psychologist', 'client']           |
-|                  \                  |       ['financial expert', 'financial crisis']      |           ['public', 'Police Officer']          |
-|                  \                  |               ['therapist', 'patient']              |              ['company', 'startup']             |
-|                  \                  |          ['creditor', 'distressed debtor']          |        ['creditor', 'distressed debtor']        |
-|                  \                  |                 ['parent', 'child']                 |          ['comrade', 'wounded comrade']         |
-|                  \                  |            ['strong women', 'weak women']           |                ['son', 'father']                |
-|                  \                  |        ['strong character', 'weak character']       |         ['lighthouse', 'stranded ship']         |
-|                  \                  |               ['therapist', 'client']               |            ['vet', 'recovering vet']            |
-|                  \                  |            ['comrade', 'wounded comrade']           |        ['collector', 'younger collector']       |
-|                  \                  |        ['neighbour', 'struggling neighbour']        |             ['counselor', 'patient']            |
-|                  \                  |  ['seasoned entrepreneur', 'budding entrepreneur']  |             ['lover', 'loved ones']             |
-|                  \                  |         ['Great Employer', 'Great Employee']        |              ['director', 'board']              |
-+-------------------------------------+-----------------------------------------------------+-------------------------------------------------+
++-------------------------------------+-----------------------------------------------------+-------------------------------------------+
+|             Seed samples            |                    Ours (Top 20)                    | Ours (Random samples over top 200 tuples) |
++-------------------------------------+-----------------------------------------------------+-------------------------------------------+
+|        ['doctor', 'patient']        |           ['healthy mind', 'healthy body']          |             ['mother', 'baby']            |
+|        ['teacher', 'student']       |      ['financial planner', 'financial crisis']      |           ['job site', 'resume']          |
+|     ['housekeeper', 'housewife']    |        ['firefighter', 'fellow firefighter']        |    ['Great Employer', 'Great Employee']   |
+| ['teaching assistant', 'professor'] | ['Successful Entrepreneur', 'budding entrepreneur'] |      ['responsible adults', 'youth']      |
+|         ['police', 'victim']        |          ['translator', 'foreign language']         |         ['saint', 'troubled soul']        |
+|                  \                  |          ['christian', 'fellow christian']          |       ['diplomat', 'foreign nation']      |
+|                  \                  |          ['supporter', 'fellow supporter']          |           ['survivor', 'victim']          |
+|                  \                  |          ['classmate', 'fellow classmate']          |     ['supportive listener', 'speaker']    |
+|                  \                  |                ['mentor', 'student']                |         ['bartender', 'bar owner']        |
+|                  \                  |       ['financial expert', 'financial crisis']      |           ['director', 'board']           |
+|                  \                  |               ['therapist', 'patient']              |           ['good job', 'career']          |
+|                  \                  |          ['creditor', 'distressed debtor']          |  ['loving grandmother', 'granddaughter']  |
+|                  \                  |                 ['parent', 'child']                 |          ['supporter', 'sponsor']         |
+|                  \                  |            ['strong women', 'weak women']           |      ['Reliever', 'Starting Pitcher']     |
+|                  \                  |        ['strong character', 'weak character']       |        ['good lawyer', 'plaintiff']       |
+|                  \                  |               ['therapist', 'client']               |        ['spirit', 'Living Spirit']        |
+|                  \                  |            ['comrade', 'wounded comrade']           |       ['feminist', 'Male Feminist']       |
+|                  \                  |        ['neighbour', 'struggling neighbour']        |       ['practitioner', 'caregiver']       |
+|                  \                  |  ['seasoned entrepreneur', 'budding entrepreneur']  |          ['partner', 'survivor']          |
+|                  \                  |         ['Great Employer', 'Great Employee']        |         ['bully', 'Bullied Bully']        |
++-------------------------------------+-----------------------------------------------------+-------------------------------------------+
 ==================================================
 Relation: place_for
 Prompts:
@@ -92,26 +92,26 @@ Harvested Tuples:
 +------------------------------------+--------------------------------------+-------------------------------------------+
 |            Seed samples            |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
 +------------------------------------+--------------------------------------+-------------------------------------------+
-|        ['gym', 'exercise']         |    ['music venue', 'hear music']     |      ['government', 'solve problems']     |
-|       ['classroom', 'study']       |    ['Great Park', 'enjoy nature']    |            ['Vatican', 'pray']            |
-|         ['office', 'work']         |     ['landfill', 'dump garbage']     |         ['State Park', 'recreate']        |
-| ['hosipital', 'medical treatment'] |     ['cemetery', 'say goodbye']      |          ['workplace', 'escape']          |
-|        ['mart', 'shopping']        |        ['red kettle', 'help']        |              ['beach', 'die']             |
-|                 \                  |      ['landfill', 'dump trash']      |             ['world', 'learn']            |
-|                 \                  |       ['red kettle', 'donate']       |            ['pub', 'socialize']           |
-|                 \                  |   ['Music Station', 'hear music']    |             ['city', 'think']             |
-|                 \                  |       ['dump', 'throw trash']        |         ['police', 'report crime']        |
-|                 \                  |         ['internet', 'talk']         |              ['home', 'rest']             |
-|                 \                  |     ['home', 'feel comfortable']     |             ['past', 'forget']            |
-|                 \                  |        ['red kettle', 'give']        |         ['asylum', 'seek refuge']         |
-|                 \                  |   ['Secret Vault', 'keep secrets']   |      ['underworld', 'commit crimes']      |
-|                 \                  |    ['great outdoors', 'recharge']    |           ['park', 'socialize']           |
-|                 \                  | ['Secret Service', 'protect people'] |      ['middle ground', 'compromise']      |
-|                 \                  |  ['marketplace', 'exchange goods']   |             ['future', 'live']            |
-|                 \                  |      ['Boston Marathon', 'run']      |            ['beach', 'forget']            |
-|                 \                  |        ['bed', 'fall asleep']        |          ['National Zoo', 'see']          |
-|                 \                  |   ['courtroom', 'settle disputes']   |            ['world', 'escape']            |
-|                 \                  |     ['graveyard', 'say goodbye']     |          ['art studio', 'paint']          |
+|        ['gym', 'exercise']         |    ['music venue', 'hear music']     |          ['bedroom', 'make love']         |
+|       ['classroom', 'study']       |    ['Great Park', 'enjoy nature']    |          ['office', 'make money']         |
+|         ['office', 'work']         |     ['landfill', 'dump garbage']     |            ['kitchen', 'cook']            |
+| ['hosipital', 'medical treatment'] |     ['cemetery', 'say goodbye']      |             ['gym', 'change']             |
+|        ['mart', 'shopping']        |        ['red kettle', 'help']        |      ['underworld', 'commit crimes']      |
+|                 \                  |      ['landfill', 'dump trash']      |        ['public restroom', 'wash']        |
+|                 \                  |       ['red kettle', 'donate']       |              ['beach', 'die']             |
+|                 \                  |   ['Music Station', 'hear music']    |            ['subway', 'sleep']            |
+|                 \                  |       ['dump', 'throw trash']        |      ['Secret Vault', 'keep secrets']     |
+|                 \                  |         ['internet', 'talk']         |              ['home', 'heal']             |
+|                 \                  |     ['home', 'feel comfortable']     |             ['street', 'shop']            |
+|                 \                  |        ['red kettle', 'give']        |            ['bedroom', 'dream']           |
+|                 \                  |   ['Secret Vault', 'keep secrets']   |              ['web', 'learn']             |
+|                 \                  |    ['great outdoors', 'recharge']    |      ['past', 'avoid responsibility']     |
+|                 \                  | ['Secret Service', 'protect people'] |        ['cemetery', 'say goodbye']        |
+|                 \                  |  ['marketplace', 'exchange goods']   |      ['theatre', 'express emotions']      |
+|                 \                  |      ['Boston Marathon', 'run']      |             ['airport', 'fly']            |
+|                 \                  |        ['bed', 'fall asleep']        |             ['Vatican', 'die']            |
+|                 \                  |   ['courtroom', 'settle disputes']   |         ['landfill', 'dump trash']        |
+|                 \                  |     ['graveyard', 'say goodbye']     |            ['workplace', 'die']           |
 +------------------------------------+--------------------------------------+-------------------------------------------+
 ==================================================
 Relation: antonym
@@ -121,26 +121,26 @@ Harvested Tuples:
 +--------------------+-----------------------------------------+-------------------------------------------+
 |    Seed samples    |              Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
 +--------------------+-----------------------------------------+-------------------------------------------+
-|  ['fat', 'thin']   |            ['time', 'space']            |          ['labor', 'Human Labor']         |
-|  ['happy', 'sad']  |        ['longevity', 'life span']       |            ['justice', 'mercy']           |
-| ['north', 'south'] | ['cognitive', 'emotional intelligence'] |          ['risk', 'uncertainty']          |
-|  ['woman', 'man']  |             ['love', 'hate']            |        ['transition', 'linearity']        |
-|  ['pass', 'fail']  |        ['relax', 'Stay Relaxed']        |        ['passion', 'selflessness']        |
-|         \          |          ['pride', 'humility']          |        ['culture', 'socialization']       |
-|         \          |            ['risk', 'reward']           |             ['love', 'hatred']            |
-|         \          |            ['pride', 'shame']           |            ['purity', 'decay']            |
-|         \          |          ['pride', 'arrogance']         |           ['action', 'reaction']          |
-|         \          |           ['pride', 'modesty']          |              ['fear', 'hope']             |
-|         \          |           ['energy', 'matter']          |          ['gravity', 'magnetism']         |
-|         \          |           ['power', 'control']          |          ['trust', 'confidence']          |
-|         \          |        ['gravity', 'gravitation']       |      ['relief', 'emotional response']     |
-|         \          |            ['time', 'place']            |           ['poverty', 'luxury']           |
-|         \          |      ['culture', 'Human Sexuality']     |           ['fraud', 'deception']          |
-|         \          |         ['growth', 'stagnation']        |          ['greed', 'generosity']          |
-|         \          |        ['cortex', 'Brain Tissue']       |            ['fault', 'defect']            |
-|         \          |        ['religion', 'secularism']       |     ['reliability', 'predictability']     |
-|         \          |            ['value', 'cost']            |          ['greed', 'selfishness']         |
-|         \          |            ['right', 'wrong']           |           ['fertility', 'aging']          |
+|  ['fat', 'thin']   |            ['time', 'space']            |         ['passion', 'commitment']         |
+|  ['happy', 'sad']  |        ['longevity', 'life span']       |            ['fear', 'anxiety']            |
+| ['north', 'south'] | ['cognitive', 'emotional intelligence'] |         ['cortex', 'Brain Tissue']        |
+|  ['woman', 'man']  |             ['love', 'hate']            |             ['pride', 'shame']            |
+|  ['pass', 'fail']  |        ['relax', 'Stay Relaxed']        |           ['longevity', 'aging']          |
+|         \          |          ['pride', 'humility']          |        ['relativity', 'spacetime']        |
+|         \          |            ['risk', 'reward']           |          ['fitness', 'exercise']          |
+|         \          |            ['pride', 'shame']           |          ['equality', 'fairness']         |
+|         \          |          ['pride', 'arrogance']         |        ['passion', 'selflessness']        |
+|         \          |           ['pride', 'modesty']          |        ['conspiracy', 'collusion']        |
+|         \          |           ['energy', 'matter']          |            ['relief', 'stress']           |
+|         \          |           ['power', 'control']          |            ['pride', 'modesty']           |
+|         \          |        ['gravity', 'gravitation']       |       ['culture', 'Human Sexuality']      |
+|         \          |            ['time', 'place']            |            ['growth', 'decay']            |
+|         \          |      ['culture', 'Human Sexuality']     |             ['love', 'hatred']            |
+|         \          |         ['growth', 'stagnation']        |             ['power', 'force']            |
+|         \          |        ['cortex', 'Brain Tissue']       |           ['losing', 'winning']           |
+|         \          |        ['religion', 'secularism']       |            ['truth', 'reality']           |
+|         \          |            ['value', 'cost']            |          ['justice', 'equality']          |
+|         \          |            ['right', 'wrong']           |          ['prudence', 'prudency']         |
 +--------------------+-----------------------------------------+-------------------------------------------+
 ==================================================
 Relation: separated_by_the_ocean
@@ -150,26 +150,26 @@ Harvested Tuples:
 +-------------------------------------+-------------------------------------+-------------------------------------------+
 |             Seed samples            |            Ours (Top 20)            | Ours (Random samples over top 200 tuples) |
 +-------------------------------------+-------------------------------------+-------------------------------------------+
-|          ['China', 'Japan']         | ['united nation', 'United Kingdom'] |          ['india', 'Bangladesh']          |
-|     ['Australia', 'New Zealand']    |        ['australia', 'India']       |          ['virginia', 'Maryland']         |
-| ['United Kingdom', 'the Continent'] |          ['japan', 'Korea']         |          ['oregon', 'California']         |
-|       ['United State', 'Cuba']      |      ['australia', 'Indonesia']     |            ['arizona', 'Guam']            |
-|         ['Spain', 'Morocco']        |          ['japan', 'China']         |          ['starts', 'endpoints']          |
-|                  \                  |         ['japan', 'Taiwan']         |          ['israel', 'Palestine']          |
-|                  \                  |      ['saudi arabia', 'Kuwait']     |      ['joint', 'independent states']      |
-|                  \                  |        ['australia', 'Japan']       |            ['ukraine', 'Malta']           |
-|                  \                  |     ['per capita', 'per person']    |            ['peru', 'Paraguay']           |
-|                  \                  |        ['india', 'Pakistan']        |            ['germany', 'Italy']           |
-|                  \                  |       ['india', 'Bangladesh']       |           ['joint', 'bilateral']          |
-|                  \                  |       ['kerala', 'Tamil Nadu']      |           ['france', 'Germany']           |
-|                  \                  |          ['india', 'China']         |           ['storks', 'penguins']          |
-|                  \                  |          ['japan', 'India']         |             ['north', 'South']            |
-|                  \                  |      ['australia', 'Singapore']     |             ['india', 'China']            |
-|                  \                  |        ['australia', 'China']       |         ['united', 'Puerto Rico']         |
-|                  \                  |         ['china', 'Taiwan']         |             ['japan', 'India']            |
-|                  \                  |       ['israel', 'Palestine']       |      ['north american', 'americican']     |
-|                  \                  |        ['england', 'Ireland']       |             ['spain', 'Chile']            |
-|                  \                  |      ['pakistan', 'Bangladesh']     |         ['australia', 'Singapore']        |
+|          ['China', 'Japan']         | ['united nation', 'United Kingdom'] |             ['wonga', 'Wales']            |
+|     ['Australia', 'New Zealand']    |        ['australia', 'India']       |    ['united nation', 'United Kingdom']    |
+| ['United Kingdom', 'the Continent'] |          ['japan', 'Korea']         |            ['jupiter', 'Venus']           |
+|       ['United State', 'Cuba']      |      ['australia', 'Indonesia']     |           ['france', 'Belgium']           |
+|         ['Spain', 'Morocco']        |          ['japan', 'China']         |            ['pakistan', 'Iran']           |
+|                  \                  |         ['japan', 'Taiwan']         |           ['peru', 'Costa Rica']          |
+|                  \                  |      ['saudi arabia', 'Kuwait']     |            ['jordan', 'Yemen']            |
+|                  \                  |        ['australia', 'Japan']       |             ['india', 'China']            |
+|                  \                  |     ['per capita', 'per person']    |          ['virginia', 'Delaware']         |
+|                  \                  |        ['india', 'Pakistan']        |      ['starts', 'finishes together']      |
+|                  \                  |       ['india', 'Bangladesh']       |             ['thai', 'Korean']            |
+|                  \                  |       ['kerala', 'Tamil Nadu']      |             ['spain', 'Chile']            |
+|                  \                  |          ['india', 'China']         |            ['brazil', 'Mexico']           |
+|                  \                  |          ['japan', 'India']         |         ['canada', 'Newfoundland']        |
+|                  \                  |      ['australia', 'Singapore']     |        ['california', 'Argentina']        |
+|                  \                  |        ['australia', 'China']       |           ['arctic', 'Pacific']           |
+|                  \                  |         ['china', 'Taiwan']         |          ['jordan', 'Palestine']          |
+|                  \                  |       ['israel', 'Palestine']       |          ['arctic', 'Antarctic']          |
+|                  \                  |        ['england', 'Ireland']       |             ['israel', 'Iran']            |
+|                  \                  |      ['pakistan', 'Bangladesh']     |          ['st paul', 'thailand']          |
 +-------------------------------------+-------------------------------------+-------------------------------------------+
 ==================================================
 Relation: representative_figure
@@ -179,26 +179,26 @@ Harvested Tuples:
 +------------------------------------+--------------------------------+-------------------------------------------+
 |            Seed samples            |         Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
 +------------------------------------+--------------------------------+-------------------------------------------+
-|   ['Lionel Messi', 'Barcelona']    | ['Raj Kumar', 'Indian Cinema'] |             ['Grandpa', 'Dad']            |
-|      ['Steven Jobs', 'Apple']      |      ['Trump', 'America']      |       ['Corbyn', 'Labour Movement']       |
-| ['Nelson Mandela', 'South Africa'] |      ['Putin', 'Russia']       |            ['Abbas', 'Jordan']            |
-| ['Taylor Swift', 'country music']  |      ['Obama', 'America']      |     ['Grand Duke', 'Russian Nobility']    |
-|       ['2Pac', 'pop music']        |     ['Erdogan', 'Turkey']      |         ['Erdogan', 'government']         |
-|                 \                  |       ['Modi', 'India']        |          ['Karzai', 'Uzbekistan']         |
-|                 \                  |      ['Macron', 'France']      |            ['Chavez', 'Mexico']           |
-|                 \                  |     ['Raju', 'Tamil Nadu']     |     ['Abraham Christian', 'Americans']    |
-|                 \                  |   ['al jazeera', 'Hussain']    |            ['Obama', 'America']           |
-|                 \                  |    ['Abdullah', 'al qaeda']    |           ['Erdogan', 'Turkey']           |
-|                 \                  |       ['Assad', 'Syria']       |           ['Mandela', 'Uganda']           |
-|                 \                  |      ['Gandhi', 'India']       |             ['Maduro', 'Cuba']            |
-|                 \                  |     ['Trump', 'Americans']     |           ['Rajiji', 'Gujarat']           |
-|                 \                  |      ['Khan', 'Pakistan']      |            ['Juma', 'Zimbabwe']           |
-|                 \                  |    ['Netanyahu', 'Israel']     |            ['Trump', 'Russia']            |
-|                 \                  |     ['Hitler', 'Germany']      |       ['Grandfather', 'fatherland']       |
-|                 \                  |    ['Maduro', 'Venezuela']     |           ['Gandhi', 'Indians']           |
-|                 \                  |    ['Ibrahim', 'Al Qaeda']     |           ['Mohammad', 'Islam']           |
-|                 \                  |     ['Mohammed', 'Islam']      |           ['Corbyn', 'Britain']           |
-|                 \                  |     ['Muhammad', 'Islam']      |          ['Ibrahim', 'Al Qaeda']          |
+|   ['Lionel Messi', 'Barcelona']    | ['Raj Kumar', 'Indian Cinema'] |            ['Bush', 'America']            |
+|      ['Steven Jobs', 'Apple']      |      ['Trump', 'America']      |       ['Grandfather', 'Grandmother']      |
+| ['Nelson Mandela', 'South Africa'] |      ['Putin', 'Russia']       |          ['Duterte', 'president']         |
+| ['Taylor Swift', 'country music']  |      ['Obama', 'America']      |          ['Karzai', 'Uzbekistan']         |
+|       ['2Pac', 'pop music']        |     ['Erdogan', 'Turkey']      |            ['Putin', 'Ukraine']           |
+|                 \                  |       ['Modi', 'India']        |          ['raj singh', 'Indians']         |
+|                 \                  |      ['Macron', 'France']      |          ['Corbyn', 'parliament']         |
+|                 \                  |     ['Raju', 'Tamil Nadu']     |          ['Duterte', 'Congress']          |
+|                 \                  |   ['al jazeera', 'Hussain']    |            ['Rajaji', 'Bihar']            |
+|                 \                  |    ['Abdullah', 'al qaeda']    |        ['Rajiji', 'Hindu Religion']       |
+|                 \                  |       ['Assad', 'Syria']       |             ['Maduro', 'Cuba']            |
+|                 \                  |      ['Gandhi', 'India']       |               ['God', 'man']              |
+|                 \                  |     ['Trump', 'Americans']     |              ['Bae', 'Seoul']             |
+|                 \                  |      ['Khan', 'Pakistan']      |          ['president', 'nation']          |
+|                 \                  |    ['Netanyahu', 'Israel']     |        ['Mohammed', 'Afghanistan']        |
+|                 \                  |     ['Hitler', 'Germany']      |            ['Gee', 'Hong San']            |
+|                 \                  |    ['Maduro', 'Venezuela']     |             ['Shah', 'nation']            |
+|                 \                  |    ['Ibrahim', 'Al Qaeda']     |             ['Assad', 'Iran']             |
+|                 \                  |     ['Mohammed', 'Islam']      |             ['Rama', 'Lanka']             |
+|                 \                  |     ['Muhammad', 'Islam']      |          ['Karimi', 'Kurdistan']          |
 +------------------------------------+--------------------------------+-------------------------------------------+
 ==================================================
 Relation: ingredient_for
@@ -208,56 +208,27 @@ Harvested Tuples:
 +-------------------------------+---------------------------------------+-------------------------------------------+
 |          Seed samples         |             Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
 +-------------------------------+---------------------------------------+-------------------------------------------+
-|       ['flour', 'cake']       |         ['kale', 'fresh kale']        |          ['sweetcorn', 'popcorn']         |
-|     ['beef', 'hamburger']     |      ['turkey', 'ground turkey']      |            ['kale', 'cabbage']            |
-|       ['potato', 'chip']      |     ['black beans', 'bean paste']     |           ['turkey', 'sausage']           |
-|     ['fried rice', 'rice']    |      ['french fries', 'potatoes']     |             ['shampoo', 'oil']            |
-| ['stargazer pie', 'pilchard'] |          ['salt', 'sea salt']         |              ['meat', 'pork']             |
-|               \               |       ['chili', 'ground chili']       |           ['turkey', 'poultry']           |
-|               \               |      ['bamboo', 'chopped bamboo']     |        ['bakery', 'baked product']        |
-|               \               |     ['chinese carp', 'carp skin']     |            ['cheese', 'butter']           |
-|               \               |    ['garbage', 'discarded garbage']   |         ['pan sauce', 'soy sauce']        |
-|               \               |        ['hot sauce', 'garlic']        |             ['indian', 'rice']            |
-|               \               |    ['charcoal', 'cooked charcoal']    |              ['fish', 'cod']              |
-|               \               |      ['pan pizza', 'Pizza Crust']     |            ['breakfast', 'egg']           |
-|               \               |          ['chicken', 'meat']          |             ['hash', 'dough']             |
-|               \               |          ['hot sauce', 'soy']         |          ['bait', 'live animal']          |
-|               \               |       ['beer', 'fermented beer']      |           ['kale', 'fresh kale']          |
-|               \               |         ['dog', 'ground dog']         |          ['steak', 'lean steak']          |
-|               \               |         ['gum', 'chewing gum']        |              ['meat', 'beef']             |
-|               \               |       ['hot potato', 'potatoes']      |         ['orange', 'minced onion']        |
-|               \               | ['chinese noodles', 'boiled noodles'] |         ['japanese poke', 'tuna']         |
-|               \               |        ['apple', 'diced apple']       |            ['pudding', 'milk']            |
+|       ['flour', 'cake']       |         ['kale', 'fresh kale']        |            ['pizza', 'cheese']            |
+|     ['beef', 'hamburger']     |      ['turkey', 'ground turkey']      |         ['beer', 'fermented wine']        |
+|       ['potato', 'chip']      |     ['black beans', 'bean paste']     |            ['pudding', 'milk']            |
+|     ['fried rice', 'rice']    |      ['french fries', 'potatoes']     |         ['jello', 'gelatin paste']        |
+| ['stargazer pie', 'pilchard'] |          ['salt', 'sea salt']         |          ['hash mash', 'squash']          |
+|               \               |       ['chili', 'ground chili']       |            ['frites', 'steak']            |
+|               \               |      ['bamboo', 'chopped bamboo']     |          ['steak', 'lean steak']          |
+|               \               |     ['chinese carp', 'carp skin']     |              ['ham', 'beef']              |
+|               \               |    ['garbage', 'discarded garbage']   |            ['charcoal', 'wood']           |
+|               \               |        ['hot sauce', 'garlic']        |            ['indian', 'dough']            |
+|               \               |    ['charcoal', 'cooked charcoal']    |            ['chicken', 'flesh']           |
+|               \               |      ['pan pizza', 'Pizza Crust']     |           ['jumbo', 'pineapple']          |
+|               \               |          ['chicken', 'meat']          |              ['stew', 'food']             |
+|               \               |          ['hot sauce', 'soy']         |             ['bamboo', 'wood']            |
+|               \               |       ['beer', 'fermented beer']      |           ['raw salmon', 'cod']           |
+|               \               |         ['dog', 'ground dog']         |             ['stew', 'water']             |
+|               \               |         ['gum', 'chewing gum']        |    ['chinese carp', 'freshwater carp']    |
+|               \               |       ['hot potato', 'potatoes']      |           ['spinach', 'lettuce']          |
+|               \               | ['chinese noodles', 'boiled noodles'] |           ['kale', 'vegetable']           |
+|               \               |        ['apple', 'diced apple']       |          ['caramel', 'chocolate']         |
 +-------------------------------+---------------------------------------+-------------------------------------------+
-==================================================
-Relation: processed_from
-Prompts:
-- 1.0000 Most <ENT1> is made from <ENT0> .
-Harvested Tuples:
-+-----------------------------+--------------------------------------+-------------------------------------------+
-|         Seed samples        |            Ours (Top 20)             | Ours (Random samples over top 200 tuples) |
-+-----------------------------+--------------------------------------+-------------------------------------------+
-| ['wool', 'woollen sweater'] |      ['raw eggs', 'Egg White']       |          ['syrup', 'maple syrup']         |
-|      ['milk', 'yogurt']     |       ['apples', 'apple pie']        |          ['aluminum', 'jewelry']          |
-|     ['sand', 'silicon']     |       ['bone marrow', 'blood']       |          ['fish', 'canned tuna']          |
-|    ['iron mine', 'iron']    |      ['black pepper', 'chili']       |           ['biofuel', 'diesel']           |
-|    ['crude oil', 'fuel']    |        ['wood', 'furniture']         |           ['steel', 'furniture']          |
-|              \              |     ['Java', 'Web Development']      |          ['limestone', 'asphalt']         |
-|              \              |    ['yeast', 'commercial yeast']     |          ['Cash', 'World Trade']          |
-|              \              |          ['coal', 'steel']           |          ['humans', 'animal fur']         |
-|              \              |      ['carbon atoms', 'matter']      |        ['spices', 'Indian Cuisine']       |
-|              \              |     ['deposits', 'bank lending']     |          ['black lead', 'solder']         |
-|              \              |      ['raw eggs', 'Egg Powder']      |            ['ethanol', 'beer']            |
-|              \              |       ['tuna', 'canned tuna']        |            ['oil', 'gasoline']            |
-|              \              |      ['Carbon', 'Natural Gas']       |         ['petroleum', 'clothing']         |
-|              \              |       ['coal', 'electricity']        |          ['gas', 'fossil fuels']          |
-|              \              |    ['nuclear reactor', 'uranium']    |         ['carbon atoms', 'matter']        |
-|              \              | ['Coconut Kernels', 'coconut cream'] |      ['maple leaf', 'Canadian Maple']     |
-|              \              |       ['plant stems', 'glue']        |         ['hemp', 'American Hemp']         |
-|              \              |    ['Pig Liver', 'Pork Sausage']     |      ['Vegetable Biomass', 'Biofuel']     |
-|              \              |       ['red pigment', 'paint']       |     ['children', 'child pornography']     |
-|              \              |       ['ash', 'volcanic lava']       |        ['love', 'Important Thing']        |
-+-----------------------------+--------------------------------------+-------------------------------------------+
 ==================================================
 Relation: business
 Prompts:
@@ -266,114 +237,85 @@ Harvested Tuples:
 +---------------------------+-----------------------------------------+-------------------------------------------+
 |        Seed samples       |              Ours (Top 20)              | Ours (Random samples over top 200 tuples) |
 +---------------------------+-----------------------------------------+-------------------------------------------+
-|     ['Nissan', 'car']     |     ['diamond', 'synthetic diamond']    |      ['blackstone', 'Private Equity']     |
-|    ['Apple', 'laptop']    |    ['airbnb', 'rental accommodation']   |    ['tenbit', 'cryptographic payload']    |
-|      ['Shell', 'oil']     |     ['sony', 'consumer electronics']    |         ['kleen', 'Surgical Gown']        |
-|     ['Nvidia', 'GPU']     | ['wrestling', 'professional wrestling'] |      ['fitness', 'workout equipment']     |
-| ['McDonald', 'hamburger'] |     ['sony', 'consumer electrical']     |     ['matrix', 'enterprise workload']     |
-|             \             |       ['youtube', 'online video']       |        ['oil', 'petroleum product']       |
-|             \             |     ['comcast', 'internet telecom']     |            ['cisco', 'system']            |
-|             \             |       ['fidelity', 'mutual fund']       |          ['cove', 'audio codec']          |
-|             \             |    ['comcast', 'internet bandwidth']    |          ['amazon', 'classified']         |
-|             \             |          ['gum', 'chewing gum']         |          ['snapmail', 'Web Mail']         |
-|             \             |      ['greetings', 'greeting card']     |           ['redeye', 'hot todd']          |
-|             \             |     ['blackstone', 'Private Equity']    |            ['walmart', 'food']            |
-|             \             |         ['game dev', 'game sdk']        |           ['airbus', 'airplane']          |
-|             \             |     ['black friday', 'black vinyl']     |      ['sony', 'consumer electronics']     |
-|             \             |          ['snap', 'mobile app']         |           ['advil', 'mouth med']          |
-|             \             |       ['vanguard', 'mutual fund']       |          ['google', 'classified']         |
-|             \             |    ['tesla', 'automotive mechanical']   |        ['sunpower', 'Wind Turbine']       |
-|             \             |          ['cola', 'soft drink']         |             ['halo', 'Kinect']            |
-|             \             |    ['blackstone', 'investment trust']   |           ['epchat', 'chatbot']           |
-|             \             |       ['bitcoin', 'virtual money']      |          ['sunrun', 'microbrew']          |
+|     ['Nissan', 'car']     |     ['diamond', 'synthetic diamond']    |          ['coach', 'basketball']          |
+|    ['Apple', 'laptop']    |    ['airbnb', 'rental accommodation']   |           ['epchat', 'chatbot']           |
+|      ['Shell', 'oil']     |     ['sony', 'consumer electronics']    |      ['select', 'Virtual Playground']     |
+|     ['Nvidia', 'GPU']     | ['wrestling', 'professional wrestling'] |          ['cologne', 'fragrance']         |
+| ['McDonald', 'hamburger'] |     ['sony', 'consumer electrical']     |      ['general motors', 'mechanical']     |
+|             \             |       ['youtube', 'online video']       |     ['greetings', 'greeting envelop']     |
+|             \             |     ['comcast', 'internet telecom']     |         ['blackmail', 'spam mail']        |
+|             \             |       ['fidelity', 'mutual fund']       |            ['inc', 'baseball']            |
+|             \             |    ['comcast', 'internet bandwidth']    |        ['redpoint', 'security av']        |
+|             \             |          ['gum', 'chewing gum']         |             ['airbnb', 'inn']             |
+|             \             |      ['greetings', 'greeting card']     |        ['sunpower', 'Wind Turbine']       |
+|             \             |     ['blackstone', 'Private Equity']    |          ['epoxy', 'plastic tub']         |
+|             \             |         ['game dev', 'game sdk']        |    ['adblock', 'advertising redirect']    |
+|             \             |     ['black friday', 'black vinyl']     |             ['nissan', 'car']             |
+|             \             |          ['snap', 'mobile app']         |              ['honda', 'car']             |
+|             \             |       ['vanguard', 'mutual fund']       |          ['honda', 'motorcycle']          |
+|             \             |    ['tesla', 'automotive mechanical']   |       ['greetings', 'greeting card']      |
+|             \             |          ['cola', 'soft drink']         |           ['homing', 'dog sled']          |
+|             \             |    ['blackstone', 'investment trust']   |            ['cisco', 'system']            |
+|             \             |       ['bitcoin', 'virtual money']      |     ['advisor', 'investment circular']    |
 +---------------------------+-----------------------------------------+-------------------------------------------+
 ==================================================
 Relation: featured_thing
 Prompts:
 - 1.0000 There is no doubt that <ENT0> is a very <ENT1> <ENT2> .
 Harvested Tuples:
-+------------------------------------------+----------------------------------------------------+-------------------------------------------------+
-|               Seed samples               |                   Ours (Top 20)                    |    Ours (Random samples over top 200 tuples)    |
-+------------------------------------------+----------------------------------------------------+-------------------------------------------------+
-|         ['egg', 'cheap', 'food']         |   ['uranium', 'unstable radioactive', 'element']   |       ['Scientology', 'sickening', 'cult']      |
-|         ['boa', 'long', 'snake']         |  ['uranium', 'unstable radioactive', 'material']   |          ['Venezuela', 'sad', 'story']          |
-| ['Messi', 'skillful', 'football player'] |     ['President Duterte', 'capable', 'leader']     | ['masculinity', 'specific social', 'construct'] |
-|      ['Russia', 'large', 'country']      |  ['uranium', 'unstable radioactive', 'substance']  |            ['life', 'short', 'time']            |
-|      ['Amazon', 'rich', 'company']       |           ['Trump', 'dangerous', 'man']            |       ['Nigeria', 'diverse', 'population']      |
-|                    \                     | ['President Duterte', 'capable', 'administrator']  |         ['Ebola', 'serious', 'disease']         |
-|                    \                     |    ['uranium', 'unstable radioactive', 'metal']    |          ['war', 'costly', 'business']          |
-|                    \                     |          ['Trump', 'dangerous', 'person']          |         ['Russia', 'important', 'power']        |
-|                    \                     |        ['Trump', 'dangerous', 'president']         |        ['politics', 'personal', 'matter']       |
-|                    \                     |             ['Brexit', 'bad', 'idea']              |           ['Snowden', 'smart', 'guy']           |
-|                    \                     |        ['Trump', 'dangerous', 'individual']        |        ['Russia', 'important', 'country']       |
-|                    \                     |   ['John David', 'well respected', 'journalist']   |      ['democracy', 'difficult', 'endeavor']     |
-|                    \                     |      ['north delhi', 'poor', 'neighborhood']       |      ['Bitcoin', 'valuable', 'investment']      |
-|                    \                     | ['Paul Manafort', 'corrupt', 'political criminal'] |          ['Islam', 'violent', 'faith']          |
-|                    \                     |         ['Russia', 'important', 'country']         |         ['terrorism', 'grave', 'threat']        |
-|                    \                     |          ['America', 'special', 'place']           |          ['Brexit', 'bad', 'decision']          |
-|                    \                     |      ['north delhi', 'poor', 'neighbourhood']      |        ['Obamacare', 'unpopular', 'bill']       |
-|                    \                     |             ['Brexit', 'bad', 'thing']             |    ['President Duterte', 'capable', 'leader']   |
-|                    \                     |           ['America', 'rich', 'country']           |     ['Afghanistan', 'complex', 'situation']     |
-|                    \                     |           ['Obama', 'good', 'president']           |          ['Ebola', 'serious', 'threat']         |
-+------------------------------------------+----------------------------------------------------+-------------------------------------------------+
++------------------------------------------+----------------------------------------------------+----------------------------------------------------+
+|               Seed samples               |                   Ours (Top 20)                    |     Ours (Random samples over top 200 tuples)      |
++------------------------------------------+----------------------------------------------------+----------------------------------------------------+
+|         ['egg', 'cheap', 'food']         |   ['uranium', 'unstable radioactive', 'element']   |          ['Israel', 'troubled', 'nation']          |
+|         ['boa', 'long', 'snake']         |  ['uranium', 'unstable radioactive', 'material']   |          ['Elvis', 'famous', 'Pop Icon']           |
+| ['Messi', 'skillful', 'football player'] |     ['President Duterte', 'capable', 'leader']     |        ['Bitcoin', 'valuable', 'currency']         |
+|      ['Russia', 'large', 'country']      |  ['uranium', 'unstable radioactive', 'substance']  |        ['Pakistan', 'volatile', 'country']         |
+|      ['Amazon', 'rich', 'company']       |           ['Trump', 'dangerous', 'man']            |         ['Zimbabwe', 'fragile', 'economy']         |
+|                    \                     | ['President Duterte', 'capable', 'administrator']  |           ['Hitler', 'talented', 'man']            |
+|                    \                     |    ['uranium', 'unstable radioactive', 'metal']    |             ['life', 'short', 'time']              |
+|                    \                     |          ['Trump', 'dangerous', 'person']          |        ['equality', 'much needed', 'goal']         |
+|                    \                     |        ['Trump', 'dangerous', 'president']         |  ['uranium', 'unstable radioactive', 'substance']  |
+|                    \                     |             ['Brexit', 'bad', 'idea']              |  ['masculinity', 'specific social', 'construct']   |
+|                    \                     |        ['Trump', 'dangerous', 'individual']        | ['masculinity', 'specific social', 'construction'] |
+|                    \                     |   ['John David', 'well respected', 'journalist']   |         ['terrorism', 'grave', 'problem']          |
+|                    \                     |      ['north delhi', 'poor', 'neighborhood']       |         ['capitalism', 'flawed', 'model']          |
+|                    \                     | ['Paul Manafort', 'corrupt', 'political criminal'] |           ['Obama', 'good', 'president']           |
+|                    \                     |         ['Russia', 'important', 'country']         |        ['Google', 'profitable', 'business']        |
+|                    \                     |          ['America', 'special', 'place']           |         ['France', 'interesting', 'land']          |
+|                    \                     |      ['north delhi', 'poor', 'neighbourhood']      |          ['Australia', 'big', 'problem']           |
+|                    \                     |             ['Brexit', 'bad', 'thing']             |      ['Google', 'profitable', 'corporation']       |
+|                    \                     |           ['America', 'rich', 'country']           |         ['Facebook', 'addictive', 'site']          |
+|                    \                     |           ['Obama', 'good', 'president']           |             ['Brexit', 'bad', 'idea']              |
++------------------------------------------+----------------------------------------------------+----------------------------------------------------+
 ==================================================
 Relation: need_sth_to_do_sth
 Prompts:
 - 1.0000 <ENT0> feel that they need <ENT1> in order to <ENT2> .
 Harvested Tuples:
-+------------------------------------------------+--------------------------------------------------+-------------------------------------------------------+
-|                  Seed samples                  |                  Ours (Top 20)                   |       Ours (Random samples over top 200 tuples)       |
-+------------------------------------------------+--------------------------------------------------+-------------------------------------------------------+
-|       ['developer', 'computer', 'code']        |           ['people', 'money', 'live']            |         ['researchers', 'data', 'understand']         |
-|     ['people', 'social media', 'connect']      |          ['people', 'money', 'survive']          |             ['counters', 'credit', 'buy']             |
-|            ['pig', 'food', 'grow']             |          ['people', 'money', 'succeed']          |              ['others', 'sex', 'succeed']             |
-|          ['people', 'money', 'live']           |    ['readers', 'full text', 'read articles']     |     ['facebook', 'advertisers', 'remain relevant']    |
-| ['intern', 'good performance', 'return offer'] | ['conservatives', 'Obamacare', 'save obamacare'] |     ['black females', 'testosterone', 'conceive']     |
-|                       \                        |            ['people', 'money', 'eat']            |         ['prisons', 'open prisons', 'recruit']        |
-|                       \                        |        ['young girls', 'boys', 'belong']         |      ['experts', 'better nutrition', 'exercise']      |
-|                       \                        |         ['people', 'money', 'function']          |          ['young males', 'females', 'breed']          |
-|                       \                        |         ['students', 'help', 'succeed']          |           ['children', 'attention', 'learn']          |
-|                       \                        |  ['white supremacists', 'violence', 'prevail']   |            ['traders', 'leverage', 'make']            |
-|                       \                        |          ['others', 'sex', 'function']           |         ['engineers', 'computers', 'make art']        |
-|                       \                        |         ['americans', 'guns', 'survive']         |           ['drivers', 'insurance', 'travel']          |
-|                       \                        |   ['voters', 'Voting Machine', 'cast ballots']   |  ['ologists', 'Scientific Proof', 'accept evolution'] |
-|                       \                        |    ['millennials', 'social media', 'connect']    |             ['players', 'training', 'win']            |
-|                       \                        |           ['others', 'sex', 'survive']           |       ['certain writers', 'fiction', 'publish']       |
-|                       \                        |            ['others', 'sex', 'live']             | ['investigators', 'additional evidence', 'prosecute'] |
-|                       \                        |       ['young males', 'females', 'breed']        |          ['drivers', 'insurance', 'qualify']          |
-|                       \                        |   ['voters', 'Voting Machine', 'cast ballot']    |             ['cancers', 'surgery', 'cure']            |
-|                       \                        |         ['young boys', 'girls', 'excel']         |    ['parents must', 'Parental Approval', 'attend']    |
-|                       \                        |         ['students', 'help', 'graduate']         |      ['female viewers', 'pornography', 'satisfy']     |
-+------------------------------------------------+--------------------------------------------------+-------------------------------------------------------+
-==================================================
-Relation: more_than
-Prompts:
-- 1.0000 It's more <ENT1> to <ENT0> than it is to <ENT2> .
-Harvested Tuples:
-+----------------------------------------+---------------------------------------------------------------+---------------------------------------------------------------+
-|              Seed samples              |                         Ours (Top 20)                         |           Ours (Random samples over top 200 tuples)           |
-+----------------------------------------+---------------------------------------------------------------+---------------------------------------------------------------+
-|      ['car', 'fast', 'carriage']       |    ['grow vegetables', 'economically viable', 'grow corn']    |                 ['write', 'satisfying', 'act']                |
-|      ['judge', 'easy', 'create']       |       ['fight fires', 'time consuming', 'fight floods']       |                    ['read', 'fun', 'make']                    |
-| ['golden retriever', 'large', 'teddy'] |    ['grow vegetables', 'economically viable', 'grow crops']   |  ['Avoid Smoking', 'psychologically healthy', 'Quit Smoking'] |
-|       ['tiger', 'strong', 'cat']       |       ['go south', 'economically advantageous', 'north']      |               ['America', 'relevant', 'Israel']               |
-|    ['play', 'interesting', 'study']    |       ['fight wars', 'morally wrong', 'commit suicide']       |                ['go around', 'trouble', 'stay']               |
-|                   \                    |         ['fight wars', 'morally wrong', 'commit rape']        |                 ['buy', 'profitable', 'sell']                 |
-|                   \                    |         ['lose friends', 'demoralizing', 'lose jobs']         |                ['talk', 'effective', 'listen']                |
-|                   \                    |       ['fight wars', 'morally wrong', 'kill civilians']       |              ['children', 'palatable', 'adults']              |
-|                   \                    |       ['build tables', 'time consuming', 'build arrays']      |                     ['read', 'fun', 'see']                    |
-|                   \                    |          ['English', 'easily translated', 'Japanese']         |          ['avoid sex', 'healthwise', 'initiate sex']          |
-|                   \                    |   ['support charity', 'morally wrong', 'support terrorism']   |          ['males', 'sexually stimulating', 'female']          |
-|                   \                    |           ['English', 'easily translated', 'French']          | ['oppose legislation', 'intellectually dishonest', 'endorse'] |
-|                   \                    | ['oppose legislation', 'intellectually dishonest', 'support'] |                 ['say', 'difficult', 'write']                 |
-|                   \                    |      ['build tables', 'time consuming', 'build classes']      |              ['go around', 'trouble', 'receive']              |
-|                   \                    |             ['cut steel', 'laborious', 'cut wood']            |             ['capitalism', 'central', 'communism']            |
-|                   \                    |           ['kill oneself', 'humane', 'kill another']          |   ['keep things', 'environmentally sustainable', 'dispose']   |
-|                   \                    |              ['move slowly', 'healthful', 'run']              |               ['America', 'relevant', 'Europe']               |
-|                   \                    | ['oppose legislation', 'intellectually dishonest', 'promote'] |    ['grow vegetables', 'economically viable', 'grow crops']   |
-|                   \                    |             ['stop smoking', 'healthwise', 'quit']            |                    ['read', 'fun', 'play']                    |
-|                   \                    |               ['hold hands', 'romantic', 'kiss']              |             ['Catholics', 'abhorrent', 'atheists']            |
-+----------------------------------------+---------------------------------------------------------------+---------------------------------------------------------------+
++------------------------------------------------+--------------------------------------------------+---------------------------------------------------------+
+|                  Seed samples                  |                  Ours (Top 20)                   |        Ours (Random samples over top 200 tuples)        |
++------------------------------------------------+--------------------------------------------------+---------------------------------------------------------+
+|       ['developer', 'computer', 'code']        |           ['people', 'money', 'live']            |            ['critics', 'facts', 'understand']           |
+|     ['people', 'social media', 'connect']      |          ['people', 'money', 'survive']          |         ['stores', 'discounts', 'keep shoppers']        |
+|            ['pig', 'food', 'grow']             |          ['people', 'money', 'succeed']          |             ['americans', 'guns', 'protect']            |
+|          ['people', 'money', 'live']           |    ['readers', 'full text', 'read articles']     |          ['engineers', 'special tools', 'make']         |
+| ['intern', 'good performance', 'return offer'] | ['conservatives', 'Obamacare', 'save obamacare'] |              ['players', 'training', 'win']             |
+|                       \                        |            ['people', 'money', 'eat']            |            ['drivers', 'insurance', 'travel']           |
+|                       \                        |        ['young girls', 'boys', 'belong']         |              ['dogs', 'food', 'reproduce']              |
+|                       \                        |         ['people', 'money', 'function']          |             ['cancers', 'radiation', 'die']             |
+|                       \                        |         ['students', 'help', 'succeed']          |          ['often workers', 'overtime', 'earn']          |
+|                       \                        |  ['white supremacists', 'violence', 'prevail']   |               ['dogs', 'water', 'breathe']              |
+|                       \                        |          ['others', 'sex', 'function']           |          ['women', 'contraception', 'achieve']          |
+|                       \                        |         ['americans', 'guns', 'survive']         |             ['researchers', 'data', 'work']             |
+|                       \                        |   ['voters', 'Voting Machine', 'cast ballots']   |           ['prisons', 'open doors', 'recruit']          |
+|                       \                        |    ['millennials', 'social media', 'connect']    |          ['women', 'contraception', 'function']         |
+|                       \                        |           ['others', 'sex', 'survive']           |              ['people', 'money', 'succeed']             |
+|                       \                        |            ['others', 'sex', 'live']             |       ['japan', 'Nuclear Bomb', 'stop terrorism']       |
+|                       \                        |       ['young males', 'females', 'breed']        |             ['birds', 'human touch', 'fly']             |
+|                       \                        |   ['voters', 'Voting Machine', 'cast ballot']    | ['parents increasingly', 'Parental Approval', 'attend'] |
+|                       \                        |         ['young boys', 'girls', 'excel']         |          ['japan', 'Nuclear Bomb', 'Stop War']          |
+|                       \                        |         ['students', 'help', 'graduate']         |         ['consumers', 'convenience', 'purchase']        |
++------------------------------------------------+--------------------------------------------------+---------------------------------------------------------+
 ==================================================
 Relation: can_but_not_good
 Prompts:
@@ -382,26 +324,26 @@ Harvested Tuples:
 +------------------------------------+---------------------------------+-------------------------------------------+
 |            Seed samples            |          Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
 +------------------------------------+---------------------------------+-------------------------------------------+
-|         ['chicken', 'fly']         |     ['human', 'make money']     |              ['ghost', 'see']             |
-|          ['dog', 'swim']           |      ['cop', 'stop crime']      |              ['cook', 'bake']             |
-| ['long-distance runner', 'sprint'] |        ['human', 'read']        |              ['gay', 'kiss']              |
-|         ['skater', 'ski']          |    ['human stomach', 'vomit']   |        ['acrylic', 'cover stains']        |
-|      ['researcher', 'teach']       |    ['doctor', 'fix problems']   |              ['hug', 'hurt']              |
-|                 \                  |   ['even psychopath', 'love']   |             ['heart', 'heal']             |
-|                 \                  |     ['cow', 'get pregnant']     |          ['zerg', 'take turrets']         |
-|                 \                  | ['individual', 'make mistakes'] |              ['sun', 'shine']             |
-|                 \                  |       ['cow', 'get drunk']      |          ['cost', 'reduce costs']         |
-|                 \                  |   ['human stomach', 'digest']   |              ['blue', 'pass']             |
-|                 \                  |     ['even troll', 'spell']     |      ['council', 'regulate parking']      |
-|                 \                  |    ['mother', 'make babies']    |             ['troll', 'argue']            |
-|                 \                  |    ['even monarch', 'gamble']   |      ['individual', 'make mistakes']      |
-|                 \                  |      ['green lawn', 'wait']     |          ['smog', 'Smell Smoke']          |
-|                 \                  |  ['cell', 'regenerate tissue']  |              ['jack', 'jump']             |
-|                 \                  |         ['human', 'run']        |             ['eye', 'deceive']            |
-|                 \                  |   ['individual', 'make money']  |         ['graph', 'Tell Stories']         |
-|                 \                  |     ['even monarch', 'golf']    |           ['stomach', 'swallow']          |
-|                 \                  |       ['cow', 'get away']       |          ['christian', 'forgive']         |
-|                 \                  |    ['secret', 'keep secrets']   |          ['mind', 'Make Things']          |
+|         ['chicken', 'fly']         |     ['human', 'make money']     |             ['human', 'read']             |
+|          ['dog', 'swim']           |      ['cop', 'stop crime']      |             ['stock', 'trade']            |
+| ['long-distance runner', 'sprint'] |        ['human', 'read']        |              ['sub', 'score']             |
+|         ['skater', 'ski']          |    ['human stomach', 'vomit']   |             ['stock', 'sell']             |
+|      ['researcher', 'teach']       |    ['doctor', 'fix problems']   |          ['cop', 'Arrest People']         |
+|                 \                  |   ['even psychopath', 'love']   |              ['bull', 'fly']              |
+|                 \                  |     ['cow', 'get pregnant']     |        ['acrylic', 'cover stains']        |
+|                 \                  | ['individual', 'make mistakes'] |              ['buc', 'cover']             |
+|                 \                  |       ['cow', 'get drunk']      |           ['fear', 'cause fear']          |
+|                 \                  |   ['human stomach', 'digest']   |           ['individual', 'sing']          |
+|                 \                  |     ['even troll', 'spell']     |              ['mac', 'hack']              |
+|                 \                  |    ['mother', 'make babies']    |         ['night lantern', 'glow']         |
+|                 \                  |    ['even monarch', 'gamble']   |              ['ghost', 'see']             |
+|                 \                  |      ['green lawn', 'wait']     |              ['gay', 'kiss']              |
+|                 \                  |  ['cell', 'regenerate tissue']  |         ['account', 'still login']        |
+|                 \                  |         ['human', 'run']        |           ['cop', 'stop crime']           |
+|                 \                  |   ['individual', 'make money']  |         ['stadium', 'hold crowds']        |
+|                 \                  |     ['even monarch', 'golf']    |         ['stadium', 'hold games']         |
+|                 \                  |       ['cow', 'get away']       |         ['liquid', 'absorb salt']         |
+|                 \                  |    ['secret', 'keep secrets']   |          ['farm', 'produce milk']         |
 +------------------------------------+---------------------------------+-------------------------------------------+
 ==================================================
 Relation: worth_celebrating
@@ -411,26 +353,26 @@ Harvested Tuples:
 +---------------------------------+---------------------------------+-------------------------------------------+
 |           Seed samples          |          Ours (Top 20)          | Ours (Random samples over top 200 tuples) |
 +---------------------------------+---------------------------------+-------------------------------------------+
-|         ['team', 'wim']         |   ['farmers', 'harvest wheat']  |         ['gay couples', 'divorce']        |
-|     ['student', 'pass exam']    |   ['farmers', 'harvest corn']   |            ['couples', 'marry']           |
-| ['researcher', 'publish paper'] |   ['smokers', 'quit smoking']   |              ['girls', 'get']             |
-|     ['people', 'earn money']    |   ['babies', 'start walking']   | ['legislators', 'accomplish legislation'] |
-|    ['parents', 'get a baby']    |    ['mothers', 'give birth']    |        ['male dancers', 'perform']        |
-|                \                |       ['women', 'achieve']      |        ['young couple', 'propose']        |
-|                \                |  ['smokers', 'quit cigarettes'] |         ['adolescents', 'obtain']         |
-|                \                |   ['victims', 'report abuse']   |           ['writers', 'publish']          |
-|                \                |   ['infants', 'start walking']  |            ['Americans', 'win']           |
-|                \                |         ['women', 'get']        |           ['children', 'reach']           |
-|                \                |    ['predators', 'kill prey']   |           ['youth', 'complete']           |
-|                \                |    ['taxpayers', 'pay taxes']   |             ['boys', 'become']            |
-|                \                |  ['defendants', 'plead guilty'] |           ['celebrities', 'say']          |
-|                \                | ['hackers', 'break encryption'] |           ['scientists', 'find']          |
-|                \                |      ['gay couples', 'wed']     |          ['Marines', 'complete']          |
-|                \                |     ['athletes', 'achieve']     |           ['immigrants', 'earn']          |
-|                \                |        ['women', 'make']        |      ['architects', 'design houses']      |
-|                \                |    ['fathers', 'raise sons']    |  ['grandparents', 'raise grandchildren']  |
-|                \                |  ['every nigerian', 'qualify']  |        ['divers', 'break records']        |
-|                \                |        ['women', 'earn']        |         ['teenagers', 'graduate']         |
+|         ['team', 'wim']         |   ['farmers', 'harvest wheat']  |         ['fathers', 'give birth']         |
+|     ['student', 'pass exam']    |   ['farmers', 'harvest corn']   |      ['hackers', 'breach passwords']      |
+| ['researcher', 'publish paper'] |   ['smokers', 'quit smoking']   |        ['shooters', 'hit targets']        |
+|     ['people', 'earn money']    |   ['babies', 'start walking']   |              ['boys', 'win']              |
+|    ['parents', 'get a baby']    |    ['mothers', 'give birth']    |           ['refugees', 'arrive']          |
+|                \                |       ['women', 'achieve']      |         ['gay couples', 'divorce']        |
+|                \                |  ['smokers', 'quit cigarettes'] |           ['scientists', 'say']           |
+|                \                |   ['victims', 'report abuse']   |         ['thieves', 'steal gold']         |
+|                \                |   ['infants', 'start walking']  |      ['Egyptians', 'conquer babylon']     |
+|                \                |         ['women', 'get']        |            ['parents', 'give']            |
+|                \                |    ['predators', 'kill prey']   |         ['several years', 'begin']        |
+|                \                |    ['taxpayers', 'pay taxes']   |        ['young couple', 'propose']        |
+|                \                |  ['defendants', 'plead guilty'] |           ['teenagers', 'make']           |
+|                \                | ['hackers', 'break encryption'] |           ['children', 'attain']          |
+|                \                |      ['gay couples', 'wed']     |            ['males', 'attain']            |
+|                \                |     ['athletes', 'achieve']     |    ['small groups', 'accomplish large']   |
+|                \                |        ['women', 'make']        |        ['infants', 'start walking']       |
+|                \                |    ['fathers', 'raise sons']    |       ['Indian Forces', 'captured']       |
+|                \                |  ['every nigerian', 'qualify']  |         ['divers', 'break water']         |
+|                \                |        ['women', 'earn']        |           ['men even', 'cannot']          |
 +---------------------------------+---------------------------------+-------------------------------------------+
 ==================================================
 Relation: potential_risk
@@ -440,25 +382,25 @@ Harvested Tuples:
 +------------------------------------------+--------------------------------------------+-------------------------------------------+
 |               Seed samples               |               Ours (Top 20)                | Ours (Random samples over top 200 tuples) |
 +------------------------------------------+--------------------------------------------+-------------------------------------------+
-|    ['playing game', 'fail the exam']     |        ['using sunscreen', 'acne']         |      ['breeding', 'Genetic Diseases']     |
-| ['sleep insufficiency', 'heart disease'] |         ['drug overdose', 'coma']          |        ['women', 'sexual assaults']       |
-|         ['candy', 'tooth decay']         |        ['bad parenting', 'divorce']        |        ['smoking', 'schizophrenia']       |
-|        ['flight', 'plane crash']         |       ['certain vaccines', 'autism']       |     ['breeding', 'Genetic Disorders']     |
-|       ['investment', 'lose money']       |       ['getting wet', 'dehydration']       |     ['failing', 'criminal conviction']    |
-|                    \                     |     ['getting vaccinated', 'immunity']     |      ['online transactions', 'theft']     |
-|                    \                     |  ['regular breastfeeding', 'Breast Milk']  |           ['use', 'depression']           |
-|                    \                     |      ['drug dependency', 'psychosis']      |       ['getting tired', 'insomnia']       |
-|                    \                     |      ['taking opioids', 'dependence']      |     ['hacking', 'government secrets']     |
-|                    \                     |        ['data storage', 'privacy']         |     ['context', 'different responses']    |
-|                    \                     |     ['health insurance', 'bankruptcy']     |      ['breeding', 'genetic variants']     |
-|                    \                     |      ['early stages', 'miscarriage']       |       ['high temperature', 'fever']       |
-|                    \                     |      ['health insurance', 'poverty']       |         ['high voltage', 'short']         |
-|                    \                     |     ['early termination', 'dismissal']     |        ['breaking rules', 'fines']        |
-|                    \                     | ['current situation', 'economic slowdown'] |         ['spinning', 'dizziness']         |
-|                    \                     |     ['medical cannabis', 'psychosis']      |          ['sharks', 'shark bite']         |
-|                    \                     |      ['certain ingredients', 'burns']      |         ['sharks', 'Shark Bites']         |
-|                    \                     |      ['drug withdrawal', 'psychosis']      |     ['thinking', 'Negative Thinking']     |
-|                    \                     |      ['certain supplements', 'acne']       |         ['high water', 'bacteria']        |
-|                    \                     |        ['using sunscreen', 'burn']         |     ['warning link', 'inappropriate']     |
+|    ['playing game', 'fail the exam']     |        ['using sunscreen', 'acne']         |       ['action', 'Criminal Charge']       |
+| ['sleep insufficiency', 'heart disease'] |         ['drug overdose', 'coma']          |       ['product marketing', 'sales']      |
+|         ['candy', 'tooth decay']         |        ['bad parenting', 'divorce']        |          ['amazon', 'fewer jobs']         |
+|        ['flight', 'plane crash']         |       ['certain vaccines', 'autism']       |           ['fines', 'jail time']          |
+|       ['investment', 'lose money']       |       ['getting wet', 'dehydration']       |       ['focusing', 'attention span']      |
+|                    \                     |     ['getting vaccinated', 'immunity']     |  ['current treatments', 'liver function'] |
+|                    \                     |  ['regular breastfeeding', 'Breast Milk']  |       ['fishing', 'Fish Poisoning']       |
+|                    \                     |      ['drug dependency', 'psychosis']      |          ['actions', 'jail time']         |
+|                    \                     |      ['taking opioids', 'dependence']      |     ['early treatment', 'improvement']    |
+|                    \                     |        ['data storage', 'privacy']         |           ['use', 'depression']           |
+|                    \                     |     ['health insurance', 'bankruptcy']     |       ['online searches', 'Google']       |
+|                    \                     |      ['early stages', 'miscarriage']       |           ['shock', 'seizures']           |
+|                    \                     |      ['health insurance', 'poverty']       |      ['early retirement', 'poverty']      |
+|                    \                     |     ['early termination', 'dismissal']     |        ['life', 'Mental Breakdown']       |
+|                    \                     | ['current situation', 'economic slowdown'] |      ['growth', 'Economic Slowdown']      |
+|                    \                     |     ['medical cannabis', 'psychosis']      |       ['spasms', 'seizure disorder']      |
+|                    \                     |      ['certain ingredients', 'burns']      |       ['treatment', 'complications']      |
+|                    \                     |      ['drug withdrawal', 'psychosis']      |        ['using sunscreen', 'acne']        |
+|                    \                     |      ['certain supplements', 'acne']       |      ['online transactions', 'theft']     |
+|                    \                     |        ['using sunscreen', 'burn']         |          ['heat', 'Brain Tumors']         |
 +------------------------------------------+--------------------------------------------+-------------------------------------------+
 ==================================================
