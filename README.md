@@ -2,7 +2,7 @@
 
 This repo contains preliminary code of the following paper:
 
-**BertNet: Harvesting Knowledge Graphs from Pretrained Language Models** \
+**[BertNet: Harvesting Knowledge Graphs from Pretrained Language Models](https://arxiv.org/pdf/2206.14268.pdf)** \
 Shibo Hao*, Bowen Tan*, Kaiwen Tang*, Hengzhe Zhang, Eric P. Xing, Zhiting Hu \
 (* Equal contribution) 
 
@@ -27,7 +27,7 @@ Our code runs on a single GTX 1080Ti GPU.
 ## Harvesting KGs from LMs
 
 ### Automatic Creation of Diverse Prompts
-This step corresponds to [paper]() Section 3.1. 
+This step corresponds to [paper](https://arxiv.org/pdf/2206.14268.pdf) Section 3.1. 
 ```
 python search_prompts.py --rel_set conceptnet
 ```
@@ -37,7 +37,7 @@ The prompt searching reads the relation definitions from `"init_prompts"` and `"
 (Files in the [relation_info/](relation_info/) folder have contained the results of this step.)
 
 ### Efficient Search for Knowledge Tuples
-This step corresponds to [paper]() Section 3.2.
+This step corresponds to [paper](https://arxiv.org/pdf/2206.14268.pdf) Section 3.2.
 ```
 python main.py --rel_set conceptnet --model_name roberta-large --n_ent_tuples 1000 --n_prompts 20
 ```
