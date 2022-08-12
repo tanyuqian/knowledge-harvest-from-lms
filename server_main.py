@@ -67,6 +67,8 @@ def predict(model_name, init_prompts_str, seed_ent_tuples_str):
 
 
 if __name__ == '__main__':
-    os.environ['PATH'] = str(Path.home()) + "/anaconda3/bin" + ':' + os.environ['PATH']
-    # app.run(host='0.0.0.0', port=1111, debug=True)
+    """
+    Please modify this path to your python location! 
+    """
+    os.environ['PATH'] = str(Path.home()) + "/miniforge3/bin" + ':' + os.environ['PATH']
     app.run(host='127.0.0.1', port=8000, debug=True)
