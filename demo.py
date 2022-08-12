@@ -9,7 +9,7 @@ from data_utils.data_utils import fix_prompt_style, is_valid_prompt
 from search_prompts import get_paraphrase_prompt
 from models.gpt3 import GPT3
 from models.knowledge_harvester import KnowledgeHarvester
-
+import timeit
 
 MAX_N_PROMPTS = 20
 MAX_WORD_REPEAT = 3
@@ -94,6 +94,7 @@ def search_ent_tuples(
         max_n_ent_tuples,
         result_dir):
 
+    start = timeit.default_timer()
     knowledge_harvester = KnowledgeHarvester(
         model_name=model_name,
         max_n_ent_tuples=0,
@@ -102,7 +103,11 @@ def search_ent_tuples(
         max_ent_subwords=MAX_ENT_SUBWORDS,
         prompt_temp=PROMPT_TEMP)
 
-    print(f'Searching with max_n_ent_tuples={max_n_ent_tuples}...')
+    cur = timeit.default_timer()
+    print(f"loaded model ({max_n_ent_tuples}): ", cur - start)
+    start = cur
+
+    # print(f'Searching with max_n_ent_tuples={max_n_ent_tuples}...')
 
     knowledge_harvester.clear()
     knowledge_harvester._max_n_ent_tuples = max_n_ent_tuples
@@ -113,6 +118,10 @@ def search_ent_tuples(
     knowledge_harvester.update_prompts()
     json.dump(knowledge_harvester.weighted_prompts, open(
         f'{result_dir}/prompts.json', 'w'), indent=4)
+
+    cur = timeit.default_timer()
+    print(f"update prompts ({max_n_ent_tuples}): ", cur - start)
+    start = cur
 
     for prompt, weight in knowledge_harvester.weighted_prompts:
         print(f'{weight:.4f} {prompt}')
@@ -199,24 +208,26 @@ def main(init_prompts_str,
     print(f'Initial prompts: {init_prompts}')
     print(f'Seed entity tuples: {seed_ent_tuples}')
     print('=' * 50)
-
     prompts_output_dir = f'results/demo/prompts/'
     prompts_output_path = f'{prompts_output_dir}/{rel}.json'
     if os.path.exists(prompts_output_path):
         prompts = json.load(open(prompts_output_path))
+        print("loaded prompts from cache.")
     else:
         os.makedirs(prompts_output_dir, exist_ok=True)
         json.dump([], open(prompts_output_path, 'w'))
-
+        # why dump an empty list?
         prompts = find_in_rel_sets(rel=rel, model_name=model_name)[0]
-
+        if prompts is not None:
+            json.dump(prompts, open(prompts_output_path, 'w'), indent=4)
+            print("loaded prompts from pre-defined sets.")
         if prompts is None:
             prompts = search_prompts(
                 init_prompts=init_prompts,
                 seed_ent_tuples=seed_ent_tuples,
                 similarity_threshold=SIMILARITY_THRESHOLD,
                 output_path=prompts_output_path)
-
+            print("searched prompts with GPT-3")
     print('Searched-out prompts:')
     print('\n'.join(prompts))
     print('=' * 50)
@@ -232,12 +243,15 @@ def main(init_prompts_str,
             print(ent_tuple, weight)
         print('=' * 50)
     else:
+        print("Searching results")
         os.makedirs(f'{output_dir}/{rel}', exist_ok=True)
         json.dump([], open(output_path, 'w'))
 
         weighted_ent_tuples = find_in_rel_sets(
             rel=rel, model_name=model_name)[1]
-
+        
+        # weighted_ent_tuples = None
+        
         if weighted_ent_tuples is None:
             weighted_ent_tuples = search_ent_tuples(
                 init_prompts=init_prompts,
@@ -246,13 +260,11 @@ def main(init_prompts_str,
                 model_name=model_name,
                 max_n_ent_tuples=max_n_ent_tuples,
                 result_dir=f'{output_dir}/{rel}/')
-
         json.dump(weighted_ent_tuples, open(output_path, 'w'), indent=4)
 
         for ent_tuple, weight in weighted_ent_tuples[:30]:
             print(ent_tuple, weight)
         print('=' * 50)
-
 
 if __name__ == '__main__':
     fire.Fire(main)
