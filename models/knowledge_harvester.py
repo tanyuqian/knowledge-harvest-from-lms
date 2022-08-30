@@ -1,3 +1,4 @@
+from collections import defaultdict
 from tqdm import tqdm
 from scipy.special import softmax
 
@@ -9,6 +10,7 @@ import copy
 import timeit
 import torch
 import random
+from tqdm import *
 
 class KnowledgeHarvester:
     def __init__(self,
@@ -29,7 +31,7 @@ class KnowledgeHarvester:
         self._ent_tuple_searcher = EntityTupleSearcher(model=self._model)
 
         self._seed_ent_tuples = None
-        self._max_batch_size = 64
+        self._max_batch_size = 256
         self._beam_size = max(128, max_n_ent_tuples * 2)
 
     def clear(self):
@@ -106,9 +108,8 @@ class KnowledgeHarvester:
                         [ent_tuple1[ent_idx]] + \
                         ent_tuple[ent_idx + 1:]
                     )
-        neg_tuples = random.sample(neg_tuples, len(pos_tuples))
+        neg_tuples = random.sample(neg_tuples, 2 * len(pos_tuples))
         # reduce the number of neg samples
-        
         for i, (prompt, _) in enumerate(self._weighted_prompts):
             # print(i)
             pos_scores_with_tuples = self.get_ent_tuples_weight(pos_tuples, given_prompts=[[prompt, 1.]])
@@ -117,8 +118,17 @@ class KnowledgeHarvester:
             neg_score = sum([score for tup, score in neg_scores_with_tuples]) / len(neg_scores_with_tuples)
 
             self._weighted_prompts[i][1] = \
-                (pos_score - neg_score) / self._prompt_temp
-        
+                (pos_score - 0.5 * neg_score) / self._prompt_temp
+        '''
+        pos_scores = self.get_ent_tuples_weight(pos_tuples, return_details=True)
+        # print(pos_scores.shape)
+        neg_scores = self.get_ent_tuples_weight(neg_tuples, return_details=True)
+        # print(neg_scores.shape)
+        for i, (prompt, _) in enumerate(self._weighted_prompts):
+            self._weighted_prompts[i][1] = \
+                    (pos_scores.mean(-1)[i] - 0.5 * neg_scores.mean(-1)[i]) / self._prompt_temp
+            self._weighted_prompts[i][1] = float(self._weighted_prompts[i][1])
+        '''
         self._weighted_prompts = sorted(
             self._weighted_prompts,
             key=lambda t: t[1], reverse=True)[:self._max_n_prompts]
@@ -132,6 +142,8 @@ class KnowledgeHarvester:
         self._weighted_prompts = [
             t for t in self._weighted_prompts if t[1] > 1e-4]
 
+        print(self._weighted_prompts)
+
     def update_ent_tuples(self):
         start = timeit.default_timer()
         
@@ -142,18 +154,38 @@ class KnowledgeHarvester:
             max_word_repeat=self._max_word_repeat,
             max_ent_subwords=self._max_ent_subwords)
         '''
-        raw_tuples = self.beam_search_entity_pairs((1, 1))
+        
+        n_ents = get_n_ents(self._weighted_prompts[0][0])
+        raw_tuples = []
+        ents = [[] for i in range(n_ents)]
+        for t in range(1 << n_ents):
+            bin_code = f'{t:b}'
+            bin_code = '0' * (n_ents - len(bin_code)) + bin_code
+            num_tokens = [int(i) + 1 for i in bin_code]
+            print(num_tokens)
+            raw_tuples = self.beam_search_entity_pairs(num_tokens) # 1 or 2 tokens
+            # print(raw_tuples)
+            cnt = 0
+            for ent_idx in range(n_ents):
+                batch_decodings = self._model.tokenizer.batch_decode([tup[cnt: cnt + num_tokens[ent_idx]] for tup, score in raw_tuples])
+                ents[ent_idx] += [d.strip() for d in batch_decodings]
+                cnt += num_tokens[ent_idx]
+                # print(ent_idx, ents[-5:])
+            # print(ents)
+            # exit(0)
+        # raw_tuples = self.beam_search_entity_pairs((1, 1, 1))
+        
+
         # remove repetitve tuples
         ent_tuples = []
-        n_ents = get_n_ents(self._weighted_prompts[0][0])
-        ents = []
-        for ent_idx in range(n_ents):
-            ents.append(self._model.tokenizer.batch_decode([tup[ent_idx] for tup, score in raw_tuples]))
         for tup in zip(*ents):
-            if tup[0] == tup[1]:
+            if tup[0] == tup[1] or \
+                (n_ents == 3 and (tup[0] == tup[2] or tup[1] == tup[2])):
                 continue
-            ent_tuples.append([ent.strip() for ent in tup])
+            # ent_tuples.append([ent.strip() for ent in tup])
+            ent_tuples.append([ent for ent in tup])
         # print(res)
+        print(ent_tuples)
         cur = timeit.default_timer()
         print(f"searched entity pairs ({self._max_n_ent_tuples}): {cur-start}s")
         start = cur
@@ -184,7 +216,7 @@ class KnowledgeHarvester:
         start = cur
 
         self._weighted_ent_tuples = sorted(
-            self._weighted_ent_tuples, key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples]
+            self._weighted_ent_tuples, key=lambda t: t[1], reverse=True)[:self._max_n_ent_tuples * (1 << n_ents)]
 
         norm_weights = softmax(
             [weight for _, weight in self._weighted_ent_tuples])
@@ -209,7 +241,7 @@ class KnowledgeHarvester:
         return (token_wise_score + ent_wise_score + min_score) / 3.
 
 
-    def get_ent_tuples_weight(self, ent_tuples, metric_weights=(1/3, 1/3, 1/3), given_prompts=None):
+    def get_ent_tuples_weight(self, ent_tuples, metric_weights=(1/3, 1/3, 1/3), given_prompts=None, return_details=False):
         begin = timeit.timeit()
         scores, tuples = self._score_tuples_prompts(ent_tuples, given_prompts=given_prompts)
         # now the score has the shape (n_prompts, n_tuples, 3)
@@ -217,7 +249,8 @@ class KnowledgeHarvester:
         scores = torch.sum(scores * metric_weights.reshape(1, 1, *metric_weights.shape)\
             .expand(*scores.shape), dim=-1)
         # aggregate all the metrics. Now (n_prompts, n_tuples)
-
+        if return_details:
+            return scores
         weighted_prompts = given_prompts if given_prompts is not None else self._weighted_prompts
         weights = torch.tensor([weight for prompt, weight in weighted_prompts])
         scores = torch.sum(scores * weights.reshape(*weights.shape, 1).expand(*scores.shape), dim=0)
@@ -242,7 +275,7 @@ class KnowledgeHarvester:
 
                 for score, ent_tuple in zip(scores, tuples):
                     # print(f"score and tuple: {score}, {ent_tuple}")
-                    prompt_result_list.append((ent_tuple[1], (sum(score).item()/sum(n_masks), sum(score).item()/len(n_masks), min(score).item())))
+                    prompt_result_list.append((ent_tuple[1], (sum(score)/sum(n_masks), sum(score)/len(n_masks), min(score))))
                      # += [(ent_tuple[1], score) ]
             prompt_result_list = sorted(prompt_result_list, key=lambda x:x[0])
             result_list.append([result[1] for result in prompt_result_list])
@@ -258,7 +291,8 @@ class KnowledgeHarvester:
         n_ents = len(n_masks)
         batch_prompt, pos_entities = self._model._tokenize_prompt_with_slots(prompt, n_masks, batch_size)
         return_scores = []
-        for i in range((len(tuples) - 1)//batch_size + 1):
+        print(f"scoring with prompt {prompt}")
+        for i in trange((len(tuples) - 1)//batch_size + 1):
             tuples_batch = tuples[i * batch_size: (i + 1) * batch_size]
             cur_batch_size = len(tuples_batch)
             batch_ids = copy.deepcopy(batch_prompt["input_ids"])[:cur_batch_size]
@@ -274,11 +308,13 @@ class KnowledgeHarvester:
                         # roberta doesn't have "token_type_ids"
 
                     for case_idx in range(cur_batch_size):
-                        batch_scores[case_idx].append(cur_scores[case_idx, target_ids[case_idx]])
+                        batch_scores[case_idx].append(cur_scores[case_idx, target_ids[case_idx]].item())
                         batch_ids[case_idx][target_pos] = target_ids[case_idx]  
                         # fill in the blank for next token prediction
 
             return_scores += batch_scores
+            # print("hey", return_scores)
+            # exit(0)
         return return_scores
 
 
@@ -298,17 +334,17 @@ class KnowledgeHarvester:
         
         for step in range(sum(n_masks)):
             
-            # print("step: ", step)
-            for i in range((len(paths_with_scores) - 1)//self._max_batch_size + 1):
+            print("step: ", step)
+            for i in trange((len(paths_with_scores) - 1)//self._max_batch_size + 1):
                 # print("batch: ", i)
                 batch = paths_with_scores[i * self._max_batch_size: (i + 1) * self._max_batch_size]
                 # print(batch)
                 # print(prompts_tokens)
                 res = self.batch_beam_step([p for p, s in batch], \
-                    torch.tensor([s for p, s in batch]).to("cuda"), step, prompts_tokens)
+                    torch.tensor([s for p, s in batch]).to("cuda"), step, prompts_tokens, n_masks)
                 #  print(res)
                 new_paths_with_scores += res
-                new_paths_with_scores = sorted(new_paths_with_scores, key=lambda x: -x[1])[:self._beam_size]
+            new_paths_with_scores = sorted(new_paths_with_scores, key=lambda x: -x[1])[:self._beam_size]
             
             paths_with_scores = new_paths_with_scores
             new_paths_with_scores = []
@@ -330,24 +366,32 @@ class KnowledgeHarvester:
 
         return [(p, s) for p, s in paths_with_scores]
 
-    def batch_beam_step(self, batch_paths, batch_prev_scores, step, prompts_tokens, reverse=False):
+    def batch_beam_step(self, batch_paths, batch_prev_scores, step, prompts_tokens, n_masks, reverse=False):
         # print(batch_paths)
         cur_bs = len(batch_paths)
         batch_prompt_score = []
         # last_step = sum(prompts_tokens[0][1]) == step + 1  # to filter repetitive tokens in the future.
         # print("cur", prompts_tokens)
         for batch_prompts, pos_entities in prompts_tokens:
+            # expand the pos_entities.
+            # cnt = 0
+            expanded_pos = []
+            for i in range(len(n_masks)):
+                cnt = 0
+                for j in range(n_masks[i]):
+                    expanded_pos.append(pos_entities[i] + j)
+            
             batch_ids = copy.deepcopy(batch_prompts["input_ids"])[:cur_bs]
             for k in range(cur_bs):
                 for l in range(step):
                     if reverse:
-                        batch_ids[k][(pos_entities)[l]] = batch_paths[k][l]
+                        batch_ids[k][(expanded_pos)[l]] = batch_paths[k][l]
                     else:
-                        batch_ids[k][(pos_entities)[l]] = batch_paths[k][l]
+                        batch_ids[k][(expanded_pos)[l]] = batch_paths[k][l]
                 # print(tokenizer.decode(batch_ids[k]))
             log_probs = self._model._get_batch_prediction(batch_ids, \
                 batch_prompts.get('token_type_ids', [])[:cur_bs], batch_prompts['attention_mask'][:cur_bs],\
-                     (pos_entities)[step])
+                     expanded_pos[step])
             # print(log_probs)
             # print(log_probs[:, :10])  # bs, vocab
             batch_prompt_score.append(log_probs.view(1, cur_bs, -1))
