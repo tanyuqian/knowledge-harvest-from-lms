@@ -31,7 +31,7 @@ class KnowledgeHarvester:
         self._ent_tuple_searcher = EntityTupleSearcher(model=self._model)
 
         self._seed_ent_tuples = None
-        self._max_batch_size = 256
+        self._max_batch_size = 128
         self._beam_size = max(128, max_n_ent_tuples * 2)
 
     def clear(self):

@@ -7,11 +7,74 @@ from models.gpt3 import GPT3
 
 from data_utils.data_utils import get_n_ents, get_sent, fix_prompt_style
 
+template = """Paraphrase the sentence while keeping the bracketed words unchanged: 
+
+## 
+Input: <exercise> is a synonym of <work out> 
+Output: you can express <workout> with <exercise>
+
+## 
+Input: The most famous product from <Google> is the <search engine> 
+Output: <Google> is famous for its <search engine>
+
+## 
+Input: input_sent
+Output: 
+"""
 
 TRANSFORMATIONS_SENT = [['', ''], ['a ', ''], ['the ', '']]
 TRANSFORMATIONS_ENT = [
     ['', ''], ['being', 'is'], ['being', 'are'], ['ing', ''], ['ing', 'e']]
 
+
+def get_paraphrase_prompt_with_quote(gpt3, inputs):
+    # used for the demo
+    # assert get_n_ents(prompt) == len(ent_tuple)
+    # ent_tuple = [ent.lower() for ent in ent_tuple]
+
+    # lower the entities
+    inputs = [(prompt, tuple([ent.lower() for ent in ent_tuple])) for prompt, ent_tuple in inputs]
+    # build prompts to GPT-3
+    sents = [
+        template.replace("input_sent", get_sent(prompt=prompt, ent_tuple=ent_tuple, keep_bracket=True)) \
+        for prompt, ent_tuple in inputs
+    ]
+    # print("sents", sents)
+    raw_response = gpt3.call(prompt=sents)
+    para_sents = [raw_response['choices'][i]['text']\
+         for i in range(len(raw_response['choices']))]
+    # print(raw_response)
+    # return
+    # for _ in range(5):
+    return_prompts = []
+    for (_, ent_tuple), __ in zip(inputs, para_sents):
+        para_sent = sent_tokenize(__)[0]
+        para_sent = para_sent.strip().strip('.').lower()
+        para_sent = para_sent.replace("<", "").replace(">", "")
+        print('input:', _, ent_tuple)
+        print('para_sent:', para_sent)
+
+        prompt = para_sent
+        valid = True
+        for idx, ent in enumerate(ent_tuple):
+            # prompt = prompt.replace(ent, f'<ENT{idx}>')
+            for trans_sent in TRANSFORMATIONS_SENT:
+                for trans_ent in TRANSFORMATIONS_ENT:
+                    if prompt.count(f'<ENT{idx}>') == 0:
+                        transed_prompt = prompt.replace(*trans_sent)
+                        transed_ent = ent.replace(*trans_ent)
+                        if transed_prompt.count(transed_ent) == 1:
+                            prompt = transed_prompt.replace(
+                                transed_ent, f'<ENT{idx}>')
+
+            if prompt.count(f'<ENT{idx}>') != 1:
+                valid = False
+                break
+
+        if valid:
+            return_prompts.append(prompt)
+
+    return return_prompts
 
 def get_paraphrase_prompt(gpt3, prompt, ent_tuple):
     assert get_n_ents(prompt) == len(ent_tuple)

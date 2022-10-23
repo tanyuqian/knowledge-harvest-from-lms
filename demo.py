@@ -6,12 +6,15 @@ import json
 from thefuzz import fuzz
 
 from data_utils.data_utils import fix_prompt_style, is_valid_prompt
-from search_prompts import get_paraphrase_prompt
+from search_prompts import get_paraphrase_prompt, get_paraphrase_prompt_with_quote
 from models.gpt3 import GPT3
 from models.knowledge_harvester import KnowledgeHarvester
 import timeit
+import random
 
-MAX_N_PROMPTS = 20
+MAX_N_PROMPTS = 3  
+# Prompts used for ranking. The searched prompts is doubled.
+
 MAX_WORD_REPEAT = 3
 MAX_ENT_SUBWORDS = 2
 PROMPT_TEMP = 2.
@@ -24,32 +27,35 @@ def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold,
 
     cache = {}
     prompts = []
-    while True:
+    calls = 0
+    while len(prompts) < MAX_N_PROMPTS * 2 and calls < 30:
         new_prompts = []
-        for prompt in init_prompts + init_prompts + prompts:
-            for ent_tuple in seed_ent_tuples:
-                ent_tuple = [ent.replace('_', ' ') for ent in ent_tuple]
-
-                request_str = f'{prompt} ||| {ent_tuple}'
-                if request_str not in cache or prompt in init_prompts:
-                    cache[request_str] = get_paraphrase_prompt(
-                        gpt3=gpt3, prompt=prompt, ent_tuple=ent_tuple)
-
-                para_prompt = cache[request_str]
-                # print(f'prompt: {prompt}\tent_tuple: {ent_tuple}'
-                #       f'\t-> para_prompt: {para_prompt}')
-
-                if para_prompt is not None and \
-                        para_prompt not in init_prompts + prompts:
+        current_prompts = init_prompts + prompts
+        combinations = [(prompt, [ent.replace('_', ' ') for ent in ent_tuple]) for prompt in current_prompts\
+             for ent_tuple in seed_ent_tuples]
+        # avoid repetitive sampling
+        combinations = [(prompt, ent_tuple) \
+            for prompt, ent_tuple in combinations \
+                if f'{prompt} ||| {ent_tuple}' not in cache]
+        #     request_str = f'{prompt} ||| {ent_tuple}'
+        inputs = random.sample(combinations * 2, min(2 * len(combinations), 2 * MAX_N_PROMPTS))
+        for prompt, ent_tuple in inputs:
+            cache[f'{prompt} ||| {ent_tuple}'] = 1
+        if calls <= 25:
+            calls += len(inputs)
+            para_prompts = get_paraphrase_prompt_with_quote(
+                gpt3=gpt3, inputs=inputs)
+            for para_prompt in para_prompts:
+                if para_prompt not in current_prompts:
                     new_prompts.append(para_prompt)
 
-            if len(set(prompts + new_prompts)) >= 20:
-                break
+            # if len(set(prompts + new_prompts)) >= 5:
+            #     break
 
         if len(new_prompts) == 0:
             break
+
         else:
-            # prompts.extend(new_prompts)
             flag = False
             for new_prompt in sorted(new_prompts, key=lambda t: len(t)):
                 # if len(prompts) != 0:
@@ -77,7 +83,7 @@ def search_prompts(init_prompts, seed_ent_tuples, similarity_threshold,
                 print(prompt)
             print('=' * 50)
 
-            if len(prompts) >= 10 or flag == False:
+            if len(prompts) >= 2 * MAX_N_PROMPTS or flag == False:
                 break
 
     for i in range(len(prompts)):
