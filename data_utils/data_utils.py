@@ -28,11 +28,13 @@ def get_n_ents(prompt):
     return n
 
 
-def get_sent(prompt, ent_tuple):
+def get_sent(prompt, ent_tuple, keep_bracket=False):
     sent = prompt
     for idx, ent in enumerate(ent_tuple):
-        sent = sent.replace(f'<ENT{idx}>', ent)
-
+        if not keep_bracket:
+            sent = sent.replace(f'<ENT{idx}>', ent)
+        else:
+            sent = sent.replace(f'ENT{idx}', ent)
     return sent
 
 

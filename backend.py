@@ -2,7 +2,7 @@ import fire
 import os
 
 
-MAX_N_ENT_TUPLES_LIST = [20, 40]
+MAX_N_ENT_TUPLES_LIST = [20]
 
 
 def main(model_name, init_prompts_str, seed_ent_tuples_str):
