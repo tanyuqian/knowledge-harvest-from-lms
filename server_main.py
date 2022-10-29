@@ -26,7 +26,7 @@ def retrieve_results(model_name, init_prompts_str, seed_ent_tuples_str):
         seed_ent_tuples_str=seed_ent_tuples_str)
 
     if os.path.exists(f'results/demo/prompts/{rel}.json'):
-        prompts = [[prompt, ''] for prompt in json.load(open(
+        prompts = [[prompt, -1] for prompt in json.load(open(
             f'results/demo/prompts/{rel}.json'))]
 
     for max_n_ent_tuples in reversed(MAX_N_ENT_TUPLES_LIST):
