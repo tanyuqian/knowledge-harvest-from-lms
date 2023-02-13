@@ -6,6 +6,8 @@ This repo contains preliminary code of the following paper:
 Shibo Hao*, Bowen Tan*, Kaiwen Tang*, Hengzhe Zhang, Eric P. Xing, Zhiting Hu \
 (* Equal contribution) 
 
+Play the [demo](https://lmnet.io/)!
+
 ## Getting Started
 * Symbolic knowledge graphs (KGs) have been constructed either by expensive human crowdsourcing or with domain-specific complex information extraction pipelines.
 * In this work, we aim at harvesting symbolic KGs from the LMs, a new framework for automatic KG construction empowered by the neural LMs' flexibility and scalability. 
